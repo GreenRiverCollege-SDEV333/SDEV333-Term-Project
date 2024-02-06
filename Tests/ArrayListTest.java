@@ -31,7 +31,7 @@ class ArrayListTest<T> {
     @Test
     void addBack() {
         assertEquals(0, testList.size());
-        testList.addBack((T)new Integer(2));
+        testList.addBack((T)(Integer)2);
         assertEquals(2, testList.get(testList.size() - 1));
         testList.addBack((T) "777");
         assertEquals("777", testList.get(testList.size() - 1));
@@ -50,12 +50,12 @@ class ArrayListTest<T> {
             assertEquals(expected, e.getMessage());
         }
         assertEquals(0, testList.size());
-        testList.addFront((T)new Integer(3));
+        testList.addFront((T)(Integer)3);
         for(int i = 0; i < 7; i++) {
-            testList.add(i, (T)new Integer((i+1)*2));
+            testList.add(i, (T)(Integer)((i+1)*2));
         }
         assertEquals(2, testList.get(0));
-        testList.add(7,(T)new Integer(66));
+        testList.add(7,(T)(Integer)66);
         assertEquals(66, testList.get(7));
         assertEquals(9, testList.size());
         testList.add(8,(T)"Found");
@@ -75,7 +75,7 @@ class ArrayListTest<T> {
             assertEquals(expected, e.getMessage());
         }
         for(int i = 0; i < 5; i++){
-            testList.addFront((T)Integer.valueOf(i));
+            testList.addFront((T)(Integer)i);
         }
         assertEquals(4, testList.get(0));
         assertEquals(3, testList.get(1));
