@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayListTest<T> {
-    ArrayList<T> testList = new ArrayList<T>();
+    ArrayList<T> testList = new ArrayList<>();
 
     @Test
     void addFront() {
