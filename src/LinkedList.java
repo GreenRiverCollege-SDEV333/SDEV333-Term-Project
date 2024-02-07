@@ -132,7 +132,7 @@ public class LinkedList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
-     * Run time for this method is O(n) because the index can be the last position of the linked list so it can run
+     * Run time for this method is O(n) because the index can be the last position of the linked list, so it can run
      * through one entire traversal of the linked list.
      *
      * @param index the index where the item should be saved
@@ -148,13 +148,12 @@ public class LinkedList<E> implements List<E> {
             head.data = item;
         }
         Node current = head.next;
-        Node previous = head;
+
         int currentIndex = 1;
         while (current != null) {
             if (currentIndex == index) {
                 current.data = item;
             }
-            previous = current;
             current = current.next;
             currentIndex++;
         }
@@ -262,7 +261,7 @@ public class LinkedList<E> implements List<E> {
                 current.data = (E) (Integer) 0;
                 previous.next = current.next;
                 size--;
-                return value;
+                break;
             }
             previous = current;
             current = current.next;
@@ -274,7 +273,7 @@ public class LinkedList<E> implements List<E> {
     /**
      * Checks if an item is in the list.
      * Runtime for this method is O(n) because the method must loop through the linked list to find the item
-     * and check if it matches the node.data item.
+     * and check if it matches the node data item.
      *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
@@ -363,7 +362,7 @@ public class LinkedList<E> implements List<E> {
      * caller.
      * <p>
      * The behavior of this method is unspecified if the action performs
-     * side-effects that modify the underlying source of elements, unless an
+     * side effects that modify the underlying source of elements, unless an
      * overriding class has specified a concurrent modification policy.
      *
      * @param action The action to be performed for each element
@@ -392,7 +391,7 @@ public class LinkedList<E> implements List<E> {
      * inherits the <em>fail-fast</em> properties of the iterable's iterator.
      * @implNote The default implementation should usually be overridden.  The
      * spliterator returned by the default implementation has poor splitting
-     * capabilities, is unsized, and does not report any spliterator
+     * capabilities, is un-sized, and does not report any spliterator
      * characteristics. Implementing classes can nearly always provide a
      * better implementation.
      * @since 1.8

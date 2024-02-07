@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTest<E> {
-    LinkedList<E> testList = new LinkedList<E>();
+    LinkedList<E> testList = new LinkedList<>();
 
     @Test
     void addFront() {
@@ -19,7 +19,7 @@ class LinkedListTest<E> {
         assertEquals("Three", testList.get(0));
         testList.addFront((E) (Double) 3.14159);
         assertEquals(3.14159, testList.get(0));
-        assertTrue(testList.size() == 2);
+        assertEquals(2, testList.size());
     }
 
     @Test

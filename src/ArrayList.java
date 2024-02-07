@@ -90,7 +90,7 @@ public class ArrayList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
-     * Runtime for this is O(1). Since it's indexed, there is no search time and it takes constant time.
+     * Runtime for this is O(1). Since it's indexed, there is no search time so it takes constant time.
      * @param index the index where the item should be saved
      * @param item  the item to be saved
      */
@@ -283,7 +283,7 @@ public class ArrayList<E> implements List<E> {
      * caller.
      * <p>
      * The behavior of this method is unspecified if the action performs
-     * side-effects that modify the underlying source of elements, unless an
+     * side effects that modify the underlying source of elements, unless an
      * overriding class has specified a concurrent modification policy.
      *
      * @param action The action to be performed for each element
@@ -312,7 +312,7 @@ public class ArrayList<E> implements List<E> {
      * inherits the <em>fail-fast</em> properties of the iterable's iterator.
      * @implNote The default implementation should usually be overridden.  The
      * spliterator returned by the default implementation has poor splitting
-     * capabilities, is unsized, and does not report any spliterator
+     * capabilities, is un-sized, and does not report any spliterator
      * characteristics. Implementing classes can nearly always provide a
      * better implementation.
      * @since 1.8
