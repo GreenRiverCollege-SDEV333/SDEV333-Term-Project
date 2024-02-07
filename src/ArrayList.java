@@ -84,6 +84,9 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void set(int index, E item) {
+        if(index<0 || index>size-1){
+            throw new IndexOutOfBoundsException ("Index cannot be outside the size of the array.");
+        }
         buffer[index] = item;
     }
 
@@ -95,7 +98,7 @@ public class ArrayList<E> implements List<E> {
     @Override
     public E removeFront() {
         if (size <= 0) {
-            throw new NoSuchElementException("Cannot remove lead element from an empty array");
+            throw new NoSuchElementException("Cannot remove element from an empty array");
         }
         E result = (E) buffer[0];
         for (int i = 0; i < size; i++) {
@@ -116,7 +119,7 @@ public class ArrayList<E> implements List<E> {
         if (size <= 0) {
             throw new NoSuchElementException("Cannot remove element from empty array");
         }
-        E result = (E) buffer[size];
+        E result = (E) buffer[size-1];
         buffer[size - 1] = 0;
         size--;
         return result;
@@ -129,7 +132,6 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void remove(E item) {
-        E value = null;
         for (int i = 0; i < size; i++) {
             if (buffer[i] == item) {
                 for(int k = i; k < size-1;k++) {

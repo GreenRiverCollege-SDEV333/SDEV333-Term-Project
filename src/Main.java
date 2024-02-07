@@ -23,5 +23,30 @@ public class Main {
         System.out.println(example.toString());
         example.remove((T)a);
         System.out.println(example.toString());
+        example.remove((T)a);
+        System.out.println(example.toString());
+        example.remove((T)a);
+        System.out.println(example.toString());
+        example.addBack((T)c);
+        System.out.println(example.toString());
+        example.addBack((T)c);
+        System.out.println(example.toString());
+        example.addBack((T)c);
+        System.out.println(example.toString());
+        example.addBack((T)c);
+        System.out.println(example.toString());
+        example.addBack((T)c);
+        System.out.println(example.toString());
+        example.addBack((T)c);
+        System.out.println(example.toString());
+        example.addBack((T)c);
+        System.out.println(example.toString());
+        example.addBack((T)c);
+        System.out.println(example.toString());
+        example.addBack((T)c);
+        System.out.println(example.toString());
+        example.addBack((T)b);
+        System.out.println(example.toString());
+
     }
 }
