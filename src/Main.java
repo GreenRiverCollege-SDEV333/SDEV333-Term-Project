@@ -12,41 +12,24 @@ public class Main {
         ArrayList<T> example= new ArrayList<>();
         System.out.println("Is the array empty? "+example.isEmpty());
         example.addFront((T)a);
-        System.out.println("Should add a 1"+example.toString());
+        System.out.println("Should add a 1"+example);
         example.addFront((T)c);
-        System.out.println("Should show 2, 1" + example.toString());
+        System.out.println("Should show 2, 1" + example);
         example.addFront((T)d);
-        System.out.println("Should show 4, 2, 1" + example.toString());
+        System.out.println("Should show 4, 2, 1" + example);
         example.set(0, (T)b);
-        System.out.println(example.toString());
+        System.out.println(example);
         example.addBack((T)c);
-        System.out.println(example.toString());
+        System.out.println(example);
         example.remove((T)a);
-        System.out.println(example.toString());
-        example.remove((T)a);
-        System.out.println(example.toString());
-        example.remove((T)a);
-        System.out.println(example.toString());
-        example.addBack((T)c);
-        System.out.println(example.toString());
-        example.addBack((T)c);
-        System.out.println(example.toString());
-        example.addBack((T)c);
-        System.out.println(example.toString());
-        example.addBack((T)c);
-        System.out.println(example.toString());
-        example.addBack((T)c);
-        System.out.println(example.toString());
-        example.addBack((T)c);
-        System.out.println(example.toString());
-        example.addBack((T)c);
-        System.out.println(example.toString());
-        example.addBack((T)c);
-        System.out.println(example.toString());
-        example.addBack((T)c);
-        System.out.println(example.toString());
-        example.addBack((T)b);
-        System.out.println(example.toString());
-
+        System.out.println(example);
+        System.out.println("\nFor Each Test\n");
+        for (int i=0;i<example.size();i++) {
+            Double j = i+1*3.1415;
+            for (T t:example) {
+                example.set(i,(T)j);
+                System.out.println(t);
+            }
+        }
     }
 }
