@@ -2,7 +2,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Spliterator;
 import java.util.function.Consumer;
-
+/**
+ * Implementation of the ArrayList<E> using the List<E> interface. This is my term assignment 1 Linked List.
+ * @author Rob Smith
+ */
 public class ArrayList<E> implements List<E> {
 
     private int size;
