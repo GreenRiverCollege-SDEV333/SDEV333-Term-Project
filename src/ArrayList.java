@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class ArrayList<E> implements List<E> {
 
@@ -17,14 +18,13 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void addFront(E item) {
-        if(isEmpty()) {
-            buffer[0] = item;
-        } else {
-            for(int i = size; i > 0; i--) {
-                buffer[i] = buffer[i - 1];
-            }
-            buffer[0] = item;
+        if(size == buffer.length) {
+            increaseBuffer();
         }
+        for(int i = size; i > 0; i--) {
+            buffer[i] = buffer[i - 1];
+        }
+        buffer[0] = item;
         size++;
     }
 
@@ -36,10 +36,9 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void addBack(E item) {
         if(size == buffer.length) {
-
-        } else {
-            buffer[size] = item;
+            increaseBuffer();
         }
+        buffer[size] = item;
         size++;
     }
 
@@ -54,6 +53,9 @@ public class ArrayList<E> implements List<E> {
         if(isEmpty()) {
             throw new IndexOutOfBoundsException("List is empty.");
         } else {
+            if(size == buffer.length) {
+                increaseBuffer();
+            }
             for(int j = size + 1; j > i; j--) {
                 buffer[j] = buffer[j - 1];
             }
@@ -72,6 +74,8 @@ public class ArrayList<E> implements List<E> {
     @Override
     public E get(int i) {
         if(isEmpty()) {
+            throw new NoSuchElementException("List is empty, no values to return.");
+        } else if(i > size - 1|| i < 0) {
             throw new IndexOutOfBoundsException("List is empty.");
         } else {
             return buffer[i];
@@ -87,7 +91,11 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void set(int i, E item) {
-
+        if(i > size - 1 || i < 0) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            buffer[i] = item;
+        }
     }
 
     /**
@@ -133,12 +141,16 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void remove(E item) {
-        for(int i = 0; i < size; i++) {
-            if(buffer[i] == item) {
-
+        if(isEmpty()) {
+            throw new NoSuchElementException("List is empty, no values to remove.");
+        } else {
+            for(int i = 0; i < size; i++) {
+                if(buffer[i].equals(item)) {
+                    remove(i);
+                }
             }
+            size--;
         }
-
     }
 
     /**
@@ -149,7 +161,16 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E remove(int i) {
-        return null;
+        if(isEmpty() || i > size - 1 || i < 0) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            E removedVal = buffer[i];
+            for(int j = i; j < size - 1; j++) {
+                buffer[j] = buffer[j + 1];
+            }
+            size--;
+            return removedVal;
+        }
     }
 
     /**
@@ -161,7 +182,7 @@ public class ArrayList<E> implements List<E> {
     @Override
     public boolean contains(E item) {
         for(E value : buffer) {
-            if(value == item) {
+            if(value.equals(item)) {
                 return true;
             }
         }
@@ -188,6 +209,14 @@ public class ArrayList<E> implements List<E> {
         return size;
     }
 
+    private void increaseBuffer() {
+        E[] hold = (E[])new Object[buffer.length];
+        if (size - 1 >= 0) System.arraycopy(buffer, 0, hold, 0, size - 1);
+
+        buffer = (E[])new Object[buffer.length * 2];
+        if (size - 1 >= 0) System.arraycopy(hold, 0, buffer, 0, size - 1);
+    }
+
     /**
      * Returns an iterator over elements of type {@code T}.
      *
@@ -195,6 +224,46 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new ArrayListIterator();
     }
+
+    public class ArrayListIterator implements Iterator<E> {
+
+        private int i;
+
+        private ArrayListIterator() {
+            i = 0;
+        }
+
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext() {
+            return i < size;
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
+         */
+        @Override
+        public E next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            E currentVal = buffer[i];
+            i++;
+            return currentVal;
+        }
+    }
+
+
+
 }
