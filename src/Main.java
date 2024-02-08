@@ -17,11 +17,11 @@ public class Main {
         System.out.println(example);
         example.addBack((T)"Back Value");
         System.out.println(example);
-        for (int i = 1; i < 99; i++) {
+        for (int i = 1; i < 12; i++) {
             example.add(i, (T)(i+" Value"));
         }
         System.out.println(example);
-        example.set(23, (T)"VALUE TWENTY THREE");
+        example.set(11, (T)"VALUE ELEVEN");
         System.out.println(example);
         for(T t: example){
             System.out.println(t);
