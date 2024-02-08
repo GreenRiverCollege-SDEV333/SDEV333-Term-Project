@@ -1,15 +1,17 @@
 import java.util.Iterator;
+
 /**
- *  * Implementation of the LinkedBag<E> using the Bag<E> interface. This is my term assignment 2 Bag.
+ * * Implementation of the LinkedBag<E> using the Bag<E> interface. This is my term assignment 2 Bag.
+ *
+ * @param <E> class / data type of the items in the LinkedBag
  * @author Rob Smith
  * @version 1.0
- * @param <E> class / data type of the items in the LinkedBag
  */
-public class LinkedBag<E> implements Bag<E>{
+public class LinkedBag<E> implements Bag<E> {
     private Node head;
     private int size;
 
-    private class Node{
+    private class Node {
         E data;
         Node next;
     }
@@ -17,7 +19,7 @@ public class LinkedBag<E> implements Bag<E>{
     /**
      * Constructor for the linkedBay class.
      */
-    public LinkedBag(){
+    public LinkedBag() {
         this.head = null;
         this.size = 0;
     }
@@ -26,9 +28,10 @@ public class LinkedBag<E> implements Bag<E>{
      * Adds the specified object to the front of the bag.
      * Runtime of this is O(1). It always takes the same amount of time to add a node to the front of a linked list
      * because there is no looping to shift like in an array.
+     *
      * @param item the item to be added
      */
-    public void add(E item){
+    public void add(E item) {
         Node newNode = new Node();
         newNode.data = item;
         if (head != null) {
@@ -41,6 +44,7 @@ public class LinkedBag<E> implements Bag<E>{
     /**
      * Checks if the bag is empty.
      * Runtime of this is O(1). It's simply returning a single boolean with no loops.
+     *
      * @return true if the LinkedBag is empty, false otherwise
      */
     @Override
@@ -51,6 +55,7 @@ public class LinkedBag<E> implements Bag<E>{
     /**
      * Checks the size of the bag.
      * Runtime of this is O(1). It's simply returning a single int with no loops.
+     *
      * @return the size of the LinkedBag
      */
     @Override
@@ -68,7 +73,7 @@ public class LinkedBag<E> implements Bag<E>{
         return new LinkedBagIterator();
     }
 
-    private class LinkedBagIterator implements Iterator<E>{
+    private class LinkedBagIterator implements Iterator<E> {
         Node current = head;
 
         /**
@@ -77,17 +82,19 @@ public class LinkedBag<E> implements Bag<E>{
          * return an element rather than throwing an exception.)
          * Runtime is O(1) because there is no looping involved it is just checking where in the bag the
          * iterator is currently located.
+         *
          * @return {@code true} if the iteration has more elements
          */
         @Override
         public boolean hasNext() {
-            return current!=null;
+            return current != null;
         }
 
         /**
          * Returns the next element in the iteration.
          * Runtime for this is O(1) because it's only accessing a single point of data not looping through the
          * bag in its entirety.
+         *
          * @return the next element in the iteration
          */
         @Override

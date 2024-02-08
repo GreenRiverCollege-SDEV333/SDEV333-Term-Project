@@ -10,7 +10,7 @@ public class QueueTestClient {
 
     public static void main(String[] args) {
 
-        Queue<String> stringQueue = new LinkedQueue<String>();
+        Queue<String> stringQueue = new LinkedQueue<>();
         Scanner in = new Scanner("to be or not to - be - - that - - - is");
 
         while (in.hasNext()) {

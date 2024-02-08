@@ -11,20 +11,20 @@ public class Stats {
 
         Bag<Double> numbers = new LinkedBag<>();
         Scanner in = new Scanner("100 99 101 120 98 107 109 81 101 90");
-        while(in.hasNextDouble()) {
+        while (in.hasNextDouble()) {
             numbers.add(in.nextDouble());
         }
         double sum = 0.0;
-        for(double x : numbers){
-            sum +=x;
+        for (double x : numbers) {
+            sum += x;
         }
         double mean = sum / numbers.size();
 
         sum = 0.0;
-        for (double x : numbers){
-            sum += (x-mean)*(x-mean);
+        for (double x : numbers) {
+            sum += (x - mean) * (x - mean);
         }
-        double std = Math.sqrt(sum/(numbers.size()-1));
+        double std = Math.sqrt(sum / (numbers.size() - 1));
 
         System.out.printf("Mean: %.2f\n", mean);
         System.out.printf("Std dev: %.2f\n", std);

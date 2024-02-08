@@ -2,9 +2,10 @@ import java.util.Iterator;
 
 /**
  * Stack (LIFO: last-in, first-out) API for resizing array implementation
+ *
+ * @param <E> class / data type of the items in the Stack
  * @author Rob Smith
  * @version 1.0
- * @param <E> class / data type of the items in the Stack
  */
 public class ResizingArrayStack<E> implements Stack<E> {
     private E[] buffer;

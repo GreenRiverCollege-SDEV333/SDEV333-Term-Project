@@ -46,7 +46,7 @@ class LinkedListTest<E> {
             testList.add(i, (E) (Double) ((i + 1) * 2.1));
         }
         assertEquals(2.1, testList.get(0));
-        assertSame(testList.get(7), (E) (Integer) 3);
+        assertSame(testList.get(7),3);
         testList.add(7, (E) (Integer) 66);
         assertEquals(66, testList.get(7));
     }

@@ -2,11 +2,13 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Spliterator;
 import java.util.function.Consumer;
+
 /**
  * Implementation of the LinkedList<E> using the List<E> interface. This is my term assignment 1 Linked List.
+ *
+ * @param <E> class / data type of the items in the LinkedList
  * @author Rob Smith
  * @version 1.0
- * @param <E> class / data type of the items in the LinkedList
  */
 public class LinkedList<E> implements List<E> {
     private class Node {
@@ -147,6 +149,7 @@ public class LinkedList<E> implements List<E> {
         } else if (head == null && index > 0) {
             throw new NoSuchElementException("Empty List");
         } else if (index == 0) {
+            assert head != null;
             head.data = item;
         }
         Node current = head.next;
@@ -184,6 +187,7 @@ public class LinkedList<E> implements List<E> {
      * Remove item at the back of the list
      * Runtime for this is always O(n) because a singly linked list must be traversed in its entirety to remove
      * the last node of the linked list.
+     *
      * @return the item that was removed
      */
     @Override
@@ -321,6 +325,7 @@ public class LinkedList<E> implements List<E> {
     /**
      * Pretty printing method for printing a LinkedList<E>.</E>
      * Runtime for toString is always O(n) because it is walking through the linked list to the end.
+     *
      * @return String of the node data in the linked list.
      */
     @Override
@@ -349,11 +354,12 @@ public class LinkedList<E> implements List<E> {
     /**
      * Returns an iterator over elements of type {@code T}.
      * Runtime is I(1) because it only instantiates an object and returns it there is no looping.
+     *
      * @return an Iterator.
      */
     @Override
     public Iterator<E> iterator() {
-        return new LinkedList.LinkedListIterator();
+        return new LinkedListIterator();
     }
 
     /**
@@ -410,8 +416,10 @@ public class LinkedList<E> implements List<E> {
         private LinkedListIterator() {
             this.i = 0;
         }
+
         /**
          * Tracker of if there's a next for the iterator.
+         *
          * @return returns the boolean representing if there's another element after the current element.
          */
         public boolean hasNext() {
@@ -421,11 +429,12 @@ public class LinkedList<E> implements List<E> {
         /**
          * Item to retrieve the element values for the iterator.
          * Runtime is O(1) because it's only looking at a single location and not looping.
+         *
          * @return the data of the current element.
          */
         public E next() {
             E currentItem = current.data;
-            current=current.next;
+            current = current.next;
             i++;
             return currentItem;
         }

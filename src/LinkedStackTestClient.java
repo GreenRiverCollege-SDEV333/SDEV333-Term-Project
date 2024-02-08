@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 /**
  * LinkedStackTestClient for term-project assignment 2 to implement and test a Stack ADT class, LinkedStack.
  *

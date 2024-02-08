@@ -2,10 +2,11 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- *  * Implementation of the LinkedQueue<E> using the Queue<E> interface. This is my term assignment 2 FIFO Queue.
+ * * Implementation of the LinkedQueue<E> using the Queue<E> interface. This is my term assignment 2 FIFO Queue.
+ *
+ * @param <E> class / data type of the items in the LinkedQueue
  * @author Rob Smith
  * @version 1.0
- * @param <E> class / data type of the items in the LinkedQueue
  */
 public class LinkedQueue<E> implements Queue<E> {
     private Node oldest;
@@ -25,17 +26,21 @@ public class LinkedQueue<E> implements Queue<E> {
         E data;
         Node next;
     }
+
     /**
      * Checks if the queue is empty.
      * Runtime of this is O(1). It's simply returning a single boolean with no loops.
+     *
      * @return true if the LinkedQueue is empty, false otherwise
      */
     public boolean isEmpty() {
         return size == 0;
     }
+
     /**
      * Checks the size of the list.
      * Runtime of this is O(1). It's simply returning a single int with no loops.
+     *
      * @return the size of the LinkedQueue
      */
     public int size() {
@@ -84,9 +89,11 @@ public class LinkedQueue<E> implements Queue<E> {
             return result;
         }
     }
+
     /**
      * returns an object to iterate through the LinkedQueue.
      * Runtime is O(1) because it is merely instantiating an object with no looping.
+     *
      * @return an object to iterate through the LinkedQueue
      */
     @Override
