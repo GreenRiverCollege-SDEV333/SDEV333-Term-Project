@@ -9,7 +9,7 @@ public class LinkedStackTestClient {
 
     public static void main(String[] args) {
 
-        Stack<String> stringStack = new LinkedStack<String>();
+        Stack<String> stringStack = new LinkedStack<>();
         Scanner in = new Scanner("to be or not to - be - - that - - - is");
 
         while (in.hasNext()) {

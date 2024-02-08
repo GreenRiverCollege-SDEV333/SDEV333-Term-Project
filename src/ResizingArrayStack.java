@@ -20,8 +20,8 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     private void resize(int max) {
         E[] temp = (E[]) new Object[max];
-        for (int i = 0; i < size; i++) {
-            temp[i] = buffer[i];
+        if (size >= 0) {
+            System.arraycopy(buffer, 0, temp, 0, size);
         }
         buffer = temp;
     }
@@ -53,7 +53,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
     public E pop() {
         E value = buffer[size - 1];
         buffer[size - 1] = null;
-        if (size > 0 && size == buffer.length / 4) {
+        if (size == buffer.length / 4) {
             resize(buffer.length / 2);
         }
         size--;
@@ -69,8 +69,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
      */
     @Override
     public E peek() {
-        E value = buffer[size - 1];
-        return value;
+        return buffer[size - 1];
     }
 
     /**

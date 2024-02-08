@@ -19,7 +19,7 @@ public class ArrayList<E> implements List<E> {
      */
     public ArrayList() {
         this.size = 0;
-        this.buffer = (E[]) new Object[10];
+        this.buffer = new Object[10];
     }
 
     /**
@@ -92,7 +92,7 @@ public class ArrayList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
-     * Runtime for this is O(1). Since it's indexed, there is no search time so it takes constant time.
+     * Runtime for this is O(1). Since it's indexed, there is no search time, so it takes constant time.
      * @param index the index where the item should be saved
      * @param item  the item to be saved
      */

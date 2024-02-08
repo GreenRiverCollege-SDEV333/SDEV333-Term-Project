@@ -85,14 +85,13 @@ public class LinkedStack<E> implements Stack<E>{
      */
     @Override
     public E peek() {
-        E value = head.data;
-        return value;
+        return head.data;
     }
 
     /**
-     * returns an object to iterate through the Linkedstack.
+     * returns an object to iterate through the Linked-stack.
      * Runtime is O(1) because it is merely instantiating an object with no looping.
-     * @return
+     * @return an object to iterate through the Linked-stack
      */
     public Iterator<E> iterator() {
         return new LinkedStackIterator();
