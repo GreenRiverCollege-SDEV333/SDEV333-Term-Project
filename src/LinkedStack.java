@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
  * Linked Node stack implementation. LIFO.
  * @author Rob smith
  * @version 1.0
- * @param <E>
+ * @param <E> class / data type of the items in the LinkedStack
  */
 public class LinkedStack<E> implements Stack<E>{
 
@@ -37,7 +37,7 @@ public class LinkedStack<E> implements Stack<E>{
     /**
      * Checks the size of the list.
      * Runtime of this is O(1). It's simply returning a single int with no loops.
-     * @return the size of the LinkedStack\
+     * @return the size of the LinkedStack
      */
     public int size() {
         return size;

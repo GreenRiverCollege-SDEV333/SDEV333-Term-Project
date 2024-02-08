@@ -1,6 +1,12 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ *  * Implementation of the LinkedQueue<E> using the Queue<E> interface. This is my term assignment 2 FIFO Queue.
+ * @author Rob Smith
+ * @version 1.0
+ * @param <E> class / data type of the items in the LinkedQueue
+ */
 public class LinkedQueue<E> implements Queue<E> {
     private Node oldest;
     private Node newest;
