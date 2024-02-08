@@ -5,6 +5,8 @@ import java.util.function.Consumer;
 /**
  * Implementation of the ArrayList<E> using the List<E> interface. This is my term assignment 1 Linked List.
  * @author Rob Smith
+ * @version 1.0
+ * @param <E> class / data type of the items in the ArrayList
  */
 public class ArrayList<E> implements List<E> {
 
@@ -222,7 +224,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Helper method that doubles the array size using the resize method.
-     * Runtime for this method is O(1).
+     * Runtime for this method is O(1) because it doesn't loop anything and is just a helper method to clean
+     * up implementation elsewhere of resize.
      */
     private void doubleSize() {
         if (size == buffer.length) {
@@ -267,7 +270,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     * Runtime for this method is O(1).
+     * Runtime for this method is O(1) because it simply8 instantiates an object and returns it.
      * @return an Iterator.
      */
     @Override
@@ -329,10 +332,19 @@ public class ArrayList<E> implements List<E> {
             this.i = 0;
         }
 
+        /**
+         * Tracker of if there's a next for the iterator.
+         * @return returns the boolean representing if there's another element after the current element.
+         */
         public boolean hasNext() {
             return i < size;
         }
 
+        /**
+         * Item to retrieve the element values for the iterator.
+         * Runtime is O(1) because it's only looking at a single location and not looping.
+         * @return the data of the current element.
+         */
         public E next() {
             E currentItem = (E) buffer[i];
             i++;

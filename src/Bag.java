@@ -1,6 +1,8 @@
 /**
  * Bag is a collection structure
- * @param <E> class / data type of the items in the bag
+ *  @author Rob Smith
+ *  @version 1.0
+ *  @param <E> class / data type of the items in the bag
  */
 public interface Bag<E> extends Iterable<E> {
 

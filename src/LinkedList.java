@@ -5,6 +5,8 @@ import java.util.function.Consumer;
 /**
  * Implementation of the LinkedList<E> using the List<E> interface. This is my term assignment 1 Linked List.
  * @author Rob Smith
+ * @version 1.0
+ * @param <E> class / data type of the items in the LinkedList
  */
 public class LinkedList<E> implements List<E> {
     private class Node {
@@ -346,7 +348,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
+     * Runtime is I(1) because it only instantiates an object and returns it there is no looping.
      * @return an Iterator.
      */
     @Override
@@ -408,11 +410,19 @@ public class LinkedList<E> implements List<E> {
         private LinkedListIterator() {
             this.i = 0;
         }
-
+        /**
+         * Tracker of if there's a next for the iterator.
+         * @return returns the boolean representing if there's another element after the current element.
+         */
         public boolean hasNext() {
             return i < size;
         }
 
+        /**
+         * Item to retrieve the element values for the iterator.
+         * Runtime is O(1) because it's only looking at a single location and not looping.
+         * @return the data of the current element.
+         */
         public E next() {
             E currentItem = current.data;
             current=current.next;
