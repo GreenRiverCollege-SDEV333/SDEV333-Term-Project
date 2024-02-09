@@ -1,12 +1,14 @@
+package interfaces;
+
 /**
- * MathSet API (interface / abstract data type)
+ * interfaces.MathSet API (interface / abstract data type)
  * represents a mathematical set. Sets in mathematics
  * have unique elements (keys) and there are no duplicate keys.
  *
- * In this MathSet API, we have an additional constraint that
+ * In this interfaces.MathSet API, we have an additional constraint that
  * traditional mathematical sets do not have. In mathematical sets,
  * elements are unordered, order of keys does not matter. In this
- * MathSet API, we require items to be Comparable so we can maintain
+ * interfaces.MathSet API, we require items to be Comparable so we can maintain
  * them in order. By keeping items in order, we can guarantee
  * some reasonable performance for the set operations (union,
  * intersection, difference, symmetric difference) and for search
@@ -60,7 +62,7 @@ public interface MathSet <E extends Comparable> extends Iterable<E> {
      * Computes the union of this set and another specified set.
      * Does not change the contents of this set.
      * @param other the second set for the operation
-     * @return new MathSet that contains the union
+     * @return new interfaces.MathSet that contains the union
      */
     MathSet<E> union(MathSet<E> other);
 
@@ -68,7 +70,7 @@ public interface MathSet <E extends Comparable> extends Iterable<E> {
      * Computes the intersection of this set and another specified set.
      * Does not change the contents of this set.
      * @param other the second set for the operation
-     * @return new MathSet that contains the intersection
+     * @return new interfaces.MathSet that contains the intersection
      */
     MathSet<E> intersection(MathSet<E> other);
 
@@ -76,7 +78,7 @@ public interface MathSet <E extends Comparable> extends Iterable<E> {
      * Computes the difference of this set and another specified set.
      * Does not change the contents of this set.
      * @param other the second set for the operation
-     * @return new MathSet that contains the difference
+     * @return new interfaces.MathSet that contains the difference
      */
     MathSet<E> difference(MathSet<E> other);
 
@@ -84,7 +86,7 @@ public interface MathSet <E extends Comparable> extends Iterable<E> {
      * Computes the symmetric difference of this set and another specified set.
      * Does not change the contents of this set.
      * @param other the second set for the operation
-     * @return new MathSet that contains the symmetric difference
+     * @return new interfaces.MathSet that contains the symmetric difference
      */
     MathSet<E> symmetricDifference(MathSet<E> other);
 

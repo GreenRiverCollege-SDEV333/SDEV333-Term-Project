@@ -1,5 +1,7 @@
+package interfaces;
+
 /**
- * Deque: double-ended queue API
+ * interfaces.Deque: double-ended queue API
  * Supports adding and removing items at both ends.
  *
  * @param <E>
