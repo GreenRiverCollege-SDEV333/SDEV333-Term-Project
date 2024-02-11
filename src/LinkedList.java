@@ -19,6 +19,9 @@ public class LinkedList<E> implements List<E> {
     /**
      * Add item to the front.
      *
+     * Runtime Analysis: This method runs at O(1) constant for either an empty list
+     * or just adding node to the front.
+     *
      * @param item the item to be added
      */
     @Override
@@ -32,6 +35,9 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add item to the back.
+     *
+     * Runtime Analysis: At its best this method runs at O(1) constant for an empty list,
+     * at its worst is O(N) linear having to loop through the entire list with N size.
      *
      * @param item the item to be added
      */
@@ -58,6 +64,10 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add an item at specified index (position).
+     *
+     * Runtime Analysis: At its best this method runs at O(1) constant for an empty list or with
+     * the index being 0. At its worst is O(N) linear having to loop through the entire list with N size
+     * to reach the last node.
      *
      * @param i    the index where the item should be added
      * @param item the item to be added
@@ -87,6 +97,10 @@ public class LinkedList<E> implements List<E> {
     /**
      * Get the item at a specified index.
      *
+     * Runtime Analysis: This method runs at O(1) constant at its best for an
+     * empty list/ desired index being the front. At its worst it runs at
+     * O(N) if the desired value is at the end of the list.
+     *
      * @param i the index where the item should be retrieved
      * @return the item located at that index
      */
@@ -114,6 +128,10 @@ public class LinkedList<E> implements List<E> {
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
      *
+     * Runtime Analysis: At its best this method runs at O(1) constant for an empty list
+     * or desired node to be changed at the front. At its worst is O(N) linear having to loop
+     * through the entire list with N size to set the last node.
+     *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
      */
@@ -136,6 +154,9 @@ public class LinkedList<E> implements List<E> {
     /**
      * Remove item at the front of the list.
      *
+     * Runtime Analysis: This method runs at O(1) constant for an empty list, and for
+     * removing the first node.
+     *
      * @return the item that was removed
      */
     @Override
@@ -151,6 +172,10 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at the back of the list
+     *
+     * Runtime Analysis: At its best this method runs at O(1) constant for an empty list,
+     * or a list of size 1. At its worst is O(N) linear having to loop through the entire
+     * list with N size.
      *
      * @return the item that was removed
      */
@@ -177,6 +202,10 @@ public class LinkedList<E> implements List<E> {
     /**
      * Remove item from the list
      *
+     * Runtime Analysis: At its best this method runs at O(1) constant for an empty list/ single value
+     * list. At its worst is O(N) linear having to loop through the entire list with N size to check
+     * for desired value.
+     *
      * @param item the item to be removed
      */
     @Override
@@ -200,6 +229,10 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
+     *
+     * Runtime Analysis: At its best this method runs at O(1) constant for an empty list or index
+     * being 0. At its worst is O(N) linear having to loop through the entire list with N size to
+     * reach last index.
      *
      * @param i the index where the item should be removed
      * @return the item that was removed
@@ -234,6 +267,10 @@ public class LinkedList<E> implements List<E> {
     /**
      * Checks if an item is in the list.
      *
+     * Runtime Analysis: This method runs at O(N) linear due to
+     * having to loop through the entire array to check for the
+     * val.
+     *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -255,6 +292,9 @@ public class LinkedList<E> implements List<E> {
     /**
      * Checks if the list is empty.
      *
+     * Runtime Analysis: This method runs at O(1) constant always returning
+     * the result of a check.
+     *
      * @return true if the list is empty, false otherwise
      */
     @Override
@@ -264,6 +304,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Provides a count of the number of items in the list.
+     *
+     * Runtime Analysis: This method runs at O(1) constant always returning size.
      *
      * @return number of items in the list
      */
