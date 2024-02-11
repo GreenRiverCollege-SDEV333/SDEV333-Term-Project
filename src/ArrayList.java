@@ -14,7 +14,8 @@ public class ArrayList<E> implements List<E> {
     /**
      * Add item to the front.
      *
-     * Runtime analysis: O(N)
+     * Runtime analysis: Best case is O(1) constant for an empty array, and worse case is O(N)
+     * for looping through an entire array shifting all values over.
      *
      * @param item the item to be added
      */
@@ -33,6 +34,9 @@ public class ArrayList<E> implements List<E> {
     /**
      * Add item to the back.
      *
+     * Runtime Analysis: Best case is O(1) for an empty array/ array that's
+     * not full. Worst case is O(N) linear having to increase the buffer size.
+     *
      * @param item the item to be added
      */
     @Override
@@ -46,6 +50,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add an item at specified index (position).
+     *
+     * Runtime Analysis: Best case is O(1) for an empty array, adding a value at index 0. Worst case is
+     * O(N) for looping through an entire array of N size, or if the length needs to be increased.
      *
      * @param i    the index where the item should be added
      * @param item the item to be added
@@ -75,6 +82,9 @@ public class ArrayList<E> implements List<E> {
     /**
      * Get the item at a specified index.
      *
+     * Runtime Analysis: Worst case is O(1) for an empty array, and returning
+     * a value at a specified index.
+     *
      * @param i the index where the item should be retrieved
      * @return the item located at that index
      */
@@ -92,6 +102,9 @@ public class ArrayList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     *
+     * Runtime Analysis: Best case is O(1) for an empty array, and only having to access
+     * an index/ change the value.
      *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
@@ -115,6 +128,9 @@ public class ArrayList<E> implements List<E> {
     /**
      * Remove item at the front of the list.
      *
+     * Runtime Analysis: Best case is O(1) for an empty array, and worst case is
+     * O(N) for looping through an entire array to shift all values over.
+     *
      * @return the item that was removed
      */
     @Override
@@ -134,6 +150,9 @@ public class ArrayList<E> implements List<E> {
     /**
      * Remove item at the back of the list
      *
+     * Runtime Analysis: Best case is O(1) for an empty array, and worst case is
+     * O(N) for looping through an entire array of N size.
+     *
      * @return the item that was removed
      */
     @Override
@@ -150,6 +169,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item from the list
+     *
+     * Runtime Analysis: Best case is O(1) constant for an empty array. Worst case is
+     * O(N) linear with having to loop through an array then calling the remove method.
      *
      * @param item the item to be removed
      */
@@ -169,6 +191,10 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
+     *
+     * Runtime Analysis: Best case is O(1) constant in the case of an empty
+     * array/invalid index. At its worst it's O(N) linear due to looping through an array
+     * of N size, and the index potentially being at the end.
      *
      * @param i the index where the item should be removed
      * @return the item that was removed
@@ -190,7 +216,10 @@ public class ArrayList<E> implements List<E> {
     /**
      * Checks if an item is in the list.
      *
-     * Runtime Analysis: O(N) Linear
+     * Runtime Analysis: At its best the method runs at O(1) in the case of
+     * an empty array, and at its worst O(N) Linear due looping through an
+     * array of N length with the possibility of the desired val being at
+     * the end.
      *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
@@ -211,7 +240,9 @@ public class ArrayList<E> implements List<E> {
     /**
      * Checks if the list is empty.
      *
-     * Runtime Analysis: O(1) constant
+     * Runtime Analysis: O(1) constant, this is the worst
+     * case scenario because it simply returns the result of
+     * a comparison.
      *
      * @return true if the list is empty, false otherwise
      */
@@ -223,7 +254,8 @@ public class ArrayList<E> implements List<E> {
     /**
      * Provides a count of the number of items in the list.
      *
-     * Runtime Analysis: O(1) constant
+     * Runtime Analysis: Runs at O(1) constant at it's worst
+     * because it's always just returning a single variable.
      *
      * @return number of items in the list
      */
@@ -234,7 +266,9 @@ public class ArrayList<E> implements List<E> {
 
 
     /**
-     * Runtime analysis: At it's worst it's O(N) linear.
+     * Runtime analysis: At it's worst it's O(N) linear because it has
+     * to loop through all values an array twice, and the size of the
+     * array can vary.
      */
 
     private void increaseBuffer() {
