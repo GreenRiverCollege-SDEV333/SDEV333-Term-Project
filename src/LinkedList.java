@@ -39,11 +39,13 @@ public class LinkedList<E> implements List<E> {
     public void addBack(E item) {
         Node newNode = new Node();
         newNode.data = item;
-        if(head == null) {
+        if(isEmpty()) {
             head = newNode;
+        } else if(size == 1) {
+            head.next = newNode;
         } else {
             int counter = 0;
-            for(Node current = head; current.next != null; current = current.next) {
+            for(Node current = head; current != null; current = current.next) {
                 if(counter == size - 1) {
                     current.next = newNode;
                     break;
@@ -62,7 +64,9 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void add(int i, E item) {
-        if(isEmpty()) {
+        if(i == 0) {
+            addFront(item);
+        } else if(isEmpty()) {
             throw new IndexOutOfBoundsException("List is empty, value must be added to the front");
         } else if(i > size - 1 || i < 0) {
             throw new IndexOutOfBoundsException("Invalid index.");
@@ -78,7 +82,6 @@ public class LinkedList<E> implements List<E> {
             }
             counter++;
         }
-
     }
 
     /**
@@ -93,10 +96,12 @@ public class LinkedList<E> implements List<E> {
             throw new NoSuchElementException("List is empty, no values to return.");
         } else if (i > size - 1 || i < 0) {
             throw new IndexOutOfBoundsException("Invalid index.");
+        } else if(size == 1) {
+            return head.data;
         }
         int counter = 0;
         E retreivedVal = null;
-        for(Node current = head; current.next != null; current = current.next) {
+        for(Node current = head; current != null; current = current.next) {
             if(counter == i) {
                 retreivedVal = current.data;
             }
@@ -120,7 +125,7 @@ public class LinkedList<E> implements List<E> {
             throw new IndexOutOfBoundsException("Invalid index");
         }
         int counter = 0;
-        for(Node current = head; current.next != null; current = current.next) {
+        for(Node current = head; current != null; current = current.next) {
             if(counter == i) {
                 current.data = item;
             }
@@ -151,11 +156,15 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E removeBack() {
+        E removedVal = null;
         if(isEmpty()) {
             throw new NoSuchElementException("List is empty, no values to remove");
+        } else if (size == 1) {
+            removedVal = head.data;
+            head = null;
+            return removedVal;
         }
-        E removedVal = null;
-        for(Node current = head; current.next != null; current = current.next) {
+        for(Node current = head; current != null; current = current.next) {
             if(current.next.next == null) {
                 removedVal = current.next.data;
                 current.next = null;
@@ -172,6 +181,14 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void remove(E item) {
+        if(isEmpty()) {
+            throw new NoSuchElementException("List is empty, no values to remove.");
+        } else if (size == 1) {
+            if(head.data.equals(item)) {
+                head.data = null;
+                size--;
+            }
+        }
         for(Node current = head; current.next != null; current = current.next) {
             if(current.next.data.equals(item)) {
                 current.next = current.next.next;
@@ -189,14 +206,20 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E remove(int i) {
+        E removedVal = null;
         if(isEmpty()) {
             throw new NoSuchElementException("List is empty, no values to remove.");
         } else if(i > size - 1 || i < 0) {
             throw new IndexOutOfBoundsException();
+        } else if(size == 1) {
+            removedVal = head.data;
+            head.data = null;
+            size--;
+            return removedVal;
         }
         int counter = 0;
-        E removedVal = null;
-        for(Node current = head; current.next != null; current = current.next) {
+
+        for(Node current = head; current != null; current = current.next) {
             if(counter == i - 1) {
                 removedVal = current.next.data;
                 current.next = current.next.next;
@@ -216,6 +239,11 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public boolean contains(E item) {
+        if(isEmpty()) {
+            return false;
+        } else if(size == 1) {
+            return head.data.equals(item);
+        }
         for(Node current = head; current.next != null; current = current.next) {
             if(current.data.equals(item)) {
                 return true;

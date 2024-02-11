@@ -14,18 +14,20 @@ public class ArrayList<E> implements List<E> {
     /**
      * Add item to the front.
      *
+     * Runtime analysis: O(N)
+     *
      * @param item the item to be added
      */
     @Override
     public void addFront(E item) {
-        if(size == buffer.length) {
-            increaseBuffer();
+        if(size == buffer.length) { // 1
+            increaseBuffer(); // O(N) 5 + (8 * n)
         }
-        for(int i = size; i > 0; i--) {
-            buffer[i] = buffer[i - 1];
+        for(int i = size; i > 0; i--) { // 6 * n
+            buffer[i] = buffer[i - 1]; //
         }
-        buffer[0] = item;
-        size++;
+        buffer[0] = item; // 1
+        size++; // 2
     }
 
     /**
@@ -51,7 +53,12 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void add(int i, E item) {
         if(isEmpty()) {
-            throw new IndexOutOfBoundsException("List is empty.");
+            if(i == 0) {
+                buffer[i] = item;
+                size++;
+            } else {
+                throw new IndexOutOfBoundsException("List is empty.");
+            }
         } else {
             if(size == buffer.length) {
                 increaseBuffer();
@@ -91,7 +98,14 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void set(int i, E item) {
-        if(i > size - 1 || i < 0) {
+        if(isEmpty()) {
+            if(i == 0) {
+                buffer[i] = item;
+                size++;
+            } else {
+                throw new NoSuchElementException("List is empty, must set first index.");
+            }
+        } else if(i > size - 1 || i < 0) {
             throw new IndexOutOfBoundsException();
         } else {
             buffer[i] = item;
@@ -176,13 +190,18 @@ public class ArrayList<E> implements List<E> {
     /**
      * Checks if an item is in the list.
      *
+     * Runtime Analysis: O(N) Linear
+     *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
     @Override
     public boolean contains(E item) {
-        for(E value : buffer) {
-            if(value.equals(item)) {
+        if(isEmpty()) {
+            return false;
+        }
+        for(int i = 0; i < size; i++) {
+            if(buffer[i].equals(item)) {
                 return true;
             }
         }
@@ -191,6 +210,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Checks if the list is empty.
+     *
+     * Runtime Analysis: O(1) constant
      *
      * @return true if the list is empty, false otherwise
      */
@@ -202,6 +223,8 @@ public class ArrayList<E> implements List<E> {
     /**
      * Provides a count of the number of items in the list.
      *
+     * Runtime Analysis: O(1) constant
+     *
      * @return number of items in the list
      */
     @Override
@@ -209,12 +232,21 @@ public class ArrayList<E> implements List<E> {
         return size;
     }
 
-    private void increaseBuffer() {
-        E[] hold = (E[])new Object[buffer.length];
-        if (size - 1 >= 0) System.arraycopy(buffer, 0, hold, 0, size - 1);
 
-        buffer = (E[])new Object[buffer.length * 2];
-        if (size - 1 >= 0) System.arraycopy(hold, 0, buffer, 0, size - 1);
+    /**
+     * Runtime analysis: At it's worst it's O(N) linear.
+     */
+
+    private void increaseBuffer() {
+        E[] hold = (E[])new Object[buffer.length]; // 2
+        for(int i = 0; i < size - 1; i++) { // 4 * n
+            hold[i] = buffer[i];
+        }
+
+        buffer = (E[])new Object[buffer.length * 2]; // 3
+        for(int i = 0; i < size - 1; i++) {  // 4 * n
+            buffer[i] = hold[i];
+        }
     }
 
     /**
