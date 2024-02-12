@@ -27,7 +27,7 @@ public class ArrayList<E> implements List<E> {
 
     // performs resizing if too large or too small of a buffer size.
     private void autoResize() {
-        double capacity = this.size() / arraySize;
+        double capacity = this.size() / arrayData.length;
 
         // grow when we reach max capacity
         if (capacity > MAX_CAPACITY) grow();
@@ -186,7 +186,7 @@ public class ArrayList<E> implements List<E> {
         E data = arrayData[i];
 
         // shift all from rhs left to shrink, adjust array size
-        for (int idx = i; idx < this.size(); i++) {
+        for (int idx = i; idx < this.size(); idx++) {
             arrayData[idx] = arrayData[idx+1];
         }
         arraySize--;

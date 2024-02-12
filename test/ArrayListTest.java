@@ -80,10 +80,18 @@ class ArrayListTest {
         t.addBack("test");
         t.addBack("test");
         t.addBack("test");
-        
+
+        // case: inner array
         t.set(1, "set");
-        
         assertEquals("set", t.get(1));
+
+        // case: beginning of array
+        t.set(0, "set2");
+        assertEquals("set2", t.get(0));
+
+        // case: end of array
+        t.set(3, "set3");
+        assertEquals("set3", t.get(3));
     }
 
     @Test
@@ -100,7 +108,7 @@ class ArrayListTest {
         assertEquals(retval, "test1");
 
         retval = t.removeFront();
-        assertEquals(retval, "test1");
+        assertEquals(retval, "test2");
     }
 
     @Test
@@ -181,11 +189,9 @@ class ArrayListTest {
         assertTrue(t.isEmpty());
         
         t.addBack("");
-        
         assertFalse(t.isEmpty());
         
         t.removeBack();
-        
         assertTrue(t.isEmpty());
         
     }
@@ -202,6 +208,19 @@ class ArrayListTest {
         t.removeBack();
         assertTrue(t.isEmpty());
         
+    }
+
+    @Test
+    void iterator() {
+        ArrayList<String> t = new ArrayList<>();
+        t.addBack("test1");
+        t.addBack("test2");
+        t.addBack("test3");
+        t.addBack("test4");
+
+        for (var i : t) {
+            assertTrue(t.contains(i));
+        }
     }
     
 }
