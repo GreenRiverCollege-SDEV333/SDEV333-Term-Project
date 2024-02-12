@@ -136,19 +136,19 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void set(int i, E item) {
+        // if index is out of bounds
+        if (i < 0 || i >= size) {
+            throw new IndexOutOfBoundsException("Index is out of bounds");
+        }
         Node current = head;
 
-        //if index is out of bounds
-        if (i < 0 || i > size) {
-            throw new IndexOutOfBoundsException("index is out of bounds");
-        }
-
-        for (int j = i; j > 0; j--) {
+        for (int j = 0; j < i; j++) {
             current = current.next;
         }
 
         current.data = item;
     }
+
 
     /**
      * Remove item at the front of the list.
@@ -157,12 +157,14 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E removeFront() {
-        E removedData = head.data;
-        if (!isEmpty()) {
+        if (head != null) {
+            E removedData = head.data;
             head = head.next;
             size--;
+            return removedData;
         }
-        return removedData;
+
+        throw new IndexOutOfBoundsException("Index is out of bounds");
     }
 
     /**
@@ -180,12 +182,13 @@ public class LinkedList<E> implements List<E> {
                     current = current.next;
                 }
             }
-            E removedData = current.next.data;
+            E removedData = current.data;
             current.next = null;
             size--;
             return removedData;
         }
-        return null;
+        throw new IndexOutOfBoundsException("Index is out of bounds");
+
     }
 
     /**
@@ -216,35 +219,36 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E remove(int i) {
-        Node current = head;
-        i++;
-
-        if (i < 0 || i > size) {
+        //validate index
+        if (i < 0 || i >= size) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
-        else {
 
-            while (i != 0) {
-                if (i != 1) {
-                    current = current.next;
-                }
-                i--;
-            }
+        Node current = head;
 
-            E value = current.next.data;
-
-            if (current.next.next != null) {
-                //if the node to remove is not the last in the list
-                current.next = current.next.next;
-            }
-            else {
-                //if the node to remove is the last in the list
-                current.next = null;
-            }
-
+        // if the index is the first element
+        if (i == 0) {
+            E value = head.data;
+            head = head.next;
             size--;
             return value;
         }
+
+        for (int j = 0; j < i - 1; j++) {
+            current = current.next;
+        }
+
+        E value = current.next.data;
+
+        if (current.next.next != null) {
+            current.next = current.next.next;
+        }
+        else {
+            current.next = null;
+        }
+
+        size--;
+        return value;
     }
 
     /**

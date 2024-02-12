@@ -101,7 +101,7 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void set(int i, E item) {
         //if index is out of bounds
-        if (i < 0 || i > size) {
+        if (i <= 0 || i > size) {
             throw new IndexOutOfBoundsException("index is out of bounds");
         }
 

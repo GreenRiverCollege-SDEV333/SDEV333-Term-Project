@@ -1,24 +1,23 @@
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ArrayListTest {
-
+public class LinkedListTest {
 
     @Test
     void addFront() {
-        ArrayList<Integer> array = new ArrayList<>();
+        LinkedList<Integer> array = new LinkedList<>();
 
         for (int i = 0; i < 20; i++) {
             array.addFront(i);
             assertEquals(array.get(0), i);
         }
 
-
     }
 
     @Test
     void addBack() {
-        ArrayList<Integer> array = new ArrayList<>();
+        LinkedList<Integer> array = new LinkedList<>();
 
         for (int i = 0; i < 20; i++) {
             array.addBack(i);
@@ -29,11 +28,10 @@ public class ArrayListTest {
 
     @Test
     void add() {
-        ArrayList<Integer> array = new ArrayList<>();
+        LinkedList<Integer> array = new LinkedList<>();
+        assertThrows(IndexOutOfBoundsException.class, () -> array.add(1, 8));
 
-        assertThrows(IndexOutOfBoundsException.class, () -> array.add(0, 8));
-
-        for (int i = 1; i < 20; i++) {
+        for (int i = 0; i < 20; i++) {
             array.add(i, i+1);
             assertEquals(array.get(i), i+1);
         }
@@ -42,22 +40,21 @@ public class ArrayListTest {
 
     @Test
     void removeFront() {
-        ArrayList<Integer> array = new ArrayList<>();
+        LinkedList<String> array = new LinkedList<>();
+        assertThrows(IndexOutOfBoundsException.class, () -> array.removeFront());
+        assertEquals(array.size(), 0);
 
+        array.addFront("test1");
         array.removeFront();
         assertEquals(array.size(), 0);
 
-        array.addFront(6);
-        array.removeFront();
-        assertEquals(array.size(), 0);
-
-        array.addFront(0);
-        array.addFront(9);
+        array.addFront("test2");
+        array.addFront("test3");
         array.removeFront();
         assertEquals(array.size(), 1);
 
-        array.addFront(0);
-        array.addFront(9);
+        array.addFront("test4");
+        array.addFront("test5");
         array.removeFront();
         assertEquals(array.size(), 2);
 
@@ -65,30 +62,29 @@ public class ArrayListTest {
 
     @Test
     void removeBack() {
-        ArrayList<Integer> array = new ArrayList<>();
-
-        array.removeBack();
+        LinkedList<Integer> array = new LinkedList<>();
+        assertThrows(IndexOutOfBoundsException.class, () -> array.removeBack());
         assertEquals(array.size(), 0);
 
         array.addFront(6);
         array.removeBack();
-        assertEquals(array.size(), 0);
+        assertEquals(0, array.size());
 
         array.addFront(0);
         array.addFront(9);
         array.removeBack();
-        assertEquals(array.size(), 1);
+        assertEquals(1, array.size());
 
         array.addFront(0);
         array.addFront(9);
         array.removeBack();
-        assertEquals(array.size(), 2);
+        assertEquals(2, array.size());
 
     }
 
     @Test
     void removeItem() {
-        ArrayList<String> array = new ArrayList<>();
+        LinkedList<String> array = new LinkedList<>();
 
         array.addFront("test1");
         array.remove("test1");
@@ -105,10 +101,9 @@ public class ArrayListTest {
         assertEquals(array.size(), 2);
     }
 
-
     @Test
     void removeIndex() {
-        ArrayList<String> array = new ArrayList<>();
+        LinkedList<String> array = new LinkedList<>();
 
         assertThrows(IndexOutOfBoundsException.class, () -> array.remove(0));
 
@@ -127,11 +122,9 @@ public class ArrayListTest {
         assertEquals(array.size(), 2);
     }
 
-
     @Test
     void get() {
-        ArrayList<Integer> array = new ArrayList<>();
-
+        LinkedList<Integer> array = new LinkedList<>();
         assertThrows(IndexOutOfBoundsException.class, () -> array.get(0));
 
         for (int i = 0; i < 20; i++) {
@@ -142,7 +135,7 @@ public class ArrayListTest {
 
     @Test
     void set() {
-        ArrayList<Integer> array = new ArrayList<>();
+        LinkedList<Integer> array = new LinkedList<>();
         assertThrows(IndexOutOfBoundsException.class, () -> array.set(0, 3));
         array.addFront(1);
 
@@ -153,13 +146,11 @@ public class ArrayListTest {
         array.set(4, 7);
         assertEquals(7, array.get(4));
 
-
     }
 
     @Test
     void contains() {
-        ArrayList<Integer> array = new ArrayList<>();
-
+        LinkedList<Integer> array = new LinkedList<>();
 
         assertFalse(array.contains(4));
 
@@ -181,8 +172,7 @@ public class ArrayListTest {
 
     @Test
     void isEmpty() {
-        ArrayList<Integer> array = new ArrayList<>();
-
+        LinkedList<Integer> array = new LinkedList<>();
         assertTrue(array.isEmpty());
 
         for (int i = 0; i < 20; i++) {
@@ -193,8 +183,7 @@ public class ArrayListTest {
 
     @Test
     void size() {
-        ArrayList<Integer> array = new ArrayList<>();
-
+        LinkedList<Integer> array = new LinkedList<>();
         assertEquals(array.size(), 0);
 
         for (int i = 1; i < 20; i++) {
