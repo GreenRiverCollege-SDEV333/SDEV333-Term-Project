@@ -112,20 +112,52 @@ class ArrayListTest {
         t.addBack("test3");
         t.addBack("test4");
 
+        var retval = t.removeBack();
+        assertEquals(retval, "test4");
 
+        retval = t.removeBack();
+        assertEquals(retval, "test3");
     }
 
     @Test
-    void remove() {
+    void removeByIndex() {
         ArrayList<String> t = new ArrayList<>();
 
-        //
+        t.addBack("test1");
+        t.addBack("test2");
+        t.addBack("test3");
+        t.addBack("test4");
 
+        // test remove inner index
+        var retval = t.remove(1);
+        assertEquals(retval, "test2");
+
+        // test remove final index
+        retval = t.remove(t.size()-1);
+        assertEquals(retval, "test4");
+
+        // test remove beginning index
+        retval = t.remove(0);
+        assertEquals(retval, "test1");
     }
 
     @Test
-    void testRemove() {
+    void removeByElement() {
         ArrayList<String> t = new ArrayList<>();
+
+        t.addBack("test1");
+        t.addBack("test2");
+        t.addBack("test3");
+        t.addBack("test4");
+
+        // test removing element that does not exist
+        t.remove("test5");
+        assertEquals(t.size(), 4);
+
+        // test removing element that exists
+        t.remove("test2");
+        assertEquals(t.size(), 3);
+
     }
 
     @Test
@@ -165,11 +197,9 @@ class ArrayListTest {
         assertTrue(t.isEmpty());
         
         t.addBack("test");
-        
         assertTrue(t.size() == 1);
         
         t.removeBack();
-        
         assertTrue(t.isEmpty());
         
     }

@@ -163,7 +163,11 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void remove(E item) {
         for (int i = 0; i < this.size(); i++) {
-            if (arrayData[i].equals(item)) remove(i); // call the integer type remove, since it will do the same thing once we find the index
+            if (arrayData[i].equals(item)) {
+                remove(i); // call the integer type remove, since it will do the same thing once we find the index
+                return; // we probably only want to remove one item at a time
+            }
+
         }
     }
 
