@@ -27,12 +27,32 @@ public class ArrayList<E> implements List<E>{
 
     @java.lang.Override
     public void addBack(E item) {
+        if(size == buffer.length)
+        {
+            resize(size * 2);
+        }
 
+        buffer[size] = item;
+        size++;
     }
 
     @java.lang.Override
     public void add(int i, E item) {
-
+        if(i > size || i < 0)
+        {
+            throw new IndexOutOfBoundsException("Invalid index");
+        }
+        if(size == buffer.length)
+        {
+            resize(size * 2);
+        }
+        if (i != size) {
+            for (int j = size; j >= i; j--) {
+                buffer[j] = buffer[j - 1];
+            }
+        }
+        buffer[i] = item;
+        size++;
     }
 
     @java.lang.Override
