@@ -1,4 +1,6 @@
-public class ArrayList implements List<E>{
+public class ArrayList<E> implements List<E>{
+
+    public int size;
     @java.lang.Override
     public void addFront(E item) {
 
@@ -51,16 +53,16 @@ public class ArrayList implements List<E>{
 
     @java.lang.Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @java.lang.Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @java.lang.Override
-    public java.util.Iterator<T> iterator() {
+    public java.util.Iterator<E> iterator() {
         return null;
     }
 }
