@@ -7,6 +7,15 @@ import java.util.Iterator;
  */
 public class ArrayList<E> implements List<E> {
 
+    private int size;
+
+    private Object[] buffer;
+
+    public ArrayList() {
+        buffer = new Object[10];
+        size = 0;
+    }
+
     /**
      * Add item to the front.
      *
@@ -14,7 +23,14 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void addFront(E item) {
-
+        if (size == buffer.length) { // resize by multiple of 2 if full
+            resize();
+        }
+        for (int i = size; i >= 1; i--) { // loop backwards from size - 5, 4, 3, 2, 1
+            buffer[i] = buffer[i - 1]; // copy index one to the right
+        }
+        buffer[0] = item;
+        size++;
     }
 
     /**
@@ -46,7 +62,17 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E get(int i) {
-        return null;
+
+        //first check index if its valid
+        if (i < 0) {
+            throw new IndexOutOfBoundsException("Index cannot be negative");
+
+        }
+        else if (i >= size) {
+            throw new IndexOutOfBoundsException("Index out of range");
+        }
+
+        return (E) buffer[i];
     }
 
     /**
@@ -88,7 +114,6 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void remove(E item) {
-
     }
 
     /**
@@ -130,7 +155,7 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
@@ -141,5 +166,13 @@ public class ArrayList<E> implements List<E> {
     @Override
     public Iterator<E> iterator() {
         return null;
+    }
+
+    private void resize() {
+        Object[] newBuffer = new Object[buffer.length * 2]; // 2 is the variable factor to resize by, consider adding as parameter
+        for (int i = 0; i < size; i++) {
+            newBuffer[i] = buffer[i];
+        }
+        buffer = newBuffer;
     }
 }
