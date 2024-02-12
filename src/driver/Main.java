@@ -46,7 +46,7 @@ public class Main {
         }
 
         ArrayList<Cat> list = new ArrayList<>();
-        testArrayList(list);
+//        testArrayList(list);
         
         ArrayList<Object> listOfObjects = new ArrayList<>();
         listOfObjects.addFront(10);
@@ -54,38 +54,64 @@ public class Main {
         listOfObjects.addFront(1.55555555);
         listOfObjects.addFront('a');
         listOfObjects.addFront(new Cat(breeds[1]));
-        listOfObjects.addFront(breeds.toString());
+        listOfObjects.addFront(breeds);
 
         System.out.println(listOfObjects);
+        
         listOfObjects.addBack(new Cat(breeds[0]));
-        listOfObjects.addBack(new Cat(breeds[0]));
+        listOfObjects.addBack(new Cat(breeds[1]));
         listOfObjects.addBack(new Cat(breeds[0]));
         listOfObjects.addBack(new Cat(breeds[0]));
         listOfObjects.addBack(new Cat(breeds[0]));
         listOfObjects.addBack(new Cat(breeds[0]));
         System.out.println(listOfObjects);
-
+//
         listOfObjects.set(0, 0);
+        System.out.println(listOfObjects);
+
+
         listOfObjects.set((listOfObjects.size() -1), (listOfObjects.size() - 1));
-
-
+        listOfObjects.set(0, "front");
         System.out.println(listOfObjects.size());
-
-
         System.out.println(listOfObjects);
 
         System.out.println(listOfObjects.removeFront());
-
-        System.out.println(listOfObjects);
-
-
-        while (!listOfObjects.isEmpty()) {
-            System.out.println(listOfObjects.removeFront());
-            System.out.println(listOfObjects);
-        }
-
         System.out.println(listOfObjects.removeFront());
+        System.out.println(listOfObjects.removeBack());
+        System.out.println(listOfObjects.removeBack());
+        Cat lion = new Cat("Lion");
+        listOfObjects.addFront(lion);
+
+        System.out.println(listOfObjects.contains(lion));
+        listOfObjects.removeBack();
+        listOfObjects.removeBack();
+        listOfObjects.removeBack();
+        listOfObjects.removeBack();
+        listOfObjects.removeBack();
+        System.out.println(listOfObjects.contains("Fresn!"));
+        
         System.out.println(listOfObjects);
+
+        System.out.println(listOfObjects.contains('a'));
+
+
+
+
+        System.out.println();
+        System.out.println(listOfObjects);
+        listOfObjects.remove((Object) "Fresno");
+        System.out.println(listOfObjects);
+
+
+
+
+//        while (!listOfObjects.isEmpty()) {
+//            System.out.println(listOfObjects.removeFront());
+//            System.out.println(listOfObjects);
+//        }
+//
+//        System.out.println(listOfObjects.removeFront());
+//        System.out.println(listOfObjects);
 
 
 

@@ -42,7 +42,7 @@ public class ArrayList<E> implements List<E> {
         for (int i = size; i > 0; i--) {
             //if buffer is at capacity increase buffer by one index
             if (size == buffer.length) {
-                this.resize();
+                this.resize(buffer.length + 1);
             }
             //index at highest buffer gets shifted right
             buffer[i] = buffer[i - 1];
@@ -61,7 +61,7 @@ public class ArrayList<E> implements List<E> {
     {
         //if buffer is at capacity increase buffer by one index
         if ( size == buffer.length) {
-            resize();
+            resize(size + 1);
         }
         //add value to size which is one index greater than last value
         buffer[size] = item;
@@ -85,7 +85,7 @@ public class ArrayList<E> implements List<E> {
             for (int i = size; i >= index; i--) {
                 //if buffer is at capacity increase buffer by one index
                 if (size == buffer.length) {
-                    this.resize();
+                    this.resize(buffer.length + 1);
                 }
                 //index at highest buffer gets shifted right
                 if (i != 0) {
@@ -149,10 +149,17 @@ public class ArrayList<E> implements List<E> {
     {
         if (!isEmpty()) {
             E removed = buffer[0];
-            for (int i = 0; i <= size - 1; i++) {
+            for (int i = 0; i <= size - 2; i++) {
                 buffer[i] = buffer[i + 1];
+            } size--;
+
+            //Reduce buffer until original buffer size is reached
+            if (size >= 10) {
+                resize(size);
+                //after buffer becomes 10 set removed values back to null
+            } else {
+                buffer[size] = null;
             }
-            size--;
             return removed;
         } else {
             return null;
@@ -165,8 +172,16 @@ public class ArrayList<E> implements List<E> {
      * @return the item that was removed
      */
     @Override
-    public E removeBack() {
-        return null;
+    public E removeBack()
+    {
+        if (!isEmpty()) {
+            E removed = buffer[size - 1];
+            buffer[size - 1] = null;
+            size--;
+            return removed;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -175,8 +190,30 @@ public class ArrayList<E> implements List<E> {
      * @param item the item to be removed
      */
     @Override
-    public void remove(Object item) {
-
+    public void remove(E item)
+    {
+        if (this.contains(item)) {
+            if (this.buffer[0].equals(item)) {
+                this.removeFront();
+            } else if (this.buffer[size - 1].equals(item)) {
+                this.removeBack();
+            } else {
+                int index = 0;
+                while (!buffer[index].equals(item)) {
+                    index++;
+                }
+                for (int i = index; i < size - 1; i++) {
+                    buffer[i] = buffer[i + 1];
+                }
+                size--;
+                if (size >= 10) {
+                    resize(size);
+                    //after buffer becomes 10 set removed values back to null
+                } else {
+                    buffer[size] = null;
+                }
+            }
+        }
     }
 
     /**
@@ -186,8 +223,31 @@ public class ArrayList<E> implements List<E> {
      * @return the item that was removed
      */
     @Override
-    public E remove(int index) {
-        return null;
+    public E remove(int index)
+    {
+        // first, check the index to see if it is valid
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("Index cannot be negative");
+        } else if (index >= size) {
+            throw new IndexOutOfBoundsException("Index is higher than size");
+        }
+
+        // save a copy of the value to be removed so that we can return it later
+        E copyOfRemovedValue = buffer[index];
+
+        // if index is last index with valid data, set data to null
+        if (index == size - 1) {
+            buffer[index] = null;
+            // shift all values over starting at index to be removed
+        } else {
+            for (int i = index; i < size - 1; i++) {
+                buffer[i] = buffer[i + 1];
+            }
+        } size--;
+        // set trailing index to null to account for reduced size
+        buffer[size] = null;
+
+        return copyOfRemovedValue;
     }
 
     /**
@@ -197,8 +257,16 @@ public class ArrayList<E> implements List<E> {
      * @return true if the item is in the list, false otherwise
      */
     @Override
-    public boolean contains(Object item) {
-        return false;
+    public boolean contains(Object item)
+    {
+        int index = 0;
+        while (index != size) {
+            if (buffer[index].equals(item)) {
+                return true;
+            } else {
+                index++;
+            }
+        } return false;
     }
 
     /**
@@ -271,9 +339,9 @@ public class ArrayList<E> implements List<E> {
      * Helper method to resize ArrayIntlist to support
      * more data
      */
-    private void resize() {
+    private void resize(int newSize) {
         //create new space, separate from the old space (buffer)
-        int newSize = size + CAPACITY;
+//        int newSize = size + CAPACITY;
         E[] newBuffer = (E[]) new Object[newSize];
 
         // copy everything over from buffer into newBuffer
