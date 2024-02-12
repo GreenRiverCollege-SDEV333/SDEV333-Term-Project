@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Iterator;
 
 /**
@@ -29,8 +31,8 @@ public class ArrayList<E> implements List<E> {
         for (int i = size; i >= 1; i--) { // loop backwards from size - 5, 4, 3, 2, 1
             buffer[i] = buffer[i - 1]; // copy index one to the right
         }
-        buffer[0] = item;
-        size++;
+        buffer[0] = item; // add item to front of buffer
+        size++; // increase size by one
     }
 
     /**
@@ -40,7 +42,12 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void addBack(E item) {
+        if (size == buffer.length) { // resize by multiple of 2 if full
+            resize();
+        }
 
+        buffer[size] = item; // add object to back of buffer
+        size ++; // increase size by one
     }
 
     /**
@@ -51,7 +58,20 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void add(int i, E item) {
+        if (size == buffer.length) { // resize by multiple of 2 if full
+            resize();
+        } else if (i < 0) { // check index if it's valid
+            throw new IndexOutOfBoundsException("Index cannot be negative");
+        } else if (i > size) {
+            throw new IndexOutOfBoundsException("Index out of range");
+        }
 
+        for (int j = size - 1; j >= i; j--) { // loop backwards from size - 1 to i
+            buffer[j + 1] = buffer[j]; // shift elements to the right
+        }
+
+        buffer[i] = item; // add item to specified index
+        size++; // increase size by one
     }
 
     /**
@@ -62,11 +82,9 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E get(int i) {
-
         //first check index if its valid
         if (i < 0) {
             throw new IndexOutOfBoundsException("Index cannot be negative");
-
         }
         else if (i >= size) {
             throw new IndexOutOfBoundsException("Index out of range");
@@ -84,7 +102,14 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void set(int i, E item) {
+        if (i < 0) { // check index if its valid
+            throw new IndexOutOfBoundsException("Index cannot be negative");
+        }
+        else if (i >= size) {
+            throw new IndexOutOfBoundsException("Index out of range");
+        }
 
+        buffer[i] = item; // overwrite item to specified index
     }
 
     /**
@@ -94,7 +119,19 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E removeFront() {
-        return null;
+        if (size == 0) { // check if empty
+            System.out.println("List is empty, no item to remove.");
+            return null;
+        }
+
+        E frontItem = (E) buffer[0];
+
+        for (int i = 0; i <= size; i++) { // loop backwards from size - 5, 4, 3, 2, 1
+            buffer[i] = buffer[i + 1]; // copy index one to the right
+        }
+
+        size--; // decrease size by one
+        return frontItem;
     }
 
     /**
@@ -104,7 +141,14 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E removeBack() {
-        return null;
+        if (size == 0) { // check if empty
+            System.out.println("List is empty, no item to remove.");
+            return null;
+        }
+        E backItem = (E) buffer[size - 1]; // save item in back of list to return
+        size --; // remove last item by decreasing size by 1;
+
+        return backItem;
     }
 
     /**
@@ -114,6 +158,7 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void remove(E item) {
+
     }
 
     /**

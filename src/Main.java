@@ -18,7 +18,6 @@ public class Main {
 
         // Test the addfront() method
         list.addFront("Hello");
-        list.addFront("World");
         list.addFront("Test");
         list.addFront("Test1");
         list.addFront("Test2");
@@ -28,7 +27,11 @@ public class Main {
         list.addFront("Test6");
         list.addFront("Test7");
         list.addFront("Test8");
-        list.addFront("Test9"); // Tested resize method as default capacity was 10
+        list.addBack("Test9"); // Tested resize method as default capacity was 10. Also tests addBack
+        list.add(0, "World"); // Test add method
+        list.set(8, "Set"); // Test set method
+        System.out.println(list.removeFront()); // Test removeFront method
+        System.out.println(list.removeBack()); // Test removeBack method
 
         // Test the get() method
         System.out.println("Elements:");
