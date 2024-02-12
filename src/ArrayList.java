@@ -8,6 +8,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Constructor for an ArrayIntList object
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      */
     public ArrayList() {
         size = 0;
@@ -17,7 +19,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add item to the front.
-     *
+     * This method runs in O(n) or linear time in the worst case
+     * because of the time needed to resize and shift elements
      * @param item the item to be added
      */
     @Override
@@ -36,7 +39,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add item to the back.
-     *
+     * This method runs in O(n) or linear time in the worst case because of the time needed to resize
      * @param item the item to be added
      */
     @Override
@@ -50,7 +53,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add an item at specified index (position).
-     *
+     * This method runs in O(n) or linear time in the worst case because of the time needed to resize and shift elements
      * @param i    the index where the item should be added
      * @param item the item to be added
      */
@@ -76,7 +79,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Get the item at a specified index.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @param i the index where the item should be retrieved
      * @return the item located at that index
      */
@@ -94,7 +98,8 @@ public class ArrayList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @param i    the index where the item should be saved
      * @param item the item to be saved
      */
@@ -110,6 +115,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at the front of the list.
+     * This method runs in O(n) or linear time in the worst case because of the time needed to shift elements
      *
      * @return the item that was removed
      */
@@ -130,7 +136,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at the back of the list
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return the item that was removed
      */
     @Override
@@ -146,7 +153,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item from the list
-     *
+     * This method runs in O(n) or linear time in the worst case because of the time needed to shift elements
      * @param item the item to be removed
      */
     @Override
@@ -162,7 +169,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
-     *
+     * This method runs in O(n) or linear time in the worst case because of the time needed to shift elements
      * @param i the index where the item should be removed
      * @return the item that was removed
      */
@@ -176,17 +183,14 @@ public class ArrayList<E> implements List<E> {
             throw new IndexOutOfBoundsException("Index cannot be less than zero");
         }
 
-        //save a copy of the value to be removed, so we can return it latter
         E copyOfRemovedValue = buffer[i];
 
-        //shift values to the left
         for (int j = i; j <= size - 1; j++) {
             buffer[j] = buffer[j + 1];
         }
 
         buffer[size - 1] = null;
 
-        //don't forget to decrease size
         size--;
 
         return copyOfRemovedValue;
@@ -194,7 +198,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Checks if an item is in the list.
-     *
+     * This method runs in O(n) or linear time in the worst case because if
+     * the item is at the end you'd need to search through all the elements in the list
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -210,7 +215,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Checks if the list is empty.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return true if the list is empty, false otherwise
      */
     @Override
@@ -220,7 +226,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Provides a count of the number of items in the list.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return number of items in the list
      */
     @Override
@@ -243,7 +250,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code E}.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return an Iterator.
      */
     @Override
