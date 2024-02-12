@@ -57,12 +57,20 @@ public class ArrayList<E> implements List<E>{
 
     @java.lang.Override
     public E get(int i) {
-        return null;
+        if(i > size)
+        {
+            throw new IndexOutOfBoundsException();
+        }
+        return buffer[i];
     }
 
     @java.lang.Override
     public void set(int i, E item) {
-
+        if(i > size)
+        {
+            throw new IndexOutOfBoundsException("Invalid index given!");
+        }
+        buffer[i] = item;
     }
 
     @java.lang.Override
