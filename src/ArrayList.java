@@ -80,6 +80,20 @@ public class ArrayList<E> implements List<E>{
         return size;
     }
 
+    private void resize(int newSize)
+    {
+        E[] newBuffer = (E[])new Object[newSize];
+
+        for (int i = 0; i < size; i++) {
+            newBuffer[i] = buffer[i];
+        }
+        //set the new space into the buffer
+        buffer = newBuffer;
+
+        //the old space is no longer "pointed to" and will eventually
+        //be cleaned up by the garbage collector
+    }
+
     @java.lang.Override
     public java.util.Iterator<E> iterator() {
         return null;
