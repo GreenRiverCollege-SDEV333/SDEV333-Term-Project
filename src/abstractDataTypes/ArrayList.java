@@ -36,7 +36,7 @@ public class ArrayList<E> implements List<E> {
      * @param item the item to be added
      */
     @Override
-    public void addFront(Object item)
+    public void addFront(E item)
     {
         //loop while index is greater than zero
         for (int i = size; i > 0; i--) {
