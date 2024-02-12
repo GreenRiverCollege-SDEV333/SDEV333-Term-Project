@@ -14,7 +14,7 @@
  *
  * @param <E> class/data type of the keys or elements in the set
  */
-public interface MathSet <E extends Comparable> extends Iterable<E> {
+public interface MathSet <E extends Comparable<E>> extends Iterable<E> {
     /**
      * Adds a key (item) to the set. Duplicate items
      * are not added.
