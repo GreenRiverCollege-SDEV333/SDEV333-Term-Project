@@ -12,6 +12,11 @@ public class LinkedList<E> implements List<E> {
     private Node head;
     private int size;
 
+    /**
+     * constructor for the LinkedList
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
+     */
     public LinkedList() {
         head = null;
         size = 0;
@@ -19,7 +24,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add item to the front.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @param item the item to be added
      */
     @Override
@@ -42,7 +48,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add item to the back.
-     *
+     * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
      * @param item the item to be added
      */
     @Override
@@ -65,8 +71,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add an item at specified index (position).
-     *
-     * @param i    the index where the item should be added
+     * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
      * @param item the item to be added
      */
     @Override
@@ -107,7 +112,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Get the item at a specified index.
-     *
+     * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
      * @param i the index where the item should be retrieved
      * @return the item located at that index
      */
@@ -130,7 +135,7 @@ public class LinkedList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
-     *
+     * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
      * @param i    the index where the item should be saved
      * @param item the item to be saved
      */
@@ -152,7 +157,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at the front of the list.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return the item that was removed
      */
     @Override
@@ -169,7 +175,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at the back of the list
-     *
+     * item at that index is overwritten.
+     * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
      * @return the item that was removed
      */
     @Override
@@ -193,7 +200,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item from the list
-     *
+     * item at that index is overwritten.
+     * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
      * @param item the item to be removed
      */
     @Override
@@ -213,7 +221,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
-     *
+     * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
      * @param i the index where the item should be removed
      * @return the item that was removed
      */
@@ -253,7 +261,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Checks if an item is in the list.
-     *
+     * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -278,7 +286,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Checks if the list is empty.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return true if the list is empty, false otherwise
      */
     @Override
@@ -288,7 +297,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Provides a count of the number of items in the list.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return number of items in the list
      */
     @Override
@@ -298,7 +308,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return an Iterator.
      */
     @Override
