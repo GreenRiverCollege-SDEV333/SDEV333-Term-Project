@@ -1,8 +1,10 @@
 package interfaces;
 
-/***
+/**
  * interfaces.List interface (API / abstract data type)
  * @param <E> Class or data type of the items in the list.
+ * @author unknown
+ * @version 1.0
  */
 public interface List<E> extends Iterable<E> {
     /**
@@ -19,25 +21,25 @@ public interface List<E> extends Iterable<E> {
 
     /**
      * Add an item at specified index (position).
-     * @param i the index where the item should be added
+     * @param index the index where the item should be added
      * @param item the item to be added
      */
-    void add(int i, E item);
+    void add(int index, E item);
 
     /**
      * Get the item at a specified index.
-     * @param i the index where the item should be retrieved
+     * @param index the index where the item should be retrieved
      * @return the item located at that index
      */
-    E get(int i);
+    E get(int index);
 
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
-     * @param i the index where the item should be saved
+     * @param index the index where the item should be saved
      * @param item the item to be saved
      */
-    void set(int i, E item);
+    void set(int index, E item);
 
     /**
      * Remove item at the front of the list.
@@ -59,10 +61,10 @@ public interface List<E> extends Iterable<E> {
 
     /**
      * Remove item at a specified index.
-     * @param i the index where the item should be removed
+     * @param index the index where the item should be removed
      * @return the item that was removed
      */
-    E remove(int i);
+    E remove(int index);
 
     /**
      * Checks if an item is in the list.
