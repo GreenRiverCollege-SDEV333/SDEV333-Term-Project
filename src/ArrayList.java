@@ -1,9 +1,28 @@
 public class ArrayList<E> implements List<E>{
 
-    public int size;
+    // fields
+    private int size;
+    private E[] buffer;
+
+    public ArrayList()
+    {
+        //initialize my fields
+        size = 0;
+        buffer = (E[]) new Object[10];
+    }
     @java.lang.Override
     public void addFront(E item) {
+        if(size == buffer.length)
+        {
+            resize(size * 2);
+        }
 
+        for(int i = size; i >= 1; i--)
+        {
+            buffer[i] = buffer[i-1];
+        }
+        buffer[0] = item;
+        size++;
     }
 
     @java.lang.Override
