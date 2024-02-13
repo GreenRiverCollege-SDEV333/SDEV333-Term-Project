@@ -117,7 +117,7 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E removeFront() {
-        if (size == 0) { // check if empty
+        if (isEmpty()) { // check if empty
             System.out.println("List is empty, no item to remove.");
             return null;
         }
@@ -139,7 +139,7 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E removeBack() {
-        if (size == 0) { // check if empty
+        if (isEmpty()) { // check if empty
             System.out.println("List is empty, no item to remove.");
             return null;
         }
@@ -157,7 +157,7 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void remove(E item) {
-        if (size == 0) { // check if empty
+        if (isEmpty()) { // check if empty
             System.out.println("List is empty, no item to remove.");
             return;
         }
@@ -190,7 +190,7 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E remove(int i) {
-        if (size == 0) { // check if empty
+        if (isEmpty()) { // check if empty
             System.out.println("List is empty, no item to remove.");
             return null;
         } else if (i < 0) { // check index if its valid
@@ -217,7 +217,7 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public boolean contains(E item) {
-        if (size == 0) { // check if empty
+        if (isEmpty()) { // check if empty
             System.out.println("List is empty and contains no items.");
             return false;
         }
@@ -236,7 +236,7 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     /**
