@@ -3,6 +3,29 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 
 public class LinkedList<E> implements List<E> {
+
+    Node head;
+    int size;
+
+    protected class Node {
+        Node next;
+        E data;
+
+        public Node() {
+            this(null,null);
+        }
+
+        public Node(E data) {
+            this(data, null);
+        }
+
+        public Node(E data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+
+
     /**
      * Add item to the front.
      *
@@ -10,7 +33,14 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void addFront(E item) {
+        // check if there is a head element
+        if (head == null) {
+            head = new Node(item);
+            return;
+        }
 
+        // add element to front
+        head = new Node(item, head);
     }
 
     /**
@@ -20,6 +50,18 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void addBack(E item) {
+        // check if there are any elements, if not, just add to front
+        if (head == null) {
+            addFront(item);
+            return;
+        }
+
+        // wind to last element
+        Node cur = head;
+        while (cur.next != null) cur = cur.next;
+
+        // insert new element
+        cur.next = new Node(item);
 
     }
 
@@ -31,6 +73,17 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void add(int i, E item) {
+        // check if in range
+        if (i > size()) throw new IndexOutOfBoundsException(String.format("%d out of range", i));
+
+        // wind to the place we want to add.
+        Node cur = head;
+        for (int j = 0; j < i; j++) {
+            cur = cur.next;
+        }
+
+        // insert an item after this point
+        cur.next = new Node(item, cur.next);
 
     }
 
@@ -42,7 +95,13 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E get(int i) {
-        return null;
+        Node cur = head;
+
+        // wind to index
+        for (int j = 0; j < i; j++)
+            cur = cur.next;
+
+        return cur.data;
     }
 
     /**
@@ -116,7 +175,7 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     /**
@@ -126,7 +185,7 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
@@ -137,6 +196,20 @@ public class LinkedList<E> implements List<E> {
     @NotNull
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new Iterator<E>() {
+            Node cur = head;
+
+            @Override
+            public boolean hasNext() {
+                return cur != null;
+            }
+
+            @Override
+            public E next() {
+                E data = cur.data;
+                cur = cur.next;
+                return data;
+            }
+        };
     }
 }
