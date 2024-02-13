@@ -1,6 +1,10 @@
+package tests;
+
 import abstractDataTypes.ArrayList;
 import interfaces.List;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test Class for ArrayIntList
