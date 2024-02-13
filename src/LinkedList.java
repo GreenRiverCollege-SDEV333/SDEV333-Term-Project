@@ -152,12 +152,14 @@ public class LinkedList<E> implements List<E> {
     public E removeBack() {
         Node currentNode = head;
 
-        for (int i = 0; i < size; i++) {
+        while(currentNode.next != null) {
             currentNode = currentNode.next;
         }
 
         E placeholder = currentNode.data;
         currentNode.data = null;
+        currentNode.next = null;
+
         size--;
 
         return placeholder;
