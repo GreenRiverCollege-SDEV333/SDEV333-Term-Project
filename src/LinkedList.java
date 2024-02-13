@@ -17,6 +17,13 @@ public class LinkedList<E> implements List<E>{
         head = null;
         size = 0;
     }
+
+    /**
+     * Runtime analysis: Worst case scenario, this would run at constant time
+     * since in every case, you only change the head reference to the new Node.
+     * There is no need to visit every Node.
+     * @param item the item to be added
+     */
     @Override
     public void addFront(E item) {
         Node newOne = new Node();
@@ -35,6 +42,12 @@ public class LinkedList<E> implements List<E>{
         size++;
     }
 
+    /**
+     * Runtime analysis: Worst case scenario, this would run at O(n) or linear time
+     * because you have to visit every Node to reach the back of the LinkedList
+     * and then assign a new Node to the back.
+     * @param item the item to be added
+     */
     @Override
     public void addBack(E item) {
         Node newOne = new Node();
@@ -57,6 +70,14 @@ public class LinkedList<E> implements List<E>{
         size++;
     }
 
+    /**
+     * Runtime analysis: Worst case scenario, this would be O(n), as in the worst case scenario,
+     * the index being added to could be the last index, meaning we would have to traverse the
+     * entire LinkedList to add the new Node. Best case scenario, it would be constant time, as
+     * the user could ask to put the new Node at index 0, meaning no iterating is required.
+     * @param i the index where the item should be added
+     * @param item the item to be added
+     */
     @Override
     public void add(int i, E item) {
 // throw exception if index given is out of bounds
