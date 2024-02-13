@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedList<E> implements List<E>{
 
@@ -173,16 +174,74 @@ public class LinkedList<E> implements List<E>{
 
     @Override
     public void remove(E item) {
-
+        if(!contains(item))
+        {
+            throw new NoSuchElementException("Item does not exist!");
+        }
+        Node current = head;
+        if(current.data.equals(item))
+        {
+            head = head.next;
+            return;
+        }
+        while(current.next != null)
+        {
+            if(current.next.data.equals(item))
+            {
+                current.next = current.next.next;
+            }
+        }
     }
 
     @Override
     public E remove(int i) {
-        return null;
+        // check if index is invalid
+        if(i >= size() || i < 0)
+        {
+            throw new IndexOutOfBoundsException("Invalid index given!");
+        }
+        E dataToBeRemoved;
+        if(i == 0)
+        {
+            dataToBeRemoved = head.data;
+            head.data = null;
+            head = head.next;
+            size--;
+            return dataToBeRemoved;
+        }
+        // current Node to iterate through LinkedList
+        Node current = head;
+        // loop until one Node before our index
+        for (int j = 0; j < i-1; i++) {
+            current = current.next;
+        }
+        // save our value that will be removed
+        dataToBeRemoved = current.next.data;
+        // check if there are two Nodes ahead for easy shifting
+        if(size()-i > 1)
+        {
+            // move current.next an additional space forward
+            current.next = current.next.next;
+            size--;
+            return dataToBeRemoved;
+        }
+        // else, remove the next Node (there are no Nodes ahead of our index)
+        current.next = null;
+        size--;
+        return dataToBeRemoved;
     }
 
     @Override
     public boolean contains(E item) {
+        Node current = head;
+        while(current != null)
+        {
+            if(current.data.equals(item))
+            {
+                return true;
+            }
+            current = current.next;
+        }
         return false;
     }
 
