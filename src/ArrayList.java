@@ -1,6 +1,5 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * A resizing ArrayList<E> object that implements List<E> interface.
@@ -256,7 +255,34 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new Iterator<E>() {
+            private int current = 0; // keep track of current index
+            /**
+             * Returns {@code true} if the iteration has more elements.
+             * (In other words, returns {@code true} if {@link #next} would
+             * return an element rather than throwing an exception.)
+             *
+             * @return {@code true} if the iteration has more elements
+             */
+            @Override
+            public boolean hasNext() {
+                return current < size && buffer[current] != null; // check if there's another element, and return true
+            }
+
+            /**
+             * Returns the next element in the iteration.
+             *
+             * @return the next element in the iteration
+             * @throws NoSuchElementException if the iteration has no more elements
+             */
+            @Override
+            public E next() {
+                if (!hasNext()) { // return next unless index out of bounds
+                    throw new NoSuchElementException();
+                }
+                return (E) buffer[current++]; // return next element of type E
+            }
+        };
     }
 
     private void resize() {
