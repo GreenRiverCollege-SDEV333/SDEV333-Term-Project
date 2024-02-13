@@ -166,12 +166,12 @@ public class LinkedList<E> implements List<E>{
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
