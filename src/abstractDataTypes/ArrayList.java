@@ -32,7 +32,6 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add item to the front.
-     *
      * (7(size) + 3) + (5(BL) + 6) == 15(size) + 9 at worst
      * 7(size) + 3 at best
      * 0(size)
@@ -60,12 +59,11 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add item to the back.
-     *
      * (5BL + 6) + 3 = 5BL + 9 at worst
      * f(n) = 2 at best
      * This function is constant at best and linear at worst.
      * Function is only linear if buffer needs to resize to
-     * accomadate for 1 additional index
+     * accommodate for 1 additional index
      *
      * @param item the item to be added
      */
@@ -83,10 +81,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add an item at specified index (position).
-     *
      * (7 + n)(size - index) + (6 + n) at worst
      * O(3 + n) constant at best
-     *
      * This function is linear at worst because it iterates (size - index) times
      * and constant at best when invalid index throws exception which I am
      * assuming is a constant constructor call.
@@ -119,10 +115,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Get the item at a specified index.
-     *
      * O(2 + n) at worst
      * O(3) at best
-     *
      * This function is linear across assuming that
      * thrown exception is a relative linear constructor call and
      * accounting for branches (I presume)
@@ -151,7 +145,6 @@ public class ArrayList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
-     *
      * O(3 + 1) at best
      * O(4 + n) at worst
      * This function is constant'ish but still technically linear
@@ -175,7 +168,6 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at the front of the list.
-     *
      * (6(size - 2) + 8) + ((5BL + 6) +2)
      * O(BL) at worst
      * O(size - 2) at best if buffer does not need to resize
@@ -208,7 +200,6 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at the back of the list
-     *
      * O(1) at best??
      * O(9) at worst
      * Constant at best because return null is an assignment'ish
@@ -230,9 +221,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item from the list
-     *
      * (3 + BL) or O(12) or (11(size - 1) + 3) + 3 + O(size) + 5BL + 6)
-     *
      * so 0(2n) at worst
      * This function could definitely been written cleaner but in Britain
      * they have phrase 'any road' meaning you'll always get there as long
@@ -270,11 +259,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
-     *
      * (((8(size -1) + 4) + 2) + 2) + 1)
      * O(size - 1) at worst
      * O(2) at best
-     *
      * Almost constant on invalid input but linear if removing any index
      * but the index at the back of array, I think I accounted for branching
      * in this one. My assumption is don't include unreachable code in
@@ -313,10 +300,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Checks if an item is in the list.
-     *
      * O(size) at worst
      * O(1) at best
-     *
      * This function is linear but constant in the case that an
      * array is empty
      *
@@ -338,10 +323,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Checks if the list is empty.
-     *
      * 0(3) at best and worst
      * This method is constant and will always be constant'ish
-     * but linear for all intesive purposes
+     * but linear for all intents and purposes
      *
      * @return true if the list is empty, false otherwise
      */
@@ -352,7 +336,6 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Provides a count of the number of items in the list.
-     *
      * O(1) at best and worst
      * Doesn't get much better than this
      *
@@ -365,11 +348,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * O(2) at best??
-     *
      * I wouldn't know if the constructor is this.iterator = iterator
-     * because it's implicit and can't remeber nor find how to look
+     * because it's implicit and can't remember nor find how to look
      * up imported static function calls in intellij
      *
      * @return an Iterator.
@@ -418,7 +399,6 @@ public class ArrayList<E> implements List<E> {
     /**
      * Helper method to resize ArrayIntlist to support
      * more data
-     *
      * f(BL) = 5BL + 6
      * O(n) at worst and at best
      * This function is linear at worst because it loops over all existing
@@ -453,11 +433,10 @@ public class ArrayList<E> implements List<E> {
      * thus a new String = an iteration over an array to build that string.
      * So that being, each new String here is actually 0(String.length) +
      * operands + static method call to toString which probably iterates again...
-     *
      * O(bigNumber * character) + few operands
      * 0(n) at worst...
      *
-     * @return
+     * @return String representation of ArrayList
      */
     @Override
     public String toString() {
