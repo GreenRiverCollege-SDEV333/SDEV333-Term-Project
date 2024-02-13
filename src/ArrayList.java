@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class ArrayList<E> implements List<E>{
 
     // fields
@@ -75,12 +77,29 @@ public class ArrayList<E> implements List<E>{
 
     @java.lang.Override
     public E removeFront() {
-        return null;
+        if(!isEmpty())
+        {
+            E returnedItem = buffer[0];
+            for (int i = 0; i <= size - 2; i++) {
+                buffer[i] = buffer[i + 1];
+            }
+            buffer[size - 1] = null;
+            size--;
+            return returnedItem;
+        }
+        throw new NoSuchElementException("There are no elements to remove!");
     }
 
     @java.lang.Override
     public E removeBack() {
-        return null;
+        if(!isEmpty())
+        {
+            E returnedItem = buffer[size-1];
+            buffer[size-1] = null;
+            size--;
+            return returnedItem;
+        }
+        throw new NoSuchElementException("There are no elements to remove!");
     }
 
     @java.lang.Override
