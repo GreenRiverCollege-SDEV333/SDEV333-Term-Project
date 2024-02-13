@@ -12,13 +12,40 @@ public class ArrayList<E> implements List<E> {
     private int size;
 
     /**
+     * Constructs an ArrayList with an empty buffer, and a default max capacity of 10 values
+     */
+    public ArrayList() {
+        // setup buffer with default max capacity of 10
+        buffer = (E[]) new Object[10];
+
+        // no values are stored in buffer
+        size = 0;
+    }
+
+    /**
      * Add item to the front.
      *
      * @param item the item to be added
      */
     @Override
     public void addFront(E item) {
+        // if the buffer already contains items
+        if(size != 0) {
+            // if the buffer is full, increase max capacity
 
+            // run through buffer backwards
+            for (int i = size; i > 0; i--) {
+                // get item at previous index and place in current index,
+                // thereby shifting all items to the left
+                buffer[i] = buffer[i - 1];
+            }
+        }
+
+        // add the given item at index 0
+        buffer[0] = item;
+
+        // a new item has been added to buffer
+        size++;
     }
 
     /**
@@ -28,28 +55,52 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void addBack(E item) {
+        // if the buffer is full, increase max capacity
 
+        // add the given item at final index
+        buffer[size] = item;
+
+        // a new item has been added to buffer
+        size++;
     }
 
     /**
      * Add an item at specified index (position).
      *
-     * @param i    the index where the item should be added
+     * @param index the index where the item should be added
      * @param item the item to be added
      */
     @Override
-    public void add(int i, E item) {
+    public void add(int index, E item) {
+        // if the given index is out of range
+        if(index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(index + " is not a valid index");
+        }
 
+        // if the buffer is full, increase max capacity
+
+        // run through buffer backwards, up to given index
+        for (int i = size; i > index; i--) {
+            // get item at previous index and place in current index,
+            // thereby shifting all items to the left
+            buffer[i] = buffer[i - 1];
+        }
+
+        // add the given item at current index
+        buffer[index] = item;
+
+        // a new item has been added to buffer
+        size++;
     }
 
     /**
      * Get the item at a specified index.
      *
-     * @param i the index where the item should be retrieved
+     * @param index the index where the item should be retrieved
      * @return the item located at that index
      */
     @Override
-    public E get(int i) {
+    public E get(int index) {
         return null;
     }
 
@@ -57,11 +108,11 @@ public class ArrayList<E> implements List<E> {
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
      *
-     * @param i    the index where the item should be saved
+     * @param index the index where the item should be saved
      * @param item the item to be saved
      */
     @Override
-    public void set(int i, E item) {
+    public void set(int index, E item) {
 
     }
 
@@ -98,11 +149,11 @@ public class ArrayList<E> implements List<E> {
     /**
      * Remove item at a specified index.
      *
-     * @param i the index where the item should be removed
+     * @param index the index where the item should be removed
      * @return the item that was removed
      */
     @Override
-    public E remove(int i) {
+    public E remove(int index) {
         return null;
     }
 
