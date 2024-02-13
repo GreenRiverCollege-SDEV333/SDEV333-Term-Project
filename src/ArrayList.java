@@ -241,17 +241,21 @@ public class ArrayList<E> implements List<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
+            E[] readOnly = arrayData.clone();
+            int size = size();
             int index = 0;
 
             @Override
             public boolean hasNext() {
-                return index < size();
+                return index < size;
             }
 
             @Override
             public E next() {
-                if (index >= size()) throw new IndexOutOfBoundsException();
-                return arrayData[index++];
+                if (index >= size) throw new IndexOutOfBoundsException();
+                E value = readOnly[index];
+                index++;
+                return value;
             }
         };
     }
