@@ -102,7 +102,7 @@ public class LinkedList<E> implements List<E>{
         for (int j = 0; j < i-1; j++) {
             current = current.next;
         }
-        // save the old Node from that index so we can move it forward one space
+        // save the old Node from that index, so we can move it forward one space
         Node nodeAfterAdded = current.next;
         // put the new Node in current.next position
         current.next = theNewOne;
@@ -115,12 +115,28 @@ public class LinkedList<E> implements List<E>{
 
     @Override
     public E get(int i) {
-        return null;
+        if(i >= size || i < 0)
+        {
+            throw new IndexOutOfBoundsException("Invalid index given!");
+        }
+        Node current = head;
+        for (int j = 0; j < i; j++) {
+            current = current.next;
+        }
+        return current.data;
     }
 
     @Override
     public void set(int i, E item) {
-
+        if(i > size || i < 0)
+        {
+            throw new IndexOutOfBoundsException("Invalid index given!");
+        }
+        Node current = head;
+        for (int j = 0; j < i; j++) {
+            current = current.next;
+        }
+        current.data = item;
     }
 
     @Override
