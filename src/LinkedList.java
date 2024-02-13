@@ -1,5 +1,4 @@
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class LinkedList<E> implements List<E> {
     // define what a node is
@@ -46,12 +45,11 @@ public class LinkedList<E> implements List<E> {
         theNewOne.data = item;
         Node currentNode = head;
 
-        // For each size, we will move the currentNode next until we reach the size so that we can set the currenNode.next to theNewOne which means that we added a new node in the back
-        for (int i = 0; i < size; i++) {
+        while (currentNode.next != null) {
             currentNode = currentNode.next;
         }
-
         currentNode.next = theNewOne;
+
         size++;
     }
 
