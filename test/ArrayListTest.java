@@ -1,8 +1,30 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayListTest {
+
+    @Test
+    void autoResize() {
+        ArrayList<String> t = new ArrayList<>();
+
+        for (int i = 0; i < 100; i++) {
+            t.addBack(String.format("test%d", i));
+        }
+
+        // should be 110ish?
+        assertTrue(t.getArraySize() > 100);
+
+        var iter = t.iterator();
+        while (iter.hasNext()) {
+            t.removeBack();
+        }
+
+        // the array should have shrunk
+        assertTrue(t.getArraySize() < 100);
+    }
 
     @Test
     void add() {
@@ -36,7 +58,6 @@ class ArrayListTest {
         t.addFront("test2");
         assertEquals(t.size(), 2);
         assertEquals(t.get(0), "test2");
-
                 
     }
 

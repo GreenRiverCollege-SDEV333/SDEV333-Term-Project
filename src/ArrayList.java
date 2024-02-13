@@ -2,7 +2,7 @@ import java.util.Iterator;
 
 public class ArrayList<E> implements List<E> {
 
-    private static final double MAX_CAPACITY = 0.85;
+    private static final double MAX_CAPACITY = 0.75;
     private static final double MIN_CAPACITY = 0.5;
     private static final int DEFAULT_BUFFER = 10;
 
@@ -27,12 +27,12 @@ public class ArrayList<E> implements List<E> {
 
     // performs resizing if too large or too small of a buffer size.
     private void autoResize() {
-        double capacity = this.size() / arrayData.length;
+        double capacity = this.size() / (double)arrayData.length;
 
         // grow when we reach max capacity
         if (capacity > MAX_CAPACITY) grow();
         // shrink if we're below the min capacity, but the default buffer must have a size.
-        else if (capacity < MIN_CAPACITY && arraySize > DEFAULT_BUFFER) shrink();
+        else if (capacity < MIN_CAPACITY && arrayData.length > DEFAULT_BUFFER) shrink();
     }
 
     // general index checker
@@ -43,9 +43,10 @@ public class ArrayList<E> implements List<E> {
     private void grow() {
         // hold old data
         E[] buf = arrayData;
+        int newLength = arrayData.length + DEFAULT_BUFFER;
 
         // create new array of a larger size
-        arrayData = (E[]) new Object[buf.length + DEFAULT_BUFFER];
+        arrayData = (E[]) new Object[newLength];
 
         this.copy(buf, arrayData);
     }
@@ -53,16 +54,21 @@ public class ArrayList<E> implements List<E> {
     private void shrink() {
         // hold old data
         E[] buf = arrayData;
+        int newLength = arrayData.length - DEFAULT_BUFFER;
+
+        // don't try if the new length is too small
+        if (newLength < DEFAULT_BUFFER) return;
 
         // create new array of a smaller size
-        arrayData = (E[]) new Object[buf.length - DEFAULT_BUFFER];
+        arrayData = (E[]) new Object[newLength];
 
         this.copy(buf, arrayData);
     }
 
     private void copy(E[] from, E[] to) {
         // copy old data to new array
-        for (int i = 0; i < from.length; i++) {
+        int shortest = (to.length < from.length) ? to.length : from.length;
+        for (int i = 0; i < shortest; i++) {
             to[i] = from[i];
         }
     }
@@ -239,13 +245,19 @@ public class ArrayList<E> implements List<E> {
 
             @Override
             public boolean hasNext() {
-                return index < arraySize;
+                return index < size();
             }
 
             @Override
             public E next() {
+                if (index >= size()) throw new IndexOutOfBoundsException();
                 return arrayData[index++];
             }
         };
+    }
+
+    // for use in testing
+    protected int getArraySize() {
+        return arrayData.length;
     }
 }
