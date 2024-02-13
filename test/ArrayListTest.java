@@ -17,19 +17,12 @@ class ArrayListTest {
         // should be 110ish?
         assertTrue(t.getArraySize() > 100);
 
-//        var iter = t.iterator();
-//        while (iter.hasNext()) {
-//            t.removeBack();
-//        }
-
         for (var i: t)
             t.removeFront();
 
         var arraySize = t.getArraySize();
         var actual = t.size();
 
-
-        System.out.println(arraySize + " " + actual);
         // the array should have shrunk
         assertTrue(t.getArraySize() < 100);
     }
