@@ -141,12 +141,34 @@ public class LinkedList<E> implements List<E>{
 
     @Override
     public E removeFront() {
+        if(size() > 0)
+        {
+            E returnedItem = head.data;
+            head = head.next;
+            size--;
+            return returnedItem;
+        }
         return null;
     }
 
     @Override
     public E removeBack() {
-        return null;
+        E returnedItem;
+        if(size <= 1)
+        {
+            returnedItem = head.data;
+            head = null;
+            size --;
+            return returnedItem;
+        }
+        Node current = head;
+        for (int i = 0; i < size()-2; i++) {
+            current = current.next;
+        }
+        returnedItem = current.next.data;
+        current.next = null;
+        size--;
+        return returnedItem;
     }
 
     @Override
