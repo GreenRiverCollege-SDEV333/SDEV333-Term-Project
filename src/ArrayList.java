@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class ArrayList<E> implements List<E> {
     /**
@@ -101,7 +102,17 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E get(int index) {
-        return null;
+        // if the given index is out of range
+        if(index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(index + " is not a valid index");
+        }
+
+        // if buffer contains no items, one cannot be retrieved
+        if(size == 0) {
+            throw new NoSuchElementException("Cannot retrieve values from empty ArrayList");
+        }
+
+        return buffer[index];
     }
 
     /**
@@ -113,7 +124,18 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void set(int index, E item) {
+        // if the given index is out of range
+        if(index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(index + " is not a valid index");
+        }
 
+        // if buffer contains no items, one cannot be retrieved
+        if(size == 0 && index != 0) {
+            throw new NoSuchElementException("Cannot place item at given index of empty ArrayList");
+        }
+
+        // place the given item at the requested index
+        buffer[index] = item;
     }
 
     /**
