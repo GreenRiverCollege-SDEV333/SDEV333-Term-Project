@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class ArrayList<E> implements List<E>{
@@ -146,6 +147,12 @@ public class ArrayList<E> implements List<E>{
 
     @java.lang.Override
     public boolean contains(E item) {
+        for (int i = 0; i < size; i++) {
+            if(buffer[i].equals(item))
+            {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -174,7 +181,25 @@ public class ArrayList<E> implements List<E>{
     }
 
     @java.lang.Override
-    public java.util.Iterator<E> iterator() {
-        return null;
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            // fields
+            private int i;
+            @Override
+            public boolean hasNext() {
+                return i < size;
+            }
+
+            @Override
+            public E next() {
+                if(i >= size)
+                {
+                    throw new NoSuchElementException("i is out of bounds");
+                }
+                E currentValue = buffer[i];
+                i++;
+                return currentValue;
+            }
+        };
     }
 }
