@@ -240,10 +240,12 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public Iterator<E> iterator() {
+
+        E[] readOnly = arrayData.clone();
+
         return new Iterator<E>() {
-            E[] readOnly = arrayData.clone();
-            int size = size();
             int index = 0;
+            int size = size();
 
             @Override
             public boolean hasNext() {
@@ -252,7 +254,7 @@ public class ArrayList<E> implements List<E> {
 
             @Override
             public E next() {
-                if (index >= size) throw new IndexOutOfBoundsException();
+                if (!hasNext()) throw new IndexOutOfBoundsException();
                 E value = readOnly[index];
                 index++;
                 return value;
