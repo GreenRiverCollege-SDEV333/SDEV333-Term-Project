@@ -91,9 +91,12 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E get(int i) {
+        // check if valid range
+        if (i < 0 || i > size() - 1) throw new IndexOutOfBoundsException(String.format("%d out of range.", i));
+
         Node cur = head;
 
-        // wind to index
+        // wind to index and return that data
         for (int j = 0; j < i; j++)
             cur = cur.next;
 
@@ -109,6 +112,15 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void set(int i, E item) {
+        // check if valid range
+        if (i < 0 || i > size() - 1) throw new IndexOutOfBoundsException(String.format("%d out of range.", i));
+
+        // wind to index, set that item.
+        Node cur = head;
+        for (int j = 0; j < i; j++)
+            cur = cur.next;
+
+        cur.data = item;
 
     }
 
@@ -119,7 +131,7 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E removeFront() {
-        return null;
+        return remove(0);
     }
 
     /**
@@ -129,7 +141,7 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E removeBack() {
-        return null;
+        return remove(size()-1);
     }
 
     /**
@@ -139,7 +151,14 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void remove(E item) {
-
+        Node cur = head;
+        for (int i = 0; i < size(); i++) {
+            if (cur.data.equals(item)) {
+                remove(i);
+                return;
+            }
+            cur = cur.next;
+        }
     }
 
     /**
@@ -150,7 +169,31 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E remove(int i) {
-        return null;
+        // check if valid range
+        if (i < 0 || i > size() - 1) throw new IndexOutOfBoundsException(String.format("%d out of range.", i));
+
+        size--;
+
+        // case: index is at position 0, need to reassign head
+        if (i == 0) {
+            E data = head.data;
+            head = head.next;
+            return data;
+        }
+
+        // case: any other index
+        Node cur = head, prev = cur;
+        for (int j = 0; j < i; j++) {
+            prev = cur;
+            cur = cur.next;
+        }
+
+        E data = cur.data;
+
+        // remove reference to current node
+        prev.next = cur.next;
+
+        return data;
     }
 
     /**
@@ -161,6 +204,11 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public boolean contains(E item) {
+        Node cur = head;
+        for (int i = 0; i < size(); i++) {
+            if (cur.data.equals(item)) return true;
+            cur = cur.next;
+        }
         return false;
     }
 
