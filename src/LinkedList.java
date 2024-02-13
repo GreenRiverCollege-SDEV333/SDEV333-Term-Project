@@ -33,14 +33,7 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void addFront(E item) {
-        // check if there is a head element
-        if (head == null) {
-            head = new Node(item);
-            return;
-        }
-
-        // add element to front
-        head = new Node(item, head);
+        add(0, item);
     }
 
     /**
@@ -50,19 +43,7 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void addBack(E item) {
-        // check if there are any elements, if not, just add to front
-        if (head == null) {
-            addFront(item);
-            return;
-        }
-
-        // wind to last element
-        Node cur = head;
-        while (cur.next != null) cur = cur.next;
-
-        // insert new element
-        cur.next = new Node(item);
-
+        add(size(), item);
     }
 
     /**
@@ -74,15 +55,30 @@ public class LinkedList<E> implements List<E> {
     @Override
     public void add(int i, E item) {
         // check if in range
-        if (i > size()) throw new IndexOutOfBoundsException(String.format("%d out of range", i));
+        if (i < 0 || i > size() ) throw new IndexOutOfBoundsException(String.format("%d out of range.", i));
 
+        size++;
+
+        // case: size is 0/no head
+        if (head == null) {
+            head = new Node(item);
+            return;
+        }
+
+        // case: index 0, need to reassign head
+        if (i == 0) {
+            head = new Node(item, head);
+            return;
+        }
+
+        // case: valid index
         // wind to the place we want to add.
         Node cur = head;
-        for (int j = 0; j < i; j++) {
+        for (int j = 0; j < i - 1; j++) {
             cur = cur.next;
         }
 
-        // insert an item after this point
+        // insert an item at this point
         cur.next = new Node(item, cur.next);
 
     }
