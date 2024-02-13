@@ -85,8 +85,7 @@ public class ArrayList<E> implements List<E> {
         //first check index if its valid
         if (i < 0) {
             throw new IndexOutOfBoundsException("Index cannot be negative");
-        }
-        else if (i >= size) {
+        } else if (i >= size) {
             throw new IndexOutOfBoundsException("Index out of range");
         }
 
@@ -104,8 +103,7 @@ public class ArrayList<E> implements List<E> {
     public void set(int i, E item) {
         if (i < 0) { // check index if its valid
             throw new IndexOutOfBoundsException("Index cannot be negative");
-        }
-        else if (i >= size) {
+        } else if (i >= size) {
             throw new IndexOutOfBoundsException("Index out of range");
         }
 
@@ -124,7 +122,7 @@ public class ArrayList<E> implements List<E> {
             return null;
         }
 
-        E frontItem = (E) buffer[0];
+        E frontItem = (E) buffer[0]; // save front item to return
 
         for (int i = 0; i <= size; i++) { // loop backwards from size - 5, 4, 3, 2, 1
             buffer[i] = buffer[i + 1]; // copy index one to the right
@@ -146,7 +144,8 @@ public class ArrayList<E> implements List<E> {
             return null;
         }
         E backItem = (E) buffer[size - 1]; // save item in back of list to return
-        size --; // remove last item by decreasing size by 1;
+        buffer[size - 1] = null;
+        size --; // decrease size by 1;
 
         return backItem;
     }
@@ -158,7 +157,29 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void remove(E item) {
+        if (size == 0) { // check if empty
+            System.out.println("List is empty, no item to remove.");
+            return;
+        }
+        int itemIndex = -1; // value to store the items index
+        for (int i = 0; i < size; i++) { // loop until index is found
+            if (buffer[i].equals(item)) {
+                itemIndex = i;
+                break; // break from loop when index found
+            }
+        }
 
+        if (itemIndex == -1) { // Check if item is in the list.
+            System.out.println("Item not found.");
+            return;
+        }
+
+        for (int i = itemIndex; i < size - 1; i++) { // shift from left to right
+            buffer[i] = buffer[i + 1];
+        }
+
+        buffer[size - 1] = null;
+        size --; // decrease size by 1;
     }
 
     /**
@@ -169,7 +190,23 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E remove(int i) {
-        return null;
+        if (size == 0) { // check if empty
+            System.out.println("List is empty, no item to remove.");
+            return null;
+        } else if (i < 0) { // check index if its valid
+            throw new IndexOutOfBoundsException("Index cannot be negative");
+        } else if (i >= size) {
+            throw new IndexOutOfBoundsException("Index out of range");
+        }
+
+        E removedItem = (E) buffer[i]; // store item to be removed and cast to generic.
+        for (int j = i; j < size - 1; j++) { // shift to right
+            buffer[j] = buffer[j + 1];
+        }
+
+        buffer[size - 1] = null;
+        size --; // decrease size by 1;
+        return removedItem; // return item removed from list
     }
 
     /**
@@ -180,7 +217,16 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public boolean contains(E item) {
-        return false;
+        if (size == 0) { // check if empty
+            System.out.println("List is empty and contains no items.");
+            return false;
+        }
+        for (int i = 0; i < size; i++) { // loop until index is found
+            if (buffer[i].equals(item)) { // if item is found return true
+                return true;
+            }
+        }
+        return false; // return false if list does not contain item
     }
 
     /**

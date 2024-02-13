@@ -33,6 +33,11 @@ public class Main {
         System.out.println(list.removeFront()); // Test removeFront method
         System.out.println(list.removeBack()); // Test removeBack method
 
+        String itemToRemove = "Test3"; // test item to remove
+        list.remove(itemToRemove); // test remove item
+        list.remove(1); // test remove index
+        System.out.println(list.contains("Set")); // Test contains method
+
         // Test the get() method
         System.out.println("Elements:");
         for (int i = 0; i < list.size(); i++) { //
