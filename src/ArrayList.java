@@ -104,12 +104,44 @@ public class ArrayList<E> implements List<E>{
 
     @java.lang.Override
     public void remove(E item) {
-
+        if(!contains(item))
+        {
+            throw new NoSuchElementException("This element does not exist!");
+        }
+        for (int i = 0; i < size-1; i++) {
+            if(buffer[i].equals(item))
+            {
+                for (int j = i; j < size; j++) {
+                    buffer[j] = buffer[j+1];
+                }
+                //remove the final index value
+                buffer[size - 1] = null;
+                //decrement size
+                size--;
+            }
+        }
     }
 
     @java.lang.Override
     public E remove(int i) {
-        return null;
+        //check to see if index is valid
+        if(i >= size || i < 0)
+        {
+            throw new IndexOutOfBoundsException("Invalid index");
+        }
+        // save a copy of the value to be returned later
+        E removedItem = buffer[i];
+
+        //shift values to the left
+        for (int j = i; j < size; j++) {
+            buffer[j] = buffer[j+1];
+        }
+        //remove the final index value
+        buffer[size - 1] = null;
+        //decrement size
+        size--;
+        //return the removed value
+        return removedItem;
     }
 
     @java.lang.Override
