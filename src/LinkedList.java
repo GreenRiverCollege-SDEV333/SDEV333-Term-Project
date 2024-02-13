@@ -135,6 +135,13 @@ public class LinkedList<E> implements List<E>{
         size++;
     }
 
+    /**
+     * Runtime analysis: Worst case scenario, this would be O(n) runtime because
+     * you might have to go to the end of the LinkedList to find an item, or
+     * not find the item at all.
+     * @param i the index where the item should be retrieved
+     * @return
+     */
     @Override
     public E get(int i) {
         if(i >= size || i < 0)
@@ -148,6 +155,14 @@ public class LinkedList<E> implements List<E>{
         return current.data;
     }
 
+    /**
+     * Runtime analysis: Worst case scenario, this would be O(n) runtime.
+     * This is because the item you are wanting to set could be at
+     * the end of the list, or not there at all, meaning you
+     * iterate through each item in the LinkedList.
+     * @param i the index where the item should be saved
+     * @param item the item to be saved
+     */
     @Override
     public void set(int i, E item) {
         if(i > size || i < 0)
@@ -161,6 +176,12 @@ public class LinkedList<E> implements List<E>{
         current.data = item;
     }
 
+    /**
+     * Runtime analysis: This will always be constant time because
+     * removing the front Node does not vary. You simply move the head Node
+     * reference forward and that is it.
+     * @return
+     */
     @Override
     public E removeFront() {
         if(size() > 0)
@@ -173,6 +194,12 @@ public class LinkedList<E> implements List<E>{
         return null;
     }
 
+    /**
+     * Runtime analysis: Worst case scenario, and best case scenario,
+     * this runs at O(n). This is because you always have to loop
+     * until you reach the end of the list to remove the last Node.
+     * @return
+     */
     @Override
     public E removeBack() {
         E returnedItem;
@@ -193,6 +220,12 @@ public class LinkedList<E> implements List<E>{
         return returnedItem;
     }
 
+    /**
+     * Runtime analysis: Worst case scenario, this would be O(n).
+     * That is because you could iterate through the whole list
+     * only to find the item does not exist within the LinkedList.
+     * @param item the item to be removed
+     */
     @Override
     public void remove(E item) {
         if(!contains(item))
@@ -266,11 +299,24 @@ public class LinkedList<E> implements List<E>{
         return false;
     }
 
+    /**
+     * Runtime analysis: This will always run in constant time because
+     * there is no variation based on size of the LinkedList.
+     * This is a simple 1 line return statement.
+     * @return
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Runtime analysis: This will always run in constant time
+     * because there is no variation based on size of the LinkedList.
+     * This is a simple 1 line return statement to return the size
+     * of the LinkedList.
+     * @return
+     */
     @Override
     public int size() {
         return size;
