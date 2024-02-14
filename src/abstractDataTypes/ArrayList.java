@@ -35,8 +35,15 @@ public class ArrayList<E> implements List<E> {
      */
     public ArrayList(E[] array)
     {
-        size = 0;
-        buffer = array;
+        if (array.length < CAPACITY) {
+
+            E[] newBuffer = (E[]) new Object[CAPACITY];
+
+            for (int i = 0; i < array.length; i++) {                  //  { 1 + 1 + 2 (i = i + 1) * BL
+                newBuffer[i] = array[i];
+                size++;
+            } buffer = newBuffer;
+        }
     }
 
 
@@ -54,17 +61,16 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void addFront(E item)
     {
-        //loop while index is greater than zero
-        for (int i = size; i > 0; i--) {                                // { 1 + 1 + 2 = 4
-            //if buffer is at capacity increase buffer by one index
-            if (size == buffer.length) {                                // 1
-                this.resize(buffer.length + 1);                 // f(n)= 5BL + 6 + 1 == O(n)
-            }
-            //index at highest buffer gets shifted right
+        //if buffer is at capacity increase buffer by one index
+        if (size == buffer.length) {                                    // 1
+            this.resize(buffer.length + 1);                     // f(n)= 5BL + 6 + 1 == O(n)
+        }
+        size++;                                                         // 2
+        //Move all indices over one to make room at front
+        for (int i = size - 1; i > 0; i--) {                            // { 1 + 1 + 2 = 4
             buffer[i] = buffer[i - 1];                                  // 1 + 1 } * size
         }
-        buffer[0] = (E) item;                                           // 1
-        size++;                                                         // 2
+        buffer[0] = item;                                               // 1
     }                                                                   // == f(size)= 7(n) + 8(n) + 3
 
     /**
@@ -81,7 +87,7 @@ public class ArrayList<E> implements List<E> {
     public void addBack(E item)
     {
         //if buffer is at capacity increase buffer by one index
-        if ( size == buffer.length) {
+        if (size == buffer.length) {
             resize(size + 1);
         }
         //add value to size which is one index greater than last value
@@ -198,7 +204,7 @@ public class ArrayList<E> implements List<E> {
             //Reduce buffer until original buffer size is reached
             if (size >= 10) {                           // 1
                 resize(size);                           // 5BL + 6
-                //after buffer becomes 10 set removed values back to null
+            // after buffer becomes 10 set removed values back to null
             } else {
                 buffer[size] = null;                    // 1
             }
@@ -234,7 +240,7 @@ public class ArrayList<E> implements List<E> {
      * (3 + BL) or O(12) or (11(size - 1) + 3) + 3 + O(size) + 5BL + 6)
      * so 0(2n) at worst
      * This function could definitely been written cleaner but in Britain
-     * they have phrase 'any road' meaning you'll always get there as long
+     * they have the phrase 'any road' meaning you'll always get there as long
      * as you keep driving... My logic took a binary search approach to finding
      * the answer, but instead of analyzing one or the other I analyzed both.
      *
@@ -358,10 +364,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     * O(2) at best??
-     * I wouldn't know if the constructor is this.iterator = iterator
-     * because it's implicit and can't remember nor find how to look
-     * up imported static function calls in intellij
+     * O(n) at best
+     * O(2^n) at worst
+     * Depends on how it's used in the client code...
      *
      * @return an Iterator.
      */
@@ -403,6 +408,13 @@ public class ArrayList<E> implements List<E> {
             E currentValue = buffer[index];
             index++;
             return currentValue;
+        }
+
+        @Override
+        public String toString() {
+            return "ArrayListIterator{" +
+                    "index=" + index +
+                    '}';
         }
     }
 
@@ -453,7 +465,6 @@ public class ArrayList<E> implements List<E> {
         return "ArrayList{" +
                 "size=" + size +
                 ", indices=" + Arrays.toString(buffer) +
-
                 '}';
     }
 }

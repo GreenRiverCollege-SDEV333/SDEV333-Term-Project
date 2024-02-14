@@ -59,6 +59,10 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add item to the front.
+     * O(5) at best
+     * O(6) at worst
+     * This function is Constant because it makes
+     * a few assignments at most
      *
      * @param item the item to be added
      */
@@ -77,7 +81,11 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add item to the back.
-     *
+     * O(5) at best
+     * O(n) at worst
+     * This function is Linear because it loops over all
+     * values in the list, but can be constant in the case
+     * the list is empty
      * @param item the item to be added
      */
     @Override
@@ -99,6 +107,14 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add an item at specified index (position).
+     * O(12) at best
+     * O(n) at worst
+     * This function is Linear because it loops over all
+     * values in the list if inserted at back and/or inserted
+     * in the middle (if inserted in between it iterates
+     * exactly equal to the index number provided). This
+     * function can be constant at best if exception are thrown
+     * or index requested is 0.
      *
      * @param index the index where the item should be added
      * @param item  the item to be added
@@ -108,7 +124,7 @@ public class LinkedList<E> implements List<E> {
     {
         int dex = 1;
         //if requested index is out of range throw exception
-        if (index < 0 || index > (size )) {
+        if (index < 0 || index > (size)) {
             throw new IndexOutOfBoundsException(
                     "Index must be in the Range 0-" + (size));
             //else find Node at index
@@ -117,7 +133,7 @@ public class LinkedList<E> implements List<E> {
             if (index == 0) {
                 addFront(item);
                 //check if index is at the end
-            } else if (index == (size)) {
+            } else if (index == size) {
                 addBack(item);
                 //remove everywhere else
             } else {
@@ -134,6 +150,14 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Get the item at a specified index.
+     * O(7) at best
+     * O(n) at worst
+     * This function is Linear because it loops over all
+     * values in the list if the index being retrieved is
+     * at back and/or inserted in the middle (if inserted
+     * in between it iterates exactly equal to the index
+     * number provided). This function can be constant at
+     * best if exception are thrown or index requested is 0.
      *
      * @param index the index where the item should be retrieved
      * @return the item located at that index
@@ -166,6 +190,14 @@ public class LinkedList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     * O(5) at best
+     * O(n)
+     * This function is Linear because it loops over all
+     * values in the list if the index being set is
+     * at back and/or towards the middle (if inserted
+     * in between it iterates exactly equal to the index
+     * number provided). This function can be constant at
+     * best if exception are thrown or index requested is 0.
      *
      * @param index the index where the item should be saved
      * @param item  the item to be saved
@@ -202,6 +234,11 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at the front of the list.
+     * O(1) at best
+     * O(7) at worst
+     * This function is constant because it is a few
+     * assignments, but could be O(1) if head is
+     * being retrieved from an empty list.
      *
      * @return the item that was removed
      */
@@ -222,7 +259,12 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at the back of the list
-     *
+     * O(2) at best
+     * O(n) at worst
+     * This function is Linear because it loops over all
+     * values in the list when trying to remove the back
+     * value. This function can be constant at best if the
+     * list is empty.
      * @return the item that was removed
      */
     @Override
@@ -250,7 +292,10 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item from the list
-     *
+     * O(n) at best
+     * O(2n) at worst?
+     * This function is linear but could potentially
+     * loop over all values twice.
      * @param item the item to be removed
      */
     @Override
@@ -272,7 +317,11 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
-     *
+     * O(1) at best
+     * O(n) at worst
+     * Very likely to loop over all elements unless
+     * exceptions are thrown or removeFront() is
+     * called.
      * @param index the index where the item should be removed
      * @return the item that was removed
      */
@@ -307,7 +356,11 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Checks if an item is in the list.
-     *
+     * O(1) at best
+     * O(n) at worst
+     * This function is linear because it will potentially
+     * loop over all elements in the list, but rarely
+     * constant if the list is empty.
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -331,6 +384,9 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Checks if the list is empty.
+     * O(1)
+     * This Function is constant because it is one
+     * conditional and one return.
      *
      * @return true if the list is empty, false otherwise
      */
@@ -341,6 +397,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Provides a count of the number of items in the list.
+     * O(1)
+     * This Function is constant because it is one return.
      *
      * @return number of items in the list
      */
@@ -351,6 +409,9 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
+     * O(1) at best
+     * O(2^n) at worst
+     * Depends on how it's used in the client code...
      *
      * @return an Iterator.
      */
@@ -371,6 +432,8 @@ public class LinkedList<E> implements List<E> {
          * Returns {@code true} if the iteration has more elements.
          * (In other words, returns {@code true} if {@link #next} would
          * return an element rather than throwing an exception.)
+         * O(1)
+         * This function is constant because it returns a conditional.
          *
          * @return {@code true} if the iteration has more elements
          */
@@ -381,7 +444,8 @@ public class LinkedList<E> implements List<E> {
 
         /**
          * Returns the next element in the iteration.
-         *
+         * O(1)
+         * This function is constant because it returns an assignment.
          * @return the next element in the iteration
          * @throws NoSuchElementException if the iteration has no more elements
          */
