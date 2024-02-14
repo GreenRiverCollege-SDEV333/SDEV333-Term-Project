@@ -5,7 +5,7 @@ public class ArrayList<E> implements List<E> {
     /**
      * An array used to store values placed within the ArrayList
      */
-    private E[] buffer;
+    private final E[] buffer;
 
     /**
      * The number of values stored within buffer
@@ -187,6 +187,16 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public boolean contains(E item) {
+        // run through buffer
+        for (int i = 0; i < size; i++) {
+            // check if item at current index of buffer is given item
+            if(item.equals(buffer[i])) {
+                // item was located
+                return true;
+            }
+        }
+
+        // item could not be found
         return false;
     }
 
