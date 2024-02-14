@@ -56,7 +56,8 @@ public class LinkedList<E> implements List<Integer>
     /**
      * inserts the specified value at the back of the list (at index size()-1).
      * O(1) constant time in the worst case because
-     * * @param value value to be inserted
+     * regardless of size, operations are the same
+     * @param value value to be inserted
      */
     public void addBack(int value)
     {
@@ -84,6 +85,7 @@ public class LinkedList<E> implements List<Integer>
      * values to the right.
      * O(1) constant time in the worst case because
      * regardless of size, operations are the same
+     *
      * @param index index at which the specified value is to be inserted
      * @param value value to be inserted
      * @throws IndexOutOfBoundsException if the index is out of range
@@ -232,6 +234,7 @@ public class LinkedList<E> implements List<Integer>
      * in this list, or -1 if this list does not contain the value.
      * 0(n) linear time in the worst case because
      * of the time to loop through array
+     *
      * @param value value to search for
      * @return the index of the first occurrence of the specified value in this list
      * or -1 if this list does not contain the value

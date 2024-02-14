@@ -26,7 +26,8 @@ public class ArrayList<E> implements List<E>
     /**
      * inserts the specified value at the front of the list
      * Shifts the value currently at the front of the list
-     * 0(n) linear time to loop over an array
+     * 0(n) linear time in the worst case because
+     * of the time to loop through array
      *
      * @param value to be inserted
      */
@@ -47,7 +48,8 @@ public class ArrayList<E> implements List<E>
 
     /**
      * inserts the specified value at the back of the list
-     * O(1) constant time accessing an index of an array
+     * 0(1) or constant in the worst case because
+     * No matter the size of list the operations are the same
      *
      * @param value to be inserted
      */
@@ -63,7 +65,8 @@ public class ArrayList<E> implements List<E>
 
     /**
      * Inserts the specified value at the specified position in this list.
-     * 0(n) linear time to loop through array
+     * 0(n) linear time in the worst case because
+     * of the time to loop through array
      *
      * @param index the place selected
      * @param value value to be inserted
@@ -85,7 +88,8 @@ public class ArrayList<E> implements List<E>
 
     /**
      * Removes the value located at the front of the list
-     * 0(n) linear time to loop through array
+     * 0(n) linear time in the worst case because
+     * of the time to loop through array
      */
     public E removeFront()
     {
