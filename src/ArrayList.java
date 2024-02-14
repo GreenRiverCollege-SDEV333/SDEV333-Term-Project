@@ -5,7 +5,7 @@ public class ArrayList<E> implements List<E> {
     /**
      * An array used to store values placed within the ArrayList
      */
-    private final E[] buffer;
+    private E[] buffer;
 
     /**
      * The number of values stored within buffer
@@ -24,6 +24,25 @@ public class ArrayList<E> implements List<E> {
     }
 
     /**
+     * If all slots in buffer are full, double its max capacity
+     */
+    private void doubleMaxCapacity() {
+        // if all buffer slots are filled
+        if(size == buffer.length) {
+            // create a new buffer, with double the capacity of the existing buffer
+            E[] newBuffer = (E[]) new Object[size * 2];
+
+            // run through previous buffer and copy over all values
+            for(int i = 0; i < buffer.length; i++) {
+                newBuffer[i] = buffer[i];
+            }
+
+            // replace buffer with newBuffer, now with double the length
+            buffer = newBuffer;
+        }
+    }
+
+    /**
      * Add item to the front.
      *
      * @param item the item to be added
@@ -33,6 +52,7 @@ public class ArrayList<E> implements List<E> {
         // if the buffer already contains items
         if(size != 0) {
             // if the buffer is full, increase max capacity
+            doubleMaxCapacity();
 
             // run through buffer backwards
             for (int i = size; i > 0; i--) {
@@ -57,6 +77,7 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void addBack(E item) {
         // if the buffer is full, increase max capacity
+        doubleMaxCapacity();
 
         // add the given item at final index
         buffer[size] = item;
@@ -79,6 +100,7 @@ public class ArrayList<E> implements List<E> {
         }
 
         // if the buffer is full, increase max capacity
+        doubleMaxCapacity();
 
         // run through buffer backwards, up to given index
         for (int i = size; i > index; i--) {
