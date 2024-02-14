@@ -163,7 +163,9 @@ public class LinkedList<E> implements List<E> {
     /**
      * Remove item from the list
      *
-     * O(n) - item may not be present, resulting in traversing the whole list.
+     * O(n) - this implementation calls remove twice,
+     * but is guaranteed to pass no more than twice.
+     * thus is it 2n, not BigO Squared.
      *
      * @param item the item to be removed
      */
