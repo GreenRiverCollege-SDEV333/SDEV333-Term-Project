@@ -22,7 +22,7 @@ public class ArrayListTest {
     {
         lists.ArrayList<Integer> array = new lists.ArrayList<>();
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 1; i < 10; i++)
         {
             array.addBack(i);
             assertEquals(array.get(array.size() - 1), i);
@@ -110,6 +110,17 @@ public class ArrayListTest {
     }
 
     @Test
+    void size()
+    {
+        lists.ArrayList<Integer> array = new lists.ArrayList<>();
+
+        for (int i = 1; i < 10; i++)
+        {
+            array.addBack(i);
+            assertEquals(array.size(), i);
+        }
+    }
+    @Test
     void isEmpty() {
         lists.ArrayList<Integer> array = new lists.ArrayList<>();
 
@@ -122,17 +133,7 @@ public class ArrayListTest {
         }
     }
 
-    @Test
-    void size()
-    {
-        lists.ArrayList<Integer> array = new lists.ArrayList<>();
 
-        for (int i = 1; i < 10; i++)
-        {
-            array.addBack(i);
-            assertEquals(array.size(), i);
-        }
-    }
     @Test
     void clear()
     {

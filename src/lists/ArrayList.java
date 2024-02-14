@@ -1,5 +1,5 @@
 /**
- * Abstract arrayList methods
+ * Abstract arrayList
  * @author Lillian Nelson
  * @version 1.0
  */
@@ -106,7 +106,9 @@ public class ArrayList<E> implements List<E>
 
     /**
      * Removes the value located at the back of the list
-     * O(1) constant time accessing an index of an array
+     * O(1) constant time in the worst case because
+     * regardless of size, operations are the same
+     *
      */
     public E removeBack()
     {
@@ -122,7 +124,8 @@ public class ArrayList<E> implements List<E>
 
     /**
      * Remove item at a specified index.
-     * 0(n) linear time to loop through array
+     * 0(n) linear time in the worst case because
+     * of the time to loop through array
      *
      * @param index the index where the item should be removed
      * @return the item that was removed
@@ -157,8 +160,8 @@ public class ArrayList<E> implements List<E>
 
     /**
      * Returns the value at the specified position in the list.
-     * O(1) constant time accessing an index of an array
-     *
+     * 0(n) linear time in the worst case because
+     * of the time to loop through array
      * @param index index of the value to return
      * @return the value at the specified position in this list
      * @throws IndexOutOfBoundsException if the index is out of range
@@ -179,8 +182,8 @@ public class ArrayList<E> implements List<E>
     }
     /**
      * Returns true if this list contains the specified value.
-     * * 0(n) linear time to loop through array
-     *
+     * 0(n) linear time in the worst case because
+     * of the time to loop through array
      * @param value value whose presence in this list is to be searched for
      * @return true if this list contains the specified value
      */
@@ -198,8 +201,8 @@ public class ArrayList<E> implements List<E>
     /**
      * Returns the index of the first occurrence of the specified value
      * in this list, or -1 if this list does not contain the value.
-     * * 0(n) linear time to loop through array
-     *
+     * 0(n) linear time in the worst case because
+     * of the time to loop through array
      * @param value value to search for
      * @return the index of the first occurrence of value
      */
@@ -255,8 +258,8 @@ public class ArrayList<E> implements List<E>
     }
     /**
      * takes array and creates a new one to make more space
-     * 0(n) linear time to loop through array
-     *
+     * 0(n) linear time in the worst case because
+     * of the time to loop through array
      * @param newSize bigger array
      */
 
