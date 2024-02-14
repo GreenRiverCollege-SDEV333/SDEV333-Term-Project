@@ -28,6 +28,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add item to the front.
+     *
      * O(1) - access to the front nodes are instant
      *
      * @param item the item to be added
@@ -39,6 +40,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add item to the back.
+     *
      * O(n) - need to scroll to the end node since we don't keep track of it.
      * although we could and it would result in O(1) as well.
      *
@@ -51,6 +53,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add an item at specified index (position).
+     *
      * O(n) - if adding to the very back, you will need to scroll the whole list.
      *
      * @param i    the index where the item should be added
@@ -89,6 +92,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Get the item at a specified index.
+     *
      * O(n) - if scrolling to the very back, will need to traverse whole list
      *
      * @param i the index where the item should be retrieved
@@ -111,6 +115,7 @@ public class LinkedList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     *
      * O(n) - will need to scroll to position to set it.
      *
      *
@@ -133,6 +138,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at the front of the list.
+     *
      * O(1) - head is readily accessible.
      *
      * @return the item that was removed
@@ -144,6 +150,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at the back of the list
+     *
      * O(n) - back needs to be scrolled to before removing it
      *
      * @return the item that was removed
@@ -155,6 +162,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item from the list
+     *
      * O(n) - item may not be present, resulting in traversing the whole list.
      *
      * @param item the item to be removed
@@ -173,6 +181,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
+     *
      * O(n) - need to scroll to index to find it, which may be at the end.
      *
      * @param i the index where the item should be removed
@@ -209,6 +218,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Checks if an item is in the list.
+     *
      * O(n) - may not find an item, resulting in traversing the whole list.
      *
      * @param item the item to search for
@@ -226,6 +236,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Checks if the list is empty.
+     *
      * O(1), size access is instant
      *
      * @return true if the list is empty, false otherwise
@@ -237,6 +248,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Provides a count of the number of items in the list.
+     *
      * O(1) - size access is instant.
      *
      * @return number of items in the list
@@ -248,6 +260,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
+     *
      * O(n) - traverses entire list.
      *
      * @return an Iterator.
