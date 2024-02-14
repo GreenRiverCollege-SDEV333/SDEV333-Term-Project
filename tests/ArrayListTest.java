@@ -366,11 +366,99 @@ class ArrayListTest {
     }
 
     @Test
-    void removeFront() {
+    void removeFront_bufferContainsOneItem_removedSuccessfully() {
+        // add item to remove
+        testArrayIntList.addFront(TEST_ITEM);
+
+        // attempt to remove first item from buffer
+        assertEquals(TEST_ITEM, testArrayIntList.removeFront());
+
+        // ensure buffer is now empty
+        assertTrue(testArrayIntList.isEmpty());
     }
 
     @Test
-    void removeBack() {
+    void removeFront_bufferContainsMultipleItems_removedSuccessfully() {
+        // add several initial items
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+
+        // add item to remove
+        testArrayIntList.addFront(TEST_ITEM);
+
+        // attempt to remove first item from buffer
+        assertEquals(TEST_ITEM, testArrayIntList.removeFront());
+
+        // ensure value was removed from buffer
+        assertNotEquals(TEST_ITEM, testArrayIntList.get(FIRST_INDEX));
+        assertEquals(3, testArrayIntList.size());
+    }
+
+    @Test
+    void removeFront_bufferEmpty_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove item at index 0
+            testArrayIntList.removeFront();
+        }
+
+        catch (NoSuchElementException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void removeBack_bufferContainsOneItem_removedSuccessfully() {
+        // add value to remove
+        testArrayIntList.addFront(TEST_ITEM);
+
+        // attempt to remove last value from buffer
+        assertEquals(TEST_ITEM, testArrayIntList.removeBack());
+
+        // ensure buffer is now empty
+        assertTrue(testArrayIntList.isEmpty());
+    }
+
+    @Test
+    void removeBack_bufferContainsMultipleItems_removedSuccessfully() {
+        // add several initial values
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+
+        // add value to remove
+        testArrayIntList.addBack(TEST_ITEM);
+
+        // attempt to remove back value from buffer
+        assertEquals(TEST_ITEM, testArrayIntList.removeBack());
+
+        // ensure value was removed from buffer
+        assertNotEquals(TEST_ITEM, testArrayIntList.get(testArrayIntList.size()));
+        assertEquals(3, testArrayIntList.size());
+    }
+
+    @Test
+    void removeBack_bufferEmpty_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove value at index 0
+            testArrayIntList.removeBack();
+        }
+
+        catch (NoSuchElementException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
     }
 
     @Test
