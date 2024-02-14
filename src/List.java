@@ -27,7 +27,7 @@ public interface List<E> extends Iterable<E> {
      * @param i the index where the item should be retrieved
      * @return the item located at that index
      */
-    E get(int i);
+    Object get(int i);
 
     /**
      * Set (save) an item at a specified index. Previous
@@ -41,26 +41,30 @@ public interface List<E> extends Iterable<E> {
      * Remove item at the front of the list.
      * @return the item that was removed
      */
-    E removeFront();
+    Object removeFront();
 
     /**
      * Remove item at the back of the list
+     *
      * @return the item that was removed
      */
-    E removeBack();
+    Object removeBack();
 
     /**
      * Remove item from the list
+     *
      * @param item the item to be removed
+     * @return
      */
-    void remove(E item);
+    Object remove(E item);
 
     /**
      * Remove item at a specified index.
+     *
      * @param i the index where the item should be removed
      * @return the item that was removed
      */
-    E remove(int i);
+    Object remove(int i);
 
     /**
      * Checks if an item is in the list.
