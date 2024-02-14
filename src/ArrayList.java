@@ -83,7 +83,7 @@ public class ArrayList<E> implements List<E> {
         // run through buffer backwards, up to given index
         for (int i = size; i > index; i--) {
             // get item at previous index and place in current index,
-            // thereby shifting all items to the left
+            // thereby shifting all items to the right
             buffer[i] = buffer[i - 1];
         }
 
@@ -145,7 +145,24 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E removeFront() {
-        return null;
+        // if buffer contains no items, one cannot be removed
+        if(size == 0) {
+            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
+        }
+
+        // get requested item prior to removal
+        E requestedItem = buffer[0];
+
+        // run through buffer
+        for(int i = 0; i < size; i++) {
+            // replace item at current index with item at next index
+            buffer[i] = buffer[i + 1];
+        }
+
+        // account for removal of item
+        size--;
+
+        return requestedItem;
     }
 
     /**
@@ -155,7 +172,21 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E removeBack() {
-        return null;
+        // if buffer contains no items, one cannot be removed
+        if(size == 0) {
+            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
+        }
+
+        // get requested item prior to removal, accounting for index
+        E requestedItem = buffer[size - 1];
+
+        // clear the final item in buffer
+        buffer[size - 1] = null;
+
+        // account for removal of item
+        size--;
+
+        return requestedItem;
     }
 
     /**
@@ -165,7 +196,26 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public void remove(E item) {
+        // if buffer contains no items, one cannot be removed
+        if(size == 0) {
+            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
+        }
 
+        // if item is not in buffer
+        if(!contains(item)) {
+            throw new NoSuchElementException("Given item is not located in ArrayList");
+        }
+
+        // run through buffer
+        for (int i = 0; i < size; i++) {
+            // check if item at current index of buffer is given item
+            if(item.equals(buffer[i])) {
+                // call remove method at that index
+                remove(i);
+            }
+        }
+
+        // do not account for removal of item, as remove(i) does so
     }
 
     /**
@@ -176,7 +226,30 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public E remove(int index) {
-        return null;
+        // if the given index is out of range
+        if(index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(index + " is not a valid index");
+        }
+
+        // if buffer contains no items, one cannot be removed
+        if(size == 0) {
+            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
+        }
+
+        // get requested item prior to removal
+        E requestedItem = buffer[index];
+
+        // run through buffer, starting at given index
+        // and accounting for removal of requested value
+        for(int i = index; i <= size - 1; i++) {
+            // replace item at current index with item at next index
+            buffer[i] = buffer[i + 1];
+        }
+
+        // account for removal of item
+        size--;
+
+        return requestedItem;
     }
 
     /**
