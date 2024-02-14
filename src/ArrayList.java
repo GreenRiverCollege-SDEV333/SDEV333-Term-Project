@@ -6,8 +6,8 @@ public class ArrayList<E> implements List<E> {
     private int size;
     private E[] buffer;
 
-    public ArrayList() {
-        buffer = (E[]) new Object[10];
+    public ArrayList(int capacity) {
+        buffer = (E[]) new Object[capacity];
         size = 0;
     }
 
