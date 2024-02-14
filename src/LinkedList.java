@@ -140,7 +140,7 @@ public class LinkedList<E> implements List<E>{
      * you might have to go to the end of the LinkedList to find an item, or
      * not find the item at all.
      * @param i the index where the item should be retrieved
-     * @return
+     * @return E
      */
     @Override
     public E get(int i) {
@@ -180,7 +180,7 @@ public class LinkedList<E> implements List<E>{
      * Runtime analysis: This will always be constant time because
      * removing the front Node does not vary. You simply move the head Node
      * reference forward and that is it.
-     * @return
+     * @return E
      */
     @Override
     public E removeFront() {
@@ -198,7 +198,7 @@ public class LinkedList<E> implements List<E>{
      * Runtime analysis: Worst case scenario, and best case scenario,
      * this runs at O(n). This is because you always have to loop
      * until you reach the end of the list to remove the last Node.
-     * @return
+     * @return E
      */
     @Override
     public E removeBack() {
@@ -247,6 +247,14 @@ public class LinkedList<E> implements List<E>{
         }
     }
 
+    /**
+     * Runtime analysis: Worst case scenario, this would run at O(n) runtime.
+     * This is because the index given to the remove() method could be the
+     * very last index, meaning the method has to go individually node by
+     * node until it reaches the last node to remove.
+     * @param i the index where the item should be removed
+     * @return
+     */
     @Override
     public E remove(int i) {
         // check if index is invalid
@@ -285,6 +293,14 @@ public class LinkedList<E> implements List<E>{
         return dataToBeRemoved;
     }
 
+    /**
+     * Runtime analysis: Worst case scenario, this method will run until the
+     * end of the list, and not find the item it is searching for.
+     * This would make its runtime O(n), as it has to search through every
+     * item in the LinkedList.
+     * @param item the item to search for
+     * @return boolean
+     */
     @Override
     public boolean contains(E item) {
         Node current = head;
@@ -303,7 +319,7 @@ public class LinkedList<E> implements List<E>{
      * Runtime analysis: This will always run in constant time because
      * there is no variation based on size of the LinkedList.
      * This is a simple 1 line return statement.
-     * @return
+     * @return boolean
      */
     @Override
     public boolean isEmpty() {
@@ -315,7 +331,7 @@ public class LinkedList<E> implements List<E>{
      * because there is no variation based on size of the LinkedList.
      * This is a simple 1 line return statement to return the size
      * of the LinkedList.
-     * @return
+     * @return int
      */
     @Override
     public int size() {
@@ -324,6 +340,17 @@ public class LinkedList<E> implements List<E>{
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        Node current = head;
+        return new Iterator<E>() {
+            @Override
+            public boolean hasNext() {
+                return current.next != null;
+            }
+
+            @Override
+            public E next() {
+                return current.next.data;
+            }
+        };
     }
 }
