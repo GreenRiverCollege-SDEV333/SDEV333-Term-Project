@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
@@ -8,15 +9,39 @@ import java.util.function.Consumer;
  * @author Jack Le
  * @version 1.0
  */
-public class ArrayList<E> implements List<E>{
+public class ArrayList<E> implements List<E> {
 
     private int size;
     private E[] buffer;
 
-    public ArrayList(){
+    public ArrayList() {
         this.size = 0;
         this.buffer = (E[]) new Object[10];
     }
+
+    /**
+     * This method checks if the array is full and increases its size if necessary.
+     * It compares the current size of the array with its length. If they are equal,
+     * it means the array is full. In this case, it creates a new array with double the size
+     * and copies the elements of the old array into the new one.
+     */
+    public void checkArray() {
+        // Check if the array is full
+        if (size == buffer.length) {
+            // Increase the size of the array
+            buffer = Arrays.copyOf(buffer, size * 2);
+        }
+    }
+
+    public void nullCheck(int i) {
+        if (size == 0) {
+            System.out.println("The List is empty");
+        } else if (i >= size || i < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+
     /**
      * Add item to the front.
      *
@@ -24,10 +49,13 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public void addFront(E item) {
+        checkArray();
         // using the size to revert back to the first spot of the buffer
-        for (int i = size; i > buffer.length ; i++) {
-
+        for (int i = size; i > 0; i--) {
+            buffer[i] = buffer[i - 1];
         }
+        buffer[0] = item;
+        size++;
     }
 
     /**
@@ -37,7 +65,10 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public void addBack(E item) {
-
+        checkArray();
+        // Add the new element at the end
+        buffer[size] = item;
+        size++;
     }
 
     /**
@@ -48,7 +79,21 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public void add(int i, E item) {
+        checkArray();
+        if (i == 0) {
+            addFront(item);
+        } else if (i == size) {
+            addBack(item);
 
+        }
+        //shifting all the element from right to the left,
+        //the for loop is break when the j is not larger than i
+        //then it will assign the item to the index and increase the size
+        for (int j = size; j > i; j--) {
+            buffer[j] = buffer[j - 1];
+        }
+        buffer[i] = item;
+        size++;
     }
 
     /**
@@ -59,7 +104,8 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public E get(int i) {
-        return null;
+        nullCheck(i);
+        return buffer[i];
     }
 
     /**
@@ -71,7 +117,8 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public void set(int i, E item) {
-
+        nullCheck(i);
+        buffer[i] = item;
     }
 
     /**
@@ -81,7 +128,12 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public E removeFront() {
-        return null;
+        E item = buffer[0];
+        for (int i = 0; i < size - 1; i++) {
+            buffer[i] = buffer[i + 1];
+        }
+        size--;
+        return item;
     }
 
     /**
@@ -91,7 +143,10 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public E removeBack() {
-        return null;
+        E item = buffer[size - 1];
+        buffer[size - 1] = null;
+        size--;
+        return item;
     }
 
     /**
@@ -101,7 +156,17 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public void remove(E item) {
+        checkArray();
 
+        for (int i = 0; i < size; i++) {
+            if (buffer[i].equals(item)) {
+                for (int j = i; j < size - 1; j++) {
+                    buffer[j] = buffer[j + 1];
+                }
+                size--;
+                return;
+            }
+        }
     }
 
     /**
@@ -112,7 +177,14 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public E remove(int i) {
-        return null;
+        nullCheck(i);
+        E item = buffer[i];
+        for (int j = i; j < size - 1; j++) {
+            buffer[j] = buffer[j + 1];
+        }
+        buffer[size - 1] = null; // Clear the last element
+        size--;
+        return item;
     }
 
     /**
@@ -123,7 +195,12 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public boolean contains(E item) {
-        return false;
+        for (int i = 0; i < size; i++) {
+            if (buffer[i].equals(item)) {
+                return true;
+            }
+        }
+         return false;
     }
 
     /**
@@ -133,7 +210,7 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     /**
@@ -143,7 +220,7 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
@@ -153,7 +230,26 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new Iterator<E>() {
+            private int counter = 0;
+
+            @Override
+            /**
+             * check whether there is a next element in the buffer
+             *check if the counter is less than size of the array list,
+            *and if the element in the arraylist is not null
+            * if the condition is met, return true, else return false
+            */
+
+            public boolean hasNext() {
+                return counter < size && buffer[counter] != null;
+            }
+
+            @Override
+            public E next() {
+                return buffer[counter++];
+            }
+        };
     }
 
     /**
