@@ -382,8 +382,49 @@ class ArrayListTest {
     }
 
     @Test
-    void contains() {
+    void contains_itemExists_returnsTrue() {
+        // add several initial items
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+
+        // add item to check for
+        testArrayIntList.addBack(TEST_ITEM);
+
+        // check if item is in buffer
+        assertTrue(testArrayIntList.contains(TEST_ITEM));
     }
+
+    @Test
+    void contains_itemNotExists_returnsFalse() {
+        // add several initial items
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+
+        // check if item is in buffer
+        assertFalse(testArrayIntList.contains(TEST_ITEM));
+    }
+
+    @Test
+    void contains_bufferEmpty_returnsFalse() {
+        assertFalse(testArrayIntList.contains(TEST_ITEM));
+    }
+
+    @Test
+    void contains_bufferFullItemExists_returnsTrue() {
+        // add 9 items to buffer
+        for(int i = 0; i < DEFAULT_BUFFER_LENGTH - 1; i++) {
+            testArrayIntList.addBack(FILLER_ITEM);
+        }
+
+        // add test item as last value
+        testArrayIntList.addBack(TEST_ITEM);
+
+        // check if item is in buffer
+        assertTrue(testArrayIntList.contains(TEST_ITEM));
+    }
+
     @Test
     void isEmpty_bufferContainsOneItem_returnsFalse() {
         // add item so the buffer is not empty
@@ -393,7 +434,7 @@ class ArrayListTest {
     }
 
     @Test
-    void isEmpty_bufferContainsMultipleValues_returnsFalse() {
+    void isEmpty_bufferContainsMultipleItems_returnsFalse() {
         // add items so the buffer is not empty
         testArrayIntList.addFront(FILLER_ITEM);
         testArrayIntList.addFront(FILLER_ITEM);
