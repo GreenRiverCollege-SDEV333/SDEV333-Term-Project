@@ -18,7 +18,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Generate an array list of a specified buffer size
-     * @param bufsize
+     * @param bufsize size of the initial underlying buffer.
      */
     public ArrayList(int bufsize) {
         arrayData = (E[])new Object[bufsize];
@@ -26,6 +26,9 @@ public class ArrayList<E> implements List<E> {
     }
 
     // performs resizing if too large or too small of a buffer size.
+    // worst case: O(n), linear progression each time we need to make new spaces.
+    // grow/shrink are included in this
+
     private void autoResize() {
         double capacity = this.size() / (double)arrayData.length;
 
@@ -65,6 +68,7 @@ public class ArrayList<E> implements List<E> {
         this.copy(buf, arrayData);
     }
 
+    // O(n), linear copy.
     private void copy(E[] from, E[] to) {
         // copy old data to new array
         int shortest = (to.length < from.length) ? to.length : from.length;
@@ -75,6 +79,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add item to the front.
+     * O(n) - adding a new item to the beginning means you need to look at every element
      *
      * @param item the item to be added
      */
@@ -85,6 +90,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add item to the back.
+     * O(n) - would be O(1) if arrays could be expanded without copying, but no luck there.
      *
      * @param item the item to be added
      */
@@ -95,6 +101,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add an item at specified index (position).
+     * O(n) - item added to the beginning would move the whole array.
+     * additionally, changes in array capacity would result in a second pass.
      *
      * @param i    the index where the item should be added
      * @param item the item to be added
@@ -118,6 +126,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Get the item at a specified index.
+     * O(1) - Access is constant in an array
      *
      * @param i the index where the item should be retrieved
      * @return the item located at that index
@@ -131,6 +140,7 @@ public class ArrayList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     * O(1) - access/setting is constant
      *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
@@ -153,6 +163,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at the back of the list
+     * O(n) - changes in array capacity will result in copying all data
      *
      * @return the item that was removed
      */
@@ -163,6 +174,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item from the list
+     * O(n) - changes in array capacity will result in copying all data
      *
      * @param item the item to be removed
      */
@@ -179,6 +191,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
+     * O(n) - changes in array capacity will result in copying all data
      *
      * @param i the index where the item should be removed
      * @return the item that was removed
@@ -202,6 +215,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Checks if an item is in the list.
+     * O(n) - item not present will go over whole array
      *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
@@ -215,6 +229,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Checks if the list is empty.
+     * O(1) - instant access to size
      *
      * @return true if the list is empty, false otherwise
      */
@@ -225,6 +240,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Provides a count of the number of items in the list.
+     * O(1) - instant access to size
      *
      * @return number of items in the list
      */
@@ -235,6 +251,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
+     * O(n) - by its nature
      *
      * @return an Iterator.
      */
