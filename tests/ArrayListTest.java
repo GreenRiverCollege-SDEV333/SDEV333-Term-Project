@@ -2,8 +2,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ArrayListTest {
     /**
@@ -374,22 +374,82 @@ class ArrayListTest {
     }
 
     @Test
-    void remove() {
+    void removeItem() {
     }
 
     @Test
-    void testRemove() {
+    void removeIndex() {
     }
 
     @Test
     void contains() {
     }
-
     @Test
-    void isEmpty() {
+    void isEmpty_bufferContainsOneItem_returnsFalse() {
+        // add item so the buffer is not empty
+        testArrayIntList.addFront(FILLER_ITEM);
+
+        assertFalse(testArrayIntList.isEmpty());
     }
 
     @Test
-    void size() {
+    void isEmpty_bufferContainsMultipleValues_returnsFalse() {
+        // add items so the buffer is not empty
+        testArrayIntList.addFront(FILLER_ITEM);
+        testArrayIntList.addFront(FILLER_ITEM);
+        testArrayIntList.addFront(FILLER_ITEM);
+
+        // check if buffer is empty
+        assertFalse(testArrayIntList.isEmpty());
+    }
+
+    @Test
+    void isEmpty_bufferFull_returnsFalse() {
+        // add 10 items to buffer
+        for(int i = 0; i < DEFAULT_BUFFER_LENGTH; i++) {
+            testArrayIntList.addBack(FILLER_ITEM);
+        }
+
+        // check if buffer is empty
+        assertFalse(testArrayIntList.isEmpty());
+    }
+
+    @Test
+    void isEmpty_bufferEmpty_returnsTrue() {
+        // check if buffer is empty
+        assertTrue(testArrayIntList.isEmpty());
+    }
+
+    @Test
+    void size_bufferContainsOneItem_returnsSize() {
+        // add item so the buffer is not empty
+        testArrayIntList.addFront(FILLER_ITEM);
+
+        assertEquals(1, testArrayIntList.size());
+    }
+
+    @Test
+    void size_bufferContainsMultipleItems_returnsSize() {
+        // add items so the buffer is not empty
+        testArrayIntList.addFront(FILLER_ITEM);
+        testArrayIntList.addFront(FILLER_ITEM);
+        testArrayIntList.addFront(FILLER_ITEM);
+
+        assertEquals(3, testArrayIntList.size());
+    }
+
+    @Test
+    void size_bufferEmpty_returnsSize() {
+        assertEquals(0, testArrayIntList.size());
+    }
+
+    @Test
+    void size_bufferFull_returnsSize() {
+        // add 10 items to buffer
+        for(int i = 0; i < DEFAULT_BUFFER_LENGTH; i++) {
+            testArrayIntList.addBack(FILLER_ITEM);
+        }
+
+        assertEquals(DEFAULT_BUFFER_LENGTH, testArrayIntList.size());
     }
 }

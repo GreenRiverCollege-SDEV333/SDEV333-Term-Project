@@ -50,7 +50,7 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void addFront(E item) {
         // if the buffer already contains items
-        if(size != 0) {
+        if(!isEmpty()) {
             // if the buffer is full, increase max capacity
             doubleMaxCapacity();
 
@@ -168,7 +168,7 @@ public class ArrayList<E> implements List<E> {
     @Override
     public E removeFront() {
         // if buffer contains no items, one cannot be removed
-        if(size == 0) {
+        if(isEmpty()) {
             throw new NoSuchElementException("Cannot remove item from empty ArrayList");
         }
 
@@ -195,7 +195,7 @@ public class ArrayList<E> implements List<E> {
     @Override
     public E removeBack() {
         // if buffer contains no items, one cannot be removed
-        if(size == 0) {
+        if(isEmpty()) {
             throw new NoSuchElementException("Cannot remove item from empty ArrayList");
         }
 
@@ -219,7 +219,7 @@ public class ArrayList<E> implements List<E> {
     @Override
     public void remove(E item) {
         // if buffer contains no items, one cannot be removed
-        if(size == 0) {
+        if(isEmpty()) {
             throw new NoSuchElementException("Cannot remove item from empty ArrayList");
         }
 
@@ -254,7 +254,7 @@ public class ArrayList<E> implements List<E> {
         }
 
         // if buffer contains no items, one cannot be removed
-        if(size == 0) {
+        if(isEmpty()) {
             throw new NoSuchElementException("Cannot remove item from empty ArrayList");
         }
 
