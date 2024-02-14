@@ -43,8 +43,10 @@ public class ArrayList<E> implements List<E> {
          * @param item the item to be added
          */
         @Override
-        public void add ( int i, E item){
-
+        public void add(int i, E item) {
+            if (i < 0 || i > size) {
+                throw new IndexOutOfBoundsException();
+            }
         }
 
         /**
@@ -133,10 +135,17 @@ public class ArrayList<E> implements List<E> {
          * @return the item that was removed
          */
         @Override
-        public E remove ( int i){
-            return null;
+        public E remove(int i) {
+            if (i < 0 || i >= size) {
+                throw new IndexOutOfBoundsException();
+            }
+            E removedItem = buffer[i];
+            for (int j = 0; j < size-1; j++ ) {
+                buffer[j] = buffer[j + 1]; // to avoid memory leak
+            }
+            size--;
+            return removedItem;
         }
-
         /**
          * Checks if an item is in the list.
          *
@@ -144,8 +153,17 @@ public class ArrayList<E> implements List<E> {
          * @return true if the item is in the list, false otherwise
          */
         @Override
-        public boolean contains (E item){
-            return false;
+        public boolean contains(E item) {
+            if (isEmpty()) {
+                return false;
+            }
+            for (int i = 0; i < size; i++) {
+                if (buffer[i].equals(item)) {
+                    return true;
+
+                }
+            }
+        return false;
         }
 
         /**
@@ -154,8 +172,8 @@ public class ArrayList<E> implements List<E> {
          * @return true if the list is empty, false otherwise
          */
         @Override
-        public boolean isEmpty () {
-            return false;
+        public boolean isEmpty() {
+            return size == 0;
         }
 
         /**
@@ -165,7 +183,7 @@ public class ArrayList<E> implements List<E> {
          */
         @Override
         public int size () {
-            return 0;
+            return size;
         }
 
         /**
