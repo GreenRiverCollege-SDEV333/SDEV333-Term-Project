@@ -3,23 +3,23 @@ import java.util.NoSuchElementException;
 
 public class ArrayList<E> implements List<E> {
     /**
-     * An array used to store values placed within the ArrayList
+     * An array used to store items placed within the ArrayList
      */
     private E[] buffer;
 
     /**
-     * The number of values stored within buffer
+     * The number of items stored within buffer
      */
     private int size;
 
     /**
-     * Constructs an ArrayList with an empty buffer, and a default max capacity of 10 values
+     * Constructs an ArrayList with an empty buffer, and a default max capacity of 10 items
      */
     public ArrayList() {
         // setup buffer with default max capacity of 10
         buffer = (E[]) new Object[10];
 
-        // no values are stored in buffer
+        // no items are stored in buffer
         size = 0;
     }
 
@@ -32,7 +32,7 @@ public class ArrayList<E> implements List<E> {
             // create a new buffer, with double the capacity of the existing buffer
             E[] newBuffer = (E[]) new Object[size * 2];
 
-            // run through previous buffer and copy over all values
+            // run through previous buffer and copy over all items
             for(int i = 0; i < buffer.length; i++) {
                 newBuffer[i] = buffer[i];
             }
@@ -131,7 +131,7 @@ public class ArrayList<E> implements List<E> {
 
         // if buffer contains no items, one cannot be retrieved
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot retrieve value from empty ArrayList");
+            throw new NoSuchElementException("Cannot retrieve item from empty ArrayList");
         }
 
         return buffer[index];
@@ -232,7 +232,7 @@ public class ArrayList<E> implements List<E> {
         }
 
         // otherwise, run through buffer, starting at given index
-        // and accounting for removal of requested value
+        // and accounting for removal of requested item
         for(int i = index; i <= size - 1; i++) {
             // replace item at current index with item at next index
             buffer[i] = buffer[i + 1];
@@ -250,14 +250,14 @@ public class ArrayList<E> implements List<E> {
     private int indexOf(E item) {
         // run through buffer
         for(int i = 0; i < buffer.length; i++) {
-            // check if value stored at current index is the specified value
+            // check if item stored at current index is the specified item
             if(item.equals(buffer[i])) {
-                // return the current index, as that is where the specified value is located
+                // return the current index, as that is where the specified item is located
                 return i;
             }
         }
 
-        // if the value does not exist in buffer
+        // if the item does not exist in buffer
         return -1;
     }
 
@@ -283,7 +283,7 @@ public class ArrayList<E> implements List<E> {
         E requestedItem = buffer[index];
 
         // run through buffer, starting at given index
-        // and accounting for removal of requested value
+        // and accounting for removal of requested item
         for(int i = index; i <= size - 1; i++) {
             // replace item at current index with item at next index
             buffer[i] = buffer[i + 1];
@@ -343,6 +343,56 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new ArrayListIterator();
+    }
+
+    /**
+     * Implementation of an Iterator for the ArrayIntList class
+     */
+    private class ArrayListIterator implements Iterator<E> {
+        /**
+         * The current index being tracked by the Iterator
+         */
+        private int index;
+
+        /**
+         * Constructs an ArrayIntListIterator with the index initialized to 0
+         */
+        ArrayListIterator() {
+            index = 0;
+        }
+
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext() {
+            return index < size;
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
+         */
+        @Override
+        public E next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            // get the item at current index of buffer
+            E currItem = buffer[index];
+
+            // move on to next element
+            index++;
+
+            return currItem;
+        }
     }
 }
