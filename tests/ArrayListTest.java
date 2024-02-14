@@ -466,7 +466,86 @@ class ArrayListTest {
     }
 
     @Test
-    void removeIndex() {
+    void removeIndex_bufferContainsOneItem_removedSuccessfully() {
+        // add value to remove
+        testArrayIntList.addBack(TEST_ITEM);
+
+        // attempt to remove item from buffer
+        assertEquals(TEST_ITEM, testArrayIntList.remove(FIRST_INDEX));
+
+        // ensure buffer is now empty
+        assertTrue(testArrayIntList.isEmpty());
+    }
+
+    @Test
+    void removeIndex_bufferContainsMultipleItems_removedSuccessfully() {
+        // add several initial items
+        testArrayIntList.addBack(TEST_ITEM);
+        testArrayIntList.addBack(TEST_ITEM);
+        testArrayIntList.addBack(TEST_ITEM);
+
+        // add item to remove
+        testArrayIntList.add(2, TEST_ITEM);
+
+        // attempt to remove item from buffer
+        assertEquals(TEST_ITEM, testArrayIntList.remove(2));
+
+        // ensure value was removed from buffer
+        assertEquals(3, testArrayIntList.size());
+    }
+
+    @Test
+    void removeIndex_bufferEmpty_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove item at index 0
+            testArrayIntList.remove(FIRST_INDEX);
+        }
+
+        catch (NoSuchElementException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void removeIndex_invalidIndexNegative_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove item at invalid index
+            testArrayIntList.remove(-1);
+        }
+
+        catch (IndexOutOfBoundsException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void removeIndex_invalidIndexMoreThanSize_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove item at invalid index
+            testArrayIntList.remove(1);
+        }
+
+        catch (IndexOutOfBoundsException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
     }
 
     @Test
