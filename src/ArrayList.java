@@ -130,8 +130,8 @@ public class ArrayList<E> implements List<E> {
         }
 
         // if buffer contains no items, one cannot be retrieved
-        if(size == 0) {
-            throw new NoSuchElementException("Cannot retrieve values from empty ArrayList");
+        if(isEmpty()) {
+            throw new NoSuchElementException("Cannot retrieve value from empty ArrayList");
         }
 
         return buffer[index];
@@ -151,13 +151,13 @@ public class ArrayList<E> implements List<E> {
             throw new IndexOutOfBoundsException(index + " is not a valid index");
         }
 
-        // if buffer contains no items, one cannot be retrieved
-        if(size == 0 && index != 0) {
-            throw new NoSuchElementException("Cannot place item at given index of empty ArrayList");
-        }
-
         // place the given item at the requested index
         buffer[index] = item;
+
+        // if the buffer is regarded as empty, account for new item placed at index 0
+        if(isEmpty()) {
+            size++;
+        }
     }
 
     /**
