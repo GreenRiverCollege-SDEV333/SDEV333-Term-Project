@@ -62,7 +62,7 @@ public class ArrayList<E> implements List<E> {
             }
         }
 
-        // add the given item at index 0
+        // add the given item at the now cleared index 0
         buffer[0] = item;
 
         // a new item has been added to buffer
