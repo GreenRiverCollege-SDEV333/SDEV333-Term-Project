@@ -1,3 +1,7 @@
+/*
+ * SDEV333 Best class :D
+ * Ming Li
+ */
 /**
  * Stack (LIFO: last-in, first-out) API
  * @param <E> class / data type of the items in the stack

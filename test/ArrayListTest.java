@@ -1,3 +1,7 @@
+/*
+ * SDEV333 Best class :D
+ * Ming Li
+ */
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayListTest {

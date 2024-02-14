@@ -1,3 +1,7 @@
+/*
+ * SDEV333 Best class :D
+ * Ming Li
+ */
 /**
  * FIFO (first-in, first-out) Queue API
  * @param <E> class / data type of the items in the queue

@@ -1,3 +1,7 @@
+/*
+* SDEV333 Best class :D
+* Ming Li
+*/
 /***
  * List interface (API / abstract data type)
  * @param <E> Class or data type of the items in the list.
