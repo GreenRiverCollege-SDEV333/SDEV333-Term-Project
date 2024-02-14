@@ -223,21 +223,42 @@ public class ArrayList<E> implements List<E> {
             throw new NoSuchElementException("Cannot remove item from empty ArrayList");
         }
 
+        // find item in buffer and get its index
+        int index = indexOf(item);
+
         // if item is not in buffer
-        if(!contains(item)) {
+        if(index == -1) {
             throw new NoSuchElementException("Given item is not located in ArrayList");
         }
 
+        // otherwise, run through buffer, starting at given index
+        // and accounting for removal of requested value
+        for(int i = index; i <= size - 1; i++) {
+            // replace item at current index with item at next index
+            buffer[i] = buffer[i + 1];
+        }
+
+        // account for removal of item
+        size--;
+    }
+
+    /**
+     * Gets and returns the index of the given item in buffer, if exists
+     * @param item the item being searched for in buffer
+     * @return the index of given item in buffer if exists; otherwise -1
+     */
+    private int indexOf(E item) {
         // run through buffer
-        for (int i = 0; i < size; i++) {
-            // check if item at current index of buffer is given item
+        for(int i = 0; i < buffer.length; i++) {
+            // check if value stored at current index is the specified value
             if(item.equals(buffer[i])) {
-                // call remove method at that index
-                remove(i);
+                // return the current index, as that is where the specified value is located
+                return i;
             }
         }
 
-        // do not account for removal of item, as remove(i) does so
+        // if the value does not exist in buffer
+        return -1;
     }
 
     /**

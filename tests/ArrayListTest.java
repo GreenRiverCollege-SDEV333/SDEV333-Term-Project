@@ -462,7 +462,74 @@ class ArrayListTest {
     }
 
     @Test
-    void removeItem() {
+    void removeItem_bufferContainsOneItem_removedSuccessfully() {
+        // add value to remove
+        testArrayIntList.addBack(TEST_ITEM);
+
+        // attempt to remove item from buffer
+        testArrayIntList.remove((Integer) TEST_ITEM);
+
+        // ensure buffer is now empty
+        assertTrue(testArrayIntList.isEmpty());
+    }
+
+    @Test
+    void removeItem_bufferContainsMultipleItems_removedSuccessfully() {
+        // add several initial items
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+
+        // add item to remove
+        testArrayIntList.add(2, TEST_ITEM);
+
+        // attempt to remove item from buffer
+        testArrayIntList.remove((Integer) TEST_ITEM);
+
+        // ensure value was removed from buffer
+        assertNotEquals(TEST_ITEM, testArrayIntList.get(2));
+        assertEquals(3, testArrayIntList.size());
+    }
+
+    @Test
+    void removeItem_bufferEmpty_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove item from empty buffer
+            testArrayIntList.remove((Integer) TEST_ITEM);
+        }
+
+        catch (NoSuchElementException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void removeItem_itemNotInBuffer_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        // add several initial items
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+
+        try {
+            // attempt to remove nonexistent item from buffer
+            testArrayIntList.remove((Integer) TEST_ITEM);
+        }
+
+        catch (NoSuchElementException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
     }
 
     @Test
@@ -480,9 +547,9 @@ class ArrayListTest {
     @Test
     void removeIndex_bufferContainsMultipleItems_removedSuccessfully() {
         // add several initial items
-        testArrayIntList.addBack(TEST_ITEM);
-        testArrayIntList.addBack(TEST_ITEM);
-        testArrayIntList.addBack(TEST_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
+        testArrayIntList.addBack(FILLER_ITEM);
 
         // add item to remove
         testArrayIntList.add(2, TEST_ITEM);
