@@ -297,7 +297,51 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E remove(int index) {
-        return null;
+        // if the given index is out of range
+        if(index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(index + " is not a valid index");
+        }
+        
+        // if list contains no items, one cannot be removed
+        if(isEmpty()) {
+            throw new NoSuchElementException("Cannot remove item from empty LinkedList");
+        }
+
+        // if given index was at front or back, use those methods
+        else if(index == 0) {
+            return removeFront();
+        }
+
+        else if(index == size) {
+            return removeBack();
+        }
+
+        else {
+            // setup trackers
+            Node previous = null;
+            Node current = head;
+            int currIndex = 0;
+
+            // run through list, up to given index
+            while(current != null && currIndex != index) {
+                // update trackers
+                previous = current;
+                current = current.next;
+                currIndex++;
+            }
+
+            // get item stored in node at current index
+            E requestedItem = current.item;
+
+            // point previous node at current's next node,
+            // thereby cutting out current
+            previous.next = current.next;
+
+            // account for removal of item
+            size--;
+
+            return requestedItem;
+        }
     }
 
     /**

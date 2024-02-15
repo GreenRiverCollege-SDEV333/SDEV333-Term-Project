@@ -421,7 +421,101 @@ class LinkedListTest {
     }
 
     @Test
-    void removeIndex() {
+    void removeIndex_hasItem_removedSuccessfully() {
+        // add item to remove
+        testLinkedList.addBack(TEST_ITEM);
+
+        // attempt to remove item from list
+        assertEquals(TEST_ITEM, testLinkedList.remove(FIRST_INDEX));
+
+        // ensure list is now empty
+        assertTrue(testLinkedList.isEmpty());
+    }
+
+    @Test
+    void removeIndex_removeItemFromMiddle_removedSuccessfully() {
+        // add several initial items
+        addMultipleItems();
+
+        // add item to remove
+        testLinkedList.add(7, TEST_ITEM);
+
+        // attempt to remove item from list
+        assertEquals(TEST_ITEM, testLinkedList.remove(7));
+
+        // ensure item was removed from list
+        assertFalse(testLinkedList.contains(TEST_ITEM));
+        assertEquals(10, testLinkedList.size());
+    }
+
+    @Test
+    void removeIndex_removeItemFromEnd_removedSuccessfully() {
+        // add several initial items
+        addMultipleItems();
+
+        // add item to remove
+        testLinkedList.add(testLinkedList.size(), TEST_ITEM);
+
+        // attempt to remove item from list
+        assertEquals(TEST_ITEM, testLinkedList.remove(testLinkedList.size()));
+
+        // ensure item was removed from list
+        assertFalse(testLinkedList.contains(TEST_ITEM));
+        assertEquals(10, testLinkedList.size());
+    }
+
+    @Test
+    void removeIndex_bufferEmpty_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove nonexistent item
+            testLinkedList.remove(FIRST_INDEX);
+        }
+
+        catch (NoSuchElementException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void removeIndex_invalidIndexNegative_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove item at invalid index
+            testLinkedList.remove(FIRST_INDEX - 1);
+        }
+
+        catch (IndexOutOfBoundsException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void removeIndex_invalidIndexMoreThanSize_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove item at invalid index
+            testLinkedList.remove(FIRST_INDEX + 1);
+        }
+
+        catch (IndexOutOfBoundsException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
     }
 
     @Test
