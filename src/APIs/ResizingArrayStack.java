@@ -4,6 +4,28 @@ import java.util.Iterator;
 
 public class ResizingArrayStack<E> implements Stack<E> {
     /**
+     * An array used to store items placed within the ResizingArrayStack
+     */
+    private E[] buffer;
+
+    /**
+     * The number of items stored within buffer
+     */
+    private int size;
+
+    /**
+     * Constructs a ResizingArrayStack with an empty buffer,
+     * and a default max capacity of 10 items
+     */
+    public ResizingArrayStack() {
+        // setup buffer with default max capacity of 10
+        buffer = (E[]) new Object[10];
+
+        // buffer starts off empty
+        size = 0;
+    }
+
+    /**
      * Add an item to the stack.
      *
      * @param item the item to be added
@@ -41,7 +63,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     /**
@@ -51,7 +73,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**

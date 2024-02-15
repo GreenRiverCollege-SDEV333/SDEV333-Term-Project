@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 
 public class ArrayList<E> implements List<E> {
     /**
-     * An array used to store items placed within the List.ArrayList
+     * An array used to store items placed within the ArrayList
      */
     private E[] buffer;
 
@@ -15,7 +15,7 @@ public class ArrayList<E> implements List<E> {
     private int size;
 
     /**
-     * Constructs an List.ArrayList with an empty buffer, and a default max capacity of 10 items
+     * Constructs an ArrayList with an empty buffer, and a default max capacity of 10 items
      */
     public ArrayList() {
         // setup buffer with default max capacity of 10
