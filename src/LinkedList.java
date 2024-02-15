@@ -20,6 +20,8 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Add item to the front.
+     * Time complexity: O(1)
+     * Time is constant due to always inserting node at head.
      *
      * @param item the item to be added
      */
@@ -41,6 +43,8 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Add item to the back.
+     * Time complexity: O(n)
+     * At worst test-case, each node will have to be traversed to assign new tail.
      *
      * @param item the item to be added
      */
@@ -76,6 +80,8 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Add an item at specified index (position).
+     * Time complexity: O(n)
+     * At worst test-case, each node will have to be traversed due to index being at the end.
      *
      * @param i    the index where the item should be added
      * @param item the item to be added
@@ -124,6 +130,8 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Get the item at a specified index.
+     * Time complexity: O(n)
+     * At worst test-case, entire list must be traversed to find node.
      *
      * @param i the index where the item should be retrieved
      * @return the item located at that index
@@ -153,6 +161,8 @@ public class LinkedList<E> implements List<E>
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     * Time complexity: O(n)
+     * At worst test-case, each node will have to be traversed to set new tail.
      *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
@@ -181,6 +191,8 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Remove item at the front of the list.
+     * Time complexity: O(1)
+     * Time is constant due to reassigning head node reference.
      *
      * @return the item that was removed
      */
@@ -208,6 +220,8 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Remove item at the back of the list
+     * Time complexity: O(n)
+     * For each test-case, every node will have to be traversed to assign new tail.
      *
      * @return the item that was removed
      */
@@ -250,6 +264,8 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Remove item from the list
+     * Time complexity: O(n)
+     * At worst test-case, each node will have to be traversed to remove specified node.
      *
      * @param item the item to be removed
      */
@@ -295,6 +311,8 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Remove item at a specified index.
+     * Time complexity: O(n)
+     * At worst test-case, each node will have to be traversed to remove specified node.
      *
      * @param i the index where the item should be removed
      * @return the item that was removed
@@ -338,6 +356,8 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Checks if an item is in the list.
+     * Time complexity: O(n)
+     * At worst test-case, each node will have to be traversed to find specified node.
      *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
@@ -365,6 +385,8 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Checks if the list is empty.
+     * Time complexity: O(1)
+     * Time is constant due to comparison operation and returning boolean.
      *
      * @return true if the list is empty, false otherwise
      */
@@ -376,6 +398,8 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Provides a count of the number of items in the list.
+     * Time complexity: O(1)
+     * Time is constant due to returning a field.
      *
      * @return number of items in the list
      */
