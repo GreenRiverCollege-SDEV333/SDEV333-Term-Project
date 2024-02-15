@@ -218,7 +218,7 @@ class ArrayListTest {
     }
 
     @Test
-    void get_bufferContainsOneItem_returnsitem() {
+    void get_bufferContainsOneItem_returnsItem() {
         // add expected item to buffer
         testArrayList.addFront(TEST_ITEM);
 
@@ -227,7 +227,7 @@ class ArrayListTest {
     }
 
     @Test
-    void get_bufferContainsMultipleItems_returnsitem() {
+    void get_bufferContainsMultipleItems_returnItem() {
         // add several initial items
         testArrayList.addBack(FILLER_ITEM);
         testArrayList.addBack(FILLER_ITEM);
@@ -704,7 +704,7 @@ class ArrayListTest {
     }
 
     @Test
-    void size_bufferContainsMultipleItems_returnsSize() {
+    void size_bufferContainsMultipleItems_returnSize() {
         // add items so the buffer is not empty
         testArrayList.addBack(FILLER_ITEM);
         testArrayList.addBack(FILLER_ITEM);
@@ -714,12 +714,12 @@ class ArrayListTest {
     }
 
     @Test
-    void size_bufferEmpty_returnsSize() {
+    void size_bufferEmpty_returnSize() {
         assertEquals(0, testArrayList.size());
     }
 
     @Test
-    void size_bufferFull_returnsSize() {
+    void size_bufferFull_returnSize() {
         // add 10 items to buffer
         for(int i = 0; i < DEFAULT_BUFFER_LENGTH; i++) {
             testArrayList.addBack(FILLER_ITEM);

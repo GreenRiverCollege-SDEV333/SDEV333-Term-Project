@@ -356,7 +356,7 @@ public class ArrayList<E> implements List<E> {
         private int index;
 
         /**
-         * Constructs an ArrayIntListIterator with the index initialized to 0
+         * Constructs an ArrayIntList iterator with the index initialized to 0
          */
         ArrayListIterator() {
             index = 0;

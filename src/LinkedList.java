@@ -357,6 +357,57 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new LinkedListIterator();
+    }
+
+    /**
+     * Implementation of an Iterator for the LinkedList class
+     */
+    private class LinkedListIterator implements Iterator<E> {
+        /**
+         * The current Node being tracked by the Iterator
+         */
+        private Node current;
+
+        /**
+         * Constructs a LinkedList iterator with the head tracked as the first Node
+         */
+        LinkedListIterator() {
+            current = head;
+        }
+
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
+         */
+        @Override
+        public E next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            // get the item stored in current node
+            E currItem = current.item;
+
+            // move on to the next node
+            current = current.next;
+
+            // return the current item
+            return currItem;
+        }
     }
 }
