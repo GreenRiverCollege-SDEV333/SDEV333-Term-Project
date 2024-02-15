@@ -286,7 +286,36 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void remove(E item) {
+        // if list contains no items, one cannot be removed
+        if(isEmpty()) {
+            throw new NoSuchElementException("Cannot remove item from empty LinkedList");
+        }
 
+        // check if list contains given item
+        if(!contains(item)) {
+            throw new NoSuchElementException("Given item is not located in LinkedList");
+        }
+
+        // setup trackers and flag
+        Node current = head;
+        int currIndex = 0;
+        boolean itemNotFound = true;
+
+        // run through list until item is found
+        while(current != null && itemNotFound) {
+            // check if the current node contains given item
+            if(item.equals(current.item)) {
+                // call the other remove method on current index
+                remove(currIndex);
+
+                // cease loop, item was found and removed
+                itemNotFound = false;
+            }
+
+            // update trackers
+            current = current.next;
+            currIndex++;
+        }
     }
 
     /**

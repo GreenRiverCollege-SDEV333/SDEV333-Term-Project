@@ -16,11 +16,6 @@ class LinkedListTest {
     private final int FIRST_INDEX = 0;
 
     /**
-     * The item returned by methods if item not found
-     */
-    private final int INVALID_INDEX = -1;
-
-    /**
      * The standard filler item added to container prior to testing method
      */
     private final int FILLER_ITEM = 5;
@@ -221,7 +216,7 @@ class LinkedListTest {
 
         try {
             // attempt to get item from invalid index
-            testLinkedList.get(INVALID_INDEX);
+            testLinkedList.get(FIRST_INDEX - 1);
         }
 
         catch (IndexOutOfBoundsException e) {
@@ -252,7 +247,7 @@ class LinkedListTest {
 
     @Test
     void set_hasItem_setItemAtIndex() {
-        // add initial item to buffer
+        // add initial item to list
         testLinkedList.addFront(FILLER_ITEM);
 
         // replace item at that index
@@ -276,7 +271,7 @@ class LinkedListTest {
 
     @Test
     void set_empty_setItemAtIndex() {
-        // add item to index 0 of empty buffer
+        // add item to index 0 of empty list
         testLinkedList.set(FIRST_INDEX, TEST_ITEM);
 
         // attempt to retrieve expected item
@@ -416,8 +411,74 @@ class LinkedListTest {
         assertTrue(exceptionThrown);
     }
 
+    //
+
     @Test
-    void removeItem() {
+    void removeItem_hasItem_removedSuccessfully() {
+        // add item to remove
+        testLinkedList.addBack(TEST_ITEM);
+
+        // attempt to remove item from list
+        testLinkedList.remove((Integer) TEST_ITEM);
+
+        // ensure list is now empty
+        assertTrue(testLinkedList.isEmpty());
+    }
+
+    @Test
+    void removeItem_hasMultipleItems_removedSuccessfully() {
+        // add several initial items
+        addMultipleItems();
+
+        // add item to remove
+        testLinkedList.add(9, TEST_ITEM);
+
+        // attempt to remove item from list
+        testLinkedList.remove((Integer) TEST_ITEM);
+
+        // ensure item was removed from list
+        assertNotEquals(TEST_ITEM, testLinkedList.get(9));
+        assertFalse(testLinkedList.contains(TEST_ITEM));
+        assertEquals(10, testLinkedList.size());
+    }
+
+    @Test
+    void removeItem_empty_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove item from empty list
+            testLinkedList.remove((Integer) TEST_ITEM);
+        }
+
+        catch (NoSuchElementException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void removeItem_itemNotExists_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        // add several initial items
+        addMultipleItems();
+
+        try {
+            // attempt to remove nonexistent item from list
+            testLinkedList.remove((Integer) TEST_ITEM);
+        }
+
+        catch (NoSuchElementException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
     }
 
     @Test
@@ -465,7 +526,7 @@ class LinkedListTest {
     }
 
     @Test
-    void removeIndex_bufferEmpty_throwsException() {
+    void removeIndex_empty_throwsException() {
         // setup flag
         boolean exceptionThrown = false;
 
@@ -535,7 +596,7 @@ class LinkedListTest {
         // add several initial items
         addMultipleItems();
 
-        // check if item is in buffer
+        // check if item is in list
         assertFalse(testLinkedList.contains(TEST_ITEM));
     }
 
