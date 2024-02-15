@@ -49,22 +49,22 @@ public class LinkedList<E> implements List<E> {
     /**
      * Add an item at specified index (position).
      *
-     * @param i    the index where the item should be added
+     * @param index the index where the item should be added
      * @param item the item to be added
      */
     @Override
-    public void add(int i, E item) {
+    public void add(int index, E item) {
 
     }
 
     /**
      * Get the item at a specified index.
      *
-     * @param i the index where the item should be retrieved
+     * @param index the index where the item should be retrieved
      * @return the item located at that index
      */
     @Override
-    public E get(int i) {
+    public E get(int index) {
         return null;
     }
 
@@ -72,11 +72,11 @@ public class LinkedList<E> implements List<E> {
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
      *
-     * @param i    the index where the item should be saved
+     * @param index the index where the item should be saved
      * @param item the item to be saved
      */
     @Override
-    public void set(int i, E item) {
+    public void set(int index, E item) {
 
     }
 
@@ -113,11 +113,11 @@ public class LinkedList<E> implements List<E> {
     /**
      * Remove item at a specified index.
      *
-     * @param i the index where the item should be removed
+     * @param index the index where the item should be removed
      * @return the item that was removed
      */
     @Override
-    public E remove(int i) {
+    public E remove(int index) {
         return null;
     }
 
@@ -129,6 +129,25 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public boolean contains(E item) {
+        // if list is not empty
+        if(head != null) {
+            // setup pointer
+            Node current = head;
+
+            // run through list
+            while (current != null) {
+                // check if the current Node contains given item
+                if (item.equals(current.item)) {
+                    // item was found
+                    return true;
+                }
+
+                // move on to next node
+                current = current.next;
+            }
+        }
+
+        // item not located in list, or list empty
         return false;
     }
 
@@ -139,7 +158,7 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     /**
@@ -149,7 +168,7 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
