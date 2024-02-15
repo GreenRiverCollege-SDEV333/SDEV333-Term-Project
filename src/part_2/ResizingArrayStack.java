@@ -4,6 +4,12 @@ import interfaces.Stack;
 
 import java.util.Iterator;
 
+/**
+ * Implements the Pushdown (LIFO) Stack data structure.
+ *
+ * @author Addison Farley
+ * @version 1.0
+ */
 public class ResizingArrayStack<E> implements Stack<E>
 {
     //fields
@@ -19,6 +25,8 @@ public class ResizingArrayStack<E> implements Stack<E>
 
     /**
      * Add an item to the stack.
+     * Time complexity: O(1)
+     * Time is constant due to operations only doing single operations.
      *
      * @param item the item to be added
      */
@@ -40,6 +48,8 @@ public class ResizingArrayStack<E> implements Stack<E>
 
     /**
      * Removes the most recently added item from the stack.
+     * Time complexity: O(1)
+     * Time is constant due to single operations.
      *
      * @return the item that was removed
      */
@@ -73,6 +83,8 @@ public class ResizingArrayStack<E> implements Stack<E>
     /**
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
+     * Time complexity: O(1)
+     * Time is constant because either an exception is thrown or an array index is returned.
      *
      * @return item at the top of the stack.
      */
@@ -91,6 +103,8 @@ public class ResizingArrayStack<E> implements Stack<E>
 
     /**
      * Checks to see if the stack is empty.
+     * Time complexity: O(1)
+     * Time is constant due to a single comparison operation.
      *
      * @return true if the stack is empty, false otherwise
      */
@@ -102,6 +116,8 @@ public class ResizingArrayStack<E> implements Stack<E>
 
     /**
      * Returns a count of the number of items in the stack.
+     * Time complexity: O(1)
+     * Time is constant due to a single comparison operation.
      *
      * @return the number of items in the stack
      */
@@ -111,6 +127,7 @@ public class ResizingArrayStack<E> implements Stack<E>
         return size;
     }
 
+    //resize method to create more space for list
     private void resize(int newSize)
     {
         if(buffer.length == size)

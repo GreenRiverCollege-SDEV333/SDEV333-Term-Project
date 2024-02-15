@@ -5,6 +5,12 @@ import interfaces.List;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Implements the ArrayList data structure.
+ *
+ * @author Addison Farley
+ * @version 1.0
+ */
 public class ArrayList<E> implements List<E>
 {
     //fields

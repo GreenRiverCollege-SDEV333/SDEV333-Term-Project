@@ -3,10 +3,16 @@ package part_2;
 import interfaces.Stack;
 
 import java.util.Iterator;
-import java.util.ListIterator;
 
+/**
+ * Implements the Pushdown (LIFO) Stack (linked-list) data structure.
+ *
+ * @author Addison Farley
+ * @version 1.0
+ */
 public class LinkedStack<E> implements Stack<E>
 {
+    //fields
     private Node head;
     private int size;
 
@@ -19,6 +25,8 @@ public class LinkedStack<E> implements Stack<E>
 
     /**
      * Add an item to the stack.
+     * Time complexity: O(1)
+     * Time is constant because all operations involve singular tasks.
      *
      * @param item the item to be added
      */
@@ -43,6 +51,8 @@ public class LinkedStack<E> implements Stack<E>
 
     /**
      * Removes the most recently added item from the stack.
+     * Time complexity: O(1)
+     * Time is constant because all operations involve singular tasks.
      *
      * @return the item that was removed
      */
@@ -71,6 +81,8 @@ public class LinkedStack<E> implements Stack<E>
     /**
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
+     * Time complexity: O(1)
+     * Time is constant because either an exception is thrown or the first node's data is returned.
      *
      * @return item at the top of the stack.
      */
@@ -89,6 +101,8 @@ public class LinkedStack<E> implements Stack<E>
 
     /**
      * Checks to see if the stack is empty.
+     * Time complexity: O(1)
+     * Time is constant due to a single comparison operation.
      *
      * @return true if the stack is empty, false otherwise
      */
@@ -100,6 +114,8 @@ public class LinkedStack<E> implements Stack<E>
 
     /**
      * Returns a count of the number of items in the stack.
+     * Time complexity: O(1)
+     * Time is constant due to a single comparison operation.
      *
      * @return the number of items in the stack
      */

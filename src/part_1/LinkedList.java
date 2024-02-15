@@ -4,6 +4,12 @@ import interfaces.List;
 
 import java.util.Iterator;
 
+/**
+ * Implements the Linked-list data structure.
+ *
+ * @author Addison Farley
+ * @version 1.0
+ */
 public class LinkedList<E> implements List<E>
 {
     //fields
