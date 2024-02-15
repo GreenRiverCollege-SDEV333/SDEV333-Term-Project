@@ -42,6 +42,15 @@ public class LinkedStack<E> implements Stack<E> {
     private int size;
 
     /**
+     * Constructs an empty LinkedStack
+     */
+    public LinkedStack() {
+        // stack starts off empty
+        top = null;
+        size = 0;
+    }
+
+    /**
      * Add an item to the stack.
      *
      * @param item the item to be added
