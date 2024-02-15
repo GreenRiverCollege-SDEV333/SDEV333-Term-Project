@@ -1,6 +1,7 @@
 package APIs;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class ResizingArrayStack<E> implements Stack<E> {
     /**
@@ -26,7 +27,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
     }
 
     /**
-     * If all slots in buffer are full, increase its max capacity by given number
+     * Resize the buffer by updating its max capacity by given number
      * @param maxCapacity the new max capacity of buffer
      */
     private void resizeBuffer(int maxCapacity) {
@@ -39,7 +40,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
         }
 
         // override existing buffer with the newly created one,
-        // now with more max capacity
+        // now with the requested max capacity
         buffer = newBuffer;
     }
 
@@ -69,18 +70,18 @@ public class ResizingArrayStack<E> implements Stack<E> {
      */
     @Override
     public E pop() {
-        // get the end/top item from stack
-        E requestedItem = buffer[size];
+        // get the end/top item from stack, account for index
+        E requestedItem = buffer[size - 1];
 
         // clear that slot in buffer
-        buffer[size] = null;
+        buffer[size - 1] = null;
 
         // account for item being removed
         size--;
 
-        // if the buffer is not empty, and running low on space
+        // if the buffer is not empty, and too large
         if(size > 0 && size == buffer.length / 4) {
-            // increase its size by half the current max
+            // reduce its current max capacity by half
             resizeBuffer(buffer.length / 2);
         }
 
@@ -95,7 +96,13 @@ public class ResizingArrayStack<E> implements Stack<E> {
      */
     @Override
     public E peek() {
-        return null;
+        // if buffer contains no items, one cannot be retrieved
+        if(isEmpty()) {
+            throw new NoSuchElementException("Cannot retrieve item from empty ResizingArrayStack");
+        }
+
+        // get and return end/top item in buffer
+        return buffer[size - 1];
     }
 
     /**
