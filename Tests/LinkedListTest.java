@@ -183,10 +183,12 @@ class LinkedListTest {
 
     @Test
     public void removeItem() {
+        // trouble setting this up
     }
 
     @Test
     public void testRemoveAtIndex() {
+        // trouble setting this up
     }
 
     @Test
@@ -241,6 +243,6 @@ class LinkedListTest {
 
     @Test
     void iterator() {
-
+        // trouble setting this up
     }
 }

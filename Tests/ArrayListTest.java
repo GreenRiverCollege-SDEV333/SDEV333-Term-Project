@@ -50,7 +50,7 @@ class ArrayListTest {
         // nearly empty list
         list.addBack(2);
         assertEquals(2, list.size());
-        assertEquals(2, list.get(1)); // The new element should be at the back (index 1)
+        assertEquals(2, list.get(1));
 
         //non-empty list
         for (int i = 3; i <= 10; i++) {
