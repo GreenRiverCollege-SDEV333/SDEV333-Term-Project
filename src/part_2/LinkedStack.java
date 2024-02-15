@@ -3,18 +3,18 @@ package part_2;
 import interfaces.Stack;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
-public class ResizingArrayStack<E> implements Stack<E>
+public class LinkedStack<E> implements Stack<E>
 {
-    //fields
-    private E[] buffer;
+    private Node head;
     private int size;
-    private static final int INITIAL_SIZE = 10;
 
-    public ResizingArrayStack()
+    //node class to create nodes for linkedlist
+    private class Node
     {
-        this.buffer = (E[]) new Object[INITIAL_SIZE];
-        this.size = 0;
+        E data;
+        Node next;
     }
 
     /**
@@ -25,14 +25,17 @@ public class ResizingArrayStack<E> implements Stack<E>
     @Override
     public void push(E item)
     {
-        //check size of stack
-        if(size == buffer.length)
-        {
-            resize(2 * buffer.length);
-        }
+        //save head to reference after new head is created
+        Node oldHead = head;
 
-        //add item to stack
-        buffer[size] = item;
+        //create a new head
+        head = new Node();
+
+        //save item to head data
+        head.data = item;
+
+        //reference the old head
+        head.next = oldHead;
 
         //increment size
         size++;
@@ -52,21 +55,16 @@ public class ResizingArrayStack<E> implements Stack<E>
             throw new IllegalStateException("Stack is empty, cannot pop()");
         }
 
-        //save item from top of stack
-        E item = buffer[size - 1];
+        //save item to be removed
+        E item = head.data;
+
+        //remove head from stack
+        head = head.next;
 
         //decrement size
         size--;
 
-        //delete item from stack
-        buffer[size] = null;
-
-        //shrink stack capacity if necessary to save memory
-        if(size > 0 && size == buffer.length / 2)
-        {
-            resize(buffer.length / 2);
-        }
-
+        //return item removed
         return item;
     }
 
@@ -86,7 +84,7 @@ public class ResizingArrayStack<E> implements Stack<E>
         }
 
         //return top of stack
-        return buffer[0];
+        return head.data;
     }
 
     /**
@@ -111,16 +109,6 @@ public class ResizingArrayStack<E> implements Stack<E>
         return size;
     }
 
-    private void resize(int newSize)
-    {
-        if(buffer.length == size)
-        {
-            E[] newBuff = (E[]) new Object[newSize];
-            System.arraycopy(buffer, 0, newBuff, 0, size);
-            buffer = newBuff;
-        }
-    }
-
     /**
      * Returns an iterator over elements of type {@code T}.
      *
@@ -129,23 +117,28 @@ public class ResizingArrayStack<E> implements Stack<E>
     @Override
     public Iterator<E> iterator()
     {
-        return new ReverseArrayIterator();
+        return new ListIterator();
     }
 
-    private class ReverseArrayIterator implements Iterator<E>
+    private class ListIterator implements Iterator<E>
     {
-        private int iteratorSize = size;
+        private Node curr = head;
 
+        @Override
         public boolean hasNext()
         {
-            return iteratorSize > 0;
+            return curr != null;
         }
 
+        @Override
         public E next()
         {
-            return buffer[--iteratorSize];
+            E item = curr.data;
+            curr = curr.next;
+            return item;
         }
 
+        @Override
         public void remove()
         {
             //do nothing

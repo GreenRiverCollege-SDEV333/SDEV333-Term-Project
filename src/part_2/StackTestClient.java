@@ -7,7 +7,8 @@ public class StackTestClient
 {
     public static void main(String[] args)
     {
-        Stack<String> s = new ResizingArrayStack<>();
+//        Stack<String> s = new ResizingArrayStack<>();
+        Stack<String> s = new LinkedStack<>();
 
         Scanner in = new Scanner("to be or not to - be - - that - - - is");
 
