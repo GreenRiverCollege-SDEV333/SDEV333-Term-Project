@@ -41,11 +41,69 @@ class LinkedListTest {
     }
 
     @Test
-    void addFront() {
+    void addFront_hasItem_addedSuccessfully() {
+        // add initial item
+        testLinkedList.addBack(FILLER_ITEM);
+
+        // add test value
+        testLinkedList.addFront(TEST_ITEM);
+
+        // ensure expected value is at index 0
+        assertEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
     }
 
     @Test
-    void addBack() {
+    void addFront_hasMultipleItems_addedSuccessfully() {
+        // add several initial values
+        addMultipleItems();
+
+        // add test value
+        testLinkedList.addFront(TEST_ITEM);
+
+        // ensure expected value is at index 0
+        assertEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
+    }
+
+    @Test
+    void addFront_empty_addedSuccessfully() {
+        // make test value new head
+        testLinkedList.addFront(TEST_ITEM);
+
+        // ensure expected value is at index 0
+        assertEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
+    }
+
+    @Test
+    void addBack_hasItem_addedSuccessfully() {
+        // add initial value
+        testLinkedList.addFront(FILLER_ITEM);
+
+        // add test value
+        testLinkedList.addBack(TEST_ITEM);
+
+        // ensure expected value is at end of list
+        assertEquals(TEST_ITEM, testLinkedList.get(testLinkedList.size() -1));
+    }
+
+    @Test
+    void addBack_hasMultipleItems_addedSuccessfully() {
+        // add several initial values
+        addMultipleItems();
+
+        // add test value
+        testLinkedList.addBack(TEST_ITEM);
+
+        // ensure expected value is at end of list
+        assertEquals(TEST_ITEM, testLinkedList.get(testLinkedList.size() -1));
+    }
+
+    @Test
+    void addBack_empty_addedSuccessfully() {
+        // make test value new tail
+        testLinkedList.addBack(TEST_ITEM);
+
+        // ensure expected value is at end of list
+        assertEquals(TEST_ITEM, testLinkedList.get(testLinkedList.size() -1));
     }
 
     @Test
@@ -98,7 +156,7 @@ class LinkedListTest {
 
         try {
             // attempt to get item from invalid index
-            testLinkedList.get(-1);
+            testLinkedList.get(INVALID_INDEX);
         }
 
         catch (IndexOutOfBoundsException e) {
@@ -116,7 +174,7 @@ class LinkedListTest {
 
         try {
             // attempt to get item from invalid index
-            testLinkedList.get(1);
+            testLinkedList.get(FIRST_INDEX + 1);
         }
 
         catch (IndexOutOfBoundsException e) {
