@@ -37,7 +37,7 @@ public class LinkedList<E> implements List<E> {
     private Node head;
 
     /**
-     * The number of Nodes contained within this LinkedList
+     * The number of items stored in this LinkedList
      */
     private int size;
 
