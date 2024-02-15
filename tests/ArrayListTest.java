@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ArrayListTest {
     /**
-     * Create List.ArrayList at start for testing
+     * Create ArrayList at start for testing
      */
     private final ArrayList<Integer> testArrayList = new ArrayList<Integer>();
 

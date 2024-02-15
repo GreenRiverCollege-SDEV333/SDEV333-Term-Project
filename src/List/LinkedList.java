@@ -32,17 +32,17 @@ public class LinkedList<E> implements List<E> {
     }
 
     /**
-     * The first Node of the current List.LinkedList
+     * The first Node of the current LinkedList
      */
     private Node head;
 
     /**
-     * The number of Nodes contained within this List.LinkedList
+     * The number of Nodes contained within this LinkedList
      */
     private int size;
 
     /**
-     * Constructs an empty List.LinkedList
+     * Constructs an empty LinkedList
      */
     public LinkedList() {
         // list starts off empty
@@ -170,7 +170,7 @@ public class LinkedList<E> implements List<E> {
 
         // if list is empty
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot retrieve item from empty List.LinkedList");
+            throw new NoSuchElementException("Cannot retrieve item from empty LinkedList");
         }
 
         // setup trackers
@@ -234,7 +234,7 @@ public class LinkedList<E> implements List<E> {
     public E removeFront() {
         // if list contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty List.LinkedList");
+            throw new NoSuchElementException("Cannot remove item from empty LinkedList");
         }
 
         // get requested item from head
@@ -259,7 +259,7 @@ public class LinkedList<E> implements List<E> {
     public E removeBack() {
         // if list contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty List.LinkedList");
+            throw new NoSuchElementException("Cannot remove item from empty LinkedList");
         }
 
         // setup trackers and run through list till second to last node
@@ -290,12 +290,12 @@ public class LinkedList<E> implements List<E> {
     public void remove(E item) {
         // if list contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty List.LinkedList");
+            throw new NoSuchElementException("Cannot remove item from empty LinkedList");
         }
 
         // check if list contains given item
         if(!contains(item)) {
-            throw new NoSuchElementException("Given item is not located in List.LinkedList");
+            throw new NoSuchElementException("Given item is not located in LinkedList");
         }
 
         // setup trackers and flag
@@ -335,7 +335,7 @@ public class LinkedList<E> implements List<E> {
         
         // if list contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty List.LinkedList");
+            throw new NoSuchElementException("Cannot remove item from empty LinkedList");
         }
 
         // if given index was at front or back, use those methods
@@ -436,7 +436,7 @@ public class LinkedList<E> implements List<E> {
     }
 
     /**
-     * Implementation of an Iterator for the List.LinkedList class
+     * Implementation of an Iterator for the LinkedList class
      */
     private class LinkedListIterator implements Iterator<E> {
         /**
@@ -445,7 +445,7 @@ public class LinkedList<E> implements List<E> {
         private Node current;
 
         /**
-         * Constructs a List.LinkedList iterator with the head tracked as the first Node
+         * Constructs a LinkedList iterator with the head tracked as the first Node
          */
         LinkedListIterator() {
             current = head;

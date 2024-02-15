@@ -171,7 +171,7 @@ public class ArrayList<E> implements List<E> {
     public E removeFront() {
         // if buffer contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty List.ArrayList");
+            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
         }
 
         // get requested item prior to removal
@@ -198,7 +198,7 @@ public class ArrayList<E> implements List<E> {
     public E removeBack() {
         // if buffer contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty List.ArrayList");
+            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
         }
 
         // get requested item prior to removal, accounting for index
@@ -222,7 +222,7 @@ public class ArrayList<E> implements List<E> {
     public void remove(E item) {
         // if buffer contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty List.ArrayList");
+            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
         }
 
         // find item in buffer and get its index
@@ -230,7 +230,7 @@ public class ArrayList<E> implements List<E> {
 
         // if item is not in buffer
         if(index == -1) {
-            throw new NoSuchElementException("Given item is not located in List.ArrayList");
+            throw new NoSuchElementException("Given item is not located in ArrayList");
         }
 
         // otherwise, run through buffer, starting at given index
@@ -278,7 +278,7 @@ public class ArrayList<E> implements List<E> {
 
         // if buffer contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty List.ArrayList");
+            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
         }
 
         // get requested item prior to removal

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTest {
     /**
-     * Create List.LinkedList at start for testing
+     * Create LinkedList at start for testing
      */
     private final LinkedList<Integer> testLinkedList = new LinkedList<Integer>();
 
