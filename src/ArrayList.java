@@ -225,7 +225,21 @@ public class ArrayList<E> implements List<E>{
         size--;
     }
 
-
+    /**
+     * Remove item at a specified index.
+     * @param i the index where the item should be removed
+     * @return the item that was removed
+     *
+     * The method runs in O(n) time.
+     * In a worse case scenario, the item could
+     * be in the front or middle of the list which
+     * would then require to shift the entire right side
+     * of the list to fill up the empty index that
+     * was removed. Therefore, the time complexity
+     * is linear as it would require visiting
+     * and changing the index of all the items on
+     * the right side of the index that was removed.
+     */
     @Override
     public E remove(int i) {
         if (isEmpty() || i < 0 || i >= size) {
@@ -240,6 +254,19 @@ public class ArrayList<E> implements List<E>{
         return remove;
     }
 
+    /**
+     * Checks if an item is in the list.
+     * @param item the item to search for
+     * @return true if the item is in the list, false otherwise
+     *
+     * This method runs in O(n) or linear time
+     * as checking for an item in the list without
+     * knowing its index would require searching and visiting
+     * every index of the list. In a worse case scenario,
+     * the item might be at the end of the list and that
+     * would mean visiting every single index in the
+     * list to find it.
+     */
     @Override
     public boolean contains(E item) {
         for(int i = 0; i < size; i++){
@@ -250,11 +277,29 @@ public class ArrayList<E> implements List<E>{
         return false;
     }
 
+
+    /**
+     * Checks if the list is empty.
+     * @return true if the list is empty, false otherwise
+     *
+     * This method runs in constant time, or O(1)
+     * as this method only requires a simple operation
+     * that doesn't need to shift or search the list.
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+
+    /**
+     * Provides a count of the number of items in the list.
+     * @return number of items in the list
+     *
+     * This method runs in O(1) time as it only requires
+     * the access of a variable to execute
+     * and doesn't need to shift or search the list.
+     */
     @Override
     public int size() {
         return size;

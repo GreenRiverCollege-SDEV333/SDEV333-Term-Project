@@ -303,7 +303,7 @@ public class LinkedList<E> implements List<E> {
      * @return number of items in the list
      *
      * This method runs in O(1), similar to the previous
-     * method, it only requires a simple operation to execute
+     * method, it only requires access of a variable to execute
      * and doesn't need to traverse or search the list.
      */
     @Override
