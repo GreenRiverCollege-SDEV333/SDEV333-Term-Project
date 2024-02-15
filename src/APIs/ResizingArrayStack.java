@@ -26,13 +26,39 @@ public class ResizingArrayStack<E> implements Stack<E> {
     }
 
     /**
+     * If all slots in buffer are full, double its max capacity
+     */
+    private void doubleMaxCapacity() {
+        // if all buffer slots are filled
+        if(size == buffer.length) {
+            // create a new buffer, with double the capacity of the existing buffer
+            E[] newBuffer = (E[]) new Object[size * 2];
+
+            // run through previous buffer and copy over all items
+            for(int i = 0; i < buffer.length; i++) {
+                newBuffer[i] = buffer[i];
+            }
+
+            // replace buffer with newBuffer, now with double the length
+            buffer = newBuffer;
+        }
+    }
+
+    /**
      * Add an item to the stack.
      *
      * @param item the item to be added
      */
     @Override
     public void push(E item) {
+        // if the buffer is full, double its max capacity
+        doubleMaxCapacity();
 
+        // add item to "end/top" of buffer
+        buffer[size] = item;
+
+        // account for new item being added
+        size++;
     }
 
     /**
