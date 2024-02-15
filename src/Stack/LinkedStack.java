@@ -60,7 +60,7 @@ public class LinkedStack<E> implements Stack<E> {
         // create new node containing given item
         Node newNode = new Node(item);
 
-        // if the list is not empty
+        // if the stack is not empty
         if(!isEmpty()) {
             // point new node at top, so it isn't lost
             newNode.next = top;

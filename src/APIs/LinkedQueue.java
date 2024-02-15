@@ -3,6 +3,7 @@ package APIs;
 import Stack.LinkedStack;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedQueue<E> implements Queue<E> {
     /**
@@ -64,7 +65,23 @@ public class LinkedQueue<E> implements Queue<E> {
      */
     @Override
     public void enqueue(E item) {
+        // create new node containing given item
+        Node newNode = new Node(item);
 
+        // if the queue is empty
+        if(isEmpty()) {
+            // make new node front of queue
+            front = newNode;
+        }
+
+        else {
+            // if queue is not empty,
+            // add new node to the back of queue
+            front.next = newNode;
+        }
+
+        // account for new item in queue
+        size++;
     }
 
     /**
@@ -74,7 +91,28 @@ public class LinkedQueue<E> implements Queue<E> {
      */
     @Override
     public E dequeue() {
-        return null;
+        // if queue contains no items, one cannot be removed
+        if(isEmpty()) {
+            throw new NoSuchElementException("Cannot retrieve item from empty Queue");
+        }
+
+        // get requested item from node at front
+        E requestedItem = front.item;
+
+        // overwrite current node at front with next in line
+        // if no more remain, front will become null
+        front = front.next;
+
+        // in the event that queue is now empty and front is null,
+        // overwrite last item
+        if(isEmpty()) {
+            back = null;
+        }
+
+        // account for removal of item from stack
+        size--;
+
+        return requestedItem;
     }
 
     /**
@@ -84,7 +122,7 @@ public class LinkedQueue<E> implements Queue<E> {
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0 && front == null;
     }
 
     /**
@@ -94,7 +132,7 @@ public class LinkedQueue<E> implements Queue<E> {
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
