@@ -13,7 +13,8 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Add an item to the queue.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @param item the item to be added
      */
     @Override
@@ -33,7 +34,8 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Remove an item from the queue.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return the item that was removed
      */
     @Override
@@ -49,7 +51,8 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Checks to see if the queue is empty.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return true if the queue is empty, false otherwise
      */
     @Override
@@ -59,7 +62,8 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Returns a count of the number of items in the queue.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return the number of items in the queue
      */
     @Override
@@ -69,7 +73,8 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return an Iterator.
      */
     @Override

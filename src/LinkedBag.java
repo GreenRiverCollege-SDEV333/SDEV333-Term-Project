@@ -12,7 +12,8 @@ public class LinkedBag<E> implements Bag<E> {
 
     /**
      * Add an item to the bag.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @param item the item to be added
      */
     @Override
@@ -26,7 +27,8 @@ public class LinkedBag<E> implements Bag<E> {
 
     /**
      * Checks to see if the bag is empty.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return true if the bag is empty, false otherwise
      */
     @Override
@@ -36,7 +38,8 @@ public class LinkedBag<E> implements Bag<E> {
 
     /**
      * Returns a count of the number of items in the bag.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return the number of items in the bag
      */
     @Override
@@ -46,7 +49,8 @@ public class LinkedBag<E> implements Bag<E> {
 
      /**
      * Returns an iterator over elements of type {@code T}.
-     *
+      * This method runs in O(1) or constant time in the worst case because
+      * regardless of the size of the array, the number of operations executed remains the same
      * @return an Iterator.
      */
     @Override

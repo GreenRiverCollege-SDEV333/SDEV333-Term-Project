@@ -12,7 +12,8 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Add an item to the stack.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @param item the item to be added
      */
     @Override
@@ -26,7 +27,8 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Removes the most recently added item from the stack.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return the item that was removed
      */
     @Override
@@ -40,7 +42,8 @@ public class LinkedStack<E> implements Stack<E> {
     /**
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return item at the top of the stack.
      */
     @Override
@@ -50,7 +53,8 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Checks to see if the stack is empty.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return true if the stack is empty, false otherwise
      */
     @Override
@@ -60,7 +64,8 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Returns a count of the number of items in the stack.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return the number of items in the stack
      */
     @Override
@@ -70,7 +75,8 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
+     * This method runs in O(1) or constant time in the worst case because
+     * regardless of the size of the array, the number of operations executed remains the same
      * @return an Iterator.
      */
     @Override
