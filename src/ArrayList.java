@@ -19,6 +19,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add item to the front.
+     * Runs in O(n) or linear time complexity. This is because
+     * each existing element needs to be shifted by one position
+     * to make room.
      *
      * @param item the item to be added
      */
@@ -36,6 +39,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add item to the back.
+     * Runs in O(1) or constant time complexity for most cases, or
+     * in O(n) or linear time complexity for worst cases.
      *
      * @param item the item to be added
      */
@@ -51,6 +56,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add an item at specified index (position).
+     * Runs in O(n) because on average it must shift half
+     * of the elements over by one spot. When inserting to front,
+     * the time complexity is at its worst case.
      *
      * @param i    the index where the item should be added
      * @param item the item to be added
@@ -75,6 +83,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Get the item at a specified index.
+     * Runs in O(1) or constant time complexity.
      *
      * @param i the index where the item should be retrieved
      * @return the item located at that index
@@ -94,6 +103,8 @@ public class ArrayList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     * O(1) time complexity. Setting a value at a specific
+     * index is constant time.
      *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
@@ -111,6 +122,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at the front of the list.
+     * Runs in O(n) or linear time because
+     * each element needs to shift one position
+     * after removing the front element.
      *
      * @return the item that was removed
      */
@@ -133,6 +147,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at the back of the list
+     * Runs in O(1) or constant time because it involves removing
+     * the last element then decreasing the size of the list.
      *
      * @return the item that was removed
      */
@@ -151,6 +167,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item from the list
+     * Runs in O(n) or linear time as it requires
+     * searching for item first and possibly shifting
+     * all remaining elements.
      *
      * @param item the item to be removed
      */
@@ -183,6 +202,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
+     * Runs in O(n) or linear time for the same reasons
+     * as remove(E item) except the index is known.
      *
      * @param i the index where the item should be removed
      * @return the item that was removed
@@ -210,6 +231,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Checks if an item is in the list.
+     * O(n) or linear time, and in the worst case scenario,
+     * it has to traverse through the entire list to find the item.
      *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
@@ -230,6 +253,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Checks if the list is empty.
+     * runs in O(1) or constant time complexity, it just involves
+     * checking the size attribute.
      *
      * @return true if the list is empty, false otherwise
      */
@@ -240,6 +265,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Provides a count of the number of items in the list.
+     * O(1) or constant time. Getting the size is an instant operation
+     * and doesn't depend on size of the list.
      *
      * @return number of items in the list
      */
@@ -250,7 +277,10 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
+     * O(1) or constant time. The returned iterator's hasNext() and next()
+     * methods also have O(1) constant time but iterating over entire
+     * set of elements will take O(n) time or linear time complexity
+     * .
      * @return an Iterator.
      */
     @Override
