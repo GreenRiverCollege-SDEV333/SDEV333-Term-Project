@@ -1,6 +1,12 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * A generic implementation of an array list
+ * @param <E> generic type
+ * @author Lois Lanctot
+ * @version 1.0
+ */
 public class ArrayList<E> implements List<E> {
 
     private int size;
@@ -54,26 +60,26 @@ public class ArrayList<E> implements List<E> {
     /**
      * Add an item at specified index (position).
      * This method runs in O(n) or linear time in the worst case because of the time needed to resize and shift elements
-     * @param i    the index where the item should be added
+     * @param index    the index where the item should be added
      * @param item the item to be added
      */
     @Override
-    public void add(int i, E item) {
-        if (i == 0 && size == 0) {
+    public void add(int index, E item) {
+        if (index == 0 && size == 0) {
             size++;
         }
-        else if (i < 0 || i > size) {
+        else if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("index is out of bounds");
         }
         if (size == buffer.length) {
             resize(size * 2);
         }
 
-        for (int j = size; j >= i; j--) {
+        for (int j = size; j >= index; j--) {
             buffer[j] = buffer[j - 1];
         }
 
-        buffer[i] = item;
+        buffer[index] = item;
         size++;
     }
 
@@ -81,18 +87,18 @@ public class ArrayList<E> implements List<E> {
      * Get the item at a specified index.
      * This method runs in O(1) or constant time in the worst case because
      * regardless of the size of the array, the number of operations executed remains the same
-     * @param i the index where the item should be retrieved
+     * @param index the index where the item should be retrieved
      * @return the item located at that index
      */
     @Override
-    public E get(int i) {
-        if (i >= size) {
+    public E get(int index) {
+        if (index >= size) {
             throw new IndexOutOfBoundsException("Index cannot be greater than size");
         }
-        else if (i < 0) {
+        else if (index < 0) {
             throw new IndexOutOfBoundsException("Index cannot be less than zero");
         }
-        return buffer[i];
+        return buffer[index];
     }
 
     /**
@@ -100,17 +106,17 @@ public class ArrayList<E> implements List<E> {
      * item at that index is overwritten.
      * This method runs in O(1) or constant time in the worst case because
      * regardless of the size of the array, the number of operations executed remains the same
-     * @param i    the index where the item should be saved
+     * @param index    the index where the item should be saved
      * @param item the item to be saved
      */
     @Override
-    public void set(int i, E item) {
+    public void set(int index, E item) {
         //if index is out of bounds
-        if (i <= 0 || i > size) {
+        if (index <= 0 || index > size) {
             throw new IndexOutOfBoundsException("index is out of bounds");
         }
 
-        buffer[i] = item;
+        buffer[index] = item;
     }
 
     /**
@@ -170,22 +176,22 @@ public class ArrayList<E> implements List<E> {
     /**
      * Remove item at a specified index.
      * This method runs in O(n) or linear time in the worst case because of the time needed to shift elements
-     * @param i the index where the item should be removed
+     * @param index the index where the item should be removed
      * @return the item that was removed
      */
     @Override
-    public E remove(int i) {
+    public E remove(int index) {
         //validate index
-        if (i >= size) {
+        if (index >= size) {
             throw new IndexOutOfBoundsException("Index cannot be greater than size");
         }
-        else if (i < 0) {
+        else if (index < 0) {
             throw new IndexOutOfBoundsException("Index cannot be less than zero");
         }
 
-        E copyOfRemovedValue = buffer[i];
+        E copyOfRemovedValue = buffer[index];
 
-        for (int j = i; j <= size - 1; j++) {
+        for (int j = index; j <= size - 1; j++) {
             buffer[j] = buffer[j + 1];
         }
 
@@ -261,10 +267,10 @@ public class ArrayList<E> implements List<E> {
 
     private class ArrayListIterator implements Iterator<E> {
         //private fields
-        private int i;
+        private int index;
 
         private ArrayListIterator() {
-            i = 0;
+            index = 0;
         }
 
         /**
@@ -274,7 +280,7 @@ public class ArrayList<E> implements List<E> {
          */
         @Override
         public boolean hasNext() {
-            return i < size;
+            return index < size;
         }
 
         /**
@@ -285,12 +291,12 @@ public class ArrayList<E> implements List<E> {
          */
         @Override
         public E next() {
-            if (i >= size) {
+            if (index >= size) {
                 throw new NoSuchElementException("i is now out of bounds");
             }
 
-            E currentValue = buffer[i];
-            i++;
+            E currentValue = buffer[index];
+            index++;
 
             return currentValue;
         }

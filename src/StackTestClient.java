@@ -1,22 +1,31 @@
 import java.util.Scanner;
 
+/**
+ * A test for the linked stack
+ * @author Lois Lanctot
+ * @version 1.0
+ */
 public class StackTestClient {
 
+    /**
+     * runs tests for the linked stack
+     * @param args command line arguments passed to the program
+     */
     public static void main(String[] args) {
-        Stack<String> s = new LinkedStack<String>();
-        Scanner in = new Scanner("to be or not to - be - - that - - - is");
+        Stack<String> stack = new LinkedStack<>();
+        Scanner input = new Scanner("to be or not to - be - - that - - - is");
 
-        while (in.hasNext()) {
-            String item = in.next();
+        while (input.hasNext()) {
+            String item = input.next();
             if (!item.equals("-")) {
-                s.push(item);
+                stack.push(item);
             }
-            else if (!s.isEmpty()) {
-                System.out.println(s.pop() + " ");
+            else if (!stack.isEmpty()) {
+                System.out.println(stack.pop() + " ");
             }
         }
 
-        System.out.println("(" + s.size() + " left on the stack)");
+        System.out.println("(" + stack.size() + " left on the stack)");
 
     }
 }

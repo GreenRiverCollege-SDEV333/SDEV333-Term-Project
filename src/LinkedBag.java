@@ -1,5 +1,12 @@
 import java.util.Iterator;
 
+
+/**
+ * A generic implementation of a linked bag
+ * @param <E> generic type
+ * @author Lois Lanctot
+ * @version 1.0
+ */
 public class LinkedBag<E> implements Bag<E> {
 
     private Node head;

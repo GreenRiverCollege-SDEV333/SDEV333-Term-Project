@@ -1,6 +1,12 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * A generic implementation of a linked list
+ * @param <E> generic type
+ * @author Lois Lanctot
+ * @version 1.0
+ */
 public class LinkedList<E> implements List<E> {
 
     //define what a Node is
@@ -34,15 +40,12 @@ public class LinkedList<E> implements List<E> {
         Node theNewOne = new Node();
         theNewOne.data = item;
 
-        if (head == null) {
-            // the list is currently empty
-            head = theNewOne;
-        }
-        else {
+        if (head != null) {
             //the list currently has some nodes in it
             theNewOne.next = head;
-            head = theNewOne;
         }
+        head = theNewOne;
+
         size++;
     }
 
@@ -72,12 +75,13 @@ public class LinkedList<E> implements List<E> {
     /**
      * Add an item at specified index (position).
      * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
+     * @param index the specified index
      * @param item the item to be added
      */
     @Override
-    public void add(int i, E item) {
+    public void add(int index, E item) {
 
-        if (i < 0 || i > size) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index is out of bounds");
         }
         else {
@@ -89,11 +93,11 @@ public class LinkedList<E> implements List<E> {
                 head = theNewOne;
             }
             else {
-                while (i != 0) {
-                    if (i != 1) {
+                while (index != 0) {
+                    if (index != 1) {
                         current = current.next;
                     }
-                    i--;
+                    index--;
                 }
 
                 if (current.next == null) {
@@ -113,20 +117,20 @@ public class LinkedList<E> implements List<E> {
     /**
      * Get the item at a specified index.
      * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
-     * @param i the index where the item should be retrieved
+     * @param index the index where the item should be retrieved
      * @return the item located at that index
      */
     @Override
-    public E get(int i) {
+    public E get(int index) {
         Node current = head;
-        i++;
-        if (i < 0 || i > size) {
+        index++;
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
         else {
-            while (i != 1) {
+            while (index != 1) {
                 current = current.next;
-                i--;
+                index--;
             }
             return current.data;
         }
@@ -136,18 +140,18 @@ public class LinkedList<E> implements List<E> {
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
      * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
-     * @param i    the index where the item should be saved
+     * @param index    the index where the item should be saved
      * @param item the item to be saved
      */
     @Override
-    public void set(int i, E item) {
+    public void set(int index, E item) {
         // if index is out of bounds
-        if (i < 0 || i >= size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index is out of bounds");
         }
         Node current = head;
 
-        for (int j = 0; j < i; j++) {
+        for (int j = 0; j < index; j++) {
             current = current.next;
         }
 
@@ -222,27 +226,27 @@ public class LinkedList<E> implements List<E> {
     /**
      * Remove item at a specified index.
      * This method runs in O(n) or linear time in the worst case because of the time it takes to traverse the nodes
-     * @param i the index where the item should be removed
+     * @param index the index where the item should be removed
      * @return the item that was removed
      */
     @Override
-    public E remove(int i) {
+    public E remove(int index) {
         //validate index
-        if (i < 0 || i >= size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
 
         Node current = head;
 
         // if the index is the first element
-        if (i == 0) {
+        if (index == 0) {
             E value = head.data;
             head = head.next;
             size--;
             return value;
         }
 
-        for (int j = 0; j < i - 1; j++) {
+        for (int j = 0; j < index - 1; j++) {
             current = current.next;
         }
 

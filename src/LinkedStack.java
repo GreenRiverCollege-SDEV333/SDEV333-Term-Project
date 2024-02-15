@@ -1,5 +1,11 @@
 import java.util.Iterator;
 
+/**
+ * A generic implementation of a linked stack
+ * @param <E> generic type
+ * @author Lois Lanctot
+ * @version 1.0
+ */
 public class LinkedStack<E> implements Stack<E> {
 
     private Node head;

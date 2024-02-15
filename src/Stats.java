@@ -1,12 +1,21 @@
 import java.util.Scanner;
 
+/**
+ * A test for the linked bag
+ * @author Lois Lanctot
+ * @version 1.0
+ */
 public class Stats {
+    /**
+     * runs tests for the linked bag
+     * @param args command line arguments passed to the program
+     */
     public static void main(String[] args) {
-        Bag<Double> numbers = new LinkedBag<Double>();
-        Scanner in = new Scanner("100 99 101 120 98 107 109 81 101 90");
+        Bag<Double> numbers = new LinkedBag<>();
+        Scanner input = new Scanner("100 99 101 120 98 107 109 81 101 90");
 
-        while (in.hasNextDouble()) {
-            numbers.add(in.nextDouble());
+        while (input.hasNextDouble()) {
+            numbers.add(input.nextDouble());
         }
 
         int size = numbers.size();

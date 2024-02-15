@@ -1,5 +1,11 @@
 import java.util.Iterator;
 
+/**
+ * A generic implementation of a resizing array stack
+ * @param <E> generic type
+ * @author Lois Lanctot
+ * @version 1.0
+ */
 public class ResizingArrayStack<E> implements Stack<E> {
 
     private E[] array;
@@ -107,16 +113,18 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     private class ReverseArrayIterator implements Iterator<E> {
         //support LIFO iteration
-        private int i = size-1;
+        private int iterator = size-1;
 
 
+        @Override
         public boolean hasNext() {
-            return i >= 0;
+            return iterator >= 0;
         }
 
+        @Override
         public E next() {
-            i--;
-            return array[i];
+            iterator--;
+            return array[iterator];
         }
 
 
