@@ -1,3 +1,5 @@
+import interfaces.List;
+
 import java.util.Iterator;
 
 public class LinkedList<E> implements List<E>
@@ -202,7 +204,7 @@ public class LinkedList<E> implements List<E>
         //throw exception if linkedlist is empty
         if(isEmpty())
         {
-            throw new IllegalStateException("List is empty");
+            throw new IllegalStateException("interfaces.List is empty");
         }
 
         //save node to be removed
@@ -231,7 +233,7 @@ public class LinkedList<E> implements List<E>
         //throw exception if linkedlist is empty
         if(isEmpty())
         {
-            throw new IllegalStateException("List is empty");
+            throw new IllegalStateException("interfaces.List is empty");
         }
 
         //remove head if size == 1
@@ -275,7 +277,7 @@ public class LinkedList<E> implements List<E>
         //throw exception if linkedlist is empty
         if(isEmpty())
         {
-            throw new IllegalStateException("List is empty");
+            throw new IllegalStateException("interfaces.List is empty");
         }
 
         //if head equals item, remove head
@@ -440,8 +442,9 @@ public class LinkedList<E> implements List<E>
         {
             if (!hasNext())
             {
-                throw new IllegalStateException("List empty");
+                throw new IllegalStateException("interfaces.List empty");
             }
+
             E data = curr.data;
             curr = curr.next;
             return data;

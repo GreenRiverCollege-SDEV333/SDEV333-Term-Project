@@ -1,3 +1,5 @@
+import interfaces.List;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -345,13 +347,11 @@ public class ArrayList<E> implements List<E>
             this.i = 0;
         }
 
-
         @Override
         public boolean hasNext()
         {
             return i < size;
         }
-
 
         @Override
         public E next()
