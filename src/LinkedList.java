@@ -168,7 +168,22 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E removeFront() {
-        return null;
+        // if list contains no items, one cannot be removed
+        if(isEmpty()) {
+            throw new NoSuchElementException("Cannot remove item from empty LinkedList");
+        }
+
+        // get requested item from head
+        E requestedItem = head.item;
+
+        // overwrite head with next item in sequence,
+        // if no next item, head will become null
+        head = head.next;
+
+        // account for element removal
+        size--;
+
+        return requestedItem;
     }
 
     /**
@@ -178,7 +193,28 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E removeBack() {
-        return null;
+        // if list contains no items, one cannot be removed
+        if(isEmpty()) {
+            throw new NoSuchElementException("Cannot remove item from empty LinkedList");
+        }
+
+        // setup trackers and run through list till second to last node
+        Node current = head;
+
+        while(current.next.next != null) {
+            current = current.next;
+        }
+
+        // get requested item from final node
+        E requestedItem = current.next.item;
+
+        // update current node to stop tracking final node
+        current.next = null;
+
+        // account for item removal
+        size--;
+
+        return requestedItem;
     }
 
     /**

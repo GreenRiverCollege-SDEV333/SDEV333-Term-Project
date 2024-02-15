@@ -190,11 +190,97 @@ class LinkedListTest {
     }
 
     @Test
-    void removeFront() {
+    void removeFront_hasItem_removedSuccessfully() {
+        // add value to remove
+        testLinkedList.addFront(TEST_ITEM);
+
+        // attempt to remove value from list
+        assertEquals(TEST_ITEM, testLinkedList.removeFront());
+
+        // ensure list is now empty
+        assertTrue(testLinkedList.isEmpty());
     }
 
     @Test
-    void removeBack() {
+    void removeFront_hasMultipleItems_removedSuccessfully() {
+        // add several initial values
+        addMultipleItems();
+
+        // add value to remove
+        testLinkedList.addFront(TEST_ITEM);
+
+        // attempt to remove front value from list
+        testLinkedList.removeFront();
+
+        // ensure value was removed from list
+        assertNotEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
+        assertFalse(testLinkedList.contains(TEST_ITEM));
+        assertEquals(10, testLinkedList.size());
+    }
+
+    @Test
+    void removeFront_empty_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove nonexistent item
+            testLinkedList.removeFront();
+        }
+
+        catch (NoSuchElementException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void removeBack_hasItem_removedSuccessfully() {
+        // add item to remove
+        testLinkedList.addBack(TEST_ITEM);
+
+        // attempt to remove item from list
+        testLinkedList.removeFront();
+
+        // ensure list is now empty
+        assertTrue(testLinkedList.isEmpty());
+    }
+
+    @Test
+    void removeBack_hasMultipleItems_removedSuccessfully() {
+        // add several initial items
+        addMultipleItems();
+
+        // add item to remove
+        testLinkedList.addBack(TEST_ITEM);
+
+        // attempt to remove front item from list
+        testLinkedList.removeBack();
+
+        // ensure item was removed from list
+        assertNotEquals(TEST_ITEM, testLinkedList.get(testLinkedList.size() - 1));
+        assertFalse(testLinkedList.contains(TEST_ITEM));
+        assertEquals(10, testLinkedList.size());
+    }
+
+    @Test
+    void removeBack_empty_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to remove nonexistent item
+            testLinkedList.removeBack();
+        }
+
+        catch (NoSuchElementException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
     }
 
     @Test
