@@ -26,22 +26,21 @@ public class ResizingArrayStack<E> implements Stack<E> {
     }
 
     /**
-     * If all slots in buffer are full, double its max capacity
+     * If all slots in buffer are full, increase its max capacity by given number
+     * @param maxCapacity the new max capacity of buffer
      */
-    private void doubleMaxCapacity() {
-        // if all buffer slots are filled
-        if(size == buffer.length) {
-            // create a new buffer, with double the capacity of the existing buffer
-            E[] newBuffer = (E[]) new Object[size * 2];
+    private void resizeBuffer(int maxCapacity) {
+        // create a new buffer, with the given max capacity
+        E[] newBuffer = (E[]) new Object[maxCapacity];
 
-            // run through previous buffer and copy over all items
-            for(int i = 0; i < buffer.length; i++) {
-                newBuffer[i] = buffer[i];
-            }
-
-            // replace buffer with newBuffer, now with double the length
-            buffer = newBuffer;
+        // run through current buffer and copy over all items
+        for(int i = 0; i < buffer.length; i++) {
+            newBuffer[i] = buffer[i];
         }
+
+        // override existing buffer with the newly created one,
+        // now with more max capacity
+        buffer = newBuffer;
     }
 
     /**
@@ -52,9 +51,11 @@ public class ResizingArrayStack<E> implements Stack<E> {
     @Override
     public void push(E item) {
         // if the buffer is full, double its max capacity
-        doubleMaxCapacity();
+        if(size == buffer.length) {
+            resizeBuffer(buffer.length * 2);
+        }
 
-        // add item to "end/top" of buffer
+        // add given item to "end/top" of buffer
         buffer[size] = item;
 
         // account for new item being added
@@ -68,7 +69,22 @@ public class ResizingArrayStack<E> implements Stack<E> {
      */
     @Override
     public E pop() {
-        return null;
+        // get the end/top item from stack
+        E requestedItem = buffer[size];
+
+        // clear that slot in buffer
+        buffer[size] = null;
+
+        // account for item being removed
+        size--;
+
+        // if the buffer is not empty, and running low on space
+        if(size > 0 && size == buffer.length / 4) {
+            // increase its size by half the current max
+            resizeBuffer(buffer.length / 2);
+        }
+
+        return requestedItem;
     }
 
     /**
