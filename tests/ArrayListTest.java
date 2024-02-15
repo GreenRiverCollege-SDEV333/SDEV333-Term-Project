@@ -1,3 +1,4 @@
+import List.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
@@ -7,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ArrayListTest {
     /**
-     * Create ArrayList at start for testing
+     * Create List.ArrayList at start for testing
      */
-    private final ArrayList<Integer> testArrayList = new ArrayList<>();
+    private final ArrayList<Integer> testArrayList = new ArrayList<Integer>();
 
     /**
      * The default max capacity of buffer, at creation

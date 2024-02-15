@@ -1,9 +1,11 @@
+package List;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class ArrayList<E> implements List<E> {
     /**
-     * An array used to store items placed within the ArrayList
+     * An array used to store items placed within the List.ArrayList
      */
     private E[] buffer;
 
@@ -13,7 +15,7 @@ public class ArrayList<E> implements List<E> {
     private int size;
 
     /**
-     * Constructs an ArrayList with an empty buffer, and a default max capacity of 10 items
+     * Constructs an List.ArrayList with an empty buffer, and a default max capacity of 10 items
      */
     public ArrayList() {
         // setup buffer with default max capacity of 10
@@ -131,7 +133,7 @@ public class ArrayList<E> implements List<E> {
 
         // if buffer contains no items, one cannot be retrieved
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot retrieve item from empty ArrayList");
+            throw new NoSuchElementException("Cannot retrieve item from empty List.ArrayList");
         }
 
         return buffer[index];
@@ -169,7 +171,7 @@ public class ArrayList<E> implements List<E> {
     public E removeFront() {
         // if buffer contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
+            throw new NoSuchElementException("Cannot remove item from empty List.ArrayList");
         }
 
         // get requested item prior to removal
@@ -196,7 +198,7 @@ public class ArrayList<E> implements List<E> {
     public E removeBack() {
         // if buffer contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
+            throw new NoSuchElementException("Cannot remove item from empty List.ArrayList");
         }
 
         // get requested item prior to removal, accounting for index
@@ -220,7 +222,7 @@ public class ArrayList<E> implements List<E> {
     public void remove(E item) {
         // if buffer contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
+            throw new NoSuchElementException("Cannot remove item from empty List.ArrayList");
         }
 
         // find item in buffer and get its index
@@ -228,7 +230,7 @@ public class ArrayList<E> implements List<E> {
 
         // if item is not in buffer
         if(index == -1) {
-            throw new NoSuchElementException("Given item is not located in ArrayList");
+            throw new NoSuchElementException("Given item is not located in List.ArrayList");
         }
 
         // otherwise, run through buffer, starting at given index
@@ -276,7 +278,7 @@ public class ArrayList<E> implements List<E> {
 
         // if buffer contains no items, one cannot be removed
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot remove item from empty ArrayList");
+            throw new NoSuchElementException("Cannot remove item from empty List.ArrayList");
         }
 
         // get requested item prior to removal

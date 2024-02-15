@@ -1,3 +1,4 @@
+import List.LinkedList;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
@@ -6,9 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTest {
     /**
-     * Create LinkedList at start for testing
+     * Create List.LinkedList at start for testing
      */
-    private final LinkedList<Integer> testLinkedList = new LinkedList<>();
+    private final LinkedList<Integer> testLinkedList = new LinkedList<Integer>();
 
     /**
      * The first index in list is 0
