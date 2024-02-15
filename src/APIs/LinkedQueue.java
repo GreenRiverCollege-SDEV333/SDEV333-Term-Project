@@ -142,6 +142,50 @@ public class LinkedQueue<E> implements Queue<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new LinkedQueueIterator();
+    }
+
+    /**
+     * Implementation of an Iterator for the LinkedQueue class
+     */
+    private class LinkedQueueIterator implements Iterator<E>
+    {
+        /**
+         * The current Node being tracked by the Iterator
+         */
+        private Node current;
+
+        /**
+         * Constructs a LinkedQueue iterator, with the front node tracked first
+         */
+        LinkedQueueIterator() {
+            current = front;
+        }
+
+        /**
+         * Checks if list contains another element, and returns true/false accordingly
+         * @return true if list contains another element; otherwise false
+         */
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        /**
+         * Gets and returns the start/front item in the list
+         * @return the start/front item in the list
+         */
+        public E next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            // get item at start/front of list
+            E currItem = current.item;
+
+            // bring the next item over
+            current = current.next;
+
+            return currItem;
+        }
     }
 }

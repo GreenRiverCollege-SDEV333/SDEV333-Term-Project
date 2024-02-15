@@ -157,7 +157,7 @@ public class LinkedStack<E> implements Stack<E> {
         private Node current;
 
         /**
-         * Constructs an LinkedStackIterator iterator, with the topmost node tracked first
+         * Constructs a LinkedStack iterator, with the topmost node tracked first
          */
         LinkedStackIterator() {
             current = top;
@@ -180,7 +180,7 @@ public class LinkedStack<E> implements Stack<E> {
                 throw new NoSuchElementException();
             }
 
-            // get item at end/top of buffer
+            // get item at end/top of list
             E currItem = current.item;
 
             // move down to the next item
