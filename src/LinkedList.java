@@ -14,6 +14,14 @@ public class LinkedList<E> implements List<E> {
          * The node this Node is pointing to
          */
         Node next;
+
+        /**
+         * Creates a node, and stores the given item within it
+         * @param item the item being stored in node
+         */
+        public Node(E item) {
+            this.item = item;
+        }
     }
 
     /**
@@ -27,13 +35,36 @@ public class LinkedList<E> implements List<E> {
     private int size;
 
     /**
+     * Constructs an empty LinkedList
+     */
+    public LinkedList() {
+        // list starts off empty
+        head = null;
+        size = 0;
+    }
+
+    /**
      * Add item to the front.
      *
      * @param item the item to be added
      */
     @Override
     public void addFront(E item) {
+        // create new node containing given item
+        Node newNode = new Node(item);
 
+        // if the list is not empty
+        if(!isEmpty()) {
+            // point new node at head
+            newNode.next = head;
+        }
+
+        // override head with newly created node
+        // (making new node first node in list)
+        head = newNode;
+
+        // account for new item in list
+        size++;
     }
 
     /**
@@ -130,7 +161,7 @@ public class LinkedList<E> implements List<E> {
     @Override
     public boolean contains(E item) {
         // if list is not empty
-        if(head != null) {
+        if(!isEmpty()) {
             // setup pointer
             Node current = head;
 
@@ -158,7 +189,7 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return size == 0 && head == null;
     }
 
     /**
