@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 public class QueueImpl<E> implements Queue<E> {
 
     int size;
-    Node head;
+    Node head, tail;
 
     private class Node {
         E data;
@@ -25,16 +25,28 @@ public class QueueImpl<E> implements Queue<E> {
     /**
      * Add an item to the queue.
      *
+     * O(1), adding to a queue is instant if we keep track of the head and tail.
+     *
      * @param item the item to be added
      */
     @Override
     public void enqueue(E item) {
+        // case: size is 0, create head and tail
+        if (size == 0) {
+            head = tail = new Node(item);
+        }
+        // case: any other size, add to back
+        else {
+            tail = tail.next = new Node(item, tail);
+        }
+
         size++;
-        head = new Node(item, head);
     }
 
     /**
      * Remove an item from the queue.
+     *
+     * O(1), dequeuing is instant and involves no loops.
      *
      * @return the item that was removed
      */
@@ -45,6 +57,7 @@ public class QueueImpl<E> implements Queue<E> {
 
         size--;
 
+        // dequeuing should be generally safe unless trying to access something that isn't there.
         E data = head.data;
         head = head.next;
 
@@ -53,6 +66,8 @@ public class QueueImpl<E> implements Queue<E> {
 
     /**
      * Checks to see if the queue is empty.
+     *
+     * O(1), size access is instant
      *
      * @return true if the queue is empty, false otherwise
      */
@@ -64,6 +79,8 @@ public class QueueImpl<E> implements Queue<E> {
     /**
      * Returns a count of the number of items in the queue.
      *
+     * O(1), size access is instant
+     *
      * @return the number of items in the queue
      */
     @Override
@@ -74,8 +91,8 @@ public class QueueImpl<E> implements Queue<E> {
     /**
      * Returns an iterator over elements of type {@code T}.
      *
-     * Most implementations of queues I find have no iterator... so should this move forward or backward?
-     * should it pop elements or simply read them?
+     * Most implementations of queues I find have no iterator.
+     * O(n) - guaranteed to be O(n) if you iterate through the list once
      *
      * @return an Iterator.
      */
