@@ -203,7 +203,11 @@ public class LinkedList<E> implements List<E>{
     @Override
     public E removeBack() {
         E returnedItem;
-        if(size <= 1)
+        if(size == 0)
+        {
+            return null;
+        }
+        if(size == 1)
         {
             returnedItem = head.data;
             head = null;
@@ -236,6 +240,7 @@ public class LinkedList<E> implements List<E>{
         if(current.data.equals(item))
         {
             head = head.next;
+            size--;
             return;
         }
         while(current.next != null)
@@ -243,7 +248,10 @@ public class LinkedList<E> implements List<E>{
             if(current.next.data.equals(item))
             {
                 current.next = current.next.next;
+                size--;
+                return;
             }
+            current = current.next;
         }
     }
 
@@ -274,7 +282,7 @@ public class LinkedList<E> implements List<E>{
         // current Node to iterate through LinkedList
         Node current = head;
         // loop until one Node before our index
-        for (int j = 0; j < i-1; i++) {
+        for (int j = 0; j < i-1; j++) {
             current = current.next;
         }
         // save our value that will be removed
