@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTest {
@@ -34,7 +36,7 @@ class LinkedListTest {
     private void addMultipleItems() {
         // add 10 items to list
         for(int i = 0; i < 10; i++) {
-            testLinkedList.addFront(FILLER_ITEM);
+            testLinkedList.addBack(FILLER_ITEM);
         }
     }
 
@@ -51,7 +53,78 @@ class LinkedListTest {
     }
 
     @Test
-    void get() {
+    void get_hasItem_returnsItem() {
+        // add expected item to list
+        testLinkedList.addFront(TEST_ITEM);
+
+        // attempt to retrieve expected value
+        assertEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
+    }
+
+    @Test
+    void get_hasMultipleItems_returnsItem() {
+        // add several initial items
+        addMultipleItems();
+
+        // add item to retrieve
+        testLinkedList.addBack(TEST_ITEM);
+
+        // attempt to retrieve expected item at final index
+        assertEquals(TEST_ITEM, testLinkedList.get(testLinkedList.size() - 1));
+    }
+
+    @Test
+    void get_listEmpty_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to get value from empty list
+            testLinkedList.get(FIRST_INDEX);
+        }
+
+        catch (NoSuchElementException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void get_invalidIndexNegative_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to get item from invalid index
+            testLinkedList.get(-1);
+        }
+
+        catch (IndexOutOfBoundsException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void get_invalidIndexMoreThanSize_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to get item from invalid index
+            testLinkedList.get(1);
+        }
+
+        catch (IndexOutOfBoundsException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
     }
 
     @Test
@@ -80,7 +153,7 @@ class LinkedListTest {
         addMultipleItems();
 
         // add item to check for
-        testLinkedList.addFront(TEST_ITEM);
+        testLinkedList.addBack(TEST_ITEM);
 
         // check if item is in list
         assertTrue(testLinkedList.contains(TEST_ITEM));

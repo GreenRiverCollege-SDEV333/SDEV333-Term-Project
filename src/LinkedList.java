@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedList<E> implements List<E> {
     /**
@@ -20,7 +21,11 @@ public class LinkedList<E> implements List<E> {
          * @param item the item being stored in node
          */
         public Node(E item) {
+            // store given item
             this.item = item;
+
+            // node starts off disconnected
+            next = null;
         }
     }
 
@@ -74,7 +79,30 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void addBack(E item) {
+        // if list is empty
+        if(isEmpty()) {
+            // add item at front of list
+            addFront(item);
+        }
 
+        // if list is not empty
+        else {
+            // create new node containing given item
+            Node newNode = new Node(item);
+
+            // setup tracker and run to end of list
+            Node current = head;
+
+            while(current.next != null) {
+                current = current.next;
+            }
+
+            // point final node at new node
+            current.next = newNode;
+
+            // account for new item in list
+            size++;
+        }
     }
 
     /**
@@ -96,7 +124,29 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E get(int index) {
-        return null;
+        // if given index is out of range
+        if(index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(index + " is not a valid index");
+        }
+
+        // if list is empty
+        if(isEmpty()) {
+            throw new NoSuchElementException("Cannot retrieve item from empty LinkedList");
+        }
+
+        // setup trackers
+        int currIndex = 0;
+        Node current = head;
+
+        // run through list, up to given index
+        while(current != null && currIndex != index) {
+            // update trackers
+            current = current.next;
+            currIndex++;
+        }
+
+        // return item at current node/index
+        return current.item;
     }
 
     /**
