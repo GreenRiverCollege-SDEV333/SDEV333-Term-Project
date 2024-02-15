@@ -35,7 +35,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
         E[] newBuffer = (E[]) new Object[maxCapacity];
 
         // run through current buffer and copy over all items
-        for(int i = 0; i < buffer.length; i++) {
+        for(int i = 0; i < size; i++) {
             newBuffer[i] = buffer[i];
         }
 
