@@ -20,6 +20,8 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
 
     /**
      * Add item to the front.
+     * constant time, O(1), because it only involves reassigning
+     * the first reference and incrementing the size.
      *
      * @param item the item to be added
      */
@@ -31,6 +33,10 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
 
     /**
      * Add item to the back.
+     * Worst case, this operation is performed in
+     * linear time, O(n), where n is the size of the list.
+     * This is because in the worst case,
+     * it involves traversing to the end of the list.
      *
      * @param item the item to be added
      */
@@ -57,6 +63,9 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
 
     /**
      * Add an item at specified index (position).
+     * runs in O(n) or linear time in the worst case because
+     * it may have to traverse all the items when adding
+     * an item to the end of the list.
      *
      * @param i    the index where the item should be added
      * @param item the item to be added
@@ -78,6 +87,9 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
 
     /**
      * Get the item at a specified index.
+     * Runs in worst-case linear time, O(n),
+     * where n is the size of the list, because it involves
+     * traversing the list up to a variable position.
      *
      * @param i the index where the item should be retrieved
      * @return the item located at that index
@@ -95,6 +107,10 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     * O(n) in the worst case because it may have to
+     * traverse all the items in the case where the item is
+     * being replaced at the end of the list but could be much faster
+     * depending on position to be replaced.
      *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
@@ -109,12 +125,29 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
         current.data = item;
     }
 
+    /**
+     * A private helper method for checking if a given index is valid.
+     * Runs in O(1) time because it simply compares an integer value
+     * against the range of indexes.
+     *
+     * @param i the index to be checked
+     * @throws IndexOutOfBoundsException if the index is not in the range 0 through size inclusive
+     */
     private void checkIndex(int i) {
         if (i < 0 || i > size) {
             throw new IndexOutOfBoundsException("Index: " + i);
         }
     }
 
+    /**
+     * A private helper method for looping through a list
+     * O(n) because it involves a loop that could iterate all
+     * elements in the list depending on the value of i.
+     *
+     * @param i the index to loop to
+     * @param current the current node in the list
+     * @return the node at the i-th index
+     */
     private Node<E> loopList(int i, Node<E> current) {
 
         for(int j = 0; j < i; j++){
@@ -125,6 +158,10 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
 
     /**
      * Remove item at the front of the list.
+     * O(1) because it involves a constant amount of work
+     * by grabbing data from the front of the list, moving
+     * the front reference to the next node, then reducing
+     * the size of the list and returning the item.
      *
      * @return the item that was removed
      */
@@ -142,7 +179,12 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
     }
 
     /**
-     * Remove item at the back of the list
+     * Remove item at the back of the list.
+     * O(n) or linear time in worst case because
+     * it may traverse all items in the case where the
+     * item removed is an item from the end of the list.
+     * The best case time is O(1), when there's only one
+     * item in the list.
      *
      * @return the item that was removed
      */
@@ -170,7 +212,11 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
     }
 
     /**
-     * Remove item from the list
+     * Remove a specific item from the list.
+     * In the worst case O(n), where n is the size of the list.
+     * This occurs when the item to be removed is at the end or
+     * doesn't exist. If it's at the beginning of the list,
+     * the runtime is constant O(1).
      *
      * @param item the item to be removed
      */
@@ -198,7 +244,9 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
 
     /**
      * Remove item at a specified index.
-     *
+     * In worst case it runs in O(n) time, n being the
+     * size of the list. This is because it has to traverse all the items to find the one
+     * to be removed.
      * @param i the index where the item should be removed
      * @return the item that was removed
      */
@@ -225,6 +273,9 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
 
     /**
      * Checks if an item is in the list.
+     * Runs in linear time O(n) in the worst case,
+     * where n is the size of the list. This is because it could require visiting all n nodes
+     * if the item is either the last one or not present in the list.
      *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
@@ -242,7 +293,9 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
     }
 
     /**
-     * Checks if the list is empty.
+     * Check if the list is empty.
+     * Constant time O(1), because it simply involves
+     * comparing the value of size with 0.
      *
      * @return true if the list is empty, false otherwise
      */
@@ -252,8 +305,8 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
     }
 
     /**
-     * Provides a count of the number of items in the list.
-     *
+     * Provides a count of the number of items in the list. This method simply returns the size,
+     * so it runs in constant time, O(1).
      * @return number of items in the list
      */
     @Override
@@ -263,6 +316,8 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
+     * The iterator's `hasNext()` and `next()` methods have
+     * a time complexity of O(1) or constant time.
      *
      * @return an Iterator.
      */
