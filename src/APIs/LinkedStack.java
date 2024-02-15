@@ -1,7 +1,5 @@
 package APIs;
 
-import List.LinkedList;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -136,6 +134,50 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new LinkedStackIterator();
+    }
+
+    /**
+     * Implementation of an Iterator for the LinkedStack class
+     */
+    private class LinkedStackIterator implements Iterator<E>
+    {
+        /**
+         * The current Node being tracked by the Iterator
+         */
+        private Node current;
+
+        /**
+         * Constructs an LinkedStackIterator iterator, with the topmost node tracked first
+         */
+        LinkedStackIterator() {
+            current = top;
+        }
+
+        /**
+         * Checks if list contains another element, and returns true/false accordingly
+         * @return true if list contains another element; otherwise false
+         */
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        /**
+         * Gets and returns the next/top item in the list
+         * @return the next/top item in the list
+         */
+        public E next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            // get item at end/top of buffer
+            E currItem = current.item;
+
+            // move down to the next item
+            current = current.next;
+
+            return currItem;
+        }
     }
 }

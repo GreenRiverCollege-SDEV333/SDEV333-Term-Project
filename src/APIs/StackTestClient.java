@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class StackTestClient {
     public static void main(String[] args) {
         // setup stack
-        Stack<String> storage = new ResizingArrayStack<>();
+        //Stack<String> storage = new ResizingArrayStack<>();
+        Stack<String> storage = new LinkedStack<>();
 
         // setup scanner, taking in given string
         Scanner line = new Scanner("to be or not to - be - - that - - - is");
