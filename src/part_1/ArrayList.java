@@ -1,3 +1,5 @@
+package part_1;
+
 import interfaces.List;
 
 import java.util.Iterator;
@@ -11,7 +13,7 @@ public class ArrayList<E> implements List<E>
     private static final int INITIAL_SIZE = 10;
 
     /**
-     * Constructor for ArrayList class.
+     * Constructor for part_1.ArrayList class.
      */
     public ArrayList()
     {
@@ -156,7 +158,7 @@ public class ArrayList<E> implements List<E>
         //cannot remove from empty arraylist
         if(size == 0)
         {
-            throw new NoSuchElementException("ArrayList is empty");
+            throw new NoSuchElementException("part_1.ArrayList is empty");
         }
 
         //save item to be removed
@@ -185,7 +187,7 @@ public class ArrayList<E> implements List<E>
         //cannot remove from empty arraylist
         if(size == 0)
         {
-            throw new NoSuchElementException("ArrayList is empty");
+            throw new NoSuchElementException("part_1.ArrayList is empty");
         }
 
         //save back item to return

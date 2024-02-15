@@ -1,3 +1,5 @@
+package part_1;
+
 import interfaces.List;
 
 import java.util.Iterator;
