@@ -195,7 +195,32 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void set(int index, E item) {
+        // if the given index is out of range
+        if(index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(index + " is not a valid index");
+        }
 
+        // if list is empty
+        if(isEmpty()) {
+            // add given item to list at front
+            addFront(item);
+        }
+
+        else {
+            // setup trackers
+            int currIndex = 0;
+            Node current = head;
+
+            // run through list, up to given index
+            while (current != null && currIndex != index) {
+                // update trackers
+                current = current.next;
+                currIndex++;
+            }
+
+            // overwrite item in current node with given item
+            current.item = item;
+        }
     }
 
     /**

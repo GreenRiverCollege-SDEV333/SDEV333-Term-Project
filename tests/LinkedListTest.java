@@ -251,7 +251,75 @@ class LinkedListTest {
     }
 
     @Test
-    void set() {
+    void set_hasItem_setItemAtIndex() {
+        // add initial item to buffer
+        testLinkedList.addFront(FILLER_ITEM);
+
+        // replace item at that index
+        testLinkedList.set(FIRST_INDEX, TEST_ITEM);
+
+        // attempt to retrieve expected item
+        assertEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
+    }
+
+    @Test
+    void set_hasMultipleItems_setItemAtIndex() {
+        // add several initial items
+        addMultipleItems();
+
+        // replace item at sixth index
+        testLinkedList.set(6, TEST_ITEM);
+
+        // attempt to retrieve expected item
+        assertEquals(TEST_ITEM, testLinkedList.get(6));
+    }
+
+    @Test
+    void set_empty_setItemAtIndex() {
+        // add item to index 0 of empty buffer
+        testLinkedList.set(FIRST_INDEX, TEST_ITEM);
+
+        // attempt to retrieve expected item
+        assertEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
+
+        // ensure size tracker was updated
+        assertEquals(1, testLinkedList.size());
+    }
+
+    @Test
+    void set_invalidIndexNegative_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to set item at invalid index
+            testLinkedList.set(FIRST_INDEX - 1, TEST_ITEM);
+        }
+
+        catch (IndexOutOfBoundsException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void set_invalidIndexMoreThanSize_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to set item at invalid index
+            testLinkedList.set(FIRST_INDEX + 1, TEST_ITEM);
+        }
+
+        catch (IndexOutOfBoundsException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
     }
 
     @Test
