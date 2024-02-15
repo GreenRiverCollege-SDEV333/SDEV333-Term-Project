@@ -5,8 +5,8 @@ import java.util.NoSuchElementException;
 
 public class DequeImpl<E> implements Deque<E> {
 
-    int size;
-    Node head, tail;
+    private int size;
+    private Node head, tail;
 
     private class Node {
         E data;
@@ -57,24 +57,20 @@ public class DequeImpl<E> implements Deque<E> {
         // case: size is 0, need to assign new head and tail
         if (size == 0) {
             head = tail = new Node(item);
-            size++;
-            return;
         }
 
         // case: size is 1, we need to decouple head and tail and make them point to each other
         else if (size == 1) {
-            head = new Node(item, null, tail);
-            tail.prev = head;
-            size++;
-            return;
+            tail.prev = head = new Node(item, null, tail);
         }
 
         // case: any other size
         else {
-            head = head.next = new Node(item, null, head);
+            head = head.prev = new Node(item, null, head);
         }
 
         size++;
+
     }
 
     /**
@@ -87,20 +83,20 @@ public class DequeImpl<E> implements Deque<E> {
         // case: size is 0, need to assign new head and tail
         if (size == 0) {
             head = tail = new Node(item);
-            size++;
         }
 
-        // case: size is 1, we need to decouple head and tail and make them point to each other
+        // case: size is 1, adding one we need to decouple head and tail and make them point to each other
         else if (size == 1) {
-            tail = new Node(item, null, head);
-            head.next = tail;
+            head.next = tail = new Node(item, head, null);
         }
 
         // case: any other size
         else {
-
             tail = tail.next = new Node(item, tail, null);
+
+
         }
+
         size++;
     }
 
@@ -134,9 +130,9 @@ public class DequeImpl<E> implements Deque<E> {
 
         // case: any other size
         else {
-            // move head up one node
+            // move right one node
             head = head.next;
-            //and null its reference to the previous node
+            // and null its reference to the previous node
             head.prev = null;
         }
 
@@ -165,18 +161,17 @@ public class DequeImpl<E> implements Deque<E> {
 
         // case: size is 1, tail will point to head.
         else if (size == 1) {
-            tail = head;
+            tail=head;
 
-            // erase references to prev/next
-            // dont really need to change anything here. head and tail are the same now
-            head.next = head.prev = null;
+            // erase references to next
+            tail.next = tail.prev = null;
         }
 
         // case: any other size
         else {
             // move head back one node
             tail = tail.prev;
-            // and null its reference to the next node
+
             tail.next = null;
         }
 
@@ -203,6 +198,7 @@ public class DequeImpl<E> implements Deque<E> {
 
             @Override
             public E next() {
+                if (!hasNext()) throw new NoSuchElementException();
                 E data = cur.data;
                 cur = cur.next;
                 return data;
