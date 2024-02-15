@@ -110,7 +110,7 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
     }
 
     private void checkIndex(int i) {
-        if (i < 0 || i >= size) {
+        if (i < 0 || i > size) {
             throw new IndexOutOfBoundsException("Index: " + i);
         }
     }
