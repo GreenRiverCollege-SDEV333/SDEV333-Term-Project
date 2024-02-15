@@ -113,7 +113,44 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public void add(int index, E item) {
+        // if given index is out of range
+        if(index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(index + " is not a valid index");
+        }
 
+        // if given index was at front or back, use those methods
+        else if(index == 0) {
+            addFront(item);
+        }
+
+        else if(index == size) {
+            addBack(item);
+        }
+
+        else {
+            // setup trackers
+            Node previous = null;
+            Node current = head;
+            int currIndex = 0;
+
+            // run through list, up to given index
+            while(current != null && currIndex != index) {
+                // update trackers
+                previous = current;
+                current = current.next;
+                currIndex++;
+            }
+
+            // place given item in new node
+            Node newNode = new Node(item);
+
+            // update links of previous and current nodes to account for new node
+            previous.next = newNode;
+            newNode.next = current;
+
+            // account for new item in list
+            size++;
+        }
     }
 
     /**

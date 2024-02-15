@@ -45,69 +45,134 @@ class LinkedListTest {
         // add initial item
         testLinkedList.addBack(FILLER_ITEM);
 
-        // add test value
+        // add test item
         testLinkedList.addFront(TEST_ITEM);
 
-        // ensure expected value is at index 0
+        // ensure expected item is at index 0
         assertEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
     }
 
     @Test
     void addFront_hasMultipleItems_addedSuccessfully() {
-        // add several initial values
+        // add several initial items
         addMultipleItems();
 
-        // add test value
+        // add test item
         testLinkedList.addFront(TEST_ITEM);
 
-        // ensure expected value is at index 0
+        // ensure expected item is at index 0
         assertEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
     }
 
     @Test
     void addFront_empty_addedSuccessfully() {
-        // make test value new head
+        // make test item new head
         testLinkedList.addFront(TEST_ITEM);
 
-        // ensure expected value is at index 0
+        // ensure expected item is at index 0
         assertEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
     }
 
     @Test
     void addBack_hasItem_addedSuccessfully() {
-        // add initial value
+        // add initial item
         testLinkedList.addFront(FILLER_ITEM);
 
-        // add test value
+        // add test item
         testLinkedList.addBack(TEST_ITEM);
 
-        // ensure expected value is at end of list
+        // ensure expected item is at end of list
         assertEquals(TEST_ITEM, testLinkedList.get(testLinkedList.size() -1));
     }
 
     @Test
     void addBack_hasMultipleItems_addedSuccessfully() {
-        // add several initial values
+        // add several initial items
         addMultipleItems();
 
-        // add test value
+        // add test item
         testLinkedList.addBack(TEST_ITEM);
 
-        // ensure expected value is at end of list
+        // ensure expected item is at end of list
         assertEquals(TEST_ITEM, testLinkedList.get(testLinkedList.size() -1));
     }
 
     @Test
     void addBack_empty_addedSuccessfully() {
-        // make test value new tail
+        // make test item new tail
         testLinkedList.addBack(TEST_ITEM);
 
-        // ensure expected value is at end of list
+        // ensure expected item is at end of list
         assertEquals(TEST_ITEM, testLinkedList.get(testLinkedList.size() -1));
     }
 
     @Test
-    void add() {
+    void add_hasItem_addedSuccessfully() {
+        // add initial item
+        testLinkedList.addFront(FILLER_ITEM);
+
+        // add test item
+        testLinkedList.add(testLinkedList.size(), TEST_ITEM);
+
+        // ensure expected item is at expected index
+        assertEquals(TEST_ITEM, testLinkedList.get(testLinkedList.size() - 1));
+    }
+
+    @Test
+    void add_hasMultipleItems_addedSuccessfully() {
+        // add several initial items
+        addMultipleItems();
+
+        // add test item
+        testLinkedList.add(4, TEST_ITEM);
+
+        // ensure expected item is at expected index
+        assertEquals(TEST_ITEM, testLinkedList.get(4));
+    }
+
+    @Test
+    void add_empty_addedSuccessfully() {
+        // add test item to list
+        testLinkedList.add(FIRST_INDEX, TEST_ITEM);
+
+        // ensure expected item is in list
+        assertEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
+    }
+
+    @Test
+    void add_invalidIndexNegative_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to add item at invalid index
+            testLinkedList.add(FIRST_INDEX - 1, TEST_ITEM);
+        }
+
+        catch (IndexOutOfBoundsException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    void add_invalidIndexMoreThanSize_throwsException() {
+        // setup flag
+        boolean exceptionThrown = false;
+
+        try {
+            // attempt to add item at invalid index
+            testLinkedList.add(FIRST_INDEX + 1, TEST_ITEM);
+        }
+
+        catch (IndexOutOfBoundsException e) {
+            exceptionThrown = true;
+        }
+
+        // check if exception was thrown
+        assertTrue(exceptionThrown);
     }
 
     @Test
@@ -115,7 +180,7 @@ class LinkedListTest {
         // add expected item to list
         testLinkedList.addFront(TEST_ITEM);
 
-        // attempt to retrieve expected value
+        // attempt to retrieve expected item
         assertEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
     }
 
@@ -137,7 +202,7 @@ class LinkedListTest {
         boolean exceptionThrown = false;
 
         try {
-            // attempt to get value from empty list
+            // attempt to get item from empty list
             testLinkedList.get(FIRST_INDEX);
         }
 
@@ -191,10 +256,10 @@ class LinkedListTest {
 
     @Test
     void removeFront_hasItem_removedSuccessfully() {
-        // add value to remove
+        // add item to remove
         testLinkedList.addFront(TEST_ITEM);
 
-        // attempt to remove value from list
+        // attempt to remove item from list
         assertEquals(TEST_ITEM, testLinkedList.removeFront());
 
         // ensure list is now empty
@@ -203,16 +268,16 @@ class LinkedListTest {
 
     @Test
     void removeFront_hasMultipleItems_removedSuccessfully() {
-        // add several initial values
+        // add several initial items
         addMultipleItems();
 
-        // add value to remove
+        // add item to remove
         testLinkedList.addFront(TEST_ITEM);
 
-        // attempt to remove front value from list
+        // attempt to remove front item from list
         testLinkedList.removeFront();
 
-        // ensure value was removed from list
+        // ensure item was removed from list
         assertNotEquals(TEST_ITEM, testLinkedList.get(FIRST_INDEX));
         assertFalse(testLinkedList.contains(TEST_ITEM));
         assertEquals(10, testLinkedList.size());
