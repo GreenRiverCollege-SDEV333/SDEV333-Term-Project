@@ -1,4 +1,4 @@
-package APIs;
+package Stack;
 
 /**
  * APIs.Stack (LIFO: last-in, first-out) API
