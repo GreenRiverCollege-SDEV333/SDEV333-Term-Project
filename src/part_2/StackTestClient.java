@@ -1,13 +1,13 @@
 package part_2;
 
 import java.util.Scanner;
-import java.util.Stack;
+import interfaces.Stack;
 
 public class StackTestClient
 {
     public static void main(String[] args)
     {
-        Stack<String> s = new ResizingArrayStack<String>;
+        Stack<String> s = new ResizingArrayStack<>();
 
         Scanner in = new Scanner("to be or not to - be - - that - - - is");
 
@@ -15,16 +15,16 @@ public class StackTestClient
         {
             String item = in.next();
 
-            if(item.equals("-"))
+            if(!item.equals("-"))
             {
                 s.push(item);
             }
             else if(!s.isEmpty())
             {
-                System.out.println("s.pop()" + " ");
+                System.out.println(s.pop() + " ");
             }
         }
 
-        System.out.println("(" + s.size() + " left on the stack");
+        System.out.println("(" + s.size() + " left on the stack)");
     }
 }
