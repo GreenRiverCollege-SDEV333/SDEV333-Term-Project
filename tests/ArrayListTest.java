@@ -662,7 +662,7 @@ class ArrayListTest {
     @Test
     void isEmpty_bufferContainsOneItem_returnsFalse() {
         // add item so the buffer is not empty
-        testArrayList.addFront(FILLER_ITEM);
+        testArrayList.addBack(FILLER_ITEM);
 
         assertFalse(testArrayList.isEmpty());
     }
@@ -670,9 +670,9 @@ class ArrayListTest {
     @Test
     void isEmpty_bufferContainsMultipleItems_returnsFalse() {
         // add items so the buffer is not empty
-        testArrayList.addFront(FILLER_ITEM);
-        testArrayList.addFront(FILLER_ITEM);
-        testArrayList.addFront(FILLER_ITEM);
+        testArrayList.addBack(FILLER_ITEM);
+        testArrayList.addBack(FILLER_ITEM);
+        testArrayList.addBack(FILLER_ITEM);
 
         // check if buffer is empty
         assertFalse(testArrayList.isEmpty());
@@ -698,7 +698,7 @@ class ArrayListTest {
     @Test
     void size_bufferContainsOneItem_returnsSize() {
         // add item so the buffer is not empty
-        testArrayList.addFront(FILLER_ITEM);
+        testArrayList.addBack(FILLER_ITEM);
 
         assertEquals(1, testArrayList.size());
     }
@@ -706,9 +706,9 @@ class ArrayListTest {
     @Test
     void size_bufferContainsMultipleItems_returnsSize() {
         // add items so the buffer is not empty
-        testArrayList.addFront(FILLER_ITEM);
-        testArrayList.addFront(FILLER_ITEM);
-        testArrayList.addFront(FILLER_ITEM);
+        testArrayList.addBack(FILLER_ITEM);
+        testArrayList.addBack(FILLER_ITEM);
+        testArrayList.addBack(FILLER_ITEM);
 
         assertEquals(3, testArrayList.size());
     }
