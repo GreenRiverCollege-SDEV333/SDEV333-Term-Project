@@ -132,6 +132,50 @@ public class ResizingArrayStack<E> implements Stack<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new ReverseArrayStackIterator();
+    }
+
+    /**
+     * Implementation of an Iterator for the ReverseArrayStack class
+     */
+    private class ReverseArrayStackIterator implements Iterator<E>
+    {
+        /**
+         * The current number of items being tracked by iterator
+         */
+        private int trackedSize;
+
+        /**
+         * Constructs an ReverseArrayStackIterator iterator, with a tracker for buffer size
+         */
+        ReverseArrayStackIterator() {
+            trackedSize = size;
+        }
+
+        /**
+         * Checks if buffer has another element, and returns true/false accordingly
+         * @return true if buffer has another element; otherwise false
+         */
+        public boolean hasNext() {
+            return trackedSize > 0;
+        }
+
+        /**
+         * Gets and returns the next/top item in the buffer
+         * @return the next/top item in the buffer
+         */
+        public E next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            // get item at end/top of buffer
+            E currItem = buffer[trackedSize];
+
+            // move down to the next item
+            trackedSize--;
+
+            return currItem;
+        }
     }
 }
