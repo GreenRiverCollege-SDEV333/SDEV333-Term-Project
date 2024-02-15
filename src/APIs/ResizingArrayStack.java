@@ -70,6 +70,11 @@ public class ResizingArrayStack<E> implements Stack<E> {
      */
     @Override
     public E pop() {
+        // if buffer contains no items, one cannot be retrieved
+        if(isEmpty()) {
+            throw new NoSuchElementException("Cannot retrieve item from empty Stack");
+        }
+
         // get the end/top item from stack, account for index
         E requestedItem = buffer[size - 1];
 
@@ -98,7 +103,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
     public E peek() {
         // if buffer contains no items, one cannot be retrieved
         if(isEmpty()) {
-            throw new NoSuchElementException("Cannot retrieve item from empty ResizingArrayStack");
+            throw new NoSuchElementException("Cannot retrieve item from empty Stack");
         }
 
         // get and return end/top item in buffer

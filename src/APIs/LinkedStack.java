@@ -3,6 +3,7 @@ package APIs;
 import List.LinkedList;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedStack<E> implements Stack<E> {
     /**
@@ -49,7 +50,21 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public void push(E item) {
+        // create new node containing given item
+        Node newNode = new Node(item);
 
+        // if the list is not empty
+        if(!isEmpty()) {
+            // point new node at top, so it isn't lost
+            newNode.next = top;
+        }
+
+        // override top with newly created node
+        // (making new node first node in stack)
+        top = newNode;
+
+        // account for new item in stack
+        size++;
     }
 
     /**
@@ -59,7 +74,22 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public E pop() {
-        return null;
+        // if stack contains no items, one cannot be removed
+        if(isEmpty()) {
+            throw new NoSuchElementException("Cannot retrieve item from empty Stack");
+        }
+
+        // get requested item from topmost node
+        E requestedItem = top.item;
+
+        // overwrite top with node "under it",
+        // if no more remain, top will become null, making stack empty
+        top = top.next;
+
+        // account for removal of item from stack
+        size--;
+
+        return requestedItem;
     }
 
     /**
@@ -70,7 +100,13 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public E peek() {
-        return null;
+        // if buffer contains no items, one cannot be retrieved
+        if(isEmpty()) {
+            throw new NoSuchElementException("Cannot retrieve item from empty Stack");
+        }
+
+        // get and return item stored in topmost node
+        return top.item;
     }
 
     /**
