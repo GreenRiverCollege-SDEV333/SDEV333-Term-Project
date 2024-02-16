@@ -1,6 +1,5 @@
 /**
  * Double-ended Queue implementation
- *
  * Can add and remove from both sides of the queue.
  *
  * @author R.J. Trenchard
@@ -34,7 +33,6 @@ public class DequeImpl<E> implements Deque<E> {
 
     /**
      * Checks if the deque is empty.
-     *
      * O(1), size access is recorded during node creation/deletion
      *
      * @return true if the deque is empty, false otherwise
@@ -46,7 +44,6 @@ public class DequeImpl<E> implements Deque<E> {
 
     /**
      * Returns the number of items in the deque.
-     *
      * O(1), size access is constant
      *
      * @return number of items in the deque
@@ -58,7 +55,6 @@ public class DequeImpl<E> implements Deque<E> {
 
     /**
      * Add an item to the left end of the deque.
-     *
      * @param item item to be added
      */
     @Override
@@ -85,6 +81,7 @@ public class DequeImpl<E> implements Deque<E> {
     /**
      * Add an item to the right end of the deque.
      * O(1), adding right is instant
+     *
      * @param item item to add
      */
     @Override
@@ -111,7 +108,6 @@ public class DequeImpl<E> implements Deque<E> {
 
     /**
      * Remove an item from the left end of the deque.
-     *
      * O(1), left access is instant
      *
      * @return the item on the left end of the queue
@@ -150,7 +146,6 @@ public class DequeImpl<E> implements Deque<E> {
 
     /**
      * Remove an item from the right end of the deque.
-     *
      *  O(1), contrast to something like a linked list, we can instantly access the right end of a dequeue
      *
      * @return the item on the right end of the queue
@@ -189,7 +184,6 @@ public class DequeImpl<E> implements Deque<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * O(n), as usual, an iterator will always pass a list once and once only unless break occurs.
      *
      * @return an Iterator.

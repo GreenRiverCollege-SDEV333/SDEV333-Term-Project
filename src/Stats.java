@@ -4,7 +4,7 @@ import java.util.Scanner;
  * Previews LinkedBag
  *
  * @author R.J. Trenchard
- * @date 2/15/2024
+ * 2/15/2024
  */
 
 public class Stats {

@@ -1,6 +1,5 @@
 /**
  * Linked Bag implementation
- *
  * Bag uses linked nodes to store its data
  *
  * @author R.J. trenchard
@@ -30,7 +29,6 @@ public class LinkedBag<E> implements Bag<E> {
 
     /**
      * Adds an item to the bag
-     *
      * O(1), because we keep track of the tail end, we can always add to it without searching for it.
      *
      * @param item An item of the generic type.
@@ -51,7 +49,6 @@ public class LinkedBag<E> implements Bag<E> {
 
     /**
      * Returns true if the bag has no items.
-     *
      * O(1), empty access is instant
      *
      * @return true if empty.
@@ -63,7 +60,6 @@ public class LinkedBag<E> implements Bag<E> {
 
     /**
      * Gets the amount of items in the bag.
-     *
      * O(1), size access is instant
      *
      * @return size
@@ -75,6 +71,7 @@ public class LinkedBag<E> implements Bag<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
+     * O(n), will always loop over the whole list
      *
      * @return an Iterator.
      */

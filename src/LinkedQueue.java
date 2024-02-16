@@ -1,6 +1,6 @@
 /**
  * LinkedQueue implementation
- *
+
  * This queue uses linked nodes to store data, both a head and a tail
  * for quick access to enqueuing to the back, and dequeuing from the front.
  *
@@ -34,7 +34,6 @@ public class LinkedQueue<E> implements Queue<E> {
     }
     /**
      * Add an item to the queue.
-     *
      * O(1), adding to a queue is instant if we keep track of the head and tail.
      *
      * @param item the item to be added
@@ -55,7 +54,6 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Remove an item from the queue.
-     *
      * O(1), dequeuing is instant and involves no loops.
      *
      * @return the item that was removed
@@ -76,7 +74,6 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Checks to see if the queue is empty.
-     *
      * O(1), size access is instant
      *
      * @return true if the queue is empty, false otherwise
@@ -88,7 +85,6 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Returns a count of the number of items in the queue.
-     *
      * O(1), size access is instant
      *
      * @return the number of items in the queue
@@ -100,8 +96,6 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
-     * Most implementations of queues I find have no iterator.
      * O(n) - guaranteed to be O(n) if you iterate through the list once
      *
      * @return an Iterator.

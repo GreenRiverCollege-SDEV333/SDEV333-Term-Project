@@ -1,6 +1,5 @@
 /**
  * Linked Stack
- *
  * Stack that uses linked nodes to store its data
  *
  * @author R.J. Trenchard

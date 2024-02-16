@@ -1,7 +1,6 @@
 /**
  * Resizing Array Stack
- *
- * This stack uses a built in array to store its data.
+ * This stack uses a built-in array to store its data.
  *
  * @author R.J. Trenchard
  * @date 2/15/2024
@@ -77,7 +76,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
     // O(n), linear copy.
     private void copy(E[] from, E[] to) {
         // copy old data to new array
-        int shortest = (to.length < from.length) ? to.length : from.length;
+        int shortest = Math.min(to.length, from.length);
         for (int i = 0; i < shortest; i++) {
             to[i] = from[i];
         }
@@ -85,7 +84,6 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Add an item to the stack.
-     *
      * O(n) - if the buffer is full, we need to copy the whole stack
      *
      * @param item the item to be added
@@ -101,7 +99,6 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Removes the most recently added item from the stack.
-     *
      * O(n) - if the buffer is too large, need to copy array
      *
      * @return the item that was removed
@@ -123,7 +120,6 @@ public class ResizingArrayStack<E> implements Stack<E> {
     /**
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
-     *
      * O(1) - access to peek is instant
      *
      * @return item at the top of the stack.
@@ -138,7 +134,6 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Checks to see if the stack is empty.
-     *
      * O(1) - instant access
      *
      * @return true if the stack is empty, false otherwise
@@ -150,7 +145,6 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Returns a count of the number of items in the stack.
-     *
      * O(1) - access to size is instant
      *
      * @return the number of items in the stack
@@ -162,7 +156,6 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * O(n) - always n elements unless you break early.
      *
      * @return an Iterator.
