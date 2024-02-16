@@ -20,7 +20,7 @@ public class ArrayList<E> implements List<E>
     public void addFront(E item)
     {
         //start at 0, stop at the last element, increment by one
-        for (int i = size; i >= 0; i--)
+        for (int i = size - 1; i >= 0; i--)
         {
             //shift over to the right
             buffer[i + 1] = buffer[i];
@@ -42,6 +42,7 @@ public class ArrayList<E> implements List<E>
         // access the buffer at index size
         // and assign item to this index
         buffer[size] = item;
+        size++;
     }
 
     /**
@@ -55,13 +56,15 @@ public class ArrayList<E> implements List<E>
     {
         // jump to the end of the array and shift the elements over
         // to the right
-        for (int j = size; j >= i; j--)
+        for (int j = size - 1; j >= i; j--)
         {
             // at the next index = current index
             buffer[j + 1] = buffer[j];
         }
         // assign the item at the index
         buffer[i] = item;
+        // increase size
+        size++;
     }
 
     /**
@@ -73,7 +76,13 @@ public class ArrayList<E> implements List<E>
     @Override
     public E get(int i)
     {
-       return (E)buffer[i];
+        if (size == 0)
+            throw new NoSuchElementException("The list is empty");
+        if (i >= buffer.length)
+            throw new IndexOutOfBoundsException("The index is larger than the" +
+                    "size of the list");
+
+       return buffer[i];
     }
 
     /**
@@ -86,6 +95,16 @@ public class ArrayList<E> implements List<E>
     @Override
     public void set(int i, E item)
     {
+        if (size == 0)
+        {
+          buffer[i] = item;
+          size++;
+        }
+
+        if (i >= buffer.length)
+            throw new IndexOutOfBoundsException("The index is larger than the" +
+                    "size of the list");
+
         buffer[i] = item;
     }
 
@@ -97,6 +116,11 @@ public class ArrayList<E> implements List<E>
     @Override
     public E removeFront()
     {
+        if (isEmpty())
+        {
+            throw new NoSuchElementException("The list is empty");
+        }
+
         return buffer[0];
     }
 
@@ -108,6 +132,11 @@ public class ArrayList<E> implements List<E>
     @Override
     public E removeBack()
     {
+        if (isEmpty())
+        {
+            throw new NoSuchElementException("The list is empty");
+        }
+
         return buffer[size - 1];
     }
 
@@ -119,11 +148,23 @@ public class ArrayList<E> implements List<E>
     @Override
     public void remove(E item)
     {
+        if (isEmpty())
+        {
+            throw new NoSuchElementException("The list is empty");
+        }
+
         // get to the specific index to where the item is
         // via iterating an index variable
         int index = 0;
         while (buffer[index] != item)
+        {
             index++;
+            if (index >= buffer.length)
+            {
+                throw new IndexOutOfBoundsException("The element does" +
+                        "not exist");
+            }
+        }
 
         // shift elements over to the left using the index
         // increase until we get to
@@ -145,12 +186,18 @@ public class ArrayList<E> implements List<E>
     @Override
     public E remove(int i)
     {
+        if (size == 0)
+            throw new NoSuchElementException("The list is empty");
+        if (i >= buffer.length || i >= size)
+            throw new IndexOutOfBoundsException("The index is larger than the" +
+                    "size of the list");
+
         // assign the item at the given index to a variable
         E itemRemoved = buffer[i];
 
         // shift elements over to the left using the index
         // increase until we get to
-        for (int j = i; j <= size; j++)
+        for (int j = i; j <= size - 1; j++)
         {
             // buffer[1] = buffer[2]
             buffer[j] = buffer[j + 1];
@@ -170,6 +217,9 @@ public class ArrayList<E> implements List<E>
     @Override
     public boolean contains(E item)
     {
+        if (size == 0)
+            throw new IndexOutOfBoundsException("The list is empty");
+
         for (int i = 0; i < size; i++)
         {
             if (buffer[i].equals(item))
