@@ -97,6 +97,5 @@ public class LinkedStack<E> implements Stack<E> {
             current = current.next;
             return item;
         }
-        public void remove() {}
     }
 }

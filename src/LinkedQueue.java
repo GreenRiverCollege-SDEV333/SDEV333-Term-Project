@@ -91,6 +91,5 @@ public class LinkedQueue<E> implements Queue<E> {
             current = current.next;
             return item;
         }
-        public void remove() {}
     }
 }

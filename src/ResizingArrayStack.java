@@ -101,6 +101,5 @@ public class ResizingArrayStack<E> implements Stack<E> {
             i--;
             return buffer[i];
         }
-        public void remove() {}
     }
 }
