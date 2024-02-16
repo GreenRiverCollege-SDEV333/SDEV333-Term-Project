@@ -5,6 +5,11 @@ import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The ArrayListTest class is used for testing the functionalities of the ArrayList class.
+ *
+ * @author Braedon Billingsley
+ */
 class ArrayListTest {
 
     private ArrayList<Integer> list;

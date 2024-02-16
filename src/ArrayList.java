@@ -277,7 +277,7 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     * O(1) or constant time. The returned iterator's hasNext() and next()
+     * O(1) or constant time. The returned iterators hasNext() and next()
      * methods also have O(1) constant time but iterating over entire
      * set of elements will take O(n) time or linear time complexity
      * .
@@ -285,7 +285,7 @@ public class ArrayList<E> implements List<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
             private int current = 0; // keep track of current index
             /**
              * Returns {@code true} if the iteration has more elements.

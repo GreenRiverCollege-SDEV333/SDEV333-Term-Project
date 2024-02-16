@@ -1,11 +1,21 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * LinkedStack represents a stack data structure implemented using a linked list.
+ * It implements the Stack interface.
+ *
+ * @author Braedon Billingsley
+ * @param <E> the class / data type of the items in the stack
+ */
 public class LinkedStack<E> implements Stack<E> {
 
     private Node first; // top of stack (most recently added node)
     private int size; // number of items
 
+    /**
+     * Constructs an empty LinkedStack.
+     */
     public LinkedStack() { // default constructor
         first = null;
         size = 0;
@@ -15,9 +25,10 @@ public class LinkedStack<E> implements Stack<E> {
         Node next;
     }
     /**
-     * Add an item to the stack.
+     * Add an item into the LinkedStack.
+     * The worst case time complexity of this method is O(1).
      *
-     * @param item the item to be added
+     * @param item  item to add into the stack.
      */
     @Override
     public void push(E item) {
@@ -31,8 +42,9 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Removes the most recently added item from the stack.
+     * The worst case time complexity of this method is O(1).
      *
-     * @return the item that was removed
+     * @return the item that was removed.
      */
     @Override
     public E pop() {
@@ -47,7 +59,7 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Returns the item at the top of the stack.
-     * Does not modify the stack or the item at the top.
+     * The worst case time complexity of this method is O(1).
      *
      * @return item at the top of the stack.
      */
@@ -60,9 +72,10 @@ public class LinkedStack<E> implements Stack<E> {
     }
 
     /**
-     * Checks to see if the stack is empty.
+     * Checks if the LinkedStack is empty.
+     * The worst case time complexity of this method is O(1).
      *
-     * @return true if the stack is empty, false otherwise
+     * @return true if LinkedStack is empty, false otherwise.
      */
     @Override
     public boolean isEmpty() {
@@ -70,9 +83,10 @@ public class LinkedStack<E> implements Stack<E> {
     }
 
     /**
-     * Returns a count of the number of items in the stack.
+     * Returns the size of the LinkedStack.
+     * The worst case time complexity of this method is O(1).
      *
-     * @return the number of items in the stack
+     * @return size of the LinkedStack.
      */
     @Override
     public int size() {
@@ -80,7 +94,8 @@ public class LinkedStack<E> implements Stack<E> {
     }
 
     /**
-     * Returns an iterator over elements of type {@code T}.
+     * Returns an iterator over a set of elements of type {@code E}.
+     * The worst case time complexity of this method is O(1).
      *
      * @return an Iterator.
      */

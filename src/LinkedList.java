@@ -1,6 +1,12 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * LinkedList is an implementation of the List interface and Iterable interface.
+ *
+ * @author Braedon Billingsley
+ * @param <E> the class / data type of the items in the list.
+ */
 public class LinkedList<E> implements List<E>, Iterable<E> {
     private Node<E> front;  // Reference to the first node
     private int size;
@@ -316,14 +322,14 @@ public class LinkedList<E> implements List<E>, Iterable<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     * The iterator's `hasNext()` and `next()` methods have
+     * The iterators `hasNext()` and `next()` methods have
      * a time complexity of O(1) or constant time.
      *
      * @return an Iterator.
      */
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() { // returns anonymous class implementing Iterator<E>
+        return new Iterator<>() { // returns anonymous class implementing Iterator<E>
             private Node<E> current = front; // starts the list
 
             @Override

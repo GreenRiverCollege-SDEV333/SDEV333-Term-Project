@@ -1,9 +1,16 @@
 import java.util.Scanner;
 
+/**
+ * The Stats class represents a simple statistical analysis tool.
+ * It calculates the mean and standard deviation of a collection
+ * of numbers or Bag object
+ *
+ * @author Braedon Billingsley.
+ */
 public class Stats {
     public static void main(String[] args) {
         Scanner in = new Scanner("100 99 101 120 98 107 109 81 101 90");
-        Bag<Double> numbers = new LinkedBag<Double>();
+        Bag<Double> numbers = new LinkedBag<>();
         while (in.hasNextDouble()) {
             numbers.add(in.nextDouble());
         }

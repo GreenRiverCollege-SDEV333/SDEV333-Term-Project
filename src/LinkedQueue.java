@@ -1,11 +1,21 @@
 import java.util.Iterator;
 
+/**
+ * LinkedQueue is an implementation of the Queue interface that
+ * uses a linked list to store the elements.
+ *
+ * @author Braedon Billingsley
+ * @param <E> the class / data type of the items in the queue
+ */
 public class LinkedQueue<E> implements Queue<E> {
 
     private Node first; // link to least recently added node
     private Node last; // link to most recently added node
     private int size; // number of items on the queue
 
+    /**
+     * Constructs an empty LinkedQueue.
+     */
     public LinkedQueue() {
         first = null;
         last = null;
@@ -17,9 +27,10 @@ public class LinkedQueue<E> implements Queue<E> {
     }
 
     /**
-     * Add an item to the queue.
+     * Add an item into the LinkedQueue.
+     * The worst case time complexity of this method is O(1).
      *
-     * @param item the item to be added
+     * @param item  item to add into the queue.
      */
     @Override
     public void enqueue(E item) {
@@ -38,9 +49,10 @@ public class LinkedQueue<E> implements Queue<E> {
     }
 
     /**
-     * Remove an item from the queue.
+     * Removes an item from the LinkedQueue.
+     * The worst case time complexity of this method is O(1).
      *
-     * @return the item that was removed
+     * @return the item that was removed.
      */
     @Override
     public E dequeue() {
@@ -54,9 +66,10 @@ public class LinkedQueue<E> implements Queue<E> {
     }
 
     /**
-     * Checks to see if the queue is empty.
+     * Checks if the LinkedQueue is empty.
+     * The worst case time complexity of this method is O(1).
      *
-     * @return true if the queue is empty, false otherwise
+     * @return true if LinkedQueue is empty, false otherwise.
      */
     @Override
     public boolean isEmpty() {
@@ -64,9 +77,10 @@ public class LinkedQueue<E> implements Queue<E> {
     }
 
     /**
-     * Returns a count of the number of items in the queue.
+     * Returns the size of the LinkedQueue.
+     * The worst case time complexity of this method is O(1).
      *
-     * @return the number of items in the queue
+     * @return size of the LinkedQueue.
      */
     @Override
     public int size() {
@@ -74,7 +88,8 @@ public class LinkedQueue<E> implements Queue<E> {
     }
 
     /**
-     * Returns an iterator over elements of type {@code T}.
+     * Returns an iterator over a set of elements of type {@code E}.
+     * The worst case time complexity of this method is O(1).
      *
      * @return an Iterator.
      */
@@ -83,9 +98,23 @@ public class LinkedQueue<E> implements Queue<E> {
     }
     private class ListIterator implements Iterator<E> {
         private Node current = first;
+
+        /**
+         * Checks if there are more elements in the LinkedQueue.
+         * The worst case time complexity of this method is O(1).
+         *
+         * @return true if there are more elements, false otherwise.
+         */
         public boolean hasNext() {
             return current != null;
         }
+
+        /**
+         * Returns the next element in the LinkedQueue.
+         * The worst case time complexity of this method is O(1).
+         *
+         * @return the next element in the LinkedQueue.
+         */
         public E next() {
             E item = current.item;
             current = current.next;
