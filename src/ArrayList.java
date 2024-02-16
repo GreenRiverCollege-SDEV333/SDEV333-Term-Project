@@ -1,9 +1,16 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class ArrayList<E> implements List<E>
 {
+    private E[] buffer;
+    private int size;
 
-
+    public ArrayList()
+    {
+       buffer = (E[]) new Object[10];
+       size = 0;
+    }
     /**
      * Add item to the front.
      *
@@ -12,7 +19,16 @@ public class ArrayList<E> implements List<E>
     @Override
     public void addFront(E item)
     {
-
+        //start at 0, stop at the last element, increment by one
+        for (int i = size; i >= 0; i--)
+        {
+            //shift over to the right
+            buffer[i + 1] = buffer[i];
+        }
+        // put the value at th front of the array
+        // and increment the size
+        buffer[0] = item;
+        size++;
     }
 
     /**
@@ -23,7 +39,9 @@ public class ArrayList<E> implements List<E>
     @Override
     public void addBack(E item)
     {
-
+        // access the buffer at index size
+        // and assign item to this index
+        buffer[size] = item;
     }
 
     /**
@@ -35,7 +53,15 @@ public class ArrayList<E> implements List<E>
     @Override
     public void add(int i, E item)
     {
-
+        // jump to the end of the array and shift the elements over
+        // to the right
+        for (int j = size; j >= i; j--)
+        {
+            // at the next index = current index
+            buffer[j + 1] = buffer[j];
+        }
+        // assign the item at the index
+        buffer[i] = item;
     }
 
     /**
@@ -47,7 +73,7 @@ public class ArrayList<E> implements List<E>
     @Override
     public E get(int i)
     {
-        return null;
+       return (E)buffer[i];
     }
 
     /**
@@ -60,7 +86,7 @@ public class ArrayList<E> implements List<E>
     @Override
     public void set(int i, E item)
     {
-
+        buffer[i] = item;
     }
 
     /**
@@ -71,7 +97,7 @@ public class ArrayList<E> implements List<E>
     @Override
     public E removeFront()
     {
-        return null;
+        return buffer[0];
     }
 
     /**
@@ -82,7 +108,7 @@ public class ArrayList<E> implements List<E>
     @Override
     public E removeBack()
     {
-        return null;
+        return buffer[size - 1];
     }
 
     /**
@@ -93,7 +119,21 @@ public class ArrayList<E> implements List<E>
     @Override
     public void remove(E item)
     {
+        // get to the specific index to where the item is
+        // via iterating an index variable
+        int index = 0;
+        while (buffer[index] != item)
+            index++;
 
+        // shift elements over to the left using the index
+        // increase until we get to
+        for (int i = index; i <= size - 1; i++)
+        {
+            // buffer[1] = buffer[2]
+            buffer[i] = buffer[i + 1];
+        }
+        // decrease the size
+        size--;
     }
 
     /**
@@ -105,7 +145,20 @@ public class ArrayList<E> implements List<E>
     @Override
     public E remove(int i)
     {
-        return null;
+        // assign the item at the given index to a variable
+        E itemRemoved = buffer[i];
+
+        // shift elements over to the left using the index
+        // increase until we get to
+        for (int j = i; j <= size; j++)
+        {
+            // buffer[1] = buffer[2]
+            buffer[j] = buffer[j + 1];
+        }
+        // decrease the size
+        size--;
+
+        return itemRemoved;
     }
 
     /**
@@ -117,6 +170,11 @@ public class ArrayList<E> implements List<E>
     @Override
     public boolean contains(E item)
     {
+        for (int i = 0; i < size; i++)
+        {
+            if (buffer[i].equals(item))
+                return true;
+        }
         return false;
     }
 
@@ -128,7 +186,7 @@ public class ArrayList<E> implements List<E>
     @Override
     public boolean isEmpty()
     {
-        return false;
+        return size == 0;
     }
 
     /**
@@ -139,7 +197,7 @@ public class ArrayList<E> implements List<E>
     @Override
     public int size()
     {
-        return 0;
+        return size;
     }
 
     /**
@@ -150,6 +208,48 @@ public class ArrayList<E> implements List<E>
     @Override
     public Iterator<E> iterator()
     {
-        return null;
+        return new ArrayListIterator();
     }
+
+    private class ArrayListIterator implements Iterator<E>
+    {
+        private int i;
+
+        public ArrayListIterator()
+        {
+            i = 0;
+        }
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext()
+        {
+            return i < size;
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
+         */
+        @Override
+        public E next()
+        {
+            if (i >= size)
+            {
+                throw new NoSuchElementException("i is now out of bounds");
+            }
+            E currentValue = buffer[i];
+            i++;
+
+            return currentValue;
+        }
+    }
+
 }
