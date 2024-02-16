@@ -110,8 +110,6 @@ class DequeImplTest {
 
         assertTrue(deque.isEmpty());
 
-
-
     }
 
     @Test
