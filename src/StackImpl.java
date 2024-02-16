@@ -31,6 +31,7 @@ public class StackImpl<E> implements Stack<E> {
     @Override
     public void push(E item) {
         tail = new Node(item, tail);
+        size++;
     }
 
     /**
