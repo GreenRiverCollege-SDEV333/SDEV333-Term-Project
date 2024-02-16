@@ -5,10 +5,10 @@ import java.util.NoSuchElementException;
 
 public class ResizingArrayStack<E> implements Stack<E> {
 
-    private final int DEFAULT_BUFFER = 10;
-    private final double MAX_CAPACITY = 0.75;
+    private static final int DEFAULT_BUFFER = 10;
+    private static final double MAX_CAPACITY = 0.75;
 
-    private final double MIN_CAPACITY = 0.5;
+    private static final double MIN_CAPACITY = 0.5;
 
     private E[] stack;
     private int size;
