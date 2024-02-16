@@ -1,3 +1,12 @@
+/**
+ * Resizing Array Stack
+ *
+ * This stack uses a built in array to store its data.
+ *
+ * @author R.J. Trenchard
+ * @date 2/15/2024
+ */
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -18,17 +27,24 @@ public class ResizingArrayStack<E> implements Stack<E> {
         this.size = 0;
     }
 
+    // for testing
     protected int getArraySize() {
         return stack.length;
     }
 
+    // resizes the array when capacity is overfull or underfull
     private void autoResize() {
         double capacity = this.size() / (double)stack.length;
 
         // grow when we reach max capacity
-        if (capacity > MAX_CAPACITY) grow();
-            // shrink if we're below the min capacity, but the default buffer must have a size.
-        else if (capacity < MIN_CAPACITY && stack.length > DEFAULT_BUFFER) shrink();
+        if (capacity > MAX_CAPACITY) {
+            grow();
+        }
+
+        // shrink if we're below the min capacity, but the default buffer must have a size.
+        else if (capacity < MIN_CAPACITY && stack.length > DEFAULT_BUFFER) {
+            shrink();
+        }
     }
 
     private void grow() {
@@ -48,7 +64,9 @@ public class ResizingArrayStack<E> implements Stack<E> {
         int newLength = stack.length - DEFAULT_BUFFER;
 
         // don't try if the new length is too small
-        if (newLength < DEFAULT_BUFFER) return;
+        if (newLength < DEFAULT_BUFFER) {
+            return;
+        }
 
         // create new array of a smaller size
         stack = (E[]) new Object[newLength];
@@ -90,7 +108,9 @@ public class ResizingArrayStack<E> implements Stack<E> {
      */
     @Override
     public E pop() {
-        if (this.isEmpty()) throw new NoSuchElementException();
+        if (this.isEmpty()) {
+            throw new NoSuchElementException();
+        }
         
         autoResize();
         
@@ -110,7 +130,9 @@ public class ResizingArrayStack<E> implements Stack<E> {
      */
     @Override
     public E peek() {
-        if (this.isEmpty()) throw new NoSuchElementException();
+        if (this.isEmpty()) {
+            throw new NoSuchElementException();
+        }
         return stack[size-1];
     }
 
@@ -163,7 +185,9 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
             @Override
             public E next() {
-                if (!hasNext()) throw new NoSuchElementException();
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
                 E data = readonly[it];
                 it++;
                 return data;
