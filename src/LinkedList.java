@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedList<E extends Comparable<E>> implements List<E>{
     private class Node {
@@ -216,6 +217,33 @@ public class LinkedList<E extends Comparable<E>> implements List<E>{
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return (Iterator<E>) new LinkedListIterator();
+    }
+    private class LinkedListIterator implements Iterator<Integer> {
+
+        private Node current;
+
+        public LinkedListIterator() {
+            current = head;
+        }
+
+        @Override
+        public boolean hasNext() {
+            if (current == null || current.next == null) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        @Override
+        public Integer next() {
+            if (current == null) {
+                throw new NoSuchElementException("There is no next one to go to!!");
+            }
+            int item = (int) current.data;
+            current = current.next;
+            return item;
+        }
     }
 }

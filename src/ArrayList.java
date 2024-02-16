@@ -193,7 +193,28 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+
+        return new ListIterator();
+    }
+
+    private class ListIterator implements Iterator<E> {
+        private int i;
+        private ListIterator() {
+            i = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            if (buffer[i + 1] != null) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public E next() {
+            return buffer[++i];
+        }
     }
 
     /**
