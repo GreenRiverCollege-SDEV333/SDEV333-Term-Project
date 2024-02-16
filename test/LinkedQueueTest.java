@@ -4,11 +4,11 @@ import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class QueueImplTest {
+class LinkedQueueTest {
 
     @Test
     void enqueue() {
-        QueueImpl<String> queue = new QueueImpl<>();
+        LinkedQueue<String> queue = new LinkedQueue<>();
 
         assertEquals(0, queue.size());
 
@@ -24,7 +24,7 @@ class QueueImplTest {
 
     @Test
     void dequeue() {
-        QueueImpl<String> queue = new QueueImpl<>();
+        LinkedQueue<String> queue = new LinkedQueue<>();
 
         queue.enqueue("1");
         queue.enqueue("2");
@@ -51,7 +51,7 @@ class QueueImplTest {
 
     @Test
     void isEmpty() {
-        QueueImpl<String> queue = new QueueImpl<>();
+        LinkedQueue<String> queue = new LinkedQueue<>();
 
         assertTrue(queue.isEmpty());
 
@@ -64,7 +64,7 @@ class QueueImplTest {
 
     @Test
     void size() {
-        QueueImpl<String> queue = new QueueImpl<>();
+        LinkedQueue<String> queue = new LinkedQueue<>();
 
         assertEquals(0, queue.size());
 
@@ -79,7 +79,7 @@ class QueueImplTest {
     @Test
     void iterator() {
         assertThrows( NoSuchElementException.class, () -> {
-            QueueImpl<String> queue = new QueueImpl<>();
+            LinkedQueue<String> queue = new LinkedQueue<>();
             var it = queue.iterator();
             it.next();
         });

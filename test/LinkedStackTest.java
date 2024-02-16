@@ -4,11 +4,11 @@ import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StackImplTest {
+class LinkedStackTest {
 
     @Test
     void push() {
-        StackImpl<String> stack = new StackImpl<>();
+        LinkedStack<String> stack = new LinkedStack<>();
 
         assertEquals(stack.size(), 0);
 
@@ -21,7 +21,7 @@ class StackImplTest {
 
     @Test
     void pop() {
-        StackImpl<String> stack = new StackImpl<>();
+        LinkedStack<String> stack = new LinkedStack<>();
 
         stack.push("1");
         stack.push("2");
@@ -40,7 +40,7 @@ class StackImplTest {
 
     @Test
     void peek() {
-        StackImpl<String> stack = new StackImpl<>();
+        LinkedStack<String> stack = new LinkedStack<>();
 
         stack.push("1");
         stack.push("2");
@@ -62,7 +62,7 @@ class StackImplTest {
 
     @Test
     void isEmpty() {
-        StackImpl<String> stack = new StackImpl<>();
+        LinkedStack<String> stack = new LinkedStack<>();
 
         assertTrue(stack.isEmpty());
 
@@ -75,7 +75,7 @@ class StackImplTest {
 
     @Test
     void size() {
-        StackImpl<String> stack = new StackImpl<>();
+        LinkedStack<String> stack = new LinkedStack<>();
 
         assertEquals(0, stack.size());
 
@@ -95,7 +95,7 @@ class StackImplTest {
     @Test
     void iterator() {
         assertThrows( NoSuchElementException.class, () -> {
-            StackImpl<String> stack = new StackImpl<>();
+            LinkedStack<String> stack = new LinkedStack<>();
             var it = stack.iterator();
             it.next();
         });

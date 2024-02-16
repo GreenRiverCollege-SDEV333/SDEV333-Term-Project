@@ -3,7 +3,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class StackImpl<E> implements Stack<E> {
+public class LinkedStack<E> implements Stack<E> {
 
     int size;
     Node tail;

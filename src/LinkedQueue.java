@@ -3,7 +3,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class QueueImpl<E> implements Queue<E> {
+public class LinkedQueue<E> implements Queue<E> {
 
     int size;
     Node head, tail;
