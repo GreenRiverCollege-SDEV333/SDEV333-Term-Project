@@ -170,12 +170,12 @@ public class ResizingArrayStack<E> implements Stack<E> {
     @NotNull
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
             int it = 0;
 
-            E[] readonly = stack.clone();
+            final E[] readonly = stack.clone();
 
-            int readonly_size = size();
+            final int readonly_size = size();
 
 
             @Override

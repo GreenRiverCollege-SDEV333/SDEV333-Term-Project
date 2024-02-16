@@ -1,3 +1,10 @@
+/**
+ * In progress
+ *
+ * @author R.J. Trenchard
+ * 2/15/2024
+ */
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;

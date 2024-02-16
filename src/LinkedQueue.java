@@ -1,3 +1,13 @@
+/**
+ * LinkedQueue implementation
+ *
+ * This queue uses linked nodes to store data, both a head and a tail
+ * for quick access to enqueuing to the back, and dequeuing from the front.
+ *
+ * @author R.J. Trenchard
+ * 2/15/2024
+ */
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -99,7 +109,7 @@ public class LinkedQueue<E> implements Queue<E> {
     @NotNull
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
             Node cur = head;
 
             @Override

@@ -85,7 +85,7 @@ public class DequeImpl<E> implements Deque<E> {
     /**
      * Add an item to the right end of the deque.
      * O(1), adding right is instant
-     * @param item
+     * @param item item to add
      */
     @Override
     public void pushRight(E item) {
@@ -114,7 +114,7 @@ public class DequeImpl<E> implements Deque<E> {
      *
      * O(1), left access is instant
      *
-     * @return
+     * @return the item on the left end of the queue
      */
     @Override
     public E popLeft() {
@@ -153,7 +153,7 @@ public class DequeImpl<E> implements Deque<E> {
      *
      *  O(1), contrast to something like a linked list, we can instantly access the right end of a dequeue
      *
-     * @return
+     * @return the item on the right end of the queue
      */
     @Override
     public E popRight() {
@@ -197,7 +197,7 @@ public class DequeImpl<E> implements Deque<E> {
     @NotNull
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
             Node cur = head;
 
             @Override

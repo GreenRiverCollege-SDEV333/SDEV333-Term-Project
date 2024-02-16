@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Iterator;
 
 public class ArrayList<E> implements List<E> {
@@ -75,7 +77,7 @@ public class ArrayList<E> implements List<E> {
     // O(n), linear copy.
     private void copy(E[] from, E[] to) {
         // copy old data to new array
-        int shortest = (to.length < from.length) ? to.length : from.length;
+        int shortest = Math.min(to.length, from.length);
         for (int i = 0; i < shortest; i++) {
             to[i] = from[i];
         }
@@ -273,14 +275,15 @@ public class ArrayList<E> implements List<E> {
      *
      * @return an Iterator.
      */
+    @NotNull
     @Override
     public Iterator<E> iterator() {
 
         E[] readOnly = arrayData.clone();
 
-        return new Iterator<E>() {
+        return new Iterator<>() {
             int index = 0;
-            int size = size();
+            final int size = size();
 
             @Override
             public boolean hasNext() {

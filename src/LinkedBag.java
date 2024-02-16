@@ -1,3 +1,12 @@
+/**
+ * Linked Bag implementation
+ *
+ * Bag uses linked nodes to store its data
+ *
+ * @author R.J. trenchard
+ * 2/15/2024
+ */
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -72,7 +81,7 @@ public class LinkedBag<E> implements Bag<E> {
     @NotNull
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
             Node cur = head;
             @Override
             public boolean hasNext() {

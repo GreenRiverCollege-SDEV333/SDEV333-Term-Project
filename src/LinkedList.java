@@ -1,3 +1,12 @@
+/**
+ * List implementation with linked nodes
+ *
+ * Allows adding elements without resizing in chunks
+ *
+ * @author R.J. Trenchard
+ * 2/15/2024
+ */
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -12,10 +21,6 @@ public class LinkedList<E> implements List<E> {
         Node next;
         E data;
 
-        public Node() {
-            this(null,null);
-        }
-
         public Node(E data) {
             this(data, null);
         }
@@ -24,6 +29,11 @@ public class LinkedList<E> implements List<E> {
             this.data = data;
             this.next = next;
         }
+    }
+
+    public LinkedList() {
+        head = null;
+        size = 0;
     }
 
 
@@ -275,7 +285,7 @@ public class LinkedList<E> implements List<E> {
     @NotNull
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
             Node cur = head;
 
             @Override

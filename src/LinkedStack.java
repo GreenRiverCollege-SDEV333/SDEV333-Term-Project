@@ -1,3 +1,12 @@
+/**
+ * Linked Stack
+ *
+ * Stack that uses linked nodes to store its data
+ *
+ * @author R.J. Trenchard
+ * 2/15/2024
+ */
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -13,14 +22,15 @@ public class LinkedStack<E> implements Stack<E> {
 
         Node prev;
 
-        public Node(E data) {
-            this(data, null);
-        }
-
         public Node(E data, Node prev) {
             this.data = data;
             this.prev = prev;
         }
+    }
+
+    public LinkedStack() {
+        tail = null;
+        size = 0;
     }
 
     /**
@@ -92,7 +102,7 @@ public class LinkedStack<E> implements Stack<E> {
     @NotNull
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
             Node cur = tail;
             @Override
             public boolean hasNext() {
