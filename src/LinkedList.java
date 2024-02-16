@@ -1,6 +1,7 @@
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedList<E> implements List<E> {
 
@@ -106,8 +107,9 @@ public class LinkedList<E> implements List<E> {
         Node cur = head;
 
         // wind to index and return that data
-        for (int j = 0; j < i; j++)
+        for (int j = 0; j < i; j++) {
             cur = cur.next;
+        }
 
         return cur.data;
     }
@@ -129,8 +131,9 @@ public class LinkedList<E> implements List<E> {
 
         // wind to index, set that item.
         Node cur = head;
-        for (int j = 0; j < i; j++)
+        for (int j = 0; j < i; j++) {
             cur = cur.next;
+        }
 
         cur.data = item;
 
@@ -230,7 +233,9 @@ public class LinkedList<E> implements List<E> {
     public boolean contains(E item) {
         Node cur = head;
         for (int i = 0; i < size(); i++) {
-            if (cur.data.equals(item)) return true;
+            if (cur.data.equals(item)) {
+                return true;
+            }
             cur = cur.next;
         }
         return false;
@@ -280,6 +285,7 @@ public class LinkedList<E> implements List<E> {
 
             @Override
             public E next() {
+                if (!hasNext()) throw new NoSuchElementException();
                 E data = cur.data;
                 cur = cur.next;
                 return data;

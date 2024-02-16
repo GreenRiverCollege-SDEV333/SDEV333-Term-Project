@@ -1,3 +1,12 @@
+/**
+ * Double-ended Queue implementation
+ *
+ * Can add and remove from both sides of the queue.
+ *
+ * @author R.J. Trenchard
+ * @date 2/15/2024
+ */
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;

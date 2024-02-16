@@ -82,6 +82,7 @@ public class LinkedBag<E> implements Bag<E> {
             @Override
             public E next() {
                 if (!hasNext()) throw new NoSuchElementException();
+
                 E data = cur.data;
                 cur = cur.next;
                 return data;

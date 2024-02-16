@@ -41,7 +41,9 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public E pop() {
-        if (tail == null) throw new NoSuchElementException();
+        if (tail == null) {
+            throw new NoSuchElementException();
+        }
         size--;
         E data = tail.data;
         tail = tail.prev;
@@ -56,7 +58,9 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public E peek() {
-        if (tail == null) throw new NoSuchElementException();
+        if (tail == null) {
+            throw new NoSuchElementException();
+        }
         return tail.data;
     }
 
@@ -97,7 +101,9 @@ public class LinkedStack<E> implements Stack<E> {
 
             @Override
             public E next() {
-                if (!hasNext()) throw new NoSuchElementException();
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
 
                 E data = cur.data;
                 cur = cur.prev;

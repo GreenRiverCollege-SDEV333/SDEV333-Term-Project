@@ -52,12 +52,12 @@ public class LinkedQueue<E> implements Queue<E> {
      */
     @Override
     public E dequeue() {
-
+        // check if there's anything in the queue
         if (size == 0) throw new NoSuchElementException();
 
         size--;
 
-        // dequeuing should be generally safe unless trying to access something that isn't there.
+        // dequeuing should be generally safe
         E data = head.data;
         head = head.next;
 

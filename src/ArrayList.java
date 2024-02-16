@@ -42,7 +42,9 @@ public class ArrayList<E> implements List<E> {
 
     // general index checker
     private void checkIfInRange(int i) {
-        if (i < 0 || i >= arraySize) throw new IndexOutOfBoundsException(String.format("%d is not a valid index.", i));
+        if (i < 0 || i >= arraySize) {
+            throw new IndexOutOfBoundsException(String.format("%d is not a valid index.", i));
+        }
     }
 
     private void grow() {
