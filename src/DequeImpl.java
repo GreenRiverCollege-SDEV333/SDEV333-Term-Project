@@ -31,6 +31,11 @@ public class DequeImpl<E> implements Deque<E> {
         }
     }
 
+    public DequeImpl() {
+        int size = 0;
+        head = tail = null;
+    }
+
     /**
      * Checks if the deque is empty.
      * O(1), size access is recorded during node creation/deletion

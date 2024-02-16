@@ -16,6 +16,11 @@ public class LinkedBag<E> implements Bag<E> {
     int size;
     Node head, tail;
 
+    public LinkedBag(){
+        size = 0;
+        head = tail = null;
+    }
+
     private class Node {
         E data;
 

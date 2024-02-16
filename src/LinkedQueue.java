@@ -18,6 +18,11 @@ public class LinkedQueue<E> implements Queue<E> {
     int size;
     Node head, tail;
 
+    public LinkedQueue() {
+        size = 0;
+        head = tail = null;
+    }
+
     private class Node {
         E data;
 

@@ -16,6 +16,11 @@ public class LinkedStack<E> implements Stack<E> {
     int size;
     Node tail;
 
+    public LinkedStack() {
+        tail = null;
+        size = 0;
+    }
+
     private class Node {
         E data;
 
@@ -25,11 +30,6 @@ public class LinkedStack<E> implements Stack<E> {
             this.data = data;
             this.prev = prev;
         }
-    }
-
-    public LinkedStack() {
-        tail = null;
-        size = 0;
     }
 
     /**

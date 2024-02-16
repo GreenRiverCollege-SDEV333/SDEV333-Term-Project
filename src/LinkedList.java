@@ -16,7 +16,13 @@ public class LinkedList<E> implements List<E> {
     Node head;
     int size;
 
-    protected class Node {
+    public LinkedList() {
+        head = null;
+        size = 0;
+    }
+
+
+    private class Node {
         Node next;
         E data;
 
@@ -29,12 +35,6 @@ public class LinkedList<E> implements List<E> {
             this.next = next;
         }
     }
-
-    public LinkedList() {
-        head = null;
-        size = 0;
-    }
-
 
     /**
      * Add item to the front.
