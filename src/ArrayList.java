@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.ListIterator;
 
 public class ArrayList<E> implements List<E>{
 
@@ -91,6 +90,7 @@ public class ArrayList<E> implements List<E>{
         }
        E removed = buffer[i];
        buffer[i] = item;
+       size++;
        return removed;
     }
     /**
@@ -127,8 +127,15 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public void remove(E item) {
+        for (int i = 0; i < size; i++) {
+            if(item.equals(buffer[i])){
+                for (int j = i; j < size; j++) {
+                    buffer[j] = buffer[j + 1];
+                }
+                size--;
 
-
+            }
+        }
     }
     /**
      * Remove item at a specified index.
@@ -159,6 +166,11 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public boolean contains(E item) {
+        for (int i = 0; i < size; i++) {
+            if(item.equals(buffer[i])){
+                return true;
+            }
+        }
         return false;
     }
     /**

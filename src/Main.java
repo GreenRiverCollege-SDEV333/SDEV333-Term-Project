@@ -16,6 +16,9 @@ public class Main {
         obj.addBack("hi");
         obj.addBack("bye");
         obj.addFront("first");
+        obj.set(1,"set");
+        obj.remove("bye");
+        System.out.println(obj.contains("B"));
         System.out.println(obj);
 
        // System.out.println(obj.iterator());
@@ -24,6 +27,8 @@ public class Main {
         linked.addFront("hello");
         linked.addBack("dance");
         linked.add(0,"55.5");
+        linked.set(2,"set");
+        System.out.println(linked);
 
 
         Iterator<String> iterating = linked.iterator();

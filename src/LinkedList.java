@@ -1,4 +1,5 @@
 import java.util.Iterator;
+
 public class LinkedList<E> implements List<E> {
     // define  what a node is
     private class Node {
@@ -7,10 +8,11 @@ public class LinkedList<E> implements List<E> {
 
         @Override
         public String toString() {
-            return  data +
+            return data +
                     ", " + next;
         }
     }
+
     // set up the head
     private Node head;
 
@@ -23,6 +25,7 @@ public class LinkedList<E> implements List<E> {
 
         size = 0;
     }
+
     /**
      * Add item to the front.
      *
@@ -46,6 +49,7 @@ public class LinkedList<E> implements List<E> {
             size++;
         }
     }
+
     /**
      * Add item to the back.
      *
@@ -71,6 +75,7 @@ public class LinkedList<E> implements List<E> {
             size++;
         }
     }
+
     /**
      * Add an item at specified index (position).
      *
@@ -103,6 +108,7 @@ public class LinkedList<E> implements List<E> {
             size++;
         }
     }
+
     /**
      * Get the item at a specified index.
      *
@@ -113,7 +119,7 @@ public class LinkedList<E> implements List<E> {
     public E get(int i) {
         Node temp;
         E result = null;
-        if (i >= size || i < 0) {
+        if (i > size || i < 0) {
             throw new IndexOutOfBoundsException();
         } else {
             temp = head;
@@ -128,6 +134,7 @@ public class LinkedList<E> implements List<E> {
         }
         return result;
     }
+
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
@@ -138,6 +145,27 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E set(int i, E item) {
+        Node theNewOne = new Node();
+        theNewOne.data = item;
+        if (i > size) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            if (size == 0) {
+                head = theNewOne;
+            } else {
+                Node temp = head;
+                for (int j = 0; j < size; j++) {
+                    if (j == i) {
+                        temp.data = theNewOne.data;
+                    } else {
+                        temp = temp.next;
+                    }
+
+                }
+
+            }
+        }
+        size++;
         return null;
     }
 
@@ -148,6 +176,9 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E removeFront() {
+        if (size <= 0) {
+            throw new IndexOutOfBoundsException();
+        }
         E removed = (E) head;
         if (head == null) {
             //this list is currently empty
@@ -168,6 +199,9 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public E removeBack() {
+        if (size <= 0) {
+            throw new IndexOutOfBoundsException();
+        }
         Node temp = null;
         if (head == null) {
             //this list is currently empty
@@ -185,6 +219,7 @@ public class LinkedList<E> implements List<E> {
         }
         return (E) temp;
     }
+
     /**
      * Remove item from the list
      *
@@ -195,7 +230,7 @@ public class LinkedList<E> implements List<E> {
         Node prev = null;
         Node temp = head;
         for (int i = 0; i < size; i++) {
-            if(temp.data.equals(item)){
+            if (temp.data.equals(item)) {
                 prev = temp;
                 temp = temp.next;
             }
@@ -313,7 +348,6 @@ public class LinkedList<E> implements List<E> {
                 ", size=" + size +
                 '}';
     }
-
 
 
 }

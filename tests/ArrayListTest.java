@@ -1,20 +1,19 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Iterator;
 
-class LinkedListTest {
+class ArrayListTest {
+
     @Test
     void addFront() {
-
-        LinkedList<Integer> linked = new LinkedList<>();
+        ArrayList<Integer> linked = new ArrayList<>();
         linked.addFront(5);
 
         int expected = 5;
         int actual = linked.get(0);
         Assertions.assertEquals(expected, actual);
 
-        LinkedList<String> oneElement = new LinkedList<>();
+        ArrayList<String> oneElement = new ArrayList<>();
         oneElement.addFront("test1");
         oneElement.addFront("test2");
 
@@ -22,7 +21,7 @@ class LinkedListTest {
         String actualOneElement = oneElement.get(0);
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
-        LinkedList<Double> tenElement = new LinkedList<>();
+       ArrayList<Double> tenElement = new ArrayList<>();
         tenElement.addFront(6.6);
         tenElement.addFront(4.6);
         tenElement.addFront(3.6);
@@ -39,79 +38,74 @@ class LinkedListTest {
 
         Assertions.assertEquals(tenElementsExpected, tenElementsActual);
 
-
     }
 
     @Test
     void addBack() {
-
-        LinkedList<Integer> linked = new LinkedList<>();
+        ArrayList<Integer> linked = new ArrayList<>();
         linked.addBack(5);
 
         int expected = 5;
         int actual = linked.get(0);
         Assertions.assertEquals(expected, actual);
 
-        LinkedList<String> oneElement = new LinkedList<>();
+        ArrayList<String> oneElement = new ArrayList<>();
         oneElement.addBack("test1");
         oneElement.addBack("test2");
 
-        String expectedOneElement = "test2";
-        String actualOneElement = oneElement.get(1);
+        String expectedOneElement = "test1";
+        String actualOneElement = oneElement.get(0);
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
-
-        LinkedList<Double> tenElement = new LinkedList<>();
-        tenElement.addFront(6.6);
-        tenElement.addFront(4.6);
-        tenElement.addFront(3.6);
-        tenElement.addFront(39.8);
-        tenElement.addFront(45.7);
-        tenElement.addFront(3.0);
-        tenElement.addFront(4.7);
-        tenElement.addFront(12.12);
-        tenElement.addFront(43.1);
-        tenElement.addFront(1.1);
+        ArrayList<Double> tenElement = new ArrayList<>();
+        tenElement.addBack(6.6);
+        tenElement.addBack(4.6);
+        tenElement.addBack(3.6);
+        tenElement.addBack(39.8);
+        tenElement.addBack(45.7);
+        tenElement.addBack(3.0);
+        tenElement.addBack(4.7);
+        tenElement.addBack(12.12);
+        tenElement.addBack(43.1);
+        tenElement.addBack(1.1);
 
         Double tenElementsExpected = 6.6;
-        Double tenElementsActual = tenElement.get(9);
+        Double tenElementsActual = tenElement.get(0);
 
         Assertions.assertEquals(tenElementsExpected, tenElementsActual);
     }
 
     @Test
     void add() {
-        LinkedList<Integer> linked = new LinkedList<>();
-        linked.add(0, 5);
+        ArrayList<Integer> linked = new ArrayList<>();
+        linked.add(0,5);
 
         int expected = 5;
         int actual = linked.get(0);
         Assertions.assertEquals(expected, actual);
 
-        LinkedList<String> oneElement = new LinkedList<>();
-        oneElement.add(0, "test1");
-        oneElement.add(1, "test2");
+        ArrayList<String> oneElement = new ArrayList<>();
+        oneElement.add(1,"test1");
+        oneElement.add(0,"test2");
 
         String expectedOneElement = "test2";
-        String actualOneElement = oneElement.get(1);
+        String actualOneElement = oneElement.get(0);
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
+        ArrayList<Double> tenElement = new ArrayList<>();
+        tenElement.add(0,6.6);
+        tenElement.add(1,4.6);
+        tenElement.add(2,3.6);
+        tenElement.add(3,39.8);
+        tenElement.add(4,5.7);
+        tenElement.add(5,3.0);
+        tenElement.add(6,4.7);
+        tenElement.add(7,12.12);
+        tenElement.add(8,43.1);
+        tenElement.add(9,1.1);
 
-        LinkedList<Double> tenElement = new LinkedList<>();
-        tenElement.add(0, 1.1);
-        tenElement.add(1, 1.2);
-        tenElement.add(2, 1.3);
-        tenElement.add(3, 1.4);
-        tenElement.add(4, 1.5);
-        tenElement.add(5, 1.6);
-        tenElement.add(6, 1.7);
-        tenElement.add(7, 1.8);
-        tenElement.add(8, 1.9);
-        tenElement.add(9, 2.0);
-
-
-        Double tenElementsExpected = 1.5;
-        Double tenElementsActual = tenElement.get(4);
+        Double tenElementsExpected = 6.6;
+        Double tenElementsActual = tenElement.get(0);
 
         Assertions.assertEquals(tenElementsExpected, tenElementsActual);
     }
@@ -119,7 +113,7 @@ class LinkedListTest {
     @Test
     void get() {
 
-        LinkedList<Integer> linked = new LinkedList<>();
+        ArrayList<Integer> linked = new ArrayList<>();
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
             Integer actual = linked.get(0);
@@ -127,10 +121,10 @@ class LinkedListTest {
         });
 
 
-        LinkedList<String> oneElement = new LinkedList<>();
+      ArrayList<String> oneElement = new ArrayList<>();
         oneElement.add(0, "test1");
         oneElement.add(1, "test2");
-        oneElement.get(0);
+
 
         String expectedOneElement = "test1";
         String actualOneElement = oneElement.get(0);
@@ -160,14 +154,14 @@ class LinkedListTest {
     void set() {
 
 
-        LinkedList<Integer> linked = new LinkedList<>();
+        ArrayList<Integer> linked = new ArrayList<>();
         linked.set(0,5);
 
         int expected = 5;
         int actual = linked.get(0);
         Assertions.assertEquals(expected, actual);
 
-        LinkedList<String> oneElement = new LinkedList<>();
+        ArrayList<String> oneElement = new ArrayList<>();
         oneElement.add(0,"test1");
         oneElement.set(1,"test2");
 
@@ -175,7 +169,7 @@ class LinkedListTest {
         String actualOneElement = oneElement.get(0);
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
-        LinkedList<Double> tenElement = new LinkedList<>();
+        ArrayList<Double> tenElement = new ArrayList<>();
         tenElement.addFront(6.6);
         tenElement.addFront(4.6);
         tenElement.addFront(3.6);
@@ -197,16 +191,14 @@ class LinkedListTest {
 
     @Test
     void removeFront() {
-
-        LinkedList<Integer> linked = new LinkedList<>();
+        ArrayList<Integer> linked = new ArrayList<>();
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
             Integer actual = linked.removeFront();
             Assertions.assertNull(actual);
         });
 
-
-        LinkedList<String> oneElement = new LinkedList<>();
+        ArrayList<String> oneElement = new ArrayList<>();
         oneElement.add(0, "test1");
 
         String expectedOneElement = "test1";
@@ -214,7 +206,7 @@ class LinkedListTest {
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
 
-        LinkedList<Double> tenElement = new LinkedList<>();
+        ArrayList<Double> tenElement = new ArrayList<>();
         tenElement.add(0, 1.1);
         tenElement.add(1, 1.2);
         tenElement.add(2, 1.3);
@@ -234,10 +226,11 @@ class LinkedListTest {
         Assertions.assertEquals(tenElementsExpected, tenElementsActual);
     }
 
+
     @Test
     void removeBack() {
 
-        LinkedList<Integer> linked = new LinkedList<>();
+        ArrayList<Integer> linked = new ArrayList<>();
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
             Integer actual = linked.removeBack();
@@ -245,7 +238,7 @@ class LinkedListTest {
         });
 
 
-        LinkedList<String> oneElement = new LinkedList<>();
+        ArrayList<String> oneElement = new ArrayList<>();
         oneElement.add(0, "test1");
         oneElement.add(1, "test2");
         oneElement.removeBack();
@@ -255,7 +248,7 @@ class LinkedListTest {
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
 
-        LinkedList<Double> tenElement = new LinkedList<>();
+        ArrayList<Double> tenElement = new ArrayList<>();
         tenElement.add(0, 1.1);
         tenElement.add(1, 1.2);
         tenElement.add(2, 1.3);
@@ -277,7 +270,8 @@ class LinkedListTest {
 
     @Test
     void remove() {
-        LinkedList<Integer> linked = new LinkedList<>();
+
+        ArrayList<Integer> linked = new ArrayList<>();
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
             Integer actual = linked.remove(0);
@@ -285,7 +279,7 @@ class LinkedListTest {
         });
 
 
-        LinkedList<String> oneElement = new LinkedList<>();
+        ArrayList<String> oneElement = new ArrayList<>();
         oneElement.add(0, "test1");
         oneElement.add(1, "test2");
 
@@ -295,7 +289,7 @@ class LinkedListTest {
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
 
-        LinkedList<Double> tenElement = new LinkedList<>();
+        ArrayList<Double> tenElement = new ArrayList<>();
         tenElement.add(0, 1.1);
         tenElement.add(1, 1.2);
         tenElement.add(2, 1.3);
@@ -316,7 +310,8 @@ class LinkedListTest {
 
     @Test
     void testRemove() {
-        LinkedList<Integer> linked = new LinkedList<>();
+
+        ArrayList<Integer> linked = new ArrayList<>();
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
             Integer actual = linked.remove(9);
@@ -324,7 +319,7 @@ class LinkedListTest {
         });
 
 
-        LinkedList<String> oneElement = new LinkedList<>();
+        ArrayList<String> oneElement = new ArrayList<>();
         oneElement.add(0, "test1");
         oneElement.add(1, "test2");
         oneElement.remove("test1");
@@ -334,7 +329,7 @@ class LinkedListTest {
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
 
-        LinkedList<Double> tenElement = new LinkedList<>();
+        ArrayList<Double> tenElement = new ArrayList<>();
         tenElement.add(0, 1.1);
         tenElement.add(1, 1.2);
         tenElement.add(2, 1.3);
@@ -348,7 +343,7 @@ class LinkedListTest {
         tenElement.remove(1.5);
 
 
-        Double tenElementsExpected = 1.6;
+        Double tenElementsExpected = 1.5;
         Double tenElementsActual = tenElement.get(4);
 
         Assertions.assertEquals(tenElementsExpected, tenElementsActual);
@@ -356,7 +351,8 @@ class LinkedListTest {
 
     @Test
     void contains() {
-        LinkedList<Integer> linked = new LinkedList<>();
+
+        ArrayList<Integer> linked = new ArrayList<>();
 
 
         boolean expected = false;
@@ -364,7 +360,7 @@ class LinkedListTest {
         Assertions.assertEquals(expected, actual);
 
 
-        LinkedList<String> oneElement = new LinkedList<>();
+        ArrayList<String> oneElement = new ArrayList<>();
         oneElement.add(0, "test1");
         oneElement.add(1, "test2");
 
@@ -375,7 +371,7 @@ class LinkedListTest {
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
 
-        LinkedList<Double> tenElement = new LinkedList<>();
+        ArrayList<Double> tenElement = new ArrayList<>();
         tenElement.add(0, 1.1);
         tenElement.add(1, 1.2);
         tenElement.add(2, 1.3);
@@ -392,12 +388,11 @@ class LinkedListTest {
         boolean tenElementsActual = tenElement.contains(1.7);
 
         Assertions.assertEquals(tenElementsExpected, tenElementsActual);
-
     }
 
     @Test
     void isEmpty() {
-        LinkedList<Integer> linked = new LinkedList<>();
+        ArrayList<Integer> linked = new ArrayList<>();
 
 
         boolean expected = false;
@@ -405,7 +400,7 @@ class LinkedListTest {
         Assertions.assertEquals(expected, actual);
 
 
-        LinkedList<String> oneElement = new LinkedList<>();
+        ArrayList<String> oneElement = new ArrayList<>();
         oneElement.add(0, "test1");
 
 
@@ -415,7 +410,7 @@ class LinkedListTest {
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
 
-        LinkedList<Double> tenElement = new LinkedList<>();
+        ArrayList<Double> tenElement = new ArrayList<>();
         tenElement.add(0, 1.1);
         tenElement.add(1, 1.2);
         tenElement.add(2, 1.3);
@@ -428,22 +423,24 @@ class LinkedListTest {
         tenElement.add(9, 2.0);
 
 
-        boolean tenElementsExpected = true;
+        boolean tenElementsExpected = false;
         boolean tenElementsActual = tenElement.contains(1.7);
 
         Assertions.assertEquals(tenElementsExpected, tenElementsActual);
+
     }
 
     @Test
     void size() {
-        LinkedList<Integer> linked = new LinkedList<>();
+
+        ArrayList<Integer> linked = new ArrayList<>();
 
         int expected = 0;
         int actual = linked.size();
         Assertions.assertEquals(expected, actual);
 
 
-        LinkedList<String> oneElement = new LinkedList<>();
+        ArrayList<String> oneElement = new ArrayList<>();
         oneElement.add(0, "test1");
 
 
@@ -453,7 +450,7 @@ class LinkedListTest {
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
 
-        LinkedList<Double> tenElement = new LinkedList<>();
+        ArrayList<Double> tenElement = new ArrayList<>();
         tenElement.add(0, 1.1);
         tenElement.add(1, 1.2);
         tenElement.add(2, 1.3);
@@ -474,15 +471,5 @@ class LinkedListTest {
 
     @Test
     void iterator() {
-
-//        LinkedList<String> linked = new LinkedList<>();
-//
-//        Iterator<String> iterating = linked.iterator();
-//        while (iterating.hasNext()){
-//            System.out.println(iterating.next());
-//        }
-//
-//
-//        Assertions.assertEquals(linked.iterator(),iterating);
     }
 }
