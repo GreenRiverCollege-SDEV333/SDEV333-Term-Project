@@ -92,7 +92,7 @@ public class LinkedList<E> implements List<E> {
         for (int i = 0; i < index; i++) {
             current = current.nextNode;
         }
-        return (E) current;
+        return current.data;
     }
 
 
