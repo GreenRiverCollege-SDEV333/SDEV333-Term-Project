@@ -77,7 +77,7 @@ public class ArrayList<E> implements List<E>{
             resize(size * 2);
         }
         if (i != size) {
-            for (int j = size; j >= i; j--) {
+            for (int j = size; j > i; j--) {
                 buffer[j] = buffer[j - 1];
             }
         }
@@ -174,10 +174,10 @@ public class ArrayList<E> implements List<E>{
         {
             throw new NoSuchElementException("This element does not exist!");
         }
-        for (int i = 0; i < size-1; i++) {
+        for (int i = 0; i < size; i++) {
             if(buffer[i].equals(item))
             {
-                for (int j = i; j < size; j++) {
+                for (int j = i; j < size-2; j++) {
                     buffer[j] = buffer[j+1];
                 }
                 //remove the final index value
@@ -210,7 +210,7 @@ public class ArrayList<E> implements List<E>{
         E removedItem = buffer[i];
 
         //shift values to the left
-        for (int j = i; j < size; j++) {
+        for (int j = i; j < size-2; j++) {
             buffer[j] = buffer[j+1];
         }
         //remove the final index value
