@@ -11,8 +11,8 @@ public class ArrayList<E> implements List<E> {
     private int size;
     private E[] buffer;
 
-    public ArrayList(int capacity) {
-        buffer = (E[]) new Object[capacity];
+    public ArrayList() {
+        buffer = (E[]) new Object[10];
         size = 0;
     }
 
@@ -20,9 +20,14 @@ public class ArrayList<E> implements List<E> {
      * Add item to the front.
      *
      * @param item the item to be added
+     * Runtime Analysis: This method will run in O(n) worst case because it has to traverse through the whole list
      */
     @Override
     public void addFront(E item) {
+        if(size == buffer.length)
+        {
+            increaseBuffer(size);
+        }
         for (int i = size - 1; i >= 0; i--) { // shift elements
             buffer[i + 1] = buffer[i];
         }
@@ -32,10 +37,11 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add item to the back.
-     *
+     * Worse case the buffer needs to beresized and will run in O(n) but for empty arrays it will log O(1) for best case
      * @param item the item to be added
      */
     @Override
+
     public void addBack(E item) {
             increaseBuffer(size + 1);
             buffer[size++] = item;
@@ -43,20 +49,30 @@ public class ArrayList<E> implements List<E> {
 
         /**
          * Add an item at specified index (position).
-         *
+         * Runtime Analysis O(n) has to shift all elements in the list
          * @param i    the index where the item should be added
          * @param item the item to be added
          */
         @Override
         public void add(int i, E item) {
             if (i < 0 || i > size) {
-                throw new IndexOutOfBoundsException();
+                throw new IndexOutOfBoundsException("Index is out of bounds!");
             }
+
+            if (size == buffer.length) {
+                increaseBuffer(size + 1);
+            }
+                for (int j = size; j > i; j--) {
+                buffer[j] = buffer[j - 1];
+            }
+
+            buffer[i] = item;
+            size++;
         }
 
         /**
          * Get the item at a specified index.
-         *
+         * Runtime Analysis: runs in O(1) since it grabs it from the specific index
          * @param i the index where the item should be retrieved
          * @return the item located at that index
          */
@@ -71,7 +87,7 @@ public class ArrayList<E> implements List<E> {
         /**
          * Set (save) an item at a specified index. Previous
          * item at that index is overwritten.
-         *
+         * Runtime Analysis: Also invloves indexing so O(1)
          * @param i    the index where the item should be saved
          * @param item the item to be saved
          */
@@ -85,7 +101,7 @@ public class ArrayList<E> implements List<E> {
 
         /**
          * Remove item at the front of the list.
-         *
+         * Runtime Analysis: O(n) since we will have to shift the whole list left
          * @return the item that was removed
          */
         @Override
@@ -103,7 +119,7 @@ public class ArrayList<E> implements List<E> {
 
         /**
          * Remove item at the back of the list
-         *
+         * O(1) since we are only updating the last element in the array (no shifting)
          * @return the item that was removed
          */
         @Override
@@ -119,7 +135,7 @@ public class ArrayList<E> implements List<E> {
 
         /**
          * Remove item from the list
-         *
+         * Runtime Analysis: O(n) to traverse he whole list
          * @param item the item to be removed
          */
         @Override
@@ -135,7 +151,7 @@ public class ArrayList<E> implements List<E> {
 
         /**
          * Remove item at a specified index.
-         *
+         * Runtime Analysis: O(n) for worse case, if item is last in the array it can be O(1)
          * @param i the index where the item should be removed
          * @return the item that was removed
          */
@@ -146,14 +162,14 @@ public class ArrayList<E> implements List<E> {
             }
             E removedItem = buffer[i];
             for (int j = 0; j < size-1; j++ ) {
-                buffer[j] = buffer[j + 1]; // to avoid memory leak
+                buffer[j] = buffer[j + 1];
             }
             size--;
             return removedItem;
         }
         /**
          * Checks if an item is in the list.
-         *
+         * Runtime Analysis: O(n) worse case it needs to traverse the whole list to find item.
          * @param item the item to search for
          * @return true if the item is in the list, false otherwise
          */
@@ -173,7 +189,7 @@ public class ArrayList<E> implements List<E> {
 
         /**
          * Checks if the list is empty.
-         *
+         * O(1) only requires checking size variable
          * @return true if the list is empty, false otherwise
          */
         @Override
@@ -183,7 +199,7 @@ public class ArrayList<E> implements List<E> {
 
         /**
          * Provides a count of the number of items in the list.
-         *
+         * Runtime Analysis: O(1) only returns the size variable
          * @return number of items in the list
          */
         @Override
@@ -203,12 +219,10 @@ public class ArrayList<E> implements List<E> {
         private class ArrayListIterator implements Iterator<E> {
             private int currentIndex = 0;
 
-            @Override
             public boolean hasNext() {
                 return currentIndex < size;
             }
 
-            @Override
             public E next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException("no index exists!");
@@ -216,13 +230,13 @@ public class ArrayList<E> implements List<E> {
                 return buffer[currentIndex++];
             }
         }
-        private void increaseBuffer ( int increaseBuffer){
-            if (increaseBuffer > buffer.length) {
-                int newBuffer = buffer.length * 2;
-                if (newBuffer < increaseBuffer) {
-                    newBuffer = increaseBuffer;
-                }
-                buffer = Arrays.copyOf(buffer, newBuffer);
+
+        /* increase buffer helper grabs the length of the buffer and doubles it
+        * it then copies the original buffer to the new one
+        * this runs in O(n) because it simply does a calculation then assigns the new buffer with all the old buffers data
+         */
+        private void increaseBuffer(int increaseBuffer){
+            int newBuffer = buffer.length * 2;
+            buffer = Arrays.copyOf(buffer, newBuffer);
             }
         }
-    }
