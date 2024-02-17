@@ -219,7 +219,7 @@ public class LinkedList<E extends Comparable<E>> implements List<E>{
     public Iterator<E> iterator() {
         return (Iterator<E>) new LinkedListIterator();
     }
-    private class LinkedListIterator implements Iterator<Integer> {
+    private class LinkedListIterator implements Iterator<E> {
 
         private Node current;
 
@@ -237,13 +237,13 @@ public class LinkedList<E extends Comparable<E>> implements List<E>{
             }
         }
         @Override
-        public Integer next() {
+        public E next() {
             if (current == null) {
-                throw new NoSuchElementException("There is no next one to go to!!");
+                throw new NoSuchElementException("There is no next one to go to!");
             }
-            int item = (int) current.data;
+            E dataValue = current.data;
             current = current.next;
-            return item;
+            return dataValue;
         }
     }
 }
