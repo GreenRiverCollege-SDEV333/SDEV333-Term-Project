@@ -3,6 +3,11 @@ package Stack;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Implementation of a Stack using a "list" of nodes and a Stack interface for generics
+ * @param <E> Class may store various types of values
+ * @author Zalman I.
+ */
 public class LinkedStack<E> implements Stack<E> {
     /**
      * A container which contains an item and a connection to another Node
@@ -20,6 +25,9 @@ public class LinkedStack<E> implements Stack<E> {
 
         /**
          * Creates a node, and stores the given item within it
+         *
+         * Runtime: O(1) as it always takes the same runtime to conduct this operation
+         *
          * @param item the item being stored in node
          */
         public Node(E item) {
@@ -43,6 +51,8 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Constructs an empty LinkedStack
+     *
+     * Runtime: O(1) as it always takes the same runtime to conduct this operation
      */
     public LinkedStack() {
         // stack starts off empty
@@ -52,6 +62,9 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Add an item to the stack.
+     *
+     * Runtime: O(1) as we can instantly add a new node to front/top via the top variable,
+     * regardless of how many nodes exist in stack.
      *
      * @param item the item to be added
      */
@@ -76,6 +89,9 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Removes the most recently added item from the stack.
+     *
+     * Runtime: O(1) as we can instantly access the top variable to retrieve item
+     * and overwrite it with the next node in stack.
      *
      * @return the item that was removed
      */
@@ -103,6 +119,8 @@ public class LinkedStack<E> implements Stack<E> {
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
      *
+     * Runtime: O(1) as we can instantly access the top variable to retrieve item.
+     *
      * @return item at the top of the stack.
      */
     @Override
@@ -119,6 +137,9 @@ public class LinkedStack<E> implements Stack<E> {
     /**
      * Checks to see if the stack is empty.
      *
+     * Runtime: O(1) as we are instantly accessing a variable and checking a condition.
+     * This operation would always take the same runtime to conduct.
+     *
      * @return true if the stack is empty, false otherwise
      */
     @Override
@@ -128,6 +149,9 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Returns a count of the number of items in the stack.
+     *
+     * Runtime: O(1) as we are instantly retrieving a variable.
+     * This operation would always take the same runtime to conduct.
      *
      * @return the number of items in the stack
      */

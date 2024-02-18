@@ -36,7 +36,7 @@ public class ArrayList<E> implements List<E> {
      * If all slots in buffer are full, double its max capacity
      *
      * Runtime: O(n) as it has to run through the buffer to copy over all items into a new array,
-     * therefore the run time depends on the prior buffer's length
+     * therefore the runtime depends on the prior buffer's length
      */
     private void doubleMaxCapacity() {
         // if all buffer slots are filled
@@ -88,7 +88,7 @@ public class ArrayList<E> implements List<E> {
     /**
      * Add item to the back.
      *
-     * Runtime: O(1) if array is empty or not full, as we are only accessing the final index to add an item.
+     * Runtime: O(1) if buffer is empty/not full, as we are only accessing the final index to add an item.
      * If the array is full O(n) as we need to run through buffer to copy over all items during resize.
      *
      * @param item the item to be added

@@ -3,9 +3,14 @@ package Stack;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Implementation of a Stack using an array and a Stack interface for generics
+ * @param <E> Class may store various types of values
+ * @author Zalman I.
+ */
 public class ResizingArrayStack<E> implements Stack<E> {
     /**
-     * An array used to store items placed within the ResizingArrayStack
+     * An array used to store items placed within the stack
      */
     private E[] buffer;
 
@@ -17,6 +22,8 @@ public class ResizingArrayStack<E> implements Stack<E> {
     /**
      * Constructs a ResizingArrayStack with an empty buffer,
      * and a default max capacity of 10 items
+     *
+     * Runtime: O(1) as it always takes the same runtime to conduct this operation
      */
     public ResizingArrayStack() {
         // setup buffer with default max capacity of 10
@@ -28,6 +35,10 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Resize the buffer by updating its max capacity by given number
+     *
+     * Runtime: O(n) as it has to run through the buffer to copy over all items into a new array,
+     * therefore the runtime depends on the prior buffer's length
+     *
      * @param maxCapacity the new max capacity of buffer
      */
     private void resizeBuffer(int maxCapacity) {
@@ -47,6 +58,9 @@ public class ResizingArrayStack<E> implements Stack<E> {
     /**
      * Add an item to the stack.
      *
+     * Runtime: O(1) if buffer is empty/not full, as we are only accessing the final index to add an item.
+     * If the array is full O(n) as we need to run through buffer to copy over all items during resize.
+     *
      * @param item the item to be added
      */
     @Override
@@ -65,6 +79,9 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Removes the most recently added item from the stack.
+     *
+     * Runtime: O(1) if buffer is not too large, as we are only accessing the final index to "pop off" an item.
+     * Otherwise, O(n) as we need to run through buffer to copy over all items during resize.
      *
      * @return the item that was removed
      */
@@ -97,6 +114,8 @@ public class ResizingArrayStack<E> implements Stack<E> {
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
      *
+     * Runtime: O(1) as we can instantly access the final index to retrieve item.
+     *
      * @return item at the top of the stack.
      */
     @Override
@@ -113,6 +132,9 @@ public class ResizingArrayStack<E> implements Stack<E> {
     /**
      * Checks to see if the stack is empty.
      *
+     * Runtime: O(1) as we are instantly accessing a variable and checking a condition.
+     * This operation would always take the same runtime to conduct.
+     *
      * @return true if the stack is empty, false otherwise
      */
     @Override
@@ -122,6 +144,9 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Returns a count of the number of items in the stack.
+     *
+     * Runtime: O(1) as we are instantly retrieving a variable.
+     * This operation would always take the same runtime to conduct.
      *
      * @return the number of items in the stack
      */
