@@ -104,8 +104,11 @@ class ArrayListTest
         // **** throws a NoSuchElementElementException ****
 //        assertEquals("Yes", emptyList.get(0));
 
-        assertEquals("Yes", oneItemList.get(0));
-        assertEquals("Yes", fullList.get(0));
+        String removedElementOneItem = oneItemList.get(0);
+        String removedElementFullList = fullList.get(0);
+
+        assertEquals(removedElementOneItem, oneItemList.removeFront());
+        assertEquals(removedElementFullList, fullList.removeFront());
     }
 
     @Test
