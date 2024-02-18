@@ -70,14 +70,22 @@ public class LinkedList<E> implements List<E>
             head = node;
             size++;
         }
-
-        // the list has some nodes in it
-        // traverse through list until we hit the end
-        while (current.next != null)
+        else if (size == 1)
         {
-            current = current.next;
+            head.next = node;
+            size++;
         }
-        current.next = node;
+        else
+        {
+            // the list has some nodes in it
+            // traverse through list until we hit the end
+            while (current.next != null)
+            {
+                current = current.next;
+            }
+            current.next = node;
+            size++;
+        }
     }
 
     /**
@@ -89,8 +97,9 @@ public class LinkedList<E> implements List<E>
     @Override
     public void add(int i, E item)
     {
-        if (i >= size)
+        if (i > size)
             throw new IndexOutOfBoundsException("Index is out of range");
+
 
         // create index variable and current node
         int index = 0;
@@ -104,7 +113,10 @@ public class LinkedList<E> implements List<E>
             addFront(item);
         //index 1 is null, assign new node
         else if (head.next == null)
+        {
             head.next = newNode;
+            size++;
+        }
 
         else
         {
@@ -112,7 +124,7 @@ public class LinkedList<E> implements List<E>
             Node previousNode = current;
 
             // traverse list until we get to index
-            while (index != i && current.next != null)
+            while (index != i)
             {
                 previousNode = current;
                 current = current.next;
@@ -123,6 +135,7 @@ public class LinkedList<E> implements List<E>
 
             // previousNode -> newNode
             previousNode.next = newNode;
+            size++;
         }
     }
 
@@ -139,21 +152,29 @@ public class LinkedList<E> implements List<E>
         if (size == 0)
             throw new NoSuchElementException("The list is empty");
 
-        if (i >= size)
+        if (i > size)
             throw new IndexOutOfBoundsException("Index is out of range");
 
-        // create index variable and current node
-        int index = 0;
-        Node current = head;
-
-        // move through list until you get to the
-        // give index
-        while (index != i)
+        // the size is 1
+        if (size == 1)
         {
-            current = current.next;
-            index++;
+            return head.data;
         }
-        return current.data;
+        else
+        {
+            // create index variable and current node
+            int index = 0;
+            Node current = head;
+
+            // move through list until you get to the
+            // give index
+            while (index != i)
+            {
+                current = current.next;
+                index++;
+            }
+            return current.data;
+        }
     }
 
     /**
@@ -167,15 +188,14 @@ public class LinkedList<E> implements List<E>
     public void set(int i, E item)
     {
         // exceptions
-        if (size == 0)
+        if (size == 0 && i != 0)
             throw new NoSuchElementException("The list is empty");
 
-        if (i >= size)
+        if (i > size)
             throw new IndexOutOfBoundsException("Index is out of range");
 
         int index = 0;
         Node current = head;
-        Node previousNode = current;
 
         // move through list
         while (index != i)
@@ -347,6 +367,10 @@ public class LinkedList<E> implements List<E>
 
         Node current = head;
 
+        // if there is only 1 in the list and it is not the item
+        if (size == 1 && current.data != item)
+            return false;
+
         while (current.data != item)
         {
             current = current.next;
@@ -384,14 +408,22 @@ public class LinkedList<E> implements List<E>
             return 0;
 
         Node current = head;
-        int sizeCount = 0;
 
-        while (current.next != null)
+        // if there is only one element
+        if (current.next == null)
+            return 1;
+        // otherwise, count the items in the list
+        else
         {
-            current = current.next;
-            sizeCount++;
+            int sizeCount = 1;
+
+            while (current.next != null)
+            {
+                sizeCount++;
+                current = current.next;
+            }
+            return sizeCount;
         }
-        return sizeCount;
     }
 
     /**
