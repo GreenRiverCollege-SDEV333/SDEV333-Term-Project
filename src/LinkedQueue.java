@@ -1,6 +1,11 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * author: Daniel Knoll
+ * @param <E> desired data type
+ */
+
 public class LinkedQueue<E> implements Queue<E> {
     public class Node {
         Node next;

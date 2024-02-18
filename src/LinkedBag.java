@@ -1,5 +1,9 @@
 import java.util.Iterator;
 
+/**
+ * Author: Daniel Knoll
+ * @param <E> desired data type.
+ */
 public class LinkedBag<E> implements Bag<E> {
     private Node first;
     private int size;

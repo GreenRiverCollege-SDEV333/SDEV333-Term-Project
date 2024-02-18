@@ -2,6 +2,10 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
+/**
+ * Author Daniel Knoll
+ * @param <E> desired data type.
+ */
 public class ArrayList<E extends Comparable<E>> implements List<E>{
     private E[] buffer;
     private int size;
@@ -22,7 +26,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
 
     /**
      * Add item to the front.
-     *
+     * this is O(2n+c) for the worst case of needing a resize + shifting the array over.
      * @param item the item to be added
      */
     @Override
@@ -39,7 +43,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
 
     /**
      * Add item to the back.
-     *
+     * O(n+2) in case it needs resize
      * @param item the item to be added
      */
     @Override
@@ -53,7 +57,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
 
     /**
      * Add an item at specified index (position).
-     *
+     * O(n+2) for shifting and affecting 2 variables
      * @param i    the index where the item should be added
      * @param item the item to be added
      */
@@ -71,7 +75,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
 
     /**
      * Get the item at a specified index.
-     *
+     * O(1) return statement only
      * @param i the index where the item should be retrieved
      * @return the item located at that index
      */
@@ -83,7 +87,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
-     *
+     * O(1) set a variable only
      * @param i    the index where the item should be saved
      * @param item the item to be saved
      */
@@ -94,7 +98,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
 
     /**
      * Remove item at the front of the list.
-     *
+     * O(n) for iterating through the buffer
      * @return the item that was removed
      */
     @Override
@@ -109,7 +113,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
 
     /**
      * Remove item at the back of the list
-     *
+     * O(4) a few variables affected
      * @return the item that was removed
      */
     @Override
@@ -122,7 +126,8 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
 
     /**
      * Remove item from the list
-     *
+     * worst case it will go through each item before finding its target (or not find it at all)
+     * which makes this O(n)
      * @param item the item to be removed
      */
     @Override
@@ -136,7 +141,8 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
 
     /**
      * Remove item at a specified index.
-     *
+     * worst case it will remove from the back which means it iterates through entire buffer making this
+     * O(n)
      * @param i the index where the item should be removed
      * @return the item that was removed
      */
@@ -152,7 +158,8 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
 
     /**
      * Checks if an item is in the list.
-     *
+     * worst case it finds the contained item at the end or not at all making this
+     * O(n)
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -178,7 +185,7 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
 
     /**
      * Provides a count of the number of items in the list.
-     *
+     * O(1) returning one variable
      * @return number of items in the list
      */
     @Override
@@ -188,7 +195,6 @@ public class ArrayList<E extends Comparable<E>> implements List<E>{
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * @return an Iterator.
      */
     @Override

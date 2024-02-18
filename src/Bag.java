@@ -2,6 +2,11 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
+/**
+ * Bag interface
+ * Author: Daniel Knoll
+ * @param <E>
+ */
 public interface Bag<E> extends Iterable<E>
 {
     /**
