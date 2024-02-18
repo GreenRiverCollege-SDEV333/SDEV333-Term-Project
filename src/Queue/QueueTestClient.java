@@ -1,11 +1,11 @@
-package APIs;
+package Queue;
 
 import java.util.Scanner;
 
 public class QueueTestClient {
     public static void main(String[] args) {
         // setup storage queue
-        Queue<String> storage = new LinkedQueue<>();
+        Queue<String> storage = new LinkedQueue<String>();
 
         // setup scanner, taking in given string
         Scanner line = new Scanner("to be or not to - be - - that - - - is");

@@ -1,4 +1,4 @@
-package APIs;
+package Queue;
 
 /**
  * FIFO (first-in, first-out) APIs.Queue API

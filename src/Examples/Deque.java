@@ -1,3 +1,5 @@
+package Examples;
+
 /**
  * Deque: double-ended queue API
  * Supports adding and removing items at both ends.

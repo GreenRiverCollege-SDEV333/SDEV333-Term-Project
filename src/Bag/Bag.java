@@ -1,4 +1,4 @@
-package APIs;
+package Bag;
 
 public interface Bag<E> extends Iterable<E> {
     /**

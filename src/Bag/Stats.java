@@ -1,4 +1,4 @@
-package APIs;
+package Bag;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ public class Stats
 {
     public static void main(String[] args) {
         // setup storage bag
-        Bag<Double> numbers = new LinkedBag<>();
+        Bag<Double> numbers = new LinkedBag<Double>();
 
         // setup scanner, taking in given string
         Scanner line = new Scanner("100 99 101 120 98 107 109 81 101 90");

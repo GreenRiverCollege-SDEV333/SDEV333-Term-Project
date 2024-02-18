@@ -1,6 +1,4 @@
-package APIs;
-
-import Stack.LinkedStack;
+package Queue;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
