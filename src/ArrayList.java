@@ -14,6 +14,13 @@ public class ArrayList<E> implements List<E>
     /**
      * Add item to the front.
      *
+     * Runtime:
+     *
+     * At best O(1) - The list is empty and no shifting is needed.
+     *
+     * At worst O(N) - We need to visit every element and reassign it
+     * to the next empty spot.
+     *
      * @param item the item to be added
      */
     @Override
@@ -34,6 +41,10 @@ public class ArrayList<E> implements List<E>
     /**
      * Add item to the back.
      *
+     * Runtime: O(1) - We can instantly access the end of the list
+     * using the size variable. Each line of code executes in
+     * one operation.
+     *
      * @param item the item to be added
      */
     @Override
@@ -47,6 +58,16 @@ public class ArrayList<E> implements List<E>
 
     /**
      * Add an item at specified index (position).
+     *
+     * Runtime:
+     *
+     * At best O(1) - The list is empty and no shifting is needed.
+     * Just add to the front.
+     *
+     * At worst O(N) - In order to add the item, we need to
+     * shift every element to the right first to make an
+     * empty spot. Therefore, we may need to shift a significant chunk
+     * of the list.
      *
      * @param i    the index where the item should be added
      * @param item the item to be added
@@ -70,6 +91,9 @@ public class ArrayList<E> implements List<E>
     /**
      * Get the item at a specified index.
      *
+     * Runtime: O(1) - No elements other than the
+     * one at the given index need to be visited.
+     *
      * @param i the index where the item should be retrieved
      * @return the item located at that index
      */
@@ -88,6 +112,9 @@ public class ArrayList<E> implements List<E>
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     *
+     * Runtime: O(1) - No elements other than the one
+     * at the given index need to be visited and replaced.
      *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
@@ -121,7 +148,18 @@ public class ArrayList<E> implements List<E>
             throw new NoSuchElementException("The list is empty");
         }
 
-        return buffer[0];
+        // save item that will be removed
+        E removedItem = buffer[0];
+
+        // shift all elements to the left
+        for (int i = 0; i < size; i++)
+        {
+            buffer[i] = buffer[i + 1];
+        }
+        // decrease the size
+        size--;
+
+        return removedItem;
     }
 
     /**
@@ -137,7 +175,16 @@ public class ArrayList<E> implements List<E>
             throw new NoSuchElementException("The list is empty");
         }
 
-        return buffer[size - 1];
+        // save item that will be removed
+        E removedItem = buffer[size - 1];
+
+        // reassign the end to null
+        buffer[size - 1] = null;
+
+        // decrease the size
+        size--;
+
+        return removedItem;
     }
 
     /**
