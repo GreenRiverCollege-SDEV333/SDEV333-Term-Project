@@ -16,7 +16,7 @@ public class LinkedStack<E> implements Stack<E> {
     }
     /**
      * Add an item to the stack.
-     *
+     *  O(5) just a few constants
      * @param item the item to be added
      */
     @Override
@@ -38,7 +38,7 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Removes the most recently added item from the stack.
-     *
+     *  O(5) a few constants
      * @return the item that was removed
      */
     @Override
@@ -60,7 +60,7 @@ public class LinkedStack<E> implements Stack<E> {
     /**
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
-     *
+     * O(2) from if and return
      * @return item at the top of the stack.
      */
     @Override
@@ -73,7 +73,7 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Checks to see if the stack is empty.
-     *
+     * O(1) from return statement
      * @return true if the stack is empty, false otherwise
      */
     @Override
@@ -83,7 +83,7 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Returns a count of the number of items in the stack.
-     *
+     * O(1) return statement
      * @return the number of items in the stack
      */
     @Override
@@ -93,7 +93,6 @@ public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * @return an Iterator.
      */
     @Override

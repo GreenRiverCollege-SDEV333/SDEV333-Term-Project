@@ -14,6 +14,5 @@ public class StackTestClient {
                 System.out.println("s.pop()" + " ");
             }
         }
-        System.out.println("(" + s.size() + " left on the stack)");
-    }
+        System.out.println("(" + s.size() + " left on the stack)");    }
 }

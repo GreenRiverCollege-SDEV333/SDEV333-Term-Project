@@ -1,6 +1,10 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Author: Daniel Knoll
+ * Resizing Stack Array that accepts any data type.
+ */
 public class ResizingArrayStack<E> implements Stack<E> {
     private E[] buffer;
     private int size;
@@ -12,7 +16,8 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Add an item to the stack.
-     *
+     * slowest would be O(n*2) from having to resize
+     * average should only be about O(2) from setting buffer at index + increment size
      * @param item the item to be added
      */
     @Override
@@ -24,6 +29,10 @@ public class ResizingArrayStack<E> implements Stack<E> {
         size++;
     }
 
+    /**
+     * Resize array to be twice as long as it currently is.
+     * O(n) is slowest and also average from copying over the array
+     */
     public void resize() {
         E[] newBuffer = (E[]) new Object[buffer.length * 2];
         for (int i = 0;i < size; i++) {
@@ -34,7 +43,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Removes the most recently added item from the stack.
-     *
+     * O(4) is slowest from affecting each variable
      * @return the item that was removed
      */
     @Override
@@ -53,7 +62,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
     /**
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
-     *
+     *  O(1) checking one variable
      * @return item at the top of the stack.
      */
     @Override
@@ -63,7 +72,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Checks to see if the stack is empty.
-     *
+     * O(1) returning 1 variable
      * @return true if the stack is empty, false otherwise
      */
     @Override
@@ -73,7 +82,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Returns a count of the number of items in the stack.
-     *
+     *  O(1) returning 1 variable
      * @return the number of items in the stack
      */
     @Override
@@ -83,7 +92,6 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * @return an Iterator.
      */
     @Override

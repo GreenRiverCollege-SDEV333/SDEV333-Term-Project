@@ -12,7 +12,7 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Add an item to the queue.
-     *
+     * O(5) from a few constants
      * @param item the item to be added
      */
     @Override
@@ -33,7 +33,7 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Remove an item from the queue.
-     *
+     * O(2n+c) a few iterations through the linked list (n) and a few constants (c)
      * @return the item that was removed
      */
     @Override
@@ -53,7 +53,7 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Checks to see if the queue is empty.
-     *
+     * O(1) returning 1 variable
      * @return true if the queue is empty, false otherwise
      */
     @Override
@@ -63,7 +63,7 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Returns a count of the number of items in the queue.
-     *
+     * O(1) returning 1 variable
      * @return the number of items in the queue
      */
     @Override
@@ -73,7 +73,6 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * @return an Iterator.
      */
     @Override
