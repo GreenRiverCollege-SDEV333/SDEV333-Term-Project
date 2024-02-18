@@ -4,8 +4,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- *
- * @param <E>
+ * Implementation of a Bag using a "list" of nodes and a Bag interface for generics
+ * @param <E> Class may store various types of values
+ * @author Zalman I.
  */
 public class LinkedBag<E> implements Bag<E> {
     /**
@@ -24,6 +25,9 @@ public class LinkedBag<E> implements Bag<E> {
 
         /**
          * Creates a node, and stores the given item within it
+         *
+         * Runtime: O(1) as it always takes the same runtime to conduct this operation
+         *
          * @param item the item being stored in node
          */
         public Node(E item) {
@@ -47,6 +51,8 @@ public class LinkedBag<E> implements Bag<E> {
 
     /**
      * Constructs an empty LinkedBag
+     *
+     * Runtime: O(1) as it always takes the same runtime to conduct this operation
      */
     public LinkedBag() {
         // bag starts off empty
@@ -56,6 +62,9 @@ public class LinkedBag<E> implements Bag<E> {
 
     /**
      * Adds the given item to the bag
+     *
+     * Runtime: O(1) as we can instantly add a new item to start of list via the first variable,
+     * regardless of how many nodes exist in bag.
      *
      * @param item the item to be added
      */
@@ -81,6 +90,9 @@ public class LinkedBag<E> implements Bag<E> {
     /**
      * Checks whether the bag is empty, and returns true/false accordingly
      *
+     * Runtime: O(1) as we are instantly accessing variables and checking a condition.
+     * This operation would always take the same runtime to conduct.
+     *
      * @return true if the bag is empty; otherwise false
      */
     @Override
@@ -90,6 +102,9 @@ public class LinkedBag<E> implements Bag<E> {
 
     /**
      * Gets and returns the number of items stored in the bag
+     *
+     * Runtime: O(1) as we are instantly retrieving a variable.
+     * This operation would always take the same runtime to conduct.
      *
      * @return the number of items stored in the bag
      */

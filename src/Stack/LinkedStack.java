@@ -63,7 +63,7 @@ public class LinkedStack<E> implements Stack<E> {
     /**
      * Add an item to the stack.
      *
-     * Runtime: O(1) as we can instantly add a new node to front/top via the top variable,
+     * Runtime: O(1) as we can instantly add a new item to front/top via the top variable,
      * regardless of how many nodes exist in stack.
      *
      * @param item the item to be added

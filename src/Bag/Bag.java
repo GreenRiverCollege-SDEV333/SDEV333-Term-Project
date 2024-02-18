@@ -1,5 +1,10 @@
 package Bag;
 
+/**
+ * An implementation of the Bag data structure
+ * @param <E> Class may store various types of values
+ * @author Zalman I.
+ */
 public interface Bag<E> extends Iterable<E> {
     /**
      * Adds the given item to the bag

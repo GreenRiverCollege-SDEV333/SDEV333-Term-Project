@@ -3,6 +3,12 @@ package Queue;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Implementation of a Queue using a "list" of nodes and a Queue interface for generics
+ *
+ * @param <E> Class may store various types of values
+ * @author Zalman I.
+ */
 public class LinkedQueue<E> implements Queue<E> {
     /**
      * A container which contains an item and a connection to another Node
@@ -20,6 +26,9 @@ public class LinkedQueue<E> implements Queue<E> {
 
         /**
          * Creates a node, and stores the given item within it
+         *
+         * Runtime: O(1) as it always takes the same runtime to conduct this operation
+         *
          * @param item the item being stored in node
          */
         public Node(E item) {
@@ -48,6 +57,8 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Constructs an empty LinkedStack
+     *
+     * Runtime: O(1) as it always takes the same runtime to conduct this operation
      */
     public LinkedQueue() {
         // queue starts off empty
@@ -58,6 +69,9 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Add an item to the queue.
+     *
+     * Runtime: O(1) as we can instantly add a new item to back of queue via the back variable,
+     * regardless of how many nodes exist in list.
      *
      * @param item the item to be added
      */
@@ -87,6 +101,9 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Remove an item from the queue.
+     *
+     * Runtime: O(1) as we can instantly access the front variable to retrieve item
+     * and overwrite it with the next node in queue.
      *
      * @return the item that was removed
      */
@@ -119,6 +136,9 @@ public class LinkedQueue<E> implements Queue<E> {
     /**
      * Checks to see if the queue is empty.
      *
+     * Runtime: O(1) as we are instantly accessing variables and checking a condition.
+     * This operation would always take the same runtime to conduct.
+     *
      * @return true if the queue is empty, false otherwise
      */
     @Override
@@ -128,6 +148,9 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Returns a count of the number of items in the queue.
+     *
+     * Runtime: O(1) as we are instantly retrieving a variable.
+     * This operation would always take the same runtime to conduct.
      *
      * @return the number of items in the queue
      */
