@@ -1,6 +1,10 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * This class represent a Linkedlist data structure
+ * @param <E>
+ */
 public class LinkedList <E>  implements List <E> {
 
     //define what a node is

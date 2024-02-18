@@ -1,6 +1,11 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * an ArrayList data structure remake
+ * @param <E> any type of data
+ */
+
 public class ArrayList <E> implements List <E> {
 //    fields
 
@@ -16,6 +21,8 @@ public class ArrayList <E> implements List <E> {
         buffer = (E[]) new Object[10];
     }
     /**
+     * runtime O(1)
+     * this will run in a linear notation it will go through every item one by one
      * this will make the size of the array to a certain size.
      * @param newSize
      */
@@ -34,6 +41,8 @@ public class ArrayList <E> implements List <E> {
         buffer  = tempBuffer;
     }
     /**
+     * runtime o(1)
+     * this will use the resize method and multiple it by 2, which will be the same function.
      * this method will check if the size is equal to the buffer.length,
      * if it is equal to buffer length, it will double the size.
      */
@@ -46,7 +55,9 @@ public class ArrayList <E> implements List <E> {
     }
     /**
      * Add item to the front.
-     *
+     * runtime o(n)
+     * this method will have to shift go to every indexes till reaches the end,
+     * and shift all of the elements in to the left.
      * @param item the item to be added
      */
     @Override
@@ -68,7 +79,9 @@ public class ArrayList <E> implements List <E> {
 
     /**
      * Add item to the back.
-     *
+     * runtime o(1)
+     * This method will find the back element and add it to the back,
+     * no need to go through each element.
      * @param item the item to be added
      */
     @Override
@@ -82,6 +95,11 @@ public class ArrayList <E> implements List <E> {
 
     /**
      * Add an item at specified index (position).
+     *
+     * runtime: o(n)
+     * This method will have to find a certain index,
+     * after finding the index, shifts all the element to the right,
+     * add the element to that specific element.
      *
      * @param index    the index where the item should be added
      * @param item the item to be added
@@ -123,6 +141,10 @@ public class ArrayList <E> implements List <E> {
     /**
      * Get the item at a specified index.
      *
+     * runtime: o(1)
+     * This method will access all the element and find the certain element
+     * at the specific index.
+     *
      * @param index the index where the item should be retrieved
      * @return the item located at that index
      */
@@ -145,7 +167,10 @@ public class ArrayList <E> implements List <E> {
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
      *
-     * @param i    the index where the item should be saved
+     * Runtime: o(1)
+     * This will find a certain element at a specific index and change the value of it.
+     *
+     * @param index    the index where the item should be saved
      * @param item the item to be saved
      */
     @Override
@@ -165,6 +190,11 @@ public class ArrayList <E> implements List <E> {
 
     /**
      * Remove item at the front of the list.
+     *
+     * Runtime: o(n)
+     * remove the front element, after that
+     * it will go through all of the elements and shift
+     * it to the left.
      *
      * @return the item that was removed
      */
@@ -187,6 +217,11 @@ public class ArrayList <E> implements List <E> {
     /**
      * Remove item at the back of the list
      *
+     * runtime: o(1)
+     * this method will get the last index,
+     * and remove it
+     * without having to scan through all of the elements.
+     *
      * @return the item that was removed
      */
     @Override
@@ -205,6 +240,11 @@ public class ArrayList <E> implements List <E> {
 
     /**
      * Remove item from the list
+     *
+     * Runtime: o(n)
+     * find element that matches the parameters, after removing
+     * the element, it will have to shift all of the remaining elements
+     * to the left.
      *
      * @param item the item to be removed
      */
@@ -241,6 +281,11 @@ public class ArrayList <E> implements List <E> {
     /**
      * Remove item at a specified index.
      *
+     * runtime: o(n)
+     * it will search for a specific index,
+     * after finding the index, it will delete the element
+     * which will have to shift all the remaining elements.
+     *
      * @param index the index where the item should be removed
      * @return the item that was removed
      */
@@ -275,6 +320,10 @@ public class ArrayList <E> implements List <E> {
     /**
      * Checks if an item is in the list.
      *
+     * runtime: o(n)
+     * this method will search through all of the element until
+     * it matches the element that it is looking for.
+     *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -298,6 +347,9 @@ public class ArrayList <E> implements List <E> {
 
     /**
      * Checks if the list is empty.
+     * runtime o(1)
+     * this method will only require to check true or false base on the size
+     * which does not require to shift any element.
      *
      * @return true if the list is empty, false otherwise
      */
@@ -308,6 +360,11 @@ public class ArrayList <E> implements List <E> {
 
     /**
      * Provides a count of the number of items in the list.
+     *
+     * runtime: o(1)
+     * This will only give a return of a variable,
+     * no more than that so it will run in constant time
+     *
      *
      * @return number of items in the list
      */
