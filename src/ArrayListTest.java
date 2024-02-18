@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayListTest {
 
+    // global
     ArrayList<Integer> arrayTest = new ArrayList<>();
 
     @org.junit.jupiter.api.Test

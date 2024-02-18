@@ -77,6 +77,7 @@ public class ArrayList <E> implements List<E>{
      *
      * @param i the index where the item should be retrieved
      * @return the item located at that index
+     * @throws IndexOutOfBoundsException if out of range
      */
     @Override
     public E get(int i) {
