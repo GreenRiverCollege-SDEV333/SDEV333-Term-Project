@@ -497,7 +497,7 @@ public class LinkedList<E> implements List<E>
      * Returns an iterator over elements of type {@code T}.
      *
      * Runtime: O(1) - Each line of code in the method executes in one operation,
-     * regardless of the size of the data structure.
+     * regardless of the size of the LinkedList.
      *
      * @return an Iterator.
      */
@@ -520,7 +520,7 @@ public class LinkedList<E> implements List<E>
          * return an element rather than throwing an exception.)
          *
          * Runtime: O(1) - Each line of code in the method executes in one operation,
-         * regardless of the size of the data structure.
+         * regardless of the size of the LinkedList.
          *
          * @return {@code true} if the iteration has more elements
          */
@@ -539,7 +539,7 @@ public class LinkedList<E> implements List<E>
          * Returns the next element in the iteration.
          *
          * Runtime: O(1) - Each line of code in the method executes in one operation,
-         * regardless of the size of the data structure.
+         * regardless of the size of the LinkedList.
          *
          * @return the next element in the iteration
          * @throws NoSuchElementException if the iteration has no more elements
