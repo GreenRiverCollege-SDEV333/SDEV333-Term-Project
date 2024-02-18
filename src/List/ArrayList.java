@@ -3,6 +3,11 @@ package List;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Implementation of an ArrayList using the List interface for generics
+ * @param <E> Class may store various types of values
+ * @author Zalman I.
+ */
 public class ArrayList<E> implements List<E> {
     /**
      * An array used to store items placed within the ArrayList
@@ -16,6 +21,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Constructs an ArrayList with an empty buffer, and a default max capacity of 10 items
+     *
+     * Runtime: O(1) as it always takes the same runtime to conduct this operation
      */
     public ArrayList() {
         // setup buffer with default max capacity of 10
@@ -27,6 +34,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * If all slots in buffer are full, double its max capacity
+     *
+     * Runtime: O(n) as it has to run through the buffer to copy over all items into a new array,
+     * therefore the run time depends on the prior buffer's length
      */
     private void doubleMaxCapacity() {
         // if all buffer slots are filled
@@ -47,6 +57,10 @@ public class ArrayList<E> implements List<E> {
     /**
      * Add item to the front.
      *
+     * Runtime: O(1) in the case that buffer is empty, as only storage at index 0 occurs.
+     * Otherwise O(n) as the runtime depends on the number of items already in the list. If we need to resize,
+     * the buffer gets run through to copy over items. If not, we are still shifting over all existing items to the right.
+     *
      * @param item the item to be added
      */
     @Override
@@ -54,7 +68,7 @@ public class ArrayList<E> implements List<E> {
         // if the buffer already contains items
         if(!isEmpty()) {
             // if the buffer is full, increase max capacity
-            doubleMaxCapacity();
+            doubleMaxCapacity(); // O(n)
 
             // run through buffer backwards
             for (int i = size; i > 0; i--) {
@@ -74,6 +88,9 @@ public class ArrayList<E> implements List<E> {
     /**
      * Add item to the back.
      *
+     * Runtime: O(1) if array is empty or not full, as we are only accessing the final index to add an item.
+     * If the array is full O(n) as we need to run through buffer to copy over all items during resize.
+     *
      * @param item the item to be added
      */
     @Override
@@ -90,6 +107,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Add an item at specified index (position).
+     *
+     * Runtime: O(1) if the array is empty. Otherwise, O(n) as runtime will depend on array size,
+     * either for resizing or shifting over items to free up given index
      *
      * @param index the index where the item should be added
      * @param item the item to be added
@@ -121,6 +141,9 @@ public class ArrayList<E> implements List<E> {
     /**
      * Get the item at a specified index.
      *
+     * Runtime: O(1) as we can instantly access the given index to retrieve item,
+     * assuming index exists/buffer not empty.
+     *
      * @param index the index where the item should be retrieved
      * @return the item located at that index
      */
@@ -143,6 +166,9 @@ public class ArrayList<E> implements List<E> {
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
      *
+     * Runtime: O(1) as we can instantly access the given index to replace its item,
+     * assuming index exists/buffer not empty.
+     *
      * @param index the index where the item should be saved
      * @param item the item to be saved
      */
@@ -164,6 +190,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at the front of the list.
+     *
+     * Runtime: O(n) as we are shifting over all items in buffer left to "remove" the item at index 0.
      *
      * @return the item that was removed
      */
@@ -192,6 +220,8 @@ public class ArrayList<E> implements List<E> {
     /**
      * Remove item at the back of the list
      *
+     * Runtime: O(1) as we can instantly access the final index and set its value to null.
+     *
      * @return the item that was removed
      */
     @Override
@@ -216,6 +246,9 @@ public class ArrayList<E> implements List<E> {
     /**
      * Remove item from the list
      *
+     * Runtime: O(n) as searching for the given item via indexOf results in running through buffer once.
+     * If searching reveals it exists, we then also have to shift over all items after it left to remove it.
+     *
      * @param item the item to be removed
      */
     @Override
@@ -226,7 +259,7 @@ public class ArrayList<E> implements List<E> {
         }
 
         // find item in buffer and get its index
-        int index = indexOf(item);
+        int index = indexOf(item); // O(n)
 
         // if item is not in buffer
         if(index == -1) {
@@ -246,6 +279,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Gets and returns the index of the given item in buffer, if exists
+     *
+     * Runtime: O(n) as we could potentially run through the entire buffer when searching for the given item.
+     *
      * @param item the item being searched for in buffer
      * @return the index of given item in buffer if exists; otherwise -1
      */
@@ -265,6 +301,8 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
+     *
+     * Runtime: O(n) as runtime will depend on the number of items after given index which we need to shift left.
      *
      * @param index the index where the item should be removed
      * @return the item that was removed
@@ -300,6 +338,9 @@ public class ArrayList<E> implements List<E> {
     /**
      * Checks if an item is in the list.
      *
+     * Runtime O(n) as searching for the item requires running through buffer, and depends on its location
+     * within/number of items before and after it.
+     *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -321,6 +362,9 @@ public class ArrayList<E> implements List<E> {
     /**
      * Checks if the list is empty.
      *
+     * Runtime: O(1) as we are instantly accessing a variable and checking a condition.
+     * This operation would always take the same runtime to conduct.
+     *
      * @return true if the list is empty, false otherwise
      */
     @Override
@@ -330,6 +374,9 @@ public class ArrayList<E> implements List<E> {
 
     /**
      * Provides a count of the number of items in the list.
+     *
+     * Runtime: O(1) as we are instantly retrieving a variable.
+     * This operation would always take the same runtime to conduct.
      *
      * @return number of items in the list
      */

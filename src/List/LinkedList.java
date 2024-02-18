@@ -3,6 +3,11 @@ package List;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Implementation of a LinkedList using the List interface for generics
+ * @param <E> Class may store various types of values
+ * @author Zalman I.
+ */
 public class LinkedList<E> implements List<E> {
     /**
      * A container which contains an item and a connection to another Node
@@ -20,6 +25,9 @@ public class LinkedList<E> implements List<E> {
 
         /**
          * Creates a node, and stores the given item within it
+         *
+         * Runtime: O(1) as it always takes the same runtime to conduct this operation
+         *
          * @param item the item being stored in node
          */
         public Node(E item) {
@@ -43,6 +51,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Constructs an empty LinkedList
+     *
+     * Runtime: O(1) as it always takes the same runtime to conduct this operation
      */
     public LinkedList() {
         // list starts off empty
@@ -52,6 +62,9 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add item to the front.
+     *
+     * Runtime: O(1) as we can quickly access the front of list via the head variable,
+     * regardless of how many nodes follow it.
      *
      * @param item the item to be added
      */
@@ -76,6 +89,9 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add item to the back.
+     *
+     * Runtime: O(1) if the list is empty. Otherwise, O(n), as runtime depends on the number of nodes already
+     * in list we need to pass to reach the end.
      *
      * @param item the item to be added
      */
@@ -110,6 +126,9 @@ public class LinkedList<E> implements List<E> {
     /**
      * Add an item at specified index (position).
      *
+     * Runtime: O(1) if the given index is 0 as we use the addFront method.
+     * Otherwise O(n) as we may potentially have to traverse all the way to middle or end of list.
+     *
      * @param index the index where the item should be added
      * @param item the item to be added
      */
@@ -122,11 +141,11 @@ public class LinkedList<E> implements List<E> {
 
         // if given index was at front or back, use those methods
         else if(index == 0) {
-            addFront(item);
+            addFront(item); // O(1)
         }
 
         else if(index == size) {
-            addBack(item);
+            addBack(item); // O(n)
         }
 
         else {
@@ -157,6 +176,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Get the item at a specified index.
+     *
+     * Runtime: O(n) as runtime will depend on how many nodes we need to pass in list to reach the requested index.
      *
      * @param index the index where the item should be retrieved
      * @return the item located at that index
@@ -191,6 +212,9 @@ public class LinkedList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     *
+     * Runtime: O(1) if the list is empty as we use the addFront method.
+     * Otherwise, O(n) as runtime will depend on how many nodes we need to pass in list to reach the requested index.
      *
      * @param index the index where the item should be saved
      * @param item the item to be saved
@@ -228,6 +252,9 @@ public class LinkedList<E> implements List<E> {
     /**
      * Remove item at the front of the list.
      *
+     * Runtime: O(1) as we can quickly access the front of list via the head variable,
+     * regardless of how many nodes follow it.
+     *
      * @return the item that was removed
      */
     @Override
@@ -252,6 +279,8 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at the back of the list
+     *
+     * Runtime: O(n), as runtime depends on the number of nodes already in list we need to pass to reach the end.
      *
      * @return the item that was removed
      */
@@ -284,6 +313,9 @@ public class LinkedList<E> implements List<E> {
     /**
      * Remove item from the list
      *
+     * Runtime: O(n) as we use the contains method to check if item exists, which may require running through entire list.
+     * If it does exist, we then use the remove method, which in the worse case also runs at O(n).
+     *
      * @param item the item to be removed
      */
     @Override
@@ -293,7 +325,7 @@ public class LinkedList<E> implements List<E> {
             throw new NoSuchElementException("Cannot remove item from empty LinkedList");
         }
 
-        // check if list contains given item
+        // check if list contains given item - O(n)
         if(!contains(item)) {
             throw new NoSuchElementException("Given item is not located in LinkedList");
         }
@@ -322,6 +354,9 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
+     *
+     * Runtime: O(1) if the given index is 0 as we use the addFront method.
+     * Otherwise, O(n) as we may potentially have to traverse all the way to middle or end of list to unlink a node.
      *
      * @param index the index where the item should be removed
      * @return the item that was removed
@@ -378,6 +413,8 @@ public class LinkedList<E> implements List<E> {
     /**
      * Checks if an item is in the list.
      *
+     * Runtime: O(n) as searching for the item may require running through most of, or the entire list
+     *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -408,6 +445,9 @@ public class LinkedList<E> implements List<E> {
     /**
      * Checks if the list is empty.
      *
+     * Runtime: O(1) as we are instantly accessing some variables and checking a condition.
+     * This operation would always take the same runtime to conduct.
+     *
      * @return true if the list is empty, false otherwise
      */
     @Override
@@ -417,6 +457,9 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Provides a count of the number of items in the list.
+     *
+     * Runtime: O(1) as we are instantly retrieving a variable.
+     * This operation would always take the same runtime to conduct.
      *
      * @return number of items in the list
      */
