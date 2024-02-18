@@ -324,7 +324,7 @@ class ArrayListTest {
         oneElement.add(1, "test2");
         oneElement.remove("test1");
 
-        String expectedOneElement = "test1";
+        String expectedOneElement = "test2";
         String actualOneElement = oneElement.get(0);
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
@@ -340,7 +340,7 @@ class ArrayListTest {
         tenElement.add(7, 1.8);
         tenElement.add(8, 1.9);
         tenElement.add(9, 2.0);
-        tenElement.remove(1.5);
+        tenElement.remove(2.0);
 
 
         Double tenElementsExpected = 1.5;
@@ -423,7 +423,7 @@ class ArrayListTest {
         tenElement.add(9, 2.0);
 
 
-        boolean tenElementsExpected = false;
+        boolean tenElementsExpected = true;
         boolean tenElementsActual = tenElement.contains(1.7);
 
         Assertions.assertEquals(tenElementsExpected, tenElementsActual);
@@ -469,7 +469,4 @@ class ArrayListTest {
         Assertions.assertEquals(tenElementsExpected, tenElementsActual);
     }
 
-    @Test
-    void iterator() {
-    }
 }

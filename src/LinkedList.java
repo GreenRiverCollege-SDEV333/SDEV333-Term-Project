@@ -1,3 +1,7 @@
+/**
+ * Author: Levi Miller
+ */
+
 import java.util.Iterator;
 
 public class LinkedList<E> implements List<E> {
@@ -28,7 +32,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add item to the front.
-     *
+     * RunTime analysis: is constant or O(1) there are no loops
      * @param item the item to be added
      */
     @Override
@@ -52,7 +56,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add item to the back.
-     *
+     * RunTime analysis: one loop so linear time worse cast O(n)
      * @param item the item to be added
      */
     @Override
@@ -78,7 +82,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Add an item at specified index (position).
-     *
+     * RunTime analysis: one loop so linear time worse cast O(n)
      * @param i    the index where the item should be added
      * @param item the item to be added
      */
@@ -111,7 +115,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Get the item at a specified index.
-     *
+     * RunTime analysis: one loop  so linear time worse cast O(n)
      * @param i the index where the item should be retrieved
      * @return the item located at that index
      */
@@ -119,7 +123,7 @@ public class LinkedList<E> implements List<E> {
     public E get(int i) {
         Node temp;
         E result = null;
-        if (i > size || i < 0) {
+        if (i >= size || i < 0) {
             throw new IndexOutOfBoundsException();
         } else {
             temp = head;
@@ -138,7 +142,7 @@ public class LinkedList<E> implements List<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
-     *
+     * RunTime analysis: one loop so linear time worse case O(n)
      * @param i    the index where the item should be saved
      * @param item the item to be saved
      * @return
@@ -171,7 +175,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at the front of the list.
-     *
+     * RunTime analysis: constant O(1) no loops worse case in constant
      * @return the item that was removed
      */
     @Override
@@ -194,7 +198,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at the back of the list
-     *
+     * RunTime analysis: one loop so linear time worse case O(n)
      * @return the item that was removed
      */
     @Override
@@ -222,7 +226,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item from the list
-     *
+     * RunTime analysis: one loop so linear time worse case O(n)
      * @param item the item to be removed
      */
     @Override
@@ -245,7 +249,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Remove item at a specified index.
-     *
+     * RunTime analysis: one loop so linear time worse case O(n)
      * @param i the index where the item should be removed
      * @return the item that was removed
      */
@@ -271,7 +275,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Checks if an item is in the list.
-     *
+     * RunTime analysis: one loop so linear time worse case O(n)
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -292,7 +296,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Checks if the list is empty.
-     *
+     * RunTime analysis: constant O(1) no loops worse case in constant
      * @return true if the list is empty, false otherwise
      */
     @Override
@@ -302,7 +306,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Provides a count of the number of items in the list.
-     *
+     * RunTime analysis: constant O(1) no loops worse case in constant
      * @return number of items in the list
      */
     @Override
@@ -312,7 +316,7 @@ public class LinkedList<E> implements List<E> {
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
+     * RunTime analysis: constant O(1) no loops worse case in constant
      * @return an Iterator.
      */
     @Override

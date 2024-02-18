@@ -471,18 +471,4 @@ class LinkedListTest {
 
         Assertions.assertEquals(tenElementsExpected, tenElementsActual);
     }
-
-    @Test
-    void iterator() {
-
-//        LinkedList<String> linked = new LinkedList<>();
-//
-//        Iterator<String> iterating = linked.iterator();
-//        while (iterating.hasNext()){
-//            System.out.println(iterating.next());
-//        }
-//
-//
-//        Assertions.assertEquals(linked.iterator(),iterating);
-    }
 }
