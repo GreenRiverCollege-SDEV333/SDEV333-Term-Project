@@ -1,3 +1,7 @@
+/**
+ * author: daniel knoll
+ * test the LinkedBag class with a stats program from the book
+ */
 
 import java.util.Scanner;
 public class Stats {

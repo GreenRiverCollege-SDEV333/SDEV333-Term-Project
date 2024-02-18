@@ -3,7 +3,7 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 /**
- * Bag interface
+ * Bag interface from the book
  * Author: Daniel Knoll
  * @param <E>
  */

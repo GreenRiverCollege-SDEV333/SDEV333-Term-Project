@@ -1,6 +1,10 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * author: Daniel Knoll
+ * @param <E> desired data type
+ */
 public class LinkedStack<E> implements Stack<E> {
     Node head;
     private int size;

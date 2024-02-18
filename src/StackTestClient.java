@@ -1,3 +1,7 @@
+/**
+ * Author: Daniel Knoll
+ * tests resizingarraystack
+ */
 
 import java.util.Scanner;
 public class StackTestClient {

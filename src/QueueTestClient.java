@@ -1,3 +1,7 @@
+/**
+ * author: Daniel Knoll
+ * tests LinkedQueue
+ */
 
 import java.util.Scanner;
 public class QueueTestClient {
