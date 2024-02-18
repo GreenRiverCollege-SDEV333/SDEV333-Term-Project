@@ -65,19 +65,22 @@ public class LinkedQueue<E> implements Queue<E> {
      */
     @Override
     public void enqueue(E item) {
-        // create new node containing given item
-        Node newNode = new Node(item);
+        // track the item currently at back of queue
+        Node currBack = back;
+
+        // replace back node with new node containing given item
+        back = new Node(item);
 
         // if the queue is empty
         if(isEmpty()) {
-            // make new node front of queue
-            front = newNode;
+            // move back node to front
+            front = back;
         }
 
+        // if queue is not empty
         else {
-            // if queue is not empty,
-            // add new node to the back of queue
-            front.next = newNode;
+            // add given item to end of queue
+            currBack.next = back;
         }
 
         // account for new item in queue

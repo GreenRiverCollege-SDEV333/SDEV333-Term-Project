@@ -1,12 +1,11 @@
-package Stack;
+package APIs;
 
 import java.util.Scanner;
 
-public class StackTestClient {
+public class QueueTestClient {
     public static void main(String[] args) {
-        // setup storage stack
-        //Stack<String> storage = new ResizingArrayStack<String>();
-        Stack<String> storage = new LinkedStack<String>();
+        // setup storage queue
+        Queue<String> storage = new LinkedQueue<>();
 
         // setup scanner, taking in given string
         Scanner line = new Scanner("to be or not to - be - - that - - - is");
@@ -18,19 +17,19 @@ public class StackTestClient {
 
             // if the current item is not a dash
             if (!item.equals("-")) {
-                // it is a word, add it to stack
-                storage.push(item);
+                // it is a word, add it to queue
+                storage.enqueue(item);
                 System.out.println();
             }
 
             // if it is a dash, and the stack is not empty
             else if (!storage.isEmpty()) {
-                // pop the topmost item off the stack, and display it
-                System.out.println(storage.pop());
+                // get the item at front of queue, and display it
+                System.out.println(storage.dequeue());
             }
         }
 
-        // display how many items remain in stack at end of line
-        System.out.println("(" + storage.size() + " left on the stack)");
+        // display how many items remain in queue at end of line
+        System.out.println("(" + storage.size() + " left in the queue)");
     }
 }
