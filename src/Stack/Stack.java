@@ -1,5 +1,7 @@
+package Stack;
+
 /**
- * Stack (LIFO: last-in, first-out) API
+ * APIs.Stack (LIFO: last-in, first-out) API
  * @param <E> class / data type of the items in the stack
  */
 public interface Stack<E> extends Iterable<E> {

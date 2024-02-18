@@ -1,3 +1,5 @@
+package Examples;
+
 /**
  * MathSet API (interface / abstract data type)
  * represents a mathematical set. Sets in mathematics

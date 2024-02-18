@@ -1,5 +1,7 @@
+package Queue;
+
 /**
- * FIFO (first-in, first-out) Queue API
+ * FIFO (first-in, first-out) APIs.Queue API
  * @param <E> class / data type of the items in the queue
  */
 public interface Queue<E> extends Iterable<E> {
