@@ -138,6 +138,9 @@ public class ArrayList<E> implements List<E>
     /**
      * Remove item at the front of the list.
      *
+     * Runtime: O(N) - We have to shift the entire list to the left
+     * when we remove the item at the front.
+     *
      * @return the item that was removed
      */
     @Override
@@ -165,6 +168,9 @@ public class ArrayList<E> implements List<E>
     /**
      * Remove item at the back of the list
      *
+     * Runtime: O(1) - No elements other than the one
+     * at the given index need to be visited and removed.
+     *
      * @return the item that was removed
      */
     @Override
@@ -189,6 +195,15 @@ public class ArrayList<E> implements List<E>
 
     /**
      * Remove item from the list
+     *
+     * Runtime:
+     *
+     * At best O(1) - The list is empty and no shifting is needed.
+     *
+     * At worst O(N) - We need to visit every element regardless of
+     * if the item exists in the list. Once the item is found
+     * we need to shift all elements over to the left starting
+     * from the current index.
      *
      * @param item the item to be removed
      */
@@ -227,6 +242,16 @@ public class ArrayList<E> implements List<E>
     /**
      * Remove item at a specified index.
      *
+     * Runtime:
+     *
+     * At best O(1) - The list is empty and no shifting is needed to remove
+     * an item.
+     *
+     * At worst O(N) - We only need to access the element through
+     * the index - no visiting needed. Once the item is found though,
+     * we need to shift all elements over to the left starting
+     * from the current index.
+     *
      * @param i the index where the item should be removed
      * @return the item that was removed
      */
@@ -258,6 +283,9 @@ public class ArrayList<E> implements List<E>
     /**
      * Checks if an item is in the list.
      *
+     * Runtime: O(N) - We need to visit every element regardless of
+     * if the item exists in the list.
+     *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -278,6 +306,9 @@ public class ArrayList<E> implements List<E>
     /**
      * Checks if the list is empty.
      *
+     * Runtime: O(1) - We just need to compare the size variable to return
+     * a boolean. No traversal or access to the ArrayList needed.
+     *
      * @return true if the list is empty, false otherwise
      */
     @Override
@@ -289,6 +320,9 @@ public class ArrayList<E> implements List<E>
     /**
      * Provides a count of the number of items in the list.
      *
+     * Runtime: O(1) - The size is being tracked in all methods that involve
+     * changing the ArrayList. We just need to return the size variable.
+     *
      * @return number of items in the list
      */
     @Override
@@ -299,6 +333,9 @@ public class ArrayList<E> implements List<E>
 
     /**
      * Returns an iterator over elements of type {@code T}.
+     *
+     * Runtime: O(1) - Each line of code in the method executes in one operation,
+     * regardless of the size of the ArrayList.
      *
      * @return an Iterator.
      */
@@ -321,6 +358,9 @@ public class ArrayList<E> implements List<E>
          * (In other words, returns {@code true} if {@link #next} would
          * return an element rather than throwing an exception.)
          *
+         * Runtime: O(1) - Each line of code in the method executes in one operation,
+         * regardless of the size of the ArrayList.
+         *
          * @return {@code true} if the iteration has more elements
          */
         @Override
@@ -331,6 +371,9 @@ public class ArrayList<E> implements List<E>
 
         /**
          * Returns the next element in the iteration.
+         *
+         * Runtime: O(1) - Each line of code in the method executes in one operation,
+         * regardless of the size of the ArrayList.
          *
          * @return the next element in the iteration
          * @throws NoSuchElementException if the iteration has no more elements
