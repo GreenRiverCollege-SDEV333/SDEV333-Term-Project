@@ -11,7 +11,7 @@ public class StackTestClient {
                 s.push("item");
             }
             else if (!s.isEmpty()) {
-                    System.out.println("s.pop()" + " ");
+                System.out.println("s.pop()" + " ");
             }
         }
         System.out.println("(" + s.size() + " left on the stack)");

@@ -1,7 +1,19 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedStack<E> implements Stack<E> {
+    Node head;
+    private int size;
 
+    public class Node {
+        E data;
+        Node next;
+
+        public Node() {
+            data = null;
+            next = null;
+        }
+    }
     /**
      * Add an item to the stack.
      *
@@ -9,7 +21,19 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public void push(E item) {
-
+        if (size == 0) {
+            Node newhead = new Node();
+            newhead.data = item;
+            head = newhead;
+            size++;
+        }
+        else {
+            Node newhead = new Node();
+            newhead.data = item;
+            newhead.next = head;
+            head = newhead;
+            size++;
+        }
     }
 
     /**
@@ -19,7 +43,18 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public E pop() {
-        return null;
+        E item = null;
+        if (head.data != null) {
+            item = head.data;
+        }
+        if (head.next != null) {
+            head = head.next;
+            size--;
+        } else {
+            head = null;
+            size --;
+        }
+        return item;
     }
 
     /**
@@ -30,7 +65,10 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public E peek() {
-        return null;
+        if (head == null) {
+            throw new NoSuchElementException();
+        }
+        return head.data;
     }
 
     /**
@@ -40,7 +78,7 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return size < 1;
     }
 
     /**
@@ -50,7 +88,7 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
@@ -60,6 +98,33 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return (Iterator<E>) new LinkedStackIterator();
+    }
+    private class LinkedStackIterator implements Iterator<E> {
+
+        private LinkedStack.Node current;
+
+        public LinkedStackIterator() {
+            current = head;
+        }
+
+        @Override
+        public boolean hasNext() {
+            if (current == null || current.next == null) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        @Override
+        public E next() {
+            if (current == null) {
+                throw new NoSuchElementException("There is no next one to go to!");
+            }
+            E dataValue = (E) current.data;
+            current = current.next;
+            return dataValue;
+        }
     }
 }
