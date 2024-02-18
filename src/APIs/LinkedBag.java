@@ -38,7 +38,7 @@ public class LinkedBag<E> implements Bag<E> {
     }
 
     /**
-     * The first node in nag
+     * The first node in bag
      */
     private Node first;
 
