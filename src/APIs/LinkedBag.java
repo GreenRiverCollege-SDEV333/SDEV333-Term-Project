@@ -3,6 +3,7 @@ package APIs;
 import Stack.LinkedStack;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -62,7 +63,21 @@ public class LinkedBag<E> implements Bag<E> {
      */
     @Override
     public void add(E item) {
+        // create new node containing given item
+        Node newNode = new Node(item);
 
+        // if the bag is not empty
+        if(!isEmpty()) {
+            // point new node at first, so it isn't lost
+            newNode.next = first;
+        }
+
+        // override first with newly created node
+        // (making new node first node in bag)
+        first = newNode;
+
+        // account for new item in bag
+        size++;
     }
 
     /**
@@ -72,7 +87,7 @@ public class LinkedBag<E> implements Bag<E> {
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0 && first == null;
     }
 
     /**
@@ -82,7 +97,7 @@ public class LinkedBag<E> implements Bag<E> {
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
@@ -92,6 +107,50 @@ public class LinkedBag<E> implements Bag<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new LinkedBagIterator();
+    }
+
+    /**
+     * Implementation of an Iterator for the LinkedBag class
+     */
+    private class LinkedBagIterator implements Iterator<E>
+    {
+        /**
+         * The current Node being tracked by the Iterator
+         */
+        private Node current;
+
+        /**
+         * Constructs a LinkedBag iterator, with the first node tracked first
+         */
+        LinkedBagIterator() {
+            current = first;
+        }
+
+        /**
+         * Checks if list contains another element, and returns true/false accordingly
+         * @return true if list contains another element; otherwise false
+         */
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        /**
+         * Gets and returns the first item in the list
+         * @return the first item in the list
+         */
+        public E next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            // get first item of list
+            E currItem = current.item;
+
+            // move on to the next item
+            current = current.next;
+
+            return currItem;
+        }
     }
 }
