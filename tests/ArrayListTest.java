@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayListTest
 {
-    private ArrayList<Object> emptyList;
+    private ArrayList<String> emptyList;
     private ArrayList<String> oneItemList;
     private ArrayList<String> fullList;
 
