@@ -24,6 +24,9 @@ public class LinkedList<E> implements List<E>
     /**
      * Add item to the front.
      *
+     * Runtime: O(1) - This method only executes the fixed number of steps.
+     * There is no shifting needed or traversing through the LinkedList.
+     *
      * @param item the item to be added
      */
     @Override
@@ -51,6 +54,13 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Add item to the back.
+     *
+     * Runtime:
+     * At best O(1) - If the list is empty or only has one element, the method
+     * works similarly to adding to the front. No traversal needed
+     *
+     * At worst O(N) - Regardless of if there are a few elements or several million,
+     * we must visit each node to get to the end of the list.
      *
      * @param item the item to be added
      */
@@ -90,6 +100,12 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Add an item at specified index (position).
+     *
+     * Runtime:
+     * At best O(1) - The list is small: adding to the head or head.next.
+     *
+     * At worst O(N) - The list is large and the index given is toward the back.
+     * Almost every element needs to be visited.
      *
      * @param i    the index where the item should be added
      * @param item the item to be added
@@ -142,6 +158,13 @@ public class LinkedList<E> implements List<E>
     /**
      * Get the item at a specified index.
      *
+     * Runtime:
+     *
+     * At best O(1) - Accessing the head/front of the LinkedList.
+     *
+     * At worst O(N) - The list is large and the index given is toward the back.
+     * Almost every element needs to be visited.
+     *
      * @param i the index where the item should be retrieved
      * @return the item located at that index
      */
@@ -181,6 +204,13 @@ public class LinkedList<E> implements List<E>
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
      *
+     * Runtime:
+     *
+     * At best O(1) - Reassigning the front
+     *
+     * At worst O(N) - If the list is large and the given index is toward the back.
+     * Almost all elements needs to be visited.
+     *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
      */
@@ -210,6 +240,9 @@ public class LinkedList<E> implements List<E>
     /**
      * Remove item at the front of the list.
      *
+     * Runtime: O(1) - This method only needs to visit the front
+     * and completes each line in one execution.
+     *
      * @return the item that was removed
      */
     @Override
@@ -236,6 +269,12 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Remove item at the back of the list
+     *
+     * Runtime:
+     *
+     * At best O(1) - Removing the front of the list if there is only one element
+     *
+     * At worst O(N) - We need to run through the entire list in order to get to the end
      *
      * @return the item that was removed
      */
@@ -276,6 +315,13 @@ public class LinkedList<E> implements List<E>
     /**
      * Remove item from the list
      *
+     * Runtime:
+     *
+     * At best O(1) - Removing the front of the list if there is only one element
+     *
+     * At worst O(N) - We may need to run through the entire list in order to find an item.
+     * There is a possibility that the item does not exist.
+     *
      * @param item the item to be removed
      */
     @Override
@@ -306,6 +352,13 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Remove item at a specified index.
+     *
+     * Runtime:
+     *
+     * At best O(1) - Removing the front of the list if there is only one element.
+     *
+     * At worst O(N) - We need to run through each element until we get to the
+     * desired index.
      *
      * @param i the index where the item should be removed
      * @return the item that was removed
@@ -354,6 +407,13 @@ public class LinkedList<E> implements List<E>
     /**
      * Checks if an item is in the list.
      *
+     * Runtime:
+     *
+     * At best O(1) - Removing the front of the list if there is only one element.
+     *
+     * At worst O(N) - We may need to run through the entire list in order to find an item.
+     * There is a possibility that the item does not exist.
+     *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -388,6 +448,10 @@ public class LinkedList<E> implements List<E>
     /**
      * Checks if the list is empty.
      *
+     * Runtime: O(1) - Can be completed in one line because we're
+     * doing a boolean statement and only making a comparison. We
+     * do not need to access the LinkedList at all.
+     *
      * @return true if the list is empty, false otherwise
      */
     @Override
@@ -398,6 +462,9 @@ public class LinkedList<E> implements List<E>
 
     /**
      * Provides a count of the number of items in the list.
+     *
+     * Runtime: O(N) - We need to visit every single node in the
+     * LinkedList in order to get the size.
      *
      * @return number of items in the list
      */
@@ -429,6 +496,9 @@ public class LinkedList<E> implements List<E>
     /**
      * Returns an iterator over elements of type {@code T}.
      *
+     * Runtime: O(1) - Each line of code in the method executes in one operation,
+     * regardless of the size of the data structure.
+     *
      * @return an Iterator.
      */
     @Override
@@ -437,7 +507,6 @@ public class LinkedList<E> implements List<E>
         return new SinglyLinkedIterator();
     }
 
-    //helper class/type that defines how the iterator works
     private class SinglyLinkedIterator implements Iterator<E>{
 
         private Node current;
@@ -449,6 +518,9 @@ public class LinkedList<E> implements List<E>
          * Returns {@code true} if the iteration has more elements.
          * (In other words, returns {@code true} if {@link #next} would
          * return an element rather than throwing an exception.)
+         *
+         * Runtime: O(1) - Each line of code in the method executes in one operation,
+         * regardless of the size of the data structure.
          *
          * @return {@code true} if the iteration has more elements
          */
@@ -465,6 +537,9 @@ public class LinkedList<E> implements List<E>
 
         /**
          * Returns the next element in the iteration.
+         *
+         * Runtime: O(1) - Each line of code in the method executes in one operation,
+         * regardless of the size of the data structure.
          *
          * @return the next element in the iteration
          * @throws NoSuchElementException if the iteration has no more elements
