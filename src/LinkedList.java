@@ -6,6 +6,8 @@ public class LinkedList <E> implements List<E>{
     private class Node {
         E data;
         Node next;
+
+
     }
 
     private Node head;
@@ -25,16 +27,15 @@ public class LinkedList <E> implements List<E>{
     @Override
     public void addFront(E item) {
         Node theNewOne = new Node();
+        theNewOne.data = item;
 
         if (head == null) {
             head = theNewOne;
-            size++;
-
         } else {
             theNewOne.next = head;
             head = theNewOne;
-
         }
+        size++;
     }
 
     /**
@@ -74,6 +75,7 @@ public class LinkedList <E> implements List<E>{
         }
 
         Node newNode = new Node();
+        newNode.data = item;
 
         if (index == 0) {
             newNode.next = head;
@@ -139,8 +141,10 @@ public class LinkedList <E> implements List<E>{
     @Override
     public E removeFront() {
         if (head != null) {
+            Node temp = head;
             head = head.next;
             size--;
+            return temp.data;
         }
         return null;
     }
@@ -163,6 +167,7 @@ public class LinkedList <E> implements List<E>{
                 current.next = null;
             }
             size--;
+            return head.data;
         }
 
         return null;
@@ -197,17 +202,22 @@ public class LinkedList <E> implements List<E>{
             throw new IndexOutOfBoundsException("Index is out of range");
         }
 
-        if (index == 0) return removeFront();
+        E removedValue = null;
 
-        Node current = head;
-        for (int i = 0; i < index - 1; i++) {
-            current = current.next;
+        if (index == 0) {
+            removedValue = head.data;
+            head = head.next;
+        } else {
+            Node current = head;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            removedValue = current.next.data;
+            current.next = current.next.next;
         }
 
-        Node temp = current.next;
-        current.next = current.next.next;
         size--;
-        return temp.data;
+        return removedValue;
     }
 
     /**
