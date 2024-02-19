@@ -22,6 +22,9 @@ public class LinkedList <E>  implements List <E> {
     }
     /**
      * Add item to the front.
+     *  runtime: o(1)
+     *  this method will only need one action, which
+     *  is putting the node as head.
      *
      * @param item the item to be added
      */
@@ -48,6 +51,10 @@ public class LinkedList <E>  implements List <E> {
 
     /**
      * Add item to the back.
+     *
+     * runtime: o(n)
+     * this will through all the data, and add the element
+     * to the back
      *
      * @param item the item to be added
      */
@@ -79,7 +86,12 @@ public class LinkedList <E>  implements List <E> {
     /**
      * Add an item at specified index (position).
      *
-     * @param i    the index where the item should be added
+     *  runtime: o(n)
+     *  this will count the indexes, find a certain indexes,
+     *  will go through all the nodes until it stop at
+     *  the specify index, and link it to the list.
+     *
+     * @param index   the index where the item should be added
      * @param item the item to be added
      */
     @Override
@@ -125,7 +137,12 @@ public class LinkedList <E>  implements List <E> {
     /**
      * Get the item at a specified index.
      *
-     * @param i the index where the item should be retrieved
+     * runtime: o(n)
+     * this will go through all the node, it will
+     * get the element at a specify index. which it will go through
+     * all of the indexes if it is in the back .
+     *
+     * @param index the index where the item should be retrieved
      * @return the item located at that index
      */
     @Override
@@ -149,6 +166,11 @@ public class LinkedList <E>  implements List <E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     *
+     * runtime: o(n)
+     * it will run through specify index, which in worse case
+     * can be all the way at the back and if so, it will go through
+     * each nodes and count the index.
      *
      * @param index  the index where the item should be saved
      * @param item the item to be saved
@@ -176,6 +198,9 @@ public class LinkedList <E>  implements List <E> {
 
     /**
      * Remove item at the front of the list.
+     * runtime: o(i)
+     * this will remove the front, and reassign the new element as the head
+     * this is constant since it will not touches every node.
      *
      * @return the item that was removed
      */
@@ -195,6 +220,10 @@ public class LinkedList <E>  implements List <E> {
 
     /**
      * Remove item at the back of the list
+     *
+     * runtime: o(n)
+     * this will have go through all of the nodes until
+     * it reaches to the back of the list.
      *
      * @return the item that was removed
      */
@@ -229,6 +258,9 @@ public class LinkedList <E>  implements List <E> {
 
     /**
      * Remove item from the list
+     * runtime: best case o(1) the head, will just need to reassigned head
+     * runtime worst case o(n)  will go through each element to find the matching item,
+     * or even if there are no match elemenet, it went all through all of the nodes.
      *
      * @param item the item to be removed
      */
@@ -257,6 +289,12 @@ public class LinkedList <E>  implements List <E> {
 
     /**
      * Remove item at a specified index.
+     *
+     * runtime: o(n)
+     * it will have to search through the list at a certain index
+     * and remove .
+     * worse case is to find the index is all the way at the bottom of the list.
+     * which will scan through all the nodes
      *
      * @param i the index where the item should be removed
      * @return the item that was removed
@@ -289,6 +327,10 @@ public class LinkedList <E>  implements List <E> {
     /**
      * Checks if an item is in the list.
      *
+     * runtime o(n)
+     * this method will through all of the element to check if the list
+     * contain a certain item in the list.
+     *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -318,6 +360,10 @@ public class LinkedList <E>  implements List <E> {
     /**
      * Checks if the list is empty.
      *
+     * runtime: o(1)
+     * this will only require checking the head, to see if it is null
+     * and it will return true or false.
+     *
      * @return true if the list is empty, false otherwise
      */
     @Override
@@ -331,6 +377,10 @@ public class LinkedList <E>  implements List <E> {
 
     /**
      * Provides a count of the number of items in the list.
+     *
+     * runtime: o(1)
+     * this will only need to access the field size and check
+     * the value of the size
      *
      * @return number of items in the list
      */
