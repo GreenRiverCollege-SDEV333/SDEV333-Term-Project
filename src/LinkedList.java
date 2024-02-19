@@ -21,6 +21,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Add item to the front.
+     * Runtime analysis:O(1) Constant because it does not depend on the list size
      *
      * @param item the item to be added
      */
@@ -40,6 +41,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Add item to the back.
+     * Runtime analysis:O(N) Linear because of going through the whole list
      *
      * @param item the item to be added
      */
@@ -64,6 +66,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Add an item at specified index (position).
+     * Runtime analysis: O(N) Linear because it might have to go through all elements
      *
      * @param index    the index where the item should be added
      * @param item the item to be added
@@ -96,6 +99,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Get the item at a specified index.
+     * Runtime analysis: O(N) Linear might have to go through all elements
      *
      * @param index the index where the item should be retrieved
      * @return the item located at that index
@@ -116,6 +120,7 @@ public class LinkedList <E> implements List<E>{
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     * Runtime analysis: O(N) Linear Might have to go through all elements
      *
      * @param index    the index where the item should be saved
      * @param item the item to be saved
@@ -135,6 +140,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Remove item at the front of the list.
+     * Runtime analysis: O(1) Constant because only have to change the head
      *
      * @return the item that was removed
      */
@@ -151,6 +157,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Remove item at the back of the list
+     * Runtime analysis:O(N) Linear because it has to go through the whole list
      *
      * @return the item that was removed
      */
@@ -175,6 +182,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Remove item from the list
+     * Runtime analysis: O(N) Linear because it has to search the list
      *
      * @param item the item to be removed
      */
@@ -192,6 +200,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Remove item at a specified index.
+     * Runtime analysis: O(N) Linear because it has to search through the whole list
      *
      * @param index the index where the item should be removed
      * @return the item that was removed
@@ -222,6 +231,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Checks if an item is in the list.
+     * Runtime analysis: O(N) Linear because you are searching the whole list for the element
      *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
@@ -240,6 +250,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Checks if the list is empty.
+     * Runtime analysis: O(N) Constant because its returning size
      *
      * @return true if the list is empty, false otherwise
      */
@@ -250,6 +261,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Provides a count of the number of items in the list.
+     * Runtime analysis: O(N) Constant because its returning size
      *
      * @return number of items in the list
      */
@@ -260,6 +272,7 @@ public class LinkedList <E> implements List<E>{
 
     /**
      * Returns an iterator over elements of type {@code T}.
+     * Runtime analysis: O(N) Constant because its iterating through the list
      *
      * @return an Iterator.
      */
