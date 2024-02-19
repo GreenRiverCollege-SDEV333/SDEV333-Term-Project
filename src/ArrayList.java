@@ -355,7 +355,14 @@ public class ArrayList <E> implements List <E> {
      */
     @Override
     public boolean isEmpty() {
-        return size != 0;
+        if(size == 0 )
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
 
     /**
