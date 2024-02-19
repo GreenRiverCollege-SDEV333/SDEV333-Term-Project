@@ -60,13 +60,8 @@ public class ArrayList<E> implements List
         {
             resize(size * 2);
         }
-
-        //checking if the back of the list is full already; if it is, scoot the index over
-        if ((buffer[size]) != null)
-        {
-            buffer[size - 1] = buffer[size];
             buffer[size] = (E)item;
-        }
+        size++;
     }
 
     /**
@@ -181,29 +176,7 @@ public class ArrayList<E> implements List
     @Override
     public Object removeFront()
     {
-        //check if the list is empty first
-        if(isEmpty())
-        {
-            System.out.println("List is empty. Nothing to remove");
-            return null;
-        }
-        else
-        {
-            //storing the removed object
-            Object obj = buffer[0];
-
-            //shuffling the indexes to the left
-            for (int i = 0; i < size; i++)
-            {
-                buffer[i] = buffer[i + 1];
-            }
-
-            //clearing out the back index
-            buffer[size] = null;
-
-            //return the removed object
-            return obj;
-        }
+        return remove(0);
     }
 
     /**
@@ -214,21 +187,7 @@ public class ArrayList<E> implements List
     @Override
     public Object removeBack()
     {
-        //check if the list is empty first
-        if(isEmpty())
-        {
-            System.out.println("List is empty. Nothing to remove");
-            return null;
-        }
-        else
-        {
-            //storing the removed object
-            Object obj = buffer[size];
-            buffer[size] = null;
-
-            //return the removed object
-            return obj;
-        }
+        return remove(size - 1);
     }
 
     /**
@@ -252,6 +211,7 @@ public class ArrayList<E> implements List
             if (buffer[i].equals(item))
             {
                 buffer[i] = null;
+                size--;
                 break;
             }
         }
@@ -286,6 +246,7 @@ public class ArrayList<E> implements List
             //store the object in a local variable, overwrite the index, then return the object.
             Object obj = buffer[i];
             buffer[i] = null;
+            size--;
             return obj;
         }
     }
