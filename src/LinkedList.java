@@ -261,7 +261,7 @@ public class LinkedList<E> implements List<E>{
      * very last index, meaning the method has to go individually node by
      * node until it reaches the last node to remove.
      * @param i the index where the item should be removed
-     * @return
+     * @return item to be removed
      */
     @Override
     public E remove(int i) {
@@ -349,7 +349,7 @@ public class LinkedList<E> implements List<E>{
     @Override
     public Iterator<E> iterator() {
         Node current = head;
-        return new Iterator<E>() {
+        return new Iterator<>() {
             @Override
             public boolean hasNext() {
                 return current.next != null;

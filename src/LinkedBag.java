@@ -38,7 +38,7 @@ public class LinkedBag<E> implements Bag<E> {
     /**
      * This will always run in constant time as we are simply returning
      * true or false based on if head is equal to null.
-     * @return
+     * @return true or false based on if the bag is empty.
      */
     @Override
     public boolean isEmpty() {
@@ -48,7 +48,7 @@ public class LinkedBag<E> implements Bag<E> {
     /**
      * This will always run in constant time as we are simply returning
      * the value of size.
-     * @return
+     * @return size
      */
     @Override
     public int size() {

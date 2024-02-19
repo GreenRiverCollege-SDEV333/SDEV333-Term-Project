@@ -20,7 +20,7 @@ public class ResizingArrayStack<E> implements Stack<E>{
     /**
      * This method will always run at O(n) because we are manually copying
      * all items over from the original buffer to a new buffer.
-     * @param max
+     * @param max capacity of the buffer
      */
     private void resize(int max)
     {
@@ -52,7 +52,7 @@ public class ResizingArrayStack<E> implements Stack<E>{
      * This is because if the method detects the buffer is using only 1/4
      * of its capacity, it will resize itself down by 1/2 of its original
      * capacity. Best case scenario, this will run at constant time.
-     * @return
+     * @return removed item
      */
     @Override
     public E pop()
@@ -68,7 +68,7 @@ public class ResizingArrayStack<E> implements Stack<E>{
     /**
      * This will always run at constant time since it simply returns
      * the item located at buffer index 0.
-     * @return
+     * @return top item of the stack
      */
     @Override
     public E peek()
@@ -79,7 +79,7 @@ public class ResizingArrayStack<E> implements Stack<E>{
     /**
      * This will always run at constant time since it simply returns
      * true or false based on if size is equal to 0.
-     * @return
+     * @return true or false based on if size is equal to 0
      */
     @Override
     public boolean isEmpty()
@@ -90,7 +90,7 @@ public class ResizingArrayStack<E> implements Stack<E>{
     /**
      * This will always run at constant time since it simply returns the
      * value of size.
-     * @return
+     * @return size
      */
     @Override
     public int size()

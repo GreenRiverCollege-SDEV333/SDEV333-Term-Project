@@ -44,7 +44,7 @@ public class LinkedQueue<E> implements Queue<E>{
      * through the linked queue. We are simply moving head forward one space.
      * Afterward, we check to see the linked queue was originally empty. If so,
      * we set tail to null. Then we decrement size and return the removed item.
-     * @return
+     * @return item to be removed
      */
     @Override
     public E dequeue() {
@@ -60,7 +60,7 @@ public class LinkedQueue<E> implements Queue<E>{
     /**
      * This will always run at constant time since we are simply returning
      * true or false based on if head is equal to null.
-     * @return
+     * @return true or false based on if the queue is empty
      */
     @Override
     public boolean isEmpty() {
@@ -70,7 +70,7 @@ public class LinkedQueue<E> implements Queue<E>{
     /**
      * This will always run at constant time since we are simply returning
      * the value of size.
-     * @return
+     * @return size
      */
     @Override
     public int size() {

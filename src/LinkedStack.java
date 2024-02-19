@@ -43,7 +43,7 @@ public class LinkedStack<E> implements Stack<E> {
      * through all the elements in the LinkedStack. This method simply
      * saves the element to be removed in a variable, moves head one element
      * forward, decrements size, and returns the removed Node.
-     * @return
+     * @return item removed from the stack
      */
     @Override
     public E pop() {
@@ -56,7 +56,7 @@ public class LinkedStack<E> implements Stack<E> {
     /**
      * This will always run at constant time, since we are simply
      * returning the value at head.
-     * @return
+     * @return item at the top of the stack
      */
     @Override
     public E peek() {
@@ -66,7 +66,7 @@ public class LinkedStack<E> implements Stack<E> {
     /**
      * This will always run at constant time, since we are simply
      * returning true or false based on if size is equal to 0 or not.
-     * @return
+     * @return true or false based on if size is equal to 0.
      */
     @Override
     public boolean isEmpty() {
@@ -75,7 +75,7 @@ public class LinkedStack<E> implements Stack<E> {
     /**
      * This will always run at constant time, since we are simply
      * returning the value of size.
-     * @return
+     * @return size
      */
     @Override
     public int size() {
