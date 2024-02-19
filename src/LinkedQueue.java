@@ -1,5 +1,12 @@
 import java.util.Iterator;
 
+/**
+ * Creates a new LinkedQueue object. Has the ability to add and remove items
+ * from the linked queue, as well as check the size and status of if the
+ * linked queue is empty.
+ * @author Sage Bain
+ * @param <E>
+ */
 public class LinkedQueue<E> implements Queue<E>{
     private Node head;
     private Node tail;
@@ -10,6 +17,13 @@ public class LinkedQueue<E> implements Queue<E>{
         E item;
         Node next;
     }
+
+    /**
+     * This will always run in constant time, as there is no need to iterate
+     * through the linked queue. We are simply making adding a new item to the
+     * tail of the queue, and checking if the linked queue was originally empty.
+     * @param item the item to be added
+     */
     @Override
     public void enqueue(E item) {
         Node oldTail = tail;
@@ -25,6 +39,13 @@ public class LinkedQueue<E> implements Queue<E>{
         size++;
     }
 
+    /**
+     * This will always run in constant time, as there is no need to iterate
+     * through the linked queue. We are simply moving head forward one space.
+     * Afterward, we check to see the linked queue was originally empty. If so,
+     * we set tail to null. Then we decrement size and return the removed item.
+     * @return
+     */
     @Override
     public E dequeue() {
         E item = head.item;
@@ -36,16 +57,30 @@ public class LinkedQueue<E> implements Queue<E>{
         return item;
     }
 
+    /**
+     * This will always run at constant time since we are simply returning
+     * true or false based on if head is equal to null.
+     * @return
+     */
     @Override
     public boolean isEmpty() {
         return head == null;
     }
 
+    /**
+     * This will always run at constant time since we are simply returning
+     * the value of size.
+     * @return
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     *
+     * @return a new ListIterator
+     */
     @Override
     public Iterator<E> iterator() {
         return new ListIterator();
