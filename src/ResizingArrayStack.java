@@ -41,7 +41,7 @@ public class ResizingArrayStack<E> implements Stack<E>{
     @Override
     public E peek()
     {
-        return null;
+        return buffer[0];
     }
 
     @Override
