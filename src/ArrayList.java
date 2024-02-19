@@ -19,6 +19,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Add item to the front.
+     * Runtime analysis:O(n) Linear because its shifting elements to the right
      *
      * @param item the item to be added
      */
@@ -38,6 +39,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Add item to the back.
+     * Runtime analysis: O(1) Linear but O(n) when resizing
      *
      * @param item the item to be added
      */
@@ -53,6 +55,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Add an item at specified index (position).
+     * Runtime analysis: O(n) Linear shifting elements to the right
      *
      * @param index    the index where the item should be added
      * @param item the item to be added
@@ -74,6 +77,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Get the item at a specified index.
+     * Runtime analysis: O(1) Constant because of direct index
      *
      * @param i the index where the item should be retrieved
      * @return the item located at that index
@@ -92,6 +96,7 @@ public class ArrayList <E> implements List<E>{
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     * Runtime analysis: O(1) Constant because of direct index
      *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
@@ -108,6 +113,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Remove item at the front of the list.
+     * Runtime analysis: O(n) Linear  because of the shifting
      *
      * @return the item that was removed
      */
@@ -127,6 +133,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Remove item at the back of the list
+     * Runtime analysis: O(1) Constant just reducing size
      *
      * @return the item that was removed
      */
@@ -143,6 +150,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Remove item from the list
+     * Runtime analysis: O(n) Linear requires shifting
      *
      * @param item the item to be removed
      */
@@ -164,6 +172,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Remove item at a specified index.
+     * Runtime analysis: O(n) O(n) Linear because of the shiting
      *
      * @param index the index where the item should be removed
      * @return the item that was removed
@@ -192,6 +201,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Checks if an item is in the list.
+     * Runtime analysis:O(n) Linear because it might need to check all elements
      *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
@@ -208,6 +218,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Checks if the list is empty.
+     * Runtime analysis: O(1) Constant because its checking size
      *
      * @return true if the list is empty, false otherwise
      */
@@ -218,6 +229,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Provides a count of the number of items in the list.
+     * Runtime analysis: O(1) Constant because its checking size
      *
      * @return number of items in the list
      */
@@ -228,6 +240,7 @@ public class ArrayList <E> implements List<E>{
 
     /**
      * Returns an iterator over elements of type {@code T}.
+     * Runtime analysis: O(n) because it's iterating through the elements
      *
      * @return an Iterator.
      */
