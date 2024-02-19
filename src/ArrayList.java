@@ -56,7 +56,7 @@ public class ArrayList<E> implements List<E>{
             for (int i = size; i > index; i--) {
                 buffer[i] = buffer[i-1];
             }
-
+            //add the item
             buffer[index] = item;
         }
 
@@ -71,16 +71,11 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public E get(int i) {
-        if (i < 0 || i > size){
-            throw new IndexOutOfBoundsException("Invalid index");
-        }else{
-            for (int j = 0; j <= size; j++) {
-                if (j == i){
-                    return buffer[i];
-                }
-            }
-        }
-        return null;
+       if (i >= 0 && i < size){
+           return buffer[i];
+       }else{
+           throw new IndexOutOfBoundsException("Index is not within array");
+       }
     }
 
     /**
@@ -92,6 +87,11 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public void set(int i, E item) {
+        if (i >= 0 && i < size){
+            throw new IndexOutOfBoundsException("Invalid index");
+        }else{
+            buffer[i] = item;
+        }
 
     }
 
@@ -102,7 +102,18 @@ public class ArrayList<E> implements List<E>{
      */
     @Override
     public E removeFront() {
-        return null;
+        if(size <= 0){
+            throw new IndexOutOfBoundsException("Array is empty");
+        }
+
+        //save the first index to return later
+        E result = buffer[0];
+        for (int i = 0; i < size; i++) {
+            buffer[i] = buffer[i + 1];
+        }
+
+        size--;
+        return result;
     }
 
     /**
