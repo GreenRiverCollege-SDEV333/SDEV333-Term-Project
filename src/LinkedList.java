@@ -19,7 +19,6 @@ public class LinkedList<E> implements List
     //constructor
     public LinkedList()
     {
-        head = null;
         size = 0;
     }
 
@@ -32,22 +31,7 @@ public class LinkedList<E> implements List
     @Override
     public void addFront(Object item)
     {
-        //set up a new node
-        Node theNewOne = new Node();
-        theNewOne.data = item;
-
-        if (head == null)
-        {
-            //the list is currently empty
-            head = theNewOne;
-            size++;
-        } else
-        {
-            //the list currently has nodes in it
-            theNewOne.next = head;
-            head = theNewOne;
-            size++;
-        }
+        add(0, item);
     }
 
     /**
@@ -58,25 +42,41 @@ public class LinkedList<E> implements List
     @Override
     public void addBack(Object item)
     {
-        //set up a new node
-        Node theNewOne = new Node();
-        theNewOne.data = item;
-
-        //getting an iterator set up
-        LinkedIterator iterator = new LinkedIterator();
-
-        //as long as there's another node, scoot the iterator forward along the list.
-        while (iterator.hasNext())
-        {
-            iterator.current = iterator.current.next;
-        }
-
-        //if the iterator can't move forward, then put the new Node into that empty space.
-        if (!iterator.hasNext())
-        {
-            iterator.current.next = theNewOne;
-            size++;
-        }
+        add(size, item);
+//        //set up a new node
+//        Node theNewOne = new Node();
+//        theNewOne.data = item;
+//
+//        //the list currently has nodes in it
+//        if (head != null)
+//        {
+//            //getting an iterator set up
+//            LinkedIterator iterator = new LinkedIterator();
+//
+//            //as long as there's another node, scoot the iterator forward along the list.
+//            while (iterator.current.next != null)
+//            {
+//                iterator.current = iterator.current.next;
+//            }
+//            if (iterator.current.next == null)
+//            {
+//                iterator.current.next = theNewOne;
+//                size++;
+//            }
+//
+//            //if the iterator can't move forward, then put the new Node into that empty space.
+//            if (!iterator.hasNext())
+//            {
+//                iterator.current = theNewOne;
+//                size++;
+//            }
+//        }
+//        else
+//        {
+//            //if the list is empty, point head at the new node
+//            head = theNewOne;
+//            size++;
+//        }
     }
 
     /**
@@ -88,24 +88,52 @@ public class LinkedList<E> implements List
     @Override
     public void add(int i, Object item)
     {
+        Node theNewOne = new Node();
+        theNewOne.data = item;
+
+        // MAKE ONE SOLID ADD METHOD AND REPURPOSE IT FOR ADDFRONT AND ADDBACK
+
+        if (isEmpty())
+        { //if the list is empty, make a new node, point the head at it, increment the size and cut it off from there.
+            head = theNewOne;
+            size++;
+            return;
+        }
+
+        //if the index is 0 but the list isn't empty...
+        if (i == 0)
+        {
+            //store the old first node
+            Node theOldOne = head;
+
+            //scoot the new first node in front of the old one wire up the new one to the old one
+            head = theNewOne;
+            theNewOne.next = theOldOne;
+
+            //increment the size and break off from there
+            size++;
+            return;
+        }
+
         //setting up a size variable and an iterator to walk through the list
         int currentIndex = 0;
         LinkedIterator iterator = new LinkedIterator();
 
         //as long as the next index isn't the one where the new value belongs AND the next index exists, move forward.
-        while (currentIndex != i + 1 && iterator.hasNext())
+        while (currentIndex < i - 1 && iterator.hasNext())
         {
             iterator.current = iterator.current.next;
             currentIndex++;
         }
         //if the next index IS the one where the value belongs, then create a new node there and link it to the old
         //"next".
-        if (currentIndex + 1 == i)
+        if (currentIndex + 1 >= i)
         {
-            //to start, create a new Node. link it up to the current "next" node.
-            Node theNewOne = new Node();
-            theNewOne.next = iterator.current.next;
-
+            //to start, link up the new Node to the current "next" node, if it's not null.
+            if (iterator.current != null)
+            {
+                theNewOne.next = iterator.current.next;
+            }
             //now, link up the current Node to the newly-created "next" node.
             iterator.current.next = theNewOne;
 
@@ -124,31 +152,40 @@ public class LinkedList<E> implements List
     @Override
     public Object get(int i)
     {
-        if (i > size)
+        if (size == 0)
+        {
+            System.out.println("Empty list, nothing to get.");
+            return null;
+        }
+        else if (i > size)
         {
             throw new IndexOutOfBoundsException("Provided index is too high.");
         } else if (i < 0)
         {
             throw new IndexOutOfBoundsException("Negative indexes are not supported.");
-        } else
+        }
+        else if (i == 0 || size == 1)
+        {
+            //WRITE CODE FOR IF THE SIZE IS ONE
+            return head.data;
+        }
+        else
         {
             //walk through the list, keeping track of what node you're on, and when your pointer is pointing to the Node
             //you're looking for, return the Node data at that particular index.
-
-            //gonna recycle some of my solution for add(), really hoping this works since it's largely untested...
 
             //setting up a size variable and an iterator to walk through the list
             int currentIndex = 0;
             LinkedIterator iterator = new LinkedIterator();
 
             //as long as the next index isn't the index indicated AND the next index exists, move forward.
-            while (currentIndex != i + 1 && iterator.hasNext())
+            while (currentIndex < i - 1 && iterator.hasNext())
             {
                 iterator.current = iterator.current.next;
                 currentIndex++;
             }
             //if the next index IS the one we're looking for, return the data at that index.
-            if (currentIndex + 1 == i)
+            if (currentIndex + 1 >= i)
             {
                 return iterator.current.next.data;
             }
@@ -178,28 +215,7 @@ public class LinkedList<E> implements List
     @Override
     public Object removeFront()
     {
-        //Re-wire "head" to point to the Node in front of the node to be removed, then... let the GC grab it?
-        //I think...
-        if (head == null)
-        {
-            System.out.println("Empty list! Sorry!");
-            return null;
-        } else
-        {
-            //storing the front node in a proper variable
-            Node theOneToRemove = head.next;
-
-            //adjusting head's pointer to point to the next one in the list
-            head.next = theOneToRemove.next;
-
-            //cutting off the old front from the rest of the list entirely
-            Object obj = theOneToRemove.data;
-            theOneToRemove.next = null;
-
-            //decrement the size...
-            size--;
-            return obj;
-        }
+        return remove(0);
     }
 
     /**
@@ -210,29 +226,30 @@ public class LinkedList<E> implements List
     @Override
     public Object removeBack()
     {
-        //so, check if the Node in front of the current one's "next" field is null? And if it is, that must be the
-        //back of the list. In which case, cut off the current one's "next" field so that the old "back" floats off
-        //and gets eaten by the GC.
-        LinkedIterator iterator = new LinkedIterator();
-
-        //as long as the Node in front of this one doesn't have a null pointer...
-        while (iterator.current.next.next != null)
-        {
-            //go forward.
-            iterator.current = iterator.current.next;
-        }
-
-        //if we're at the second-to-last node...
-        if (iterator.current.next.next == null)
-        {
-            //let the last node go. It's IDE food now. Grab the data from it first, though.
-            Object obj = iterator.current.next.data;
-            iterator.current.next = null;
-            return obj;
-        }
-
-        //if we get this far, then we've probably reached the end of the linked list. Return null.
-        return null;
+        return remove(size());
+//        //so, check if the Node in front of the current one's "next" field is null? And if it is, that must be the
+//        //back of the list. In which case, cut off the current one's "next" field so that the old "back" floats off
+//        //and gets eaten by the GC.
+//        LinkedIterator iterator = new LinkedIterator();
+//
+//        //as long as the Node in front of this one doesn't have a null pointer...
+//        while (iterator.current.next.next != null)
+//        {
+//            //go forward.
+//            iterator.current = iterator.current.next;
+//        }
+//
+//        //if we're at the second-to-last node...
+//        if (iterator.current.next.next == null)
+//        {
+//            //let the last node go. It's IDE food now. Grab the data from it first, though.
+//            Object obj = iterator.current.next.data;
+//            iterator.current.next = null;
+//            return obj;
+//        }
+//
+//        //if we get this far, then we've probably reached the end of the linked list. Return null.
+//        return null;
     }
 
     /**
@@ -257,7 +274,12 @@ public class LinkedList<E> implements List
             {
                 //if it is, go ahead and re-wire the pointers so the Node gets reclaimed.
                 iterator.current.next = iterator.current.next.next;
-                break; //does this break me out of the while loop? Don't remember.
+
+                //decrement the size of course.
+                size--;
+
+                //and break out of the loop.
+                break;
             }
             //otherwise, keep going forward.
             else
@@ -276,6 +298,12 @@ public class LinkedList<E> implements List
     @Override
     public Object remove(int i)
     {
+        //if the list is empty, there's nothing to remove. Exception time.
+        if (isEmpty())
+        {
+            throw new NoSuchElementException("Empty list. Nothing to remove.");
+        }
+        //If the provided index is invalid, exception time.
         if (i > size)
         {
             throw new IndexOutOfBoundsException("Provided index is too high.");
@@ -283,6 +311,27 @@ public class LinkedList<E> implements List
         else if (i < 0)
         {
             throw new IndexOutOfBoundsException("Negative indexes are not supported.");
+        }
+        //if there's only one item in the list, just set head to null and return the item.
+        else if (size == 1)
+        {
+            Object obj = head.data;
+            head = null;
+
+            //almost forgot to decrement the size!
+            size--;
+            return obj;
+        }
+        //if the index is zero, re-wire head to point to the one after zero and return the item.
+        else if (i == 0)
+        {
+            //Store head's data in an object, set head to the next node and remove the next node from existence.
+            Object obj = head.data;
+            head = head.next;
+
+            //decrement the size!
+            size--;
+            return obj;
         }
         else
         {
@@ -296,13 +345,14 @@ public class LinkedList<E> implements List
             LinkedIterator iterator = new LinkedIterator();
 
             //as long as the next index isn't the index indicated AND the next index exists, move forward.
-            while (currentIndex != i + 1 && iterator.hasNext())
+            //as long as the next index isn't the index indicated AND the next index exists, move forward.
+            while (currentIndex < i - 2 && iterator.hasNext())
             {
                 iterator.current = iterator.current.next;
                 currentIndex++;
             }
-            //if the next index IS the one we're looking for, store that Node in a variable.
-            if (currentIndex + 1 == i)
+            //if the next index IS the one we're looking for, return the data at that index.
+            if (currentIndex + 2 >= i)
             {
                 //store the Node in a variable.
                 Node theOneToRemove = iterator.current.next;
@@ -376,7 +426,7 @@ public class LinkedList<E> implements List
      * @return an Iterator.
      */
     @Override
-    public Iterator iterator()
+    public Iterator<E> iterator()
     {
         return new LinkedIterator();
     }
