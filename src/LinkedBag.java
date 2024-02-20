@@ -1,6 +1,13 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * LinkedBag represents a bag (or multiset) data structure implemented using a linked list.
+ *
+ * @param <E> the type of elements stored in the stack
+ * @author Noah Lanctot
+ * @version 1.0
+ */
 public class LinkedBag<E> implements Bag<E> {
 
     private Node<E> first;

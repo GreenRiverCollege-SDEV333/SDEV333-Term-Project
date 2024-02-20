@@ -1,6 +1,13 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Implementation of a stack using a resizing array.
+ *
+ * @param <E> the type of elements stored in the stack
+ * @author Noah Lanctot
+ * @version 1.0
+ */
 public class ResizingArrayStack<E> implements Stack<E> {
     private E[] array;
     private int size;

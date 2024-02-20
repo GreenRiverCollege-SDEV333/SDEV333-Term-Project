@@ -1,5 +1,12 @@
 import java.util.Iterator;
 
+/**
+ * LinkedStack represents a stack data structure implemented using a linked list.
+ *
+ * @param <E> the type of elements stored in the stack
+ * @author Noah Lanctot
+ * @version 1.0
+ */
 public class LinkedStack<E> implements Stack<E> {
 
     private Node<E> top;
