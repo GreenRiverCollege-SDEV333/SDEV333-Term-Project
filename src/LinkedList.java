@@ -477,9 +477,9 @@ public class LinkedList<E> implements List
     /**
      * Returns an iterator over elements of type {@code T}.
      *
-     * Runtime Analysis: I'm going to venture it's around O(2) or O(3) at the
-     * absolute worst. All that has to be done is return an object created
-     * by another method; no data processing, no conditionals, no looping.
+     * Runtime Analysis: O(n) a worst-case situation. This method returns a new
+     * object which was in turn returned from another method. It calls a
+     * constructor and that's about as complex as this method gets.
      *
      * @return an Iterator.
      */
