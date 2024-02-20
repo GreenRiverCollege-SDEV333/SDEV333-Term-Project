@@ -33,6 +33,10 @@ public class LinkedQueue <E> implements Queue<E> {
     /**
      * Add an item to the end of the list (queue) .
      *
+     * Runtime: o(1)
+     * This is a  doubly linked list so to add to the back, we already track the back and the head.
+     * even if you wanted to add to the back, the list just need to linked it to the back references, making it constant.
+     *
      * @param item the item to be added
      */
     @Override
@@ -61,7 +65,10 @@ public class LinkedQueue <E> implements Queue<E> {
     }
 
     /**
-     * Remove an item from the queue.
+     * Remove an item from the front the queue.
+     *  Runtime: o(1)
+     *  This is a  doubly linked list so to remove from the front , we already track the back and the front .
+     *  even if you wanted to remove from the front, the list just need to linked it to the front  references, making it constant.
      *
      * @return the item that was removed
      */
@@ -82,9 +89,12 @@ public class LinkedQueue <E> implements Queue<E> {
     }
 
     /**
-     * Checks to see if the queue is empty.
+     * Checks to see if the stack is empty.
      *
-     * @return true if the queue is empty, false otherwise
+     * Runtime: o(1)
+     * This method will only check the size field to see if the size is either zero or not zero .
+     *
+     * @return true if the stack is empty, false otherwise
      */
     @Override
     public boolean isEmpty() {
@@ -98,9 +108,12 @@ public class LinkedQueue <E> implements Queue<E> {
     }
 
     /**
-     * Returns a count of the number of items in the queue.
+     * Returns a count of the number of items in the stack.
      *
-     * @return the number of items in the queue
+     * Runtime: o(1)
+     *      * This method will only check the size field to see what it is stored.
+     *
+     * @return the number of items in the stack
      */
     @Override
     public int size() {

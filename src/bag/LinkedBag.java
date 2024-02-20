@@ -18,6 +18,16 @@ public class LinkedBag <E> implements Bag<E> {
         head = null;
         size = 0;
     }
+
+    /**
+     * Add an item to the stack.
+     *
+     * Runtime: o(n)
+     * This method will add the node to the back  of the list.
+     * Since  this is a singly linkedlist , it will going through all of the entire nodes until it reaches the back nodes.
+     *
+     * @param item the item to be added
+     */
     @Override
     public void add(E item) {
         //            create new node
@@ -39,6 +49,14 @@ public class LinkedBag <E> implements Bag<E> {
             size++;
         }
     }
+    /**
+     * Checks to see if the stack is empty.
+     *
+     * Runtime: o(1)
+     * This method will only check the size field to see if the size is either zero or not zero .
+     *
+     * @return true if the stack is empty, false otherwise
+     */
 
     @Override
     public boolean isEmpty() {
@@ -51,6 +69,14 @@ public class LinkedBag <E> implements Bag<E> {
         }
     }
 
+    /**
+     * Returns a count of the number of items in the stack.
+     *
+     * Runtime: o(1)
+     *      * This method will only check the size field to see what it is stored.
+     *
+     * @return the number of items in the stack
+     */
     @Override
     public int size() {
         return size;

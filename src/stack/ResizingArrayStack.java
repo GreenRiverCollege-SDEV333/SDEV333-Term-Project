@@ -13,6 +13,13 @@ public class ResizingArrayStack <E> implements Stack<E> {
         items = (E[]) new Object[10];
         size = 0;
     }
+
+    /**
+     *  Runtime: o(n)
+     *      * This method will copy the orginal array if it is more size reaches the length of the array.
+     *      * this go through all of the element to copy and put it in the array.
+     * @param newSize
+     */
     private void resize (int newSize)
     {
 
@@ -30,6 +37,10 @@ public class ResizingArrayStack <E> implements Stack<E> {
 
     /**
      * Add an item to the stack.
+     * Runtime: o(1)
+     *      * This method will add the node to the back of the list.
+     *      * Since  this is an array list  , it will be constant since you just need the index of the back
+     *      and will add the item to it.
      *
      * @param item the item to be added
      */
@@ -45,6 +56,10 @@ public class ResizingArrayStack <E> implements Stack<E> {
 
     /**
      * Removes the most recently added item from the stack.
+     *  Runtime: o(1)
+     *      *       This method will remove the element in the back of the list.
+     *      *       Since  this is an array list  , it will be constant since you just need the index of the back
+     *      *      and will remove the item to it.
      *
      * @return the item that was removed
      */
@@ -60,6 +75,10 @@ public class ResizingArrayStack <E> implements Stack<E> {
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
      *
+     *  Runtime: o(1)
+     *      *   This method will look for the element in the back of the list.
+     *      *   Since  this is an array list  , it will be constant since you just need the index of the back
+     *      *   and will look the item to it.
      * @return item at the top of the stack.
      */
     @Override
@@ -69,6 +88,11 @@ public class ResizingArrayStack <E> implements Stack<E> {
 
     /**
      * Checks to see if the stack is empty.
+     *
+     * Runtime; o(1)
+     * Method will only require the size field to either have a true or false,
+     * it will access the size field, if it is more than 0 it will be true,
+     * else, it will be false;
      *
      * @return true if the stack is empty, false otherwise
      */
@@ -86,6 +110,9 @@ public class ResizingArrayStack <E> implements Stack<E> {
 
     /**
      * Returns a count of the number of items in the stack.
+     *
+     * Runtime: o(1)
+     * This method will only check the size field to see what it is stored.
      *
      * @return the number of items in the stack
      */

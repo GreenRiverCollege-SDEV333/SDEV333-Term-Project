@@ -21,6 +21,10 @@ public class LinkedStack <E> implements Stack<E> {
     /**
      * Add an item to the stack.
      *
+     * Runtime: o(n)
+     * This method will add the node to the back  of the list.
+     * Since  this is a singly linkedlist , it will going through all of the entire nodes until it reaches the back nodes.
+     *
      * @param item the item to be added
      */
     @Override
@@ -48,6 +52,12 @@ public class LinkedStack <E> implements Stack<E> {
 
     /**
      * Removes the most recently added item from the stack.
+     *
+     * Runtime: o(n)
+     * this method will remove the items that is in the back of the list,
+     * since this is the singly linkedlist with no tracking for the tail.
+     * in worse case, we have to loop through the entire linkedlist to remove
+     * the back item .
      *
      * @return the item that was removed
      */
@@ -78,6 +88,12 @@ public class LinkedStack <E> implements Stack<E> {
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
      *
+     * Runtime: o(n)
+     *      * this method will look at the items that is in the back of the list,
+     *      * since this is the singly linkedlist with no tracking for the tail.
+     *      * in worse case, we have to loop through the entire linkedlist to find
+     *      * the back item .
+     *
      * @return item at the top of the stack.
      */
     @Override
@@ -102,6 +118,9 @@ public class LinkedStack <E> implements Stack<E> {
     /**
      * Checks to see if the stack is empty.
      *
+     * Runtime: o(1)
+     * This method will only check the size field to see if the size is either zero or not zero .
+     *
      * @return true if the stack is empty, false otherwise
      */
     @Override
@@ -116,6 +135,9 @@ public class LinkedStack <E> implements Stack<E> {
 
     /**
      * Returns a count of the number of items in the stack.
+     *
+     * Runtime: o(1)
+     *      * This method will only check the size field to see what it is stored.
      *
      * @return the number of items in the stack
      */
