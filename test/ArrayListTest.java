@@ -153,14 +153,43 @@ class ArrayListTest {
 
     @org.junit.jupiter.api.Test
     void remove() {
+        ArrayList list = new ArrayList();
+        list.add(0,1);
+        list.add(1,2);
+        list.add(2,3);
+        list.remove("2");
+        assertFalse(list.contains("2"));
     }
 
     @org.junit.jupiter.api.Test
     void testRemove() {
+        ArrayList list = new ArrayList();
+        list.add(0,1);
+        list.add(1,2);
+        list.add(2,3);
+        assertEquals(2, list.remove(1));
+        list.add(1,2);
+        list.add(3,4);
+        assertEquals(4,list.remove(3));
+        list.add(3,4);
+        list.add(4,5);
+        list.add(5,6);
+        list.add(6,7);
+        list.add(7,8);
+        list.remove(7);
+        assertEquals(7,list.get(list.size()-1));
+
     }
 
     @org.junit.jupiter.api.Test
     void contains() {
+        ArrayList list = new ArrayList();
+        assertFalse(list.contains(1));
+        assertFalse(list.contains(-1));
+        list.add(1,1);
+        list.add(2,2);
+        assertTrue( list.contains(1));
+        assertTrue(list.contains(2));
     }
 
     @org.junit.jupiter.api.Test

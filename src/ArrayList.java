@@ -192,8 +192,9 @@ public class ArrayList <E> implements List <E> {
      */
     @Override
     public E removeBack() {
+        E copyOfRemovedValue = buffer[size-1];
+
         if (!isEmpty()){
-            E copyOfRemovedValue = buffer[size-1];
             buffer[size-1] = null;
             size--;
             return copyOfRemovedValue;
@@ -205,11 +206,35 @@ public class ArrayList <E> implements List <E> {
     /**
      * Remove item from the list
      *
+     * in the worst case scenario this method is O(n^2)
+     *  there is a nested loop inside the outer loop.
+     *  The outer loop runs for each element in the buffer,
+     *  and the inner loop runs for each element after the current element. This
+     *  results in a worst-case where everthing needs to be shifted to the left,
+     *  this is a quadratic time complexity.
+     *
      * @param item the item to be removed
      */
     @Override
     public void remove(E item) {
 
+        if (!isEmpty()){
+            for (int i = 0; i < buffer.length; i++) {
+
+                if (buffer[i] == item) {
+                    buffer[i] = null;
+
+                    //shift values to the left
+                    for (int j = i; j <= size; j++) {
+                        buffer[i] = buffer[i + 1];
+                    }
+                    size--;
+                }
+            }
+
+        }else{
+            throw new IndexOutOfBoundsException("Array is empty, nothing to remove");
+        }
     }
 
     /**
@@ -258,7 +283,7 @@ public class ArrayList <E> implements List <E> {
      */
     @Override
     public boolean contains(E item) {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < buffer.length; i++) {
             if (buffer[i] == item){
                 return true;
             }
