@@ -1,3 +1,16 @@
+/**
+ * JUnit test cases for the LinkedList implementation.
+ * It tests various methods for when a list is empty,
+ * has one, half, and full. It includes adding items
+ * to the front and back, adding at a specific index,
+ * retrieving item, setting items, removing
+ * items from the front and back, removing at a specific index,
+ * checking if the list contains a certain value,
+ * checking if the list is empty, and getting the size of the list.
+ *
+ * @author Dhiyaa Nazim
+ */
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

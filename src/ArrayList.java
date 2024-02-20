@@ -1,3 +1,12 @@
+/**
+ *  This class is an implementation of a list
+ *  using a resizable array to store elements.
+ *  The size of the array is adjusted to accommodate
+ *  the number of elements added to the list.
+ *
+ * @author Dhiyaa Nazim
+ */
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

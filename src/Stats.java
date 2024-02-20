@@ -1,3 +1,11 @@
+/**
+ * This class is a test client to test the LinkedBag class.
+ * It calculates the mean and standard deviation
+ * from the input which is a sequence of numbers stored in a Bag.
+ *
+ * @author Dhiyaa Nazim
+ */
+
 import java.util.Scanner;
 
 public class Stats {

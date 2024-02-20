@@ -1,3 +1,12 @@
+
+/**
+ * This class is an implementation of the List
+ * interface using a singly linked list data structure with
+ * methods for adding, removing and accessing elements in the list.
+ *
+ * @author Dhiyaa Nazim
+ */
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

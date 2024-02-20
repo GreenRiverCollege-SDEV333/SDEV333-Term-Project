@@ -1,3 +1,11 @@
+/**
+ * This class is an implementation of a queue
+ * using a linked list with the methods for adding (enqueue)
+ * and removing (dequeue) items
+ *
+ * @author Dhiyaa Nazm
+ */
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -18,6 +26,10 @@ public class LinkedQueue<E> implements Queue<E> {
      * Add an item to the queue.
      *
      * @param item the item to be added
+     *
+     * This method runs in O(1) or constant time
+     * since it only involves updating the last
+     * node of the linked queue
      */
     @Override
     public void enqueue(E item) {
@@ -38,6 +50,10 @@ public class LinkedQueue<E> implements Queue<E> {
      * Remove an item from the queue.
      *
      * @return the item that was removed
+     *
+     * Similar to enqueue, this method runs in O(1)
+     * as it only involves updating the first node
+     * of the linked queue
      */
     @Override
     public E dequeue() {
@@ -54,6 +70,10 @@ public class LinkedQueue<E> implements Queue<E> {
      * Checks to see if the queue is empty.
      *
      * @return true if the queue is empty, false otherwise
+     *
+     * The runtime analysis on this method is O(1)
+     * as it only involves comparing the first node
+     * with null. It doesn't have any loops or traversing.
      */
     @Override
     public boolean isEmpty() {
@@ -64,6 +84,10 @@ public class LinkedQueue<E> implements Queue<E> {
      * Returns a count of the number of items in the queue.
      *
      * @return the number of items in the queue
+     *
+     * This method only involves accessing a variable and
+     * doesn't involve traversing or loops.
+     * Therefore, the runtime is constant or O(1) complexity.
      */
     @Override
     public int size() {

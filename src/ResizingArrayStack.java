@@ -1,3 +1,11 @@
+/**
+ * This class is a resizing array that implements the stack.
+ * It allows resizing of the array when the capacity is full
+ * and has methods to add items (push), remove items (pop)
+ * and retrieve item (peek) in the stack.
+ *
+ * @author Dhiyaa Nazim
+ */
 import java.util.Iterator;
 
 public class ResizingArrayStack<E> implements Stack<E>{
@@ -9,6 +17,15 @@ public class ResizingArrayStack<E> implements Stack<E>{
         size = 0;
     }
 
+    /**
+     * Resizes the array with a new size
+     * @param max the int for new array size
+     *
+     * This method runs in O(n) as this method
+     * is for resizing an array with a new array
+     * size. This requires a loop and visiting
+     * every item and copying it to the new array
+     */
     private void resize(int max) {
         E[] temp = (E[]) new Object[max];
         for (int i = 0; i < size; i++) {
@@ -19,8 +36,15 @@ public class ResizingArrayStack<E> implements Stack<E>{
 
     /**
      * Add an item to the stack.
-     *
+
      * @param item the item to be added
+     *
+     * This method runs in a O(n) or linear time
+     * in a worst case scenario if the array is full
+     * as it will use resize() to copy over the
+     * entire array into a new array which would require
+     * a loop to visit all the items. Otherwise, it will
+     * run in constant time if resize is not used.
      */
     @Override
     public void push(E item) {
@@ -35,6 +59,13 @@ public class ResizingArrayStack<E> implements Stack<E>{
      * Removes the most recently added item from the stack.
      *
      * @return the item that was removed
+     *
+     * Similar to the push method, if array is full
+     * this method will run in a O(n) or linear time
+     * in a worst case scenario as it will use resize()
+     * to copy over the entire array into a new array
+     * which would require a loop to visit all the items.
+     * Otherwise, it will run in constant time if resize is not used.
      */
     @Override
     public E pop() {
@@ -53,6 +84,12 @@ public class ResizingArrayStack<E> implements Stack<E>{
      * Does not modify the stack or the item at the top.
      *
      * @return item at the top of the stack.
+     *
+     * This method runs in constant time as it
+     * only need to access the array at the top
+     * of the stack which doesn't rely on the size
+     * of the array or any loops. Therefore,
+     * runtime will be O(1).
      */
     @Override
     public E peek() {
@@ -63,6 +100,10 @@ public class ResizingArrayStack<E> implements Stack<E>{
      * Checks to see if the stack is empty.
      *
      * @return true if the stack is empty, false otherwise
+     *
+     * The runtime for this method will be O(1)
+     * since it's only comparing a variable and
+     * doesn't rely on the array.
      */
     @Override
     public boolean isEmpty() {
@@ -73,6 +114,11 @@ public class ResizingArrayStack<E> implements Stack<E>{
      * Returns a count of the number of items in the stack.
      *
      * @return the number of items in the stack
+     *
+     * Similar to isEmpty(), this method is
+     * only accessing a variable and doesn't
+     * rely on the array. Therefore, the runtime is
+     * O(1) or constant time.
      */
     @Override
     public int size() {

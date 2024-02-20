@@ -1,5 +1,12 @@
+/**
+ * This class is an implementation of a bag
+ * using a singly linked list to store elements
+ * and deletion of elements.
+ *
+ * @author Dhiyaa Nazim
+ */
+
 import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 public class LinkedBag<E> implements Bag<E>{
@@ -18,6 +25,11 @@ public class LinkedBag<E> implements Bag<E>{
      * Add an item to the bag.
      *
      * @param item the item to be added
+     *
+     * This method involves creating a
+     * new node and updating the first node
+     * of the linked list. Therefore, the
+     * time complexity is O(1) or constant time.
      */
     @Override
     public void add(E item) {
@@ -32,6 +44,10 @@ public class LinkedBag<E> implements Bag<E>{
      * Checks to see if the bag is empty.
      *
      * @return true if the bag is empty, false otherwise
+     *
+     * The runtime analysis on this method is O(1)
+     * as it only involves comparing the first node
+     * with null. It doesn't have any loops or traversing.
      */
     @Override
     public boolean isEmpty() {
@@ -42,6 +58,11 @@ public class LinkedBag<E> implements Bag<E>{
      * Returns a count of the number of items in the bag.
      *
      * @return the number of items in the bag
+     *
+     * Similar to isEmpty(), this method is
+     * only accessing a variable and doesn't
+     * rely on the array. Therefore, the runtime is
+     * O(1) or constant time.
      */
     @Override
     public int size() {

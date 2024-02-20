@@ -1,3 +1,13 @@
+/**
+ * The QueueTestClient class is a test client
+ * for queue implementation. It instantiates a
+ * LinkedQueue and a Scanner object to read the
+ * input, and it then processes each token
+ * from the input, enqueue it if it's not "-"
+ * and dequeue an item and printing it if it is "-".
+ *
+ * @author Dhiyaa Nazim
+ */
 import java.util.Scanner;
 
 public class QueueTestClient {
