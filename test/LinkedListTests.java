@@ -92,6 +92,23 @@ public class LinkedListTests
     }
 
     @Test
+    void set()
+    {
+        //Test list
+        assertEquals("\"FINAL FANTASY I Original Soundtrack\" by Nobuo Uematsu", testList.get(2));
+        testList.set(2, "\"Absolution\" by Muse");
+        assertEquals("\"Absolution\" by Muse", testList.get(2));
+
+        //One list
+        assertEquals("\"The Electric State\" by Simon Stalenhag", oneList.get(0));
+        oneList.set(0, "\"Timewave Zero\" by Blood Incantation");
+        assertEquals("\"Timewave Zero\" by Blood Incantation", oneList.get(0));
+
+        //Empty list
+        assertTrue(emptyList.isEmpty());
+    }
+
+    @Test
     void removeFront() {
         //Test list
         assertEquals("\"Summer Breeze\" by PIPER", testList.removeFront());
