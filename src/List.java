@@ -32,10 +32,12 @@ public interface List<E> extends Iterable<E> {
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
-     * @param i the index where the item should be saved
+     *
+     * @param i    the index where the item should be saved
      * @param item the item to be saved
+     * @return
      */
-    void set(int i, E item);
+    E set(int i, E item);
 
     /**
      * Remove item at the front of the list.
