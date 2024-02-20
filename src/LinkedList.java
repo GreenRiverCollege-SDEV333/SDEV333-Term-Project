@@ -204,11 +204,62 @@ public class LinkedList<E> implements List
     @Override
     public void set(int i, Object item)
     {
+        //if the list is empty, there's nothing to set. Exception time.
+        if (isEmpty())
+        {
+            throw new NoSuchElementException("Empty list. Nothing to set.");
+        }
+        //If the provided index is invalid, exception time.
+        if (i > size)
+        {
+            throw new IndexOutOfBoundsException("Provided index is too high.");
+        }
+        else if (i < 0)
+        {
+            throw new IndexOutOfBoundsException("Negative indexes are not supported.");
+        }
+        //if there's only one item in the list, set it to null.
+        else if (size == 1)
+        {
+            head.data = item;
+        }
+        //if the index is zero, re-assign the head data.
+        else if (i == 0)
+        {
+            head.data = item;
+        }
+        else
+        {
+            //walk through the list, keeping track of what node you're on, and when your pointer is pointing to the Node
+            //you're looking for, change that Node's data.
 
+
+            //setting up a size variable and an iterator to walk through the list
+            int currentIndex = 0;
+            LinkedIterator iterator = new LinkedIterator();
+
+            //as long as the next index isn't the index indicated AND the next index exists, move forward.
+            while (currentIndex < i - 2 && iterator.hasNext())
+            {
+                iterator.current = iterator.current.next;
+                currentIndex++;
+            }
+            //if the next index IS the one we're looking for, overwrite the data.
+            if (currentIndex + 2 >= i)
+            {
+                iterator.current.next.next.data = item;
+            }
+        }
     }
 
     /**
      * Remove item at the front of the list.
+     *
+     * Runtime Analysis: O(n). This method calls another method that I already
+     * wrote, and I know that this other method called runs in O(n) time. All
+     * this method does is call that other method and feed it a specific
+     * parameter; the aforementioned method has a while loop. For a more
+     * thorough explanation, check the documentation for remove(int i).
      *
      * @return the item that was removed
      */
@@ -221,39 +272,28 @@ public class LinkedList<E> implements List
     /**
      * Remove item at the back of the list
      *
+     * Runtime Analysis: O(n). This method calls another method that I already
+     * wrote, and I know that this other method called runs in O(n) time. All
+     * this method does is call that other method and feed it a specific
+     * parameter; the aforementioned method has a while loop. For a more
+     * thorough explanation, check the documentation for remove(int i).
+     *
      * @return the item that was removed
      */
     @Override
     public Object removeBack()
     {
         return remove(size());
-//        //so, check if the Node in front of the current one's "next" field is null? And if it is, that must be the
-//        //back of the list. In which case, cut off the current one's "next" field so that the old "back" floats off
-//        //and gets eaten by the GC.
-//        LinkedIterator iterator = new LinkedIterator();
-//
-//        //as long as the Node in front of this one doesn't have a null pointer...
-//        while (iterator.current.next.next != null)
-//        {
-//            //go forward.
-//            iterator.current = iterator.current.next;
-//        }
-//
-//        //if we're at the second-to-last node...
-//        if (iterator.current.next.next == null)
-//        {
-//            //let the last node go. It's IDE food now. Grab the data from it first, though.
-//            Object obj = iterator.current.next.data;
-//            iterator.current.next = null;
-//            return obj;
-//        }
-//
-//        //if we get this far, then we've probably reached the end of the linked list. Return null.
-//        return null;
     }
 
     /**
      * Remove item from the list
+     *
+     * Runtime Analysis: O(n^2) at worst. There is an if conditional branch
+     * stored inside a while loop; the check on whether or not this branch
+     * should continue happens for n times based on how many times the while
+     * loop has to happen. So, at its worst, this method would be O(n^2).
+     * I think.
      *
      * @param item the item to be removed
      */
@@ -291,6 +331,13 @@ public class LinkedList<E> implements List
 
     /**
      * Remove item at a specified index.
+     *
+     * Runtime Analysis: At worst, I believe this runs in O(n) time. While
+     * there are a number of if/else conditions and loops in this method,
+     * most of the conditions don't have many instructions within them and
+     * there is never more than one loop occurring at a time. The while loop
+     * loops over a set of nodes for however many times the algorithm deems
+     * necessary based on the user's provided index "i".
      *
      * @param i the index where the item should be removed
      * @return the item that was removed
@@ -374,6 +421,14 @@ public class LinkedList<E> implements List
     /**
      * Checks if an item is in the list.
      *
+     * Runtime Analysis: O(n^2) at the worst. There is a while loop, and inside
+     * that while loop, an if statement. Each set of instructions that is
+     * involved with the if statement has to be evaluated a number of times and
+     * on top of that, the instructions involved with the if have to run every
+     * time the while loop repeats itself, which itself runs a number of times.
+     *
+     * So, O(n^2).
+     *
      * @param item the item to search for
      * @return true if the item is in the list, false otherwise
      */
@@ -390,16 +445,21 @@ public class LinkedList<E> implements List
         {
             if (iterator.current.data.equals(item))
             {
-                return true;
+                return true; //3n + .equals call?
             }
-            iterator.current = iterator.current.next;
+            iterator.current = iterator.current.next; //3n + .hasNext call?
         }
         //if the iterator makes it to the end of the list and didn't return true, then it's not here. return false.
-        return false;
+        return false; //2
+        //(3n + 3)n + 2
     }
 
     /**
      * Checks if the list is empty.
+     *
+     * Runtime Analysis: O(3) in the worst-case scenario. This method accesses
+     * the size variable, computes whether or not it's equal to zero, then
+     * returns the result of this computation.
      *
      * @return true if the list is empty, false otherwise
      */
@@ -411,6 +471,9 @@ public class LinkedList<E> implements List
 
     /**
      * Provides a count of the number of items in the list.
+     *
+     * Runtime Analysis: O(2) in the worst-case scenario. All this method
+     * does is access a variable and return its value.
      *
      * @return number of items in the list
      */
