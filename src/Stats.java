@@ -1,10 +1,17 @@
+/**
+ * This is a test class for the methods found in the LinkedBag class.
+ * @author Jared Eller
+ * @verison 1.0
+ * @date 2/20/24
+ */
+
 import java.util.Scanner;
 
 public class Stats
 {
     public static void main(String[] args)
     {
-        Bag<Double> numbers = new LinkedBag<Double>();
+        Bag<Double> numbers = new LinkedBag<>();
         Scanner in = new Scanner("100 99 101 120 98 107 109 81 101 90");
         while(in.hasNextDouble())
         {
