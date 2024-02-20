@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -261,7 +262,7 @@ public class ArrayList <E> implements List <E> {
         E copyOfRemovedValue = buffer[i];
 
         //shift values to the left
-        for (int j = i; j <= size -1; j++){
+        for (int j = i; j < size - 1; j++){
             buffer[j] = buffer[j+1];
         }
 
@@ -322,6 +323,44 @@ public class ArrayList <E> implements List <E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new ArrayListIterator();
+    }
+    //create a private helper
+    private class ArrayListIterator implements Iterator<E> {
+
+        private int i;
+        private void ArrayListIterator(){
+            i = 0;
+        }
+
+
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext() {
+            return i < size;
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
+         */
+        @Override
+        public E next() {
+            if (i > size){
+                throw new NoSuchElementException("i is now out of bounds");
+            }
+            E currentValue = buffer[i];
+            i++;
+            return currentValue;
+        }
+
     }
 }

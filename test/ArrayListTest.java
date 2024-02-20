@@ -1,7 +1,18 @@
+import org.junit.jupiter.api.BeforeEach;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayListTest {
-
+    private ArrayList<Integer> fullList;
+    private ArrayList<Integer> emptyList;
+    @BeforeEach
+    void setUp(){
+        emptyList = new ArrayList<>();
+        fullList = new ArrayList<>();
+        for (int i = 10; i > 0; i--) {
+            fullList.addFront(i-1);
+        }
+    }
     @org.junit.jupiter.api.Test
     void addFront() {
         ArrayList list = new ArrayList();
@@ -20,6 +31,9 @@ class ArrayListTest {
         list.addFront(8);
         list.addFront(9);
         assertEquals(9,list.get(0));
+
+        fullList.addFront(1);
+        assertEquals(1, fullList.get(0));
     }
 
     @org.junit.jupiter.api.Test
@@ -39,6 +53,9 @@ class ArrayListTest {
         list.addBack(9);
         list.addBack(10);
         assertEquals(10,list.get(list.size()-1));
+
+        fullList.addBack(1);
+        assertEquals(1, fullList.get(fullList.size()-1));
     }
 
     @org.junit.jupiter.api.Test
@@ -61,6 +78,9 @@ class ArrayListTest {
         assertEquals(0,list.get(0));
         assertEquals(10,list.get(10));
         assertEquals(11,list.get(11));
+
+        fullList.add(10,1);
+        assertEquals(1, fullList.get(10));
     }
 
     @org.junit.jupiter.api.Test
@@ -83,6 +103,9 @@ class ArrayListTest {
         assertEquals(1,list.get(1));
         assertEquals(11,list.get(11));
         //list.get(-1); //throws IndexOutOfBoundsException: Index cannot be negative
+
+
+        assertEquals(1, fullList.get(1));
     }
 
     @org.junit.jupiter.api.Test
@@ -105,6 +128,9 @@ class ArrayListTest {
         list.add(11,11);
         list.set(11,100);
         assertEquals(100, list.get(11));
+
+        fullList.set(1,10);
+        assertEquals(10, fullList.get(1));
     }
 
     @org.junit.jupiter.api.Test
@@ -134,6 +160,9 @@ class ArrayListTest {
         list.add(9,11);
         list.removeFront();
         assertEquals(3,list.get(0));
+
+        fullList.removeFront();
+        assertEquals(1, fullList.get(0));
     }
 
     @org.junit.jupiter.api.Test
@@ -149,6 +178,9 @@ class ArrayListTest {
         list.removeBack();
         assertEquals(2, list.get(list.size()-1));
         assertEquals(2, list.removeBack());
+
+        fullList.removeBack();
+        assertEquals(8, fullList.get(fullList.size()-1));
     }
 
     @org.junit.jupiter.api.Test
@@ -159,6 +191,9 @@ class ArrayListTest {
         list.add(2,3);
         list.remove("2");
         assertFalse(list.contains("2"));
+
+        fullList.remove(Integer.valueOf("1"));
+        assertFalse(fullList.contains(1));
     }
 
     @org.junit.jupiter.api.Test
@@ -179,6 +214,9 @@ class ArrayListTest {
         list.remove(7);
         assertEquals(7,list.get(list.size()-1));
 
+        fullList.remove(1);
+        assertEquals(2, fullList.get(1));
+
     }
 
     @org.junit.jupiter.api.Test
@@ -190,10 +228,15 @@ class ArrayListTest {
         list.add(2,2);
         assertTrue( list.contains(1));
         assertTrue(list.contains(2));
+
+
+        assertTrue(fullList.contains(1));
     }
 
     @org.junit.jupiter.api.Test
     void isEmpty() {
+        assertTrue(emptyList.isEmpty());
+        assertFalse(fullList.isEmpty());
     }
 
     @org.junit.jupiter.api.Test
@@ -206,9 +249,8 @@ class ArrayListTest {
         assertEquals(2,list.size());
         //list.removeFront();
         //assertEquals(1,list.size());
+        assertEquals(0,emptyList.size());
+        assertEquals(10,fullList.size());
     }
 
-    @org.junit.jupiter.api.Test
-    void iterator() {
-    }
 }
