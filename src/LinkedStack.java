@@ -1,3 +1,10 @@
+/**
+ *  This class represents a Stack that uses a LinkedList under the hood.
+ *  @author Jared Eller
+ *  @verison 1.0
+ *  @date 2/20/24
+ */
+
 import java.util.Iterator;
 
 public class LinkedStack <E> implements Stack<E>
@@ -14,7 +21,6 @@ public class LinkedStack <E> implements Stack<E>
 
     /**
      * Add an item to the stack.
-     *
      * Runtime Analysis: Constant time at worst. All that happens is a node
      * getting stored in a variable, a new node being created, and the new
      * node's parameters getting set up. None of this is really changed by
@@ -35,7 +41,6 @@ public class LinkedStack <E> implements Stack<E>
 
     /**
      * Removes the most recently added item from the stack.
-     *
      * Runtime Analysis: Constant time at worst. This method has no loops or
      * control flow, all that happens is that a Node's pointer gets updated and
      * its data gets stored in a variable and returned. Nothing that could
@@ -56,7 +61,6 @@ public class LinkedStack <E> implements Stack<E>
     /**
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
-     *
      * Runtime Analysis: Constant time at worst. All this method does is return
      * the value from a variable.
      *
@@ -70,12 +74,11 @@ public class LinkedStack <E> implements Stack<E>
 
     /**
      * Checks to see if the stack is empty.
-     *
      * Runtime Analysis: Constant time in the worst-case scenario. This method
      * compares the top of the stack to null and returns the value,
      * nothing else.
      *
-     * @return
+     * @return true if the stack is empty, false if it isn't
      */
     public boolean isEmpty()
     {
@@ -84,7 +87,6 @@ public class LinkedStack <E> implements Stack<E>
 
     /**
      * Returns a count of the number of items in the stack.
-     *
      * Runtime Analysis: Constant time at worst. This method just returns a
      * variable's value, nothing else happens.
      *
@@ -98,7 +100,6 @@ public class LinkedStack <E> implements Stack<E>
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * Runtime Analysis: O(n) at worst. This method creates a new object and
      * returns it; we can't be 100% certain how long the default constructor
      * for an iterator would take, but that is the only major thing happening
@@ -106,7 +107,6 @@ public class LinkedStack <E> implements Stack<E>
      * of the constructor call.
      *
      * @return an Iterator.
-     * @return
      */
     public Iterator<E> iterator()
     {
@@ -134,7 +134,6 @@ public class LinkedStack <E> implements Stack<E>
          * Returns the next element in the iteration.
          *
          * @return the next element in the iteration
-         * @throws NoSuchElementException if the iteration has no more elements
          */
         @Override
         public E next()
