@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ArrayListTests
@@ -35,96 +35,116 @@ public class ArrayListTests
         {
             //PEAR standards drive me nuts, pick one style of bracketing or the other and keep it consistent!
 
-            //populated list; printing the first value, adding to the front, then printing the new first value
-            System.out.println(testList.get(0));
+            //Test list
+            assertEquals("\"Scenery\" by Snail's House", testList.get(0));
             testList.addFront("\"Aja\" by Steely Dan");
-            System.out.println(testList.get(0));
+            assertEquals("\"Aja\" by Steely Dan", testList.get(0));
 
-            //This is probably an unorthodox way of writing tests if it works, it works.
-            System.out.println(oneList.get(0));
+            //One list
+            assertEquals("\"Yoshimi Battles the Pink Robots\" by The Flaming Lips", oneList.get(0));
             oneList.addFront("\"D>E>A>T>H>M>E>T>A>L>\" by Panchiko");
-            System.out.println(oneList.get(0));
+            assertEquals("\"D>E>A>T>H>M>E>T>A>L>\" by Panchiko", oneList.get(0));
 
-            //...I think trying to print out a get for an empty list will throw an exception here.
-            System.out.println("Is the empty list empty?" + emptyList.isEmpty());
+            //Empty list
+            assertTrue(emptyList.isEmpty());
             emptyList.addFront("\"Metaphorical Music\" by Nujabes");
-            System.out.println(emptyList.get(0));
+            assertEquals("\"Metaphorical Music\" by Nujabes", emptyList.get(0));
         }
 
         @Test
         void addBack() {
-            //gotta do something like this again...
-            System.out.println(testList.get(testList.size() -1));
+            //Test list
+            assertEquals("Time management courses", testList.get(testList.size() -1));
             testList.addBack("\"Endtroducing...\" by DJ Shadow");
-            System.out.println(testList.get(testList.size()));
+            assertEquals("\"Endtroducing...\" by DJ Shadow", testList.get(testList.size() -1));
 
-            //now for oneList... running out of albums off the top of my head, gonna have to dive into my library soon
-            System.out.println(oneList.get(oneList.size() -1));
+            //One list
+            assertEquals("\"Yoshimi Battles the Pink Robots\" by The Flaming Lips",
+                    oneList.get(oneList.size() -1));
             oneList.addBack("\"LONG SEASON\" by Fishmans");
-            System.out.println(oneList.get(oneList.size()));
+            assertEquals("\"LONG SEASON\" by Fishmans", oneList.get(oneList.size() -1));
 
+            //Empty list
+            assertTrue(emptyList.isEmpty());
             emptyList.addBack("\"Before the Night\" by Home");
-            System.out.println(emptyList.get(emptyList.size()));
+            assertEquals("\"Before the Night\" by Home", emptyList.get(0));
         }
 
         @Test
         void add() {
-            //Basically just testing with Strings, even though the class accepts other objects...
-            System.out.println(testList.get(5));
-            testList.add(5, "\"Jet Set Radio OST\" by Hideki Naganuma (and various others)");
-            System.out.println(testList.get(5));
+            //Test list
+            assertEquals("Mindful stress reduction strategies", testList.get(3));
+            testList.add(3, "\"Jet Set Radio OST\" by Hideki Naganuma (and various others)");
+            assertEquals("\"Jet Set Radio OST\" by Hideki Naganuma (and various others)", testList.get(3));
 
-            System.out.println(oneList.get(1));
+            //One list
+            assertEquals("\"Yoshimi Battles the Pink Robots\" by The Flaming Lips", oneList.get(0));
             oneList.add(1, "\"World is Yours\" by MASS OF THE FERMENTING DREGS");
-            System.out.println(oneList.get(1));
+            assertEquals("\"World is Yours\" by MASS OF THE FERMENTING DREGS", oneList.get(1));
 
-            System.out.println(emptyList.get(0));
+            assertTrue(emptyList.isEmpty());
             emptyList.add(0, "\"Good News For People Who Love Bad News\" by Modest Mouse");
-            System.out.println(emptyList.get(0));
+            assertEquals("\"Good News For People Who Love Bad News\" by Modest Mouse", emptyList.get(0));
         }
 
         @Test
         void removeFront() {
-            System.out.println("Removed value: " + testList.removeFront());
+            //Test list
+            assertEquals("\"Scenery\" by Snail's House", testList.removeFront());
 
-            System.out.println("Removed value: " + oneList.removeFront());
+            //One list
+            assertEquals("\"Yoshimi Battles the Pink Robots\" by The Flaming Lips", oneList.removeFront());
 
-            emptyList.removeFront();
+            //Empty list
+            assertEquals("List is empty. Nothing to remove", emptyList.removeFront());
         }
 
         @Test
         void removeBack() {
-            System.out.println("Removed value: " + testList.removeBack());
+            //Test list
+            assertEquals("Time management courses", testList.removeBack());
 
-            System.out.println("Removed value: " + oneList.removeBack());
+            //One list
+            assertEquals("\"Yoshimi Battles the Pink Robots\" by The Flaming Lips", oneList.removeBack());
 
-            emptyList.removeBack();
+            //Empty list
+            assertEquals("List is empty. Nothing to remove", emptyList.removeBack());
         }
 
         @Test
         void remove() {
-            System.out.println("Current value at index 3: " + testList.get(2));
-            System.out.println("Removed value: " + testList.remove(2));
+            //Test list
+            assertEquals("\"808s & Heartbreak\" by Kanye West", testList.remove(2));
 
-            System.out.println("Current value at index 0: " + oneList.get(0));
-            System.out.println("Removed value: " + oneList.remove(0));
+            //One list
+            assertEquals("\"Yoshimi Battles the Pink Robots\" by The Flaming Lips", oneList.remove(0));
 
-            emptyList.remove(0);
+            //Empty list
+            assertEquals("List is empty. Nothing to remove", emptyList.remove(0));
         }
 
         @Test
         void contains() {
-            assertEquals(true, testList.contains("Time management courses"));
-            assertEquals(false, oneList.contains("Oranges"));
-            assertEquals(false, emptyList.contains("Anything, really"));
+            //Test list
+            assertTrue(testList.contains("Time management courses"));
+
+            //One list
+            assertFalse(oneList.contains("Oranges"));
+
+            //Empty list
+            assertFalse(emptyList.contains("Anything, really"));
         }
 
 
         @Test
         void isEmpty() {
-            assertEquals(false, testList.isEmpty());
-            assertEquals(false, oneList.isEmpty());
-            assertEquals(true, emptyList.isEmpty());
-        }
+            //Test list
+            assertFalse(testList.isEmpty());
 
+            //One list
+            assertFalse(oneList.isEmpty());
+
+            //Empty list
+            assertTrue(emptyList.isEmpty());
+        }
 }
