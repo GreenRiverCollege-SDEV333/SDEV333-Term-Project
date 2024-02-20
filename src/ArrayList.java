@@ -1,7 +1,15 @@
+/**
+ *  This class represents an ArrayList. Unfortunately there's some warnings here about unchecked
+ *  casting; in my tests the code has continued to run fine.
+ *  @author Jared Eller
+ *  @verison 1.0
+ *  @date 2/20/24
+ */
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayList<E> implements List
+public class ArrayList<E> implements List<E>
 {
     //private fields
     private E[] buffer;
@@ -15,7 +23,6 @@ public class ArrayList<E> implements List
 
     /**
      * Add item to the front.
-     *
      * Runtime Analysis: O(n) in the worst case. There is a check to determine
      * if the list is empty, but it only runs once. Inside that check if a for
      * loop that has to shuffle every single item over to the next empty space.
@@ -48,7 +55,6 @@ public class ArrayList<E> implements List
 
     /**
      * Add item to the back.
-     *
      * Runtime Analysis: Logarithmic time complexity in the worst case. This
      * method just resizes the Array if it's getting too full, and then adds an
      * item to the back of the list. No shuffling done, just a rewrite, so the
@@ -70,14 +76,12 @@ public class ArrayList<E> implements List
 
     /**
      * Add an item at specified index (position).
-     *
      * Runtime Analysis: O(n^2) worst-case There is an if condition that has
      * to evaluate every single up to a given point to determine whether or not
      * it's empty and from there, a for loop will run inside the if statement
      * if a given index isn't empty. In the worst-case scenario, an item will
      * be added to the front of the list, meaning every other item has to be
      * checked to see if it's null and then moved over if it isn't.
-     *
      * Each of these operations will be much, much longer if the list has more
      * indexes in it and if the user selects a low index to insert into.
      *
@@ -123,9 +127,9 @@ public class ArrayList<E> implements List
         E[] newBuffer = (E[])new Object[newSize];
 
         //copy everything over from buffer into newBuffer
-        for (int i = 0; i < size; i++)
+        if (size >= 0)
         {
-            newBuffer[i] = buffer[i];
+            System.arraycopy(buffer, 0, newBuffer, 0, size);
         }
 
         //set the new space into buffer
@@ -137,7 +141,6 @@ public class ArrayList<E> implements List
 
     /**
      * Get the item at a specified index.
-     *
      * Runtime Analysis: Logarithmic time complexity in a worst-case scenario.
      * Each branch within the if/else tree only has a few instructions, none of
      * which are dependent on the size of the array or the data provided to the
@@ -147,7 +150,7 @@ public class ArrayList<E> implements List
      * @return the item located at that index
      */
     @Override
-    public Object get(int i)
+    public E get(int i)
     {
         if (i > size)
         {
@@ -166,7 +169,6 @@ public class ArrayList<E> implements List
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
-     *
      * Runtime Analysis: Logarithmic time at worst. There's a few conditionals,
      * but the runtime of the method doesn't change based on any factors
      * outside the method's control; each condition has a set number of
@@ -194,7 +196,6 @@ public class ArrayList<E> implements List
 
     /**
      * Remove item at the front of the list.
-     *
      * Runtime Analysis: O(n) in a worst-case scenario. This method calls
      * another method, remove(int i), and having written that method myself I
      * already know that it runs in O(n) time complexity; this method doesn't
@@ -204,14 +205,13 @@ public class ArrayList<E> implements List
      * @return the item that was removed
      */
     @Override
-    public Object removeFront()
+    public E removeFront()
     {
         return remove(0);
     }
 
     /**
      * Remove item at the back of the list
-     *
      * Runtime Analysis: O(n) in a worst-case scenario. This method calls
      * another method, remove(int i), and having written that method myself I
      * already know that it runs in O(n) time complexity; this method doesn't
@@ -221,14 +221,13 @@ public class ArrayList<E> implements List
      * @return the item that was removed
      */
     @Override
-    public Object removeBack()
+    public E removeBack()
     {
         return remove(size - 1);
     }
 
     /**
      * Remove item from the list
-     *
      * Runtime Analysis: O(n) in a worst-case scenario. The for loop has to
      * search through the array for a provided value, and in the worst case it
      * will need to search through every index for the value. How long this
@@ -260,7 +259,6 @@ public class ArrayList<E> implements List
 
     /**
      * Remove item at a specified index.
-     *
      * Runtime Analysis: Logarithmic time, I think? There's quite a few
      * instructions in one of the branches of this method's control flow, but
      * even then the method doesn't really increase in time complexity based
@@ -271,12 +269,12 @@ public class ArrayList<E> implements List
      * @return the item that was removed
      */
     @Override
-    public Object remove(int i)
+    public E remove(int i)
     {
         //check if the list is empty first
         if(isEmpty())
         {
-            return "List is empty. Nothing to remove";
+            return (E)"List is empty. Nothing to remove";
         }
         //check that the provided index isn't out of bounds or negative
         else if(i > size)
@@ -290,7 +288,7 @@ public class ArrayList<E> implements List
         else
         {
             //store the object in a local variable, overwrite the index, then return the object.
-            Object obj = buffer[i];
+            E obj = buffer[i];
             buffer[i] = null;
             size--;
             return obj;
@@ -299,7 +297,6 @@ public class ArrayList<E> implements List
 
     /**
      * Checks if an item is in the list.
-     *
      * Runtime Analysis: O(n) in a worst-case scenario. There's a for loop that
      * has to search through the items in the ArrayList; in a worst-case
      * situation, it has to search every item in the list. As a result, the
@@ -327,7 +324,6 @@ public class ArrayList<E> implements List
 
     /**
      * Checks if the list is empty.
-     *
      * Runtime Analysis: Constant time. Maybe O(3) if you wanted specifics?
      * The only value that has to be accessed is a global variable, and
      * after the variable has been accessed it's compared against 0. From
@@ -344,7 +340,6 @@ public class ArrayList<E> implements List
 
     /**
      * Provides a count of the number of items in the list.
-     *
      * Runtime Analysis: Constant time in a worst-case scenario.
      * All this method does is access a variable and return it. The same two
      * instructions each method call, nothing more.
@@ -360,7 +355,6 @@ public class ArrayList<E> implements List
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * Runtime Analysis: O(n) a worst-case situation. This method returns a new
      * object which was in turn returned from another method. It calls a
      * constructor and that's about as complex as this method gets.
@@ -368,7 +362,7 @@ public class ArrayList<E> implements List
      * @return an Iterator.
      */
     @Override
-    public Iterator iterator()
+    public Iterator<E> iterator()
     {
         return new ArrayListIterator();
     }
@@ -411,9 +405,9 @@ public class ArrayList<E> implements List
                 throw new NoSuchElementException("i is out of bounds");
             }
 
-            Object currentValue = buffer[i];
+            E currentValue = buffer[i];
             i++;
-            return (E)currentValue;
+            return currentValue;
         }
     }
 }
