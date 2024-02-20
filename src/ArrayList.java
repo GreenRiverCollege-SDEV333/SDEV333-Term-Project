@@ -49,10 +49,10 @@ public class ArrayList<E> implements List
     /**
      * Add item to the back.
      *
-     * Runtime Analysis: Constant time in the worst case. This method just
-     * resizes the Array if it's getting too full, and then adds an item to the
-     * back of the list. No shuffling done, just a rewrite, so the instructions
-     * that run shouldn't be dependent on any external factors.
+     * Runtime Analysis: Logarithmic time complexity in the worst case. This
+     * method just resizes the Array if it's getting too full, and then adds an
+     * item to the back of the list. No shuffling done, just a rewrite, so the
+     * instructions that run shouldn't be dependent on any external factors.
      *
      * @param item the item to be added
      */
@@ -138,9 +138,9 @@ public class ArrayList<E> implements List
     /**
      * Get the item at a specified index.
      *
-     * Runtime Analysis: Constant time in a worst-case scenario. Each branch
-     * within the if/else tree only has a few instructions, none of which are
-     * dependent on the size of the array or the data provided to the
+     * Runtime Analysis: Logarithmic time complexity in a worst-case scenario.
+     * Each branch within the if/else tree only has a few instructions, none of
+     * which are dependent on the size of the array or the data provided to the
      * structure.
      *
      * @param i the index where the item should be retrieved
@@ -167,7 +167,7 @@ public class ArrayList<E> implements List
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
      *
-     * Runtime Analysis: Constant time at worst. There's a few conditionals,
+     * Runtime Analysis: Logarithmic time at worst. There's a few conditionals,
      * but the runtime of the method doesn't change based on any factors
      * outside the method's control; each condition has a set number of
      * instructions to be performed.
@@ -261,7 +261,7 @@ public class ArrayList<E> implements List
     /**
      * Remove item at a specified index.
      *
-     * Runtime Analysis: Constant time; O(9) I think? There's quite a few
+     * Runtime Analysis: Logarithmic time, I think? There's quite a few
      * instructions in one of the branches of this method's control flow, but
      * even then the method doesn't really increase in time complexity based
      * on the size of the array due to the nature of ArrayLists. Every item is
@@ -361,9 +361,9 @@ public class ArrayList<E> implements List
     /**
      * Returns an iterator over elements of type {@code T}.
      *
-     * Runtime Analysis: Constant time or O(2), maybe O(3) in a worst-case
-     * situation. This method returns a new object which was in turn returned
-     * from another method. No loops, no control flow, nothing else.
+     * Runtime Analysis: O(n) a worst-case situation. This method returns a new
+     * object which was in turn returned from another method. It calls a
+     * constructor and that's about as complex as this method gets.
      *
      * @return an Iterator.
      */
