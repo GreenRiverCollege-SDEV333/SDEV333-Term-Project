@@ -2,7 +2,6 @@
  * MathSet API (interface / abstract data type)
  * represents a mathematical set. Sets in mathematics
  * have unique elements (keys) and there are no duplicate keys.
- *
  * In this MathSet API, we have an additional constraint that
  * traditional mathematical sets do not have. In mathematical sets,
  * elements are unordered, order of keys does not matter. In this

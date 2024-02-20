@@ -1,7 +1,10 @@
 /**
  * Author : Levi Miller
+ * file: StackTestClient.java testing out stack implementations
  */
+
 import java.util.Scanner;
+
 public class StackTestClient {
 
     public static void main(String[] args) {

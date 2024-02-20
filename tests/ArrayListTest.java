@@ -366,8 +366,8 @@ class ArrayListTest {
 
 
         boolean expectedOneElement = false;
-        boolean actualOneElement = oneElement.contains("nothere");
-        ;
+        boolean actualOneElement = oneElement.contains("other");
+
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
 
@@ -405,8 +405,8 @@ class ArrayListTest {
 
 
         boolean expectedOneElement = false;
-        boolean actualOneElement = oneElement.contains("nothere");
-        ;
+        boolean actualOneElement = oneElement.contains("other");
+
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
 

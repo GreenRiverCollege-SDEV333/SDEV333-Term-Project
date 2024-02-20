@@ -1,4 +1,8 @@
 /**
+ * Author : Levi Miller
+ * file: Queue.java, Queue interface
+ */
+/**
  * FIFO (first-in, first-out) Queue API
  * @param <E> class / data type of the items in the queue
  */

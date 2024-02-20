@@ -1,5 +1,6 @@
 /**
  * Author: Levi Miller
+ * File: ArrayList.java implements arraylist
  */
 import java.util.Arrays;
 import java.util.Iterator;
@@ -15,11 +16,8 @@ public class ArrayList<E> implements List<E>{
     }
     /**
      * Add item to the front.
-     *
      * Runtime analysis: the O level is O(n) so linear time
      * The program has to run over the size(n) of the list
-     *
-     *
      * @param item the item to be added
      */
     @Override
@@ -84,12 +82,12 @@ public class ArrayList<E> implements List<E>{
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
      * RunTime analysis: O(1) constant no loops worst case constant
-     * @param i the index where the item should be saved
+     *
+     * @param i    the index where the item should be saved
      * @param item the item to be saved
-     * @return E item that was removed
      */
     @Override
-    public E set(int i, E item) {
+    public void set(int i, E item) {
         if (i < 0) {
             throw new IndexOutOfBoundsException("Index can not be negative");
         }
@@ -99,7 +97,6 @@ public class ArrayList<E> implements List<E>{
        E removed = buffer[i];
        buffer[i] = item;
        size++;
-       return removed;
     }
     /**
      * Remove item at the front of the list.
@@ -205,7 +202,10 @@ public class ArrayList<E> implements List<E>{
         }
         return size;
     }
-
+    /**
+     * RunTime analysis: one loop so linear time worse cast O(n)
+     * resizes array when the array is full and copy over previous array
+     * */
     private void resize(int newSize){
         // create a new space separate from the old buffer
         E[] temp =  (E[]) new Object[(int) newSize];

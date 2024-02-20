@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Iterator;
+
 
 class LinkedListTest {
     @Test
@@ -370,8 +370,8 @@ class LinkedListTest {
 
 
         boolean expectedOneElement = false;
-        boolean actualOneElement = oneElement.contains("nothere");
-        ;
+        boolean actualOneElement = oneElement.contains("other");
+
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
 
@@ -410,8 +410,8 @@ class LinkedListTest {
 
 
         boolean expectedOneElement = false;
-        boolean actualOneElement = oneElement.contains("nothere");
-        ;
+        boolean actualOneElement = oneElement.contains("other");
+
         Assertions.assertEquals(expectedOneElement, actualOneElement);
 
 

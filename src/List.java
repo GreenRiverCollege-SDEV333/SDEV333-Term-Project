@@ -1,3 +1,7 @@
+/**
+ * Author : Levi Miller
+ * file: List.java, list interface
+ */
 /***
  * List interface (API / abstract data type)
  * @param <E> Class or data type of the items in the list.
@@ -35,9 +39,8 @@ public interface List<E> extends Iterable<E> {
      *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
-     * @return
      */
-    E set(int i, E item);
+    void set(int i, E item);
 
     /**
      * Remove item at the front of the list.

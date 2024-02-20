@@ -1,4 +1,8 @@
 /**
+ * Author : Levi Miller
+ * file: Stack.java, stack interface
+ */
+/**
  * Stack (LIFO: last-in, first-out) API
  * @param <E> class / data type of the items in the stack
  */

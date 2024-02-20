@@ -1,7 +1,8 @@
 /**
  * Author: Levi Miller
+ * file: LinkedList.java, implements Linked-list interface
+ * only errors are from unchecked cast
  */
-
 import java.util.Iterator;
 
 public class LinkedList<E> implements List<E> {
@@ -23,7 +24,10 @@ public class LinkedList<E> implements List<E> {
     // set up the size field
     private int size;
 
-    // add a constructor to initialize the fields
+    /**
+     * default constructor: initializing fields
+     * RunTime analysis: constant O(1) no loops worse case in constant
+     */
     public LinkedList() {
         head = null;
 
@@ -41,17 +45,14 @@ public class LinkedList<E> implements List<E> {
         Node theNewOne = new Node();
         theNewOne.data = item;
 
-        if (head == null) {
-            //this list is currently empty
-            head = theNewOne;
-            size++;
-        } else {
+        if (head != null) {
             //this list currently has some nodes in it
             theNewOne.next = head;
             //everything from the right gets saved to the left
-            head = theNewOne;
-            size++;
-        }
+        }  //this list is currently empty
+
+        head = theNewOne;
+        size++;
     }
 
     /**
@@ -63,10 +64,7 @@ public class LinkedList<E> implements List<E> {
     public void addBack(E item) {
         Node theNewOne = new Node();
         theNewOne.data = item;
-        if (size == 0) {
-            head = theNewOne;
-            size++;
-        } else {
+        if (size != 0) {
             // keeps track of where you are in the list
             Node temp = head;
             // if temp. next is not null
@@ -76,8 +74,10 @@ public class LinkedList<E> implements List<E> {
             }
             // if temp.next is null then theNewOne is temp.next
             temp.next = theNewOne;
-            size++;
+        } else {
+            head = theNewOne;
         }
+        size++;
     }
 
     /**
@@ -143,12 +143,12 @@ public class LinkedList<E> implements List<E> {
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
      * RunTime analysis: one loop so linear time worse case O(n)
+     *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
-     * @return
      */
     @Override
-    public E set(int i, E item) {
+    public void set(int i, E item) {
         Node theNewOne = new Node();
         theNewOne.data = item;
         if (i > size) {
@@ -170,7 +170,6 @@ public class LinkedList<E> implements List<E> {
             }
         }
         size++;
-        return null;
     }
 
     /**
