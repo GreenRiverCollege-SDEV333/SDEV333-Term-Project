@@ -1,3 +1,13 @@
+/**
+ *  This class represents a Stack that relies upon an ArrayList under the hood.
+ *  There are a few warnings related to unchecked casts or the class not being
+ *  in use; the "not being in use" warnings disappear if you uncomment the
+ *  first assignment statement in StacksTestClient.java.
+ *  @author Jared Eller
+ *  @verison 1.0
+ *  @date 2/20/24
+ */
+
 import java.util.Iterator;
 
 public class ResizingArrayStack<E> implements Stack<E>
@@ -15,7 +25,6 @@ public class ResizingArrayStack<E> implements Stack<E>
 
     /**
      * Add an item to the stack.
-     *
      * Runtime Analysis: Logarithmic time at worst. There is a conditional that
      * runs at the beginning of the method, but there aren't any loops. The
      * conditional is not constantly running, it only checks once. Much
@@ -38,7 +47,6 @@ public class ResizingArrayStack<E> implements Stack<E>
 
     /**
      * Removes the most recently added item from the stack.
-     *
      * Runtime Analysis: Logarithmic time at worst. There aren't any loops that
      * have to run, just a few assignments and indexes/variables being
      * accessed and one single if statement.
@@ -64,7 +72,6 @@ public class ResizingArrayStack<E> implements Stack<E>
     /**
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
-     *
      * Runtime Analysis: Constant time at worst. The method accesses a variable
      * at a given point in an array and returns it. Nothing to multiply the
      * runtime in here.
@@ -79,7 +86,6 @@ public class ResizingArrayStack<E> implements Stack<E>
 
     /**
      * Checks to see if the stack is empty.
-     *
      * Runtime Analysis: Constant time in the worst case situation.
      * This method accesses a variable, compares its equality to zero, and
      * returns the result. There isn't anything that can be impacted by a
@@ -95,7 +101,6 @@ public class ResizingArrayStack<E> implements Stack<E>
 
     /**
      * Returns a count of the number of items in the stack.
-     *
      * Runtime Analysis: Worst-case scenario this runs in constant time. All
      * that happens is that the method accesses a variable's value and returns
      * it. These instructions wouldn't be altered if the size of the array was
@@ -114,9 +119,9 @@ public class ResizingArrayStack<E> implements Stack<E>
         //Move stack to a new array of size max.
         E[] temp = (E[]) new Object[max];
 
-        for (int i = 0; i < size - 1; i++)
+        if (size - 1 >= 0)
         {
-            temp[i] = buffer[i];
+            System.arraycopy(buffer, 0, temp, 0, size - 1);
         }
 
         buffer = temp;
@@ -124,7 +129,6 @@ public class ResizingArrayStack<E> implements Stack<E>
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * Runtime Analysis: O(n) at worst. This method creates a new object and
      * returns it; we can't be 100% certain how long the default constructor
      * for an iterator would take, but that is the only major thing happening
