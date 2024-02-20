@@ -26,6 +26,12 @@ public class LinkedList<E> implements List
     /**
      * Add item to the front.
      *
+     * Runtime Analysis: O(n) at worst. This method makes a call to the
+     * add (int i, Object item) method found below it, and having
+     * written that method myself, I can confirm that it runs at O(n) in a
+     * worst case scenario. This method simply calls that method and hands it
+     * a few parameters, so the runtime shouldn't be any more complicated.
+     *
      * @param item the item to be added
      */
     @Override
@@ -37,50 +43,28 @@ public class LinkedList<E> implements List
     /**
      * Add item to the back.
      *
+     * Runtime Analysis: O(n) at worst. This method makes a call to the
+     * add (int i, Object item) method found below it, and having
+     * written that method myself, I can confirm that it runs at O(n) in a
+     * worst case scenario. This method simply calls that method and hands it
+     * a few parameters, so the runtime shouldn't be any more complicated.
+     *
      * @param item the item to be added
      */
     @Override
     public void addBack(Object item)
     {
         add(size, item);
-//        //set up a new node
-//        Node theNewOne = new Node();
-//        theNewOne.data = item;
-//
-//        //the list currently has nodes in it
-//        if (head != null)
-//        {
-//            //getting an iterator set up
-//            LinkedIterator iterator = new LinkedIterator();
-//
-//            //as long as there's another node, scoot the iterator forward along the list.
-//            while (iterator.current.next != null)
-//            {
-//                iterator.current = iterator.current.next;
-//            }
-//            if (iterator.current.next == null)
-//            {
-//                iterator.current.next = theNewOne;
-//                size++;
-//            }
-//
-//            //if the iterator can't move forward, then put the new Node into that empty space.
-//            if (!iterator.hasNext())
-//            {
-//                iterator.current = theNewOne;
-//                size++;
-//            }
-//        }
-//        else
-//        {
-//            //if the list is empty, point head at the new node
-//            head = theNewOne;
-//            size++;
-//        }
     }
 
     /**
      * Add an item at specified index (position).
+     *
+     * Runtime Analysis: O(n) at worst. There's a while loop, but there aren't
+     * any more loops or conditionals that occur within the loop; this loop
+     * has to run a certain number of times depending on the user's submitted
+     * index value, and that number of times can be represented as n. So,
+     * this method runs at O(n) in a worst-case situation.
      *
      * @param i    the index where the item should be added
      * @param item the item to be added
@@ -146,6 +130,11 @@ public class LinkedList<E> implements List
     /**
      * Get the item at a specified index.
      *
+     * Runtime Analysis: At worst, O(n). There is a while loop that runs inside
+     * an else statement, but this condition is only ever checked once, at the
+     * start of the method. No conditionals or loops run inside the while loop.
+     * As a result, I believe this is O(n).
+     *
      * @param i the index where the item should be retrieved
      * @return the item located at that index
      */
@@ -197,6 +186,13 @@ public class LinkedList<E> implements List
     /**
      * Set (save) an item at a specified index. Previous
      * item at that index is overwritten.
+     *
+     * Runtime Analysis: O(n) at worst. This method borrows much of its
+     * traversal algorithm from remove(int i), and as a result there is a while
+     * loop that runs for a set number of times depending on the user's
+     * provided index. No other loops run inside this while loop, but there are
+     * other conditionals that run. I believe this constitutes O(n) in a worst
+     * case scenario.
      *
      * @param i    the index where the item should be saved
      * @param item the item to be saved
@@ -382,11 +378,6 @@ public class LinkedList<E> implements List
         }
         else
         {
-            //walk through the list, keeping track of what node you're on, and when your pointer is pointing to the Node
-            //you're looking for, store that Node in a variable, grab its pointer to redirect your current Node, then
-            //set the stored Node's next to null so it floats away like a piece of driftwood in the ocean.
-
-
             //setting up a size variable and an iterator to walk through the list
             int currentIndex = 0;
             LinkedIterator iterator = new LinkedIterator();
@@ -485,6 +476,10 @@ public class LinkedList<E> implements List
 
     /**
      * Returns an iterator over elements of type {@code T}.
+     *
+     * Runtime Analysis: I'm going to venture it's around O(2) or O(3) at the
+     * absolute worst. All that has to be done is return an object created
+     * by another method; no data processing, no conditionals, no looping.
      *
      * @return an Iterator.
      */
