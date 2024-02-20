@@ -12,6 +12,12 @@ public class LinkedQueue<E> implements Queue<E> {
         private Node<E> next;
     }
 
+    /**
+     * Adds an item to the end of the queue.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @param item the item to enqueue
+     */
     @Override
     public void enqueue(E item) {
         Node<E> newNode = new Node<>();
@@ -28,6 +34,13 @@ public class LinkedQueue<E> implements Queue<E> {
         size++;
     }
 
+    /**
+     * Removes and returns the item least recently added to this queue.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @return the item least recently added
+     * @throws NoSuchElementException if the queue is empty
+     */
     @Override
     public E dequeue() {
         if (isEmpty()) {
@@ -43,16 +56,33 @@ public class LinkedQueue<E> implements Queue<E> {
         return item;
     }
 
+    /**
+     * Checks whether the queue is empty.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @return true if the queue is empty, false otherwise
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Returns the number of items in the queue.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @return the number of items in the queue
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Returns an iterator to traverse the items in the queue.
+     *
+     * @return an iterator to traverse the items in the queue
+     */
     @Override
     public Iterator<E> iterator() {
         return new QueueIterator();

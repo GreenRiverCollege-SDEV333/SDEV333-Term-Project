@@ -15,11 +15,20 @@ public class LinkedStack<E> implements Stack<E> {
         }
     }
 
+    /**
+     * Initializes an empty stack.
+     */
     public LinkedStack() {
         top = null;
         size = 0;
     }
 
+    /**
+     * Adds an item to the top of the stack.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @param item the item to be added
+     */
     @Override
     public void push(E item) {
         Node<E> newNode = new Node<>(item);
@@ -29,6 +38,13 @@ public class LinkedStack<E> implements Stack<E> {
         size++;
     }
 
+    /**
+     * Removes and returns the item most recently added to this stack.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @return the item most recently added
+     * @throws IllegalStateException if the stack is empty
+     */
     @Override
     public E pop() {
         if (isEmpty()) {
@@ -42,6 +58,13 @@ public class LinkedStack<E> implements Stack<E> {
         return data;
     }
 
+    /**
+     * Returns the item most recently added to this stack without removing it.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @return the item most recently added
+     * @throws IllegalStateException if the stack is empty
+     */
     @Override
     public E peek() {
         if (isEmpty()) {
@@ -51,16 +74,33 @@ public class LinkedStack<E> implements Stack<E> {
         return top.data;
     }
 
+    /**
+     * Checks whether the stack is empty.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @return true if the stack is empty, false otherwise
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Returns the number of items in the stack.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @return the number of items in the stack
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Returns an iterator to traverse the items in the stack.
+     *
+     * @return an iterator to traverse the items in the stack
+     */
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {

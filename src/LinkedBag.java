@@ -11,11 +11,20 @@ public class LinkedBag<E> implements Bag<E> {
         private Node<E> next;
     }
 
+    /**
+     * Initializes an empty bag.
+     */
     public LinkedBag() {
         first = null;
         size = 0;
     }
 
+    /**
+     * Adds an item to the bag.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @param e the item to add
+     */
     @Override
     public void add(E e) {
         Node<E> newNode = new Node<>();
@@ -25,16 +34,33 @@ public class LinkedBag<E> implements Bag<E> {
         size++;
     }
 
+    /**
+     * Checks whether the bag is empty.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @return true if the bag is empty, false otherwise
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Returns the number of items in the bag.
+     * Time complexity: O(1) (amortized), O(N) (worst-case when resizing)
+     *
+     * @return the number of items in the bag
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Returns an iterator to traverse the items in the bag.
+     *
+     * @return an iterator to traverse the items in the bag
+     */
     @Override
     public Iterator<E> iterator() {
         return new BagIterator();
