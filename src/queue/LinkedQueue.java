@@ -1,7 +1,8 @@
+package queue;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedQueue <E> implements Queue <E> {
+public class LinkedQueue <E> implements Queue<E> {
 //    Create Private Class Node
     private class Node {
         E data;

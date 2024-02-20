@@ -1,3 +1,5 @@
+package bag;
+
 import java.util.Scanner;
 
 public class Stats {

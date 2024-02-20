@@ -1,29 +1,25 @@
+package bag;
+
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class LinkedStack <E> implements Stack <E>{
-//    fields
-    private Node head;
-    private int size;
-//    constructor
-    public LinkedStack() {
-        head = null;
-        size = 0;
-    }
-//    private node class
+public class LinkedBag <E> implements Bag<E> {
+//    Create Private Class Node
     private class Node
     {
         E data;
         Node next;
     }
-    /**
-     * Add an item to the stack.
-     *
-     * @param item the item to be added
-     */
+    //    fields
+    private Node head;
+    private int size;
+    //    constructor
+    public LinkedBag() {
+        head = null;
+        size = 0;
+    }
     @Override
-    public void push(E item) {
+    public void add(E item) {
         //            create new node
         Node newItem = new Node();
 //            make the node data equals to item
@@ -42,82 +38,19 @@ public class LinkedStack <E> implements Stack <E>{
             current.next = newItem;
             size++;
         }
-
     }
 
-    /**
-     * Removes the most recently added item from the stack.
-     *
-     * @return the item that was removed
-     */
-    @Override
-    public E pop() {
-        E temp;
-        if(head == null)
-        {
-            throw new NoSuchElementException(" The list is empty ");
-        } else if (head.next == null ) {
-            temp = head.data;
-            head = null;
-            size--;
-        } else {
-            Node current = head;
-            while(current.next.next != null)
-            {
-                current = current.next;
-            }
-            temp = current.next.data;
-            current.next = null;
-            size--;
-        }
-        return temp;
-    }
-
-    /**
-     * Returns the item at the top of the stack.
-     * Does not modify the stack or the item at the top.
-     *
-     * @return item at the top of the stack.
-     */
-    @Override
-    public E peek() {
-        E temp;
-        if(head == null)
-        {
-            throw new NoSuchElementException(" The list is empty ");
-        } else if (head.next == null ) {
-            temp = head.data;
-        } else {
-            Node current = head;
-            while(current.next != null)
-            {
-                current = current.next;
-            }
-            temp = current.data;
-        }
-        return temp;
-    }
-
-    /**
-     * Checks to see if the stack is empty.
-     *
-     * @return true if the stack is empty, false otherwise
-     */
     @Override
     public boolean isEmpty() {
-        if(size == 0 ){
+        if(size == 0 )
+        {
             return true;
         }
-        else {
+        else{
             return false;
         }
     }
 
-    /**
-     * Returns a count of the number of items in the stack.
-     *
-     * @return the number of items in the stack
-     */
     @Override
     public int size() {
         return size;
@@ -130,7 +63,8 @@ public class LinkedStack <E> implements Stack <E>{
      */
     @Override
     public Iterator<E> iterator() {
-        return new LinkedIterator();
+        LinkedIterator theIterator = new LinkedIterator();
+        return theIterator;
     }
     private class LinkedIterator implements Iterator<E> {
         private Node current;

@@ -1,7 +1,9 @@
+package stack;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ResizingArrayStack <E> implements Stack <E> {
+public class ResizingArrayStack <E> implements Stack<E> {
 //    fields
     private E[] items;
     private int size;

@@ -1,12 +1,14 @@
+package list;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * an ArrayList data structure remake
+ * an list.ArrayList data structure remake
  * @param <E> any type of data
  */
 
-public class ArrayList <E> implements List <E> {
+public class ArrayList <E> implements List<E> {
 //    fields
 
     //fields

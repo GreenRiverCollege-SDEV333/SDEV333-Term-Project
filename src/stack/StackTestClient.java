@@ -1,21 +1,25 @@
+package stack;
+
 import java.util.Scanner;
 
-public class QueueTestClient {
-    public static void main(String[] args) {
-        Queue <String > s = new LinkedQueue<>();
+public class StackTestClient
+{
+    public static void main(String[] args)
+    {
+        Stack<String> s = new LinkedStack<>();
         Scanner in = new Scanner("to be or not to - be - - that - - - is");
         while (in.hasNext())
         {
             String item = in.next();
             if (!item.equals("-"))
             {
-                s.enqueue(item);
+                s.push(item);
             }
             else if (!s.isEmpty())
             {
-                System.out.println(s.dequeue() + " ");
+                System.out.println(s.pop() + " ");
             }
         }
-        System.out.println( s.size() + " left on queue");
+        System.out.println( s.size() + " left on the stack");
     }
 }

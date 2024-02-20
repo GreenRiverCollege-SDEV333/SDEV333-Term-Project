@@ -1,9 +1,10 @@
+import list.LinkedList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTest {
-    LinkedList <String> list= new LinkedList<>();
+    LinkedList<String> list= new LinkedList<>();
 
     @Test
     void addFront() {
