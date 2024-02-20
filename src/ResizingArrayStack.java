@@ -99,9 +99,5 @@ public class ResizingArrayStack<E> implements Stack<E>{
             i--;
             return current;
         }
-        public void remove() {
-
-        }
-
     }
 }
