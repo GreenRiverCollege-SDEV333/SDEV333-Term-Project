@@ -16,9 +16,9 @@ public class ResizingArrayStack<E> implements Stack<E>
     /**
      * Add an item to the stack.
      *
-     * Runtime Analysis: Constant time at worst. There is a conditional that
+     * Runtime Analysis: Logarithmic time at worst. There is a conditional that
      * runs at the beginning of the method, but there aren't any loops. The
-     * conditional is not constantly running, it only checks once. So, much
+     * conditional is not constantly running, it only checks once. Much
      * of the work done here does not change speed depending on the size of the
      * stack.
      *
@@ -39,9 +39,9 @@ public class ResizingArrayStack<E> implements Stack<E>
     /**
      * Removes the most recently added item from the stack.
      *
-     * Runtime Analysis: Constant time at worst. There aren't any loops that
+     * Runtime Analysis: Logarithmic time at worst. There aren't any loops that
      * have to run, just a few assignments and indexes/variables being
-     * accessed.
+     * accessed and one single if statement.
      *
      * @return the item that was removed
      */
