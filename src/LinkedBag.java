@@ -1,3 +1,10 @@
+/**
+ *  This class represents a Bag data structure. It uses a LinkedList in its implementation.
+ *  @author Jared Eller
+ *  @verison 1.0
+ *  @date 2/20/24
+ */
+
 import java.util.Iterator;
 
 public class LinkedBag<E> implements Bag<E>
@@ -13,7 +20,6 @@ public class LinkedBag<E> implements Bag<E>
 
     /**
      * Add an item to the bag.
-     *
      * Runtime Analysis: Constant time in the worst-case scenario.
      * No loops, no conditionals, nothing that could make a serious impact
      * on the performance of this method.
@@ -33,7 +39,6 @@ public class LinkedBag<E> implements Bag<E>
 
     /**
      * Checks to see if the bag is empty.
-     *
      * Runtime Analysis: Constant time at worst. This method just returns the
      * computation of whether or not the first node in the list is equal to
      * null. A few variables accessed, a computation done, a return done.
@@ -48,7 +53,6 @@ public class LinkedBag<E> implements Bag<E>
 
     /**
      * Returns a count of the number of items in the bag.
-     *
      * Runtime Analysis: Constant time at worst. All this method does is access
      * the value of a variable and return it.
      *
@@ -62,7 +66,6 @@ public class LinkedBag<E> implements Bag<E>
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * Runtime Analysis: O(n) at worst. This method creates a new object and
      * returns it; we can't be 100% certain how long the default constructor
      * for an iterator would take, but that is the only major thing happening
@@ -70,7 +73,6 @@ public class LinkedBag<E> implements Bag<E>
      * of the constructor call.
      *
      * @return an Iterator.
-     * @return
      */
     public Iterator<E> iterator()
     {
@@ -98,7 +100,6 @@ public class LinkedBag<E> implements Bag<E>
          * Returns the next element in the iteration.
          *
          * @return the next element in the iteration
-         * @throws NoSuchElementException if the iteration has no more elements
          */
         @Override
         public E next()
