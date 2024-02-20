@@ -1,3 +1,10 @@
+/**
+ *  This class represents a Queue. It uses a LinkedList in its implementation.
+ *  @author Jared Eller
+ *  @verison 1.0
+ *  @date 2/20/24
+ */
+
 import java.util.Iterator;
 
 public class LinkedQueue<E> implements Queue<E>
@@ -15,9 +22,8 @@ public class LinkedQueue<E> implements Queue<E>
 
     /**
      * Add an item to the queue.
-     *
      * Runtime Analysis: I think this would be logarithmic at worst.
-     * There's decision logic but it doesn't come into play very much here,
+     * There's decision logic, but it doesn't come into play very much here,
      * it's mostly just assigning a few new values as needed.
      *
      * @param item the item to be added
@@ -48,8 +54,7 @@ public class LinkedQueue<E> implements Queue<E>
 
     /**
      * Remove an item from the queue.
-     *
-     * Runtime Analysis: Once again, logarithmic at worst. There's an singular
+     * Runtime Analysis: Once again, logarithmic at worst. There's a singular
      * if condition present in this method, otherwise it's mainly just walking
      * through the process of letting a node get eaten by the garbage collector
      *
@@ -74,7 +79,6 @@ public class LinkedQueue<E> implements Queue<E>
 
     /**
      * Checks to see if the queue is empty.
-     *
      * Runtime Analysis: Constant time at worst. This method compares a node
      * to null, and returns the result of the computation. Nothing more.
      *
@@ -88,7 +92,6 @@ public class LinkedQueue<E> implements Queue<E>
 
     /**
      * Returns a count of the number of items in the queue.
-     *
      * Runtime Analysis: Constant time at worst. This method just accesses a
      * variable's value and returns that.
      *
@@ -102,7 +105,6 @@ public class LinkedQueue<E> implements Queue<E>
 
     /**
      * Returns an iterator over elements of type {@code T}.
-     *
      * Runtime Analysis: O(n) at worst. This method creates a new object and
      * returns it; we can't be 100% certain how long the default constructor
      * for an iterator would take, but that is the only major thing happening
@@ -110,7 +112,6 @@ public class LinkedQueue<E> implements Queue<E>
      * of the constructor call.
      *
      * @return an Iterator.
-     * @return
      */
     public Iterator<E> iterator()
     {
@@ -138,7 +139,6 @@ public class LinkedQueue<E> implements Queue<E>
          * Returns the next element in the iteration.
          *
          * @return the next element in the iteration
-         * @throws NoSuchElementException if the iteration has no more elements
          */
         @Override
         public E next()
