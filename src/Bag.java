@@ -1,6 +1,10 @@
 /**
- * Bag (Unordered add, no removal) API
- * @param <E> class/data type of items in the bag
+ *  This interface is meant to represent an abstract version of what a Bag data structure should look like.
+ *  @author Jared Eller
+ *  @verison 1.0
+ *  @date 2/20/24
+ *  Bag (Unordered add, no removal) API
+ *  @param <E> class/data type of items in the bag
  */
 public interface Bag<E> extends Iterable<E>
 {
