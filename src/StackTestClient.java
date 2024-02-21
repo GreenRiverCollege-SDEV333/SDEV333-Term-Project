@@ -14,8 +14,7 @@ public class StackTestClient {
                 s.push(item);
             }
             else if (!s.isEmpty()) {
-                s.pop();
-                System.out.println(item +  " ");
+                System.out.println(s.pop() +  " ");
             }
         }
 
