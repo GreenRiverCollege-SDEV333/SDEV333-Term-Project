@@ -15,6 +15,19 @@ public class LinkedQueue<E> implements Queue<E>
     @Override
     public void enqueue(E item)
     {
+        Node oldlast = last;
+        last = new Node();
+        last.item = item;
+        last.next = null;
+        if (isEmpty())
+        {
+            first = last;
+        }
+        else
+        {
+            oldlast.next = last;
+        }
+        size++;
     }
 
     @Override
