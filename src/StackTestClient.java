@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class StackTestClient {
     public static void main(String[] args) {
-        Stack<String> s = new ResizingArrayStack<String>();
+//        Stack<String> s = new ResizingArrayStack<String>();
+        Stack <String> s = new LinkedStack<String>();
 
         Scanner in = new Scanner("to be or not to - be - - that - - - is");
 
@@ -14,7 +15,7 @@ public class StackTestClient {
             }
             else if (!s.isEmpty()) {
                 s.pop();
-                System.out.println("s.pop()" +  " ");
+                System.out.println(item +  " ");
             }
         }
 
