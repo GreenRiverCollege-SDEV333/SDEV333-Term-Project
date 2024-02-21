@@ -2,7 +2,7 @@
  * Deque: double-ended queue API
  * Supports adding and removing items at both ends.
  *
- * @param <E>
+ * @param <E> data type of the items in the list.
  */
 public interface Deque<E> extends Iterable<E> {
     /**
