@@ -1,7 +1,18 @@
 import java.util.Scanner;
 
+/**
+ * Tests the LinkedBag class. Takes in a string of numbers
+ * using the scanner class. Calculates the mean and standard
+ * deviation, and prints it to the console.
+ *
+ * @author Will Castillo
+ */
 public class Stats
 {
+    /**
+     * Tests for the LinkedBag
+     * @param args Not used
+     */
     public static void main(String[] args)
     {
         Bag<Double> numbers = new LinkedBag<>();
