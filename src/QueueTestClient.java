@@ -4,7 +4,7 @@ public class QueueTestClient
 {
     public static void main(String[] args)
     {   // create a stack and push/pop strings as direct = on StdIn
-        Queue <String> q = new LinkedQueue<String>();
+        Queue <String> q = new LinkedQueue<>();
 
         Scanner in = new Scanner("to be or not to - be - - that - - - is");
 
