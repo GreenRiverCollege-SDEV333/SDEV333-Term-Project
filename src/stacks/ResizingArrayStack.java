@@ -6,9 +6,9 @@
  */
 package stacks;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.Stack;
 
-public class ResizingArrayStack<Item> implements Iterable<Item>
+public class ResizingArrayStack<Item> extends Stack<Item>
 {
     private Item[] array; //stack items
     private int size;     //number of items
@@ -65,9 +65,10 @@ public class ResizingArrayStack<Item> implements Iterable<Item>
      * no matter size operations are the same
      *
      * @param item Item to push
+     * @return
      */
 
-    public void push(Item item)
+    public Item push(Item item)
     {   //add item to top of stack
         if (size == array.length)
         {
@@ -75,6 +76,7 @@ public class ResizingArrayStack<Item> implements Iterable<Item>
         }
         array[size] = item;
         size++;
+        return item;
     }
 
     /**

@@ -7,8 +7,9 @@
 
 package stacks;
 import java.util.Iterator;
+import java.util.Stack;
 
-public class LinkedStack<Item> implements Iterable<Item>
+public class LinkedStack<Item> extends Stack<Item>
 {
     // private fields
     private Node head; // top of stack (most recently added node)
@@ -49,14 +50,16 @@ public class LinkedStack<Item> implements Iterable<Item>
      * no matter size operations are the same
      *
      * @param item Item to push
+     * @return
      */
-    public void push(Item item)
+    public Item push(Item item)
     { // Add item to top of stack
         Node oldFirst = head;
         head = new Node();
         head.item = item;
         head.next = oldFirst;
         size++;
+        return item;
     }
 
     /**

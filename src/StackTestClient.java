@@ -1,3 +1,10 @@
+/**
+ * Test client for the LinkedStack
+ *
+ * @author Lillian Nelson
+ * @version 1.0
+ */
+
 import stacks.LinkedStack;
 import stacks.ResizingArrayStack;
 
