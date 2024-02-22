@@ -1,11 +1,11 @@
 /**
- *  (collection of unordered items)  Bag API
+ *  A collection of unordered items  the Bag API - Bag.java
  * @param <E> class / data type of the items in the bag
  */
 public interface Bag <E> extends Iterable<E> {
     /**
     * Add an item to the bag
-    * @param item the item to be added
+    * @param item (the item to be added)
     */
     void add(E item);
 
