@@ -1,4 +1,4 @@
-/**
+package test; /**
  * Test client for the LinkedStack
  *
  * @author Lillian Nelson

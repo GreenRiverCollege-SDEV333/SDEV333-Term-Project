@@ -4,9 +4,7 @@
  * @author Lillian Nelson
  * @version 1.0
  */
-package stacks;
-
-import org.w3c.dom.Node;
+package lists;
 
 import java.util.Collection;
 import java.util.Iterator;

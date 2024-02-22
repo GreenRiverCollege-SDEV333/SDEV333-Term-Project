@@ -1,11 +1,11 @@
-/**
+package test; /**
  * Test client for the LinkedStack
  *
  * @author Lillian Nelson
  * @version 1.0
  */
 
-import stacks.LinkedQueue;
+import lists.LinkedQueue;
 
 import java.util.Scanner;
 
