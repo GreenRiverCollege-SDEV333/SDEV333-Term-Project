@@ -37,6 +37,12 @@ public interface List<E> extends Iterable<E> {
      */
     void set(int i, E item);
 
+    void addFront(int value);
+
+    void addBack(int value);
+
+    void add(int index, int value);
+
     /**
      * Remove item at the front of the list.
      * @return the item that was removed
@@ -69,6 +75,10 @@ public interface List<E> extends Iterable<E> {
      */
     boolean contains(E item);
 
+    boolean contains(int value);
+
+    int indexOf(int value);
+
     /**
      * Checks if the list is empty.
      * @return true if the list is empty, false otherwise
@@ -80,4 +90,6 @@ public interface List<E> extends Iterable<E> {
      * @return number of items in the list
      */
     int size();
+
+    void clear();
 }
