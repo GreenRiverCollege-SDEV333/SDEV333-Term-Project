@@ -1,8 +1,22 @@
 import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 import interfaces.Stack;
 
-public class LinkedStack<E> implements Stack<E> {
+import interfaces.Stack;
 
+public class LinkedStack<E> implements Stack<E>
+{
+    //fields
+    private Node head;
+    private int size;
+
+    //Node constructor
+    private class Node
+    {
+        E item;
+        Node nextNode;
+    }
     /**
      * Add an item to the stack.
      *
@@ -30,10 +44,16 @@ public class LinkedStack<E> implements Stack<E> {
      * @return item at the top of the stack.
      */
     @Override
-    public E peek() {
-        return null;
+    public E peek()
+    {
+        //throw exception if stack is empty
+        if(isEmpty())
+        {
+            throw new IllegalStateException("Stack is empty, cannot peek()");
+        }
+        //finds and returns the top of the stack
+        return head.item;
     }
-
     /**
      * Checks to see if the stack is empty.
      *
@@ -41,7 +61,7 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     /**
@@ -51,7 +71,7 @@ public class LinkedStack<E> implements Stack<E> {
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
@@ -59,8 +79,26 @@ public class LinkedStack<E> implements Stack<E> {
      *
      * @return an Iterator.
      */
-    @Override
     public Iterator<E> iterator() {
-        return null;
+        return new ListIterator();
     }
+
+    public class ListIterator implements Iterator<E>{
+    // returns ture if iteration has no more elements
+    private Node current = head;
+    public boolean hasNext() {
+        return current != null;
+    }
+    // returns next element in the iteration
+
+    public E next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+        //goes to the next node in the stack and returns it
+        E item = current.item;
+        current = current.nextNode;
+        return item;
+    }
+}
 }
