@@ -1,8 +1,10 @@
-package lists; /**
- * Abstract lists.LinkedList
+/**
+ * Abstract LinkedList implementation
+ *
  * @author Lillian Nelson
  * @version 1.0
  */
+package lists;
 import java.util.*;
 
 public class LinkedList<E> implements List<Integer>

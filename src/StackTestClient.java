@@ -1,9 +1,14 @@
+import stacks.LinkedStack;
+import stacks.ResizingArrayStack;
+
 import java.util.Scanner;
 
 public class StackTestClient
 {
     public static void main(String[] args) {
-        ResizingArrayStack<String> s = new ResizingArrayStack<String>();
+        //ResizingArrayStack<String> s = new ResizingArrayStack<String>();
+        LinkedStack<String> s = new LinkedStack<>();
+
         Scanner in = new Scanner("to be or not to - be - - that - - - is");
         while (in.hasNext()) {
             String item = in.next();

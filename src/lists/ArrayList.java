@@ -1,5 +1,6 @@
 /**
- * Abstract arrayList
+ * Abstract arrayList implementation
+ *
  * @author Lillian Nelson
  * @version 1.0
  */
