@@ -214,13 +214,36 @@ class LinkedListTest<E> {
         emptyList.addFront((E) "D");
         emptyList.remove(0);
         assertFalse(emptyList.contains((E)"D"));
+
+        assertFalse(oneList.contains("B"));
+        oneList.addFront( "C");
+        oneList.addFront( "D");
+        oneList.remove(1);
+        assertTrue(oneList.contains("D"));
+        assertFalse(oneList.contains("C"));
+
+        fullList.remove( 9);
+        assertEquals(9, fullList.size());
+        assertFalse(fullList.contains(9));
+
+        fullList.add(9,9);
+        assertTrue(fullList.contains(9));
+        fullList.add(10,10);
+        assertTrue(fullList.contains(10));
+        assertFalse(fullList.contains(20));
     }
 
     @Test
     void isEmpty() {
+        assertTrue(emptyList.isEmpty());
+        assertFalse(oneList.isEmpty());
+        assertFalse(fullList.isEmpty());
     }
 
     @Test
     void size() {
+        assertEquals(0,emptyList.size());
+        assertEquals(1,oneList.size());
+        assertEquals(10,fullList.size());
     }
 }
