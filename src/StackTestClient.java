@@ -1,3 +1,11 @@
+import interfaces.Stack;
+
+import java.util.Scanner;
+
+/**
+ * @Ryder Dettloff
+ * tests my methods for ResizingArrayStack class.
+ */
 public class StackTestClient {
     public static void main(String[] args) {
 
@@ -18,5 +26,4 @@ public class StackTestClient {
 
         System.out.println("(" + s.size() + ") left on the stack");
     }
-}
 }

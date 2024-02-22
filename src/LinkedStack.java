@@ -1,6 +1,7 @@
 import java.util.Iterator;
+import interfaces.Stack;
 
-public class LinkedStack<E> implements Stack<E>{
+public class LinkedStack<E> implements Stack<E> {
 
     /**
      * Add an item to the stack.

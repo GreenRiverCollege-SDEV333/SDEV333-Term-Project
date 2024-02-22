@@ -1,15 +1,50 @@
+import java.util.Arrays;
+import interfaces.Stack;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class ResizingArrayStack<E> implements Stack<E>{
+/**
+ * Ryder Dettloff
+ * Resizing Arraystack implements adding and removing from the top of a stack.
+ * @param <E>
+ */
+public class ResizingArrayStack<E> implements Stack<E> {
+    //fields
+    private E[] buffer;
+    private int size;
+    private static final int INITIAL_SIZE = 10;
+
+    public ResizingArrayStack() {
+        this.buffer = (E[]) new Object[INITIAL_SIZE];
+        this.size = 0;
+
+    }
+
+    /**
+     * doubles the size of the buffer to be used in the push method
+     * @param increaseBuffer
+     */
+    private void increaseBuffer(int increaseBuffer) {
+        //helper for push/pop doubles size of array and copies it over to the new one
+        int newBuffer = buffer.length * 2;
+        buffer = Arrays.copyOf(buffer, newBuffer);
+    }
 
     /**
      * Add an item to the stack.
-     *
+     * checks to see if buffer is of size then pushes the item to the stack
      * @param item the item to be added
      */
     @Override
-    public void push(E item) {
 
+    public void push(E item) {
+        //checks if buffer needs an increase in size
+        if (size == buffer.length) {
+            increaseBuffer(2 * buffer.length);
+        }
+        //assigns item to the top of stack and increments it
+        buffer[size] = item;
+        size++;
     }
 
     /**
@@ -19,7 +54,19 @@ public class ResizingArrayStack<E> implements Stack<E>{
      */
     @Override
     public E pop() {
-        return null;
+        if (isEmpty()) {
+            throw new IllegalStateException("stack is empty");
+        }
+        // access item at top of stack and sets it to null for garbage collector
+        E item = buffer[size - 1];
+        size--;
+        buffer[size] = null;
+        //decreases the size of the buffer
+        if (size > 0 && size == buffer.length / 2) {
+            increaseBuffer(buffer.length % 2);
+        }
+
+        return item;
     }
 
     /**
@@ -30,7 +77,13 @@ public class ResizingArrayStack<E> implements Stack<E>{
      */
     @Override
     public E peek() {
-        return null;
+        //exception if the stack is empty(no peek)
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is empty, cannot peek()");
+        }
+
+        //finds and returns the top of stack with the index
+        return buffer[size-1];
     }
 
     /**
@@ -40,7 +93,7 @@ public class ResizingArrayStack<E> implements Stack<E>{
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     /**
@@ -50,7 +103,7 @@ public class ResizingArrayStack<E> implements Stack<E>{
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
@@ -59,7 +112,24 @@ public class ResizingArrayStack<E> implements Stack<E>{
      * @return an Iterator.
      */
     @Override
-    public Iterator<E> iterator() {
+    public Iterator iterator() {
         return null;
+    }
+
+
+    //copied from my ArrayList class , need to update
+    private class ArrayListIterator implements Iterator<E> {
+        private int currentIndex = 0;
+
+        public boolean hasNext() {
+            return currentIndex < size;
+        }
+
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("no index exists!");
+            }
+            return buffer[currentIndex++];
+        }
     }
 }
