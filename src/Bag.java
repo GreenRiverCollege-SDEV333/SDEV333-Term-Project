@@ -1,7 +1,6 @@
 /**
  * Collection structure
  *
- *
  * @param <E> class, data type of the items in the bag
  */
 
@@ -12,7 +11,7 @@ public interface Bag<E> extends Iterable<E> {
      *
      * @param item to be added
      */
-    void add (E item);
+    void add(E item);
 
     /**
      * Checks whether the bag is empty

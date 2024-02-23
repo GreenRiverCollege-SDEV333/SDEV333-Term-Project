@@ -200,7 +200,7 @@ public class ArrayList<E> implements List<E> {
                 return true;
             }
         }
-         return false;
+        return false;
     }
 
     /**
@@ -237,9 +237,9 @@ public class ArrayList<E> implements List<E> {
             /**
              * check whether there is a next element in the buffer
              *check if the counter is less than size of the array list,
-            *and if the element in the arraylist is not null
-            * if the condition is met, return true, else return false
-            */
+             *and if the element in the arraylist is not null
+             * if the condition is met, return true, else return false
+             */
 
             public boolean hasNext() {
                 return counter < size && buffer[counter] != null;

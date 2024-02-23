@@ -3,20 +3,15 @@ import java.util.NoSuchElementException;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class LinkedList<E> implements List<E>{
-
-    private class Node{
-        E data;
-        Node next;
-    }
+public class LinkedList<E> implements List<E> {
 
     private Node head;
     private int size;
-
-    public LinkedList(){
+    public LinkedList() {
         head = null;
         size = 0;
     }
+
     /**
      * Add item to the front.
      *
@@ -24,10 +19,10 @@ public class LinkedList<E> implements List<E>{
      */
     @Override
     public void addFront(E item) {
-    Node newNode = new Node();
-    newNode.data = item;
-    //check whether the current Node is empty
-        if(head != null){
+        Node newNode = new Node();
+        newNode.data = item;
+        //check whether the current Node is empty
+        if (head != null) {
             newNode.next = head;
         }
         head = newNode;
@@ -68,19 +63,19 @@ public class LinkedList<E> implements List<E>{
         }
         Node newNode = new Node();
         newNode.data = item;
-        if(i == 0){
+        if (i == 0) {
             this.addFront(item);
-        }else if (i == size){
+        } else if (i == size) {
             this.addBack(item);
-        }else {
+        } else {
             Node current = head.next;
             Node previous = head;
             int index = 1;
-            while (current != null){
-                if(index == i){
+            while (current != null) {
+                if (index == i) {
                     break;
                 }
-                previous =current;
+                previous = current;
                 current = current.next;
                 index++;
             }
@@ -97,9 +92,9 @@ public class LinkedList<E> implements List<E>{
      */
     @Override
     public E get(int i) {
-        if (head == null){
+        if (head == null) {
             throw new NoSuchElementException("The List is currently empty.");
-        } else if (i < 0 || i >= size){
+        } else if (i < 0 || i >= size) {
             throw new IndexOutOfBoundsException("Index is out of bound.");
         }
         //declare new index for comparision
@@ -107,7 +102,7 @@ public class LinkedList<E> implements List<E>{
         //assign head to current
         Node current = head;
         //while loop check for null and reutnr if new index met required index
-        while (current != null){
+        while (current != null) {
             if (index == i) {
                 return current.data;
             }
@@ -127,9 +122,9 @@ public class LinkedList<E> implements List<E>{
      */
     @Override
     public void set(int i, E item) {
-        if (head == null){
+        if (head == null) {
             throw new NoSuchElementException("The List is currently empty.");
-        } else if (i < 0 || i >= size){
+        } else if (i < 0 || i >= size) {
             throw new IndexOutOfBoundsException("Index is out of bound.");
         }
 
@@ -138,7 +133,7 @@ public class LinkedList<E> implements List<E>{
         //assign head to current
         Node current = head;
         //while loop check for null and reutnr if new index met required index
-        while (current != null){
+        while (current != null) {
             if (index == i) {
                 current.data = item;
             }
@@ -157,11 +152,12 @@ public class LinkedList<E> implements List<E>{
     public E removeFront() {
         Node delete = null;
         if (head != null) {
-             delete = head;
+            delete = head;
             head = head.next;
         }
         return delete != null ? delete.data : null;
     }
+
     /**
      * Remove item at the back of the list
      *
@@ -170,18 +166,18 @@ public class LinkedList<E> implements List<E>{
     @Override
     public E removeBack() {
 
-        if (head == null){
+        if (head == null) {
             return null;
         }
         Node current = head;
         Node prev = null;
-        while(current.next != null){
+        while (current.next != null) {
             prev = current;
             current = current.next;
         }
-        if (prev != null){
+        if (prev != null) {
             prev.next = null;
-        }else {
+        } else {
             head = null;
         }
         size--;
@@ -201,18 +197,18 @@ public class LinkedList<E> implements List<E>{
             throw new NoSuchElementException("The list is empty.");
         }
         //check if head matches the item
-        while(current != null){
-            if(current.data.equals(item)) {
-            if(previous != null){
-                previous.next = current.next;
-            }else{
-                head = head.next;
-            }
-            return;
+        while (current != null) {
+            if (current.data.equals(item)) {
+                if (previous != null) {
+                    previous.next = current.next;
+                } else {
+                    head = head.next;
+                }
+                return;
             }
             previous = current;
             current = current.next;
-            }
+        }
     }
 
     /**
@@ -223,21 +219,21 @@ public class LinkedList<E> implements List<E>{
      */
     @Override
     public E remove(int i) {
-        if (head == null){
+        if (head == null) {
             throw new NoSuchElementException("The List is currently empty.");
-        } else if (i < 0 || i >= size){
+        } else if (i < 0 || i >= size) {
             throw new IndexOutOfBoundsException("Index is out of bound.");
         }
         int index = 0;
         Node current = head;
         Node prev = null;
 
-        while (current != null){
+        while (current != null) {
             if (index == i) {
                 size--;
-                if(prev != null){
+                if (prev != null) {
                     prev.next = current.next;
-                }else {
+                } else {
                     head = current.next;
                 }
                 current.next = null;
@@ -259,9 +255,8 @@ public class LinkedList<E> implements List<E>{
     @Override
     public boolean contains(E item) {
         Node current = head;
-        while (current != null){
-            if(current.data.equals(item))
-            {
+        while (current != null) {
+            if (current.data.equals(item)) {
                 return true;
             }
             current = current.next;
@@ -297,37 +292,6 @@ public class LinkedList<E> implements List<E>{
     @Override
     public Iterator<E> iterator() {
         return new LinkedListIterator();
-    }
-
-    public class LinkedListIterator implements Iterator<E>{
-        private Node current;
-        /**
-         * Returns {@code true} if the iteration has more elements.
-         * (In other words, returns {@code true} if {@link #next} would
-         * return an element rather than throwing an exception.)
-         *
-         * @return {@code true} if the iteration has more elements
-         */
-        @Override
-        public boolean hasNext() {
-            return current != null;
-        }
-
-        /**
-         * Returns the next element in the iteration.
-         *
-         * @return the next element in the iteration
-         * @throws NoSuchElementException if the iteration has no more elements
-         */
-        @Override
-        public E next() {
-            if (!hasNext()){
-                throw new NoSuchElementException();
-            }
-            E data = current.data;
-            current = current.next;
-            return data;
-        }
     }
 
     /**
@@ -375,5 +339,42 @@ public class LinkedList<E> implements List<E>{
     @Override
     public Spliterator<E> spliterator() {
         return List.super.spliterator();
+    }
+
+    private class Node {
+        E data;
+        Node next;
+    }
+
+    public class LinkedListIterator implements Iterator<E> {
+        private Node current;
+
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
+         */
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            E data = current.data;
+            current = current.next;
+            return data;
+        }
     }
 }

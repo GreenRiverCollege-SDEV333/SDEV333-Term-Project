@@ -19,11 +19,11 @@ class LinkedListTest<E> {
     @Test
     void addBack() {
         testCase.addBack((E) "Hello");
-        assertEquals("Hello", testCase.get(testCase.size() - 1 ));
+        assertEquals("Hello", testCase.get(testCase.size() - 1));
         testCase.addBack((E) "World");
-        assertEquals("World", testCase.get(testCase.size() - 1 ));
+        assertEquals("World", testCase.get(testCase.size() - 1));
         testCase.addBack((E) (Integer) 200);
-        assertEquals(200, testCase.get(testCase.size() - 1 ));
+        assertEquals(200, testCase.get(testCase.size() - 1));
     }
 
     @Test
@@ -32,7 +32,7 @@ class LinkedListTest<E> {
         testCase.addBack((E) "World");
         testCase.addBack((E) "!");
         //Hello, World, !
-        testCase.add(1, (E)"LinkedListTest");
+        testCase.add(1, (E) "LinkedListTest");
         assertEquals("LinkedListTest", testCase.get(1));
     }
 
@@ -74,7 +74,7 @@ class LinkedListTest<E> {
         testCase.addBack((E) "!");
         testCase.removeBack();
         testCase.removeBack();
-        assertEquals( "Hello", testCase.get(testCase.size() - 1 ));
+        assertEquals("Hello", testCase.get(testCase.size() - 1));
     }
 
     @Test
@@ -84,33 +84,33 @@ class LinkedListTest<E> {
         testCase.addBack((E) "!");
         testCase.remove(0);
         testCase.remove(1);
-        assertEquals( "World", testCase.get(testCase.size() - 1 ));
+        assertEquals("World", testCase.get(testCase.size() - 1));
 
     }
 
     @Test
     void testRemove() {
-        assertFalse(testCase.contains((E)(Integer)1));
-        for(int i = 0; i <= 3; i++){
-            testCase.addFront((E)(Integer)i);
+        assertFalse(testCase.contains((E) (Integer) 1));
+        for (int i = 0; i <= 3; i++) {
+            testCase.addFront((E) (Integer) i);
         }
         //1, 2, 3
-        assertTrue(testCase.contains((E)(Integer)1));
-        assertTrue(testCase.contains((E)(Integer)2));
-        assertFalse(testCase.contains((E)(Integer)5));
-        testCase.remove((E)(Integer) 1);
-        assertFalse(testCase.contains((E)(Integer)1));
-        assertTrue(testCase.contains((E)(Integer)2));
+        assertTrue(testCase.contains((E) (Integer) 1));
+        assertTrue(testCase.contains((E) (Integer) 2));
+        assertFalse(testCase.contains((E) (Integer) 5));
+        testCase.remove((E) (Integer) 1);
+        assertFalse(testCase.contains((E) (Integer) 1));
+        assertTrue(testCase.contains((E) (Integer) 2));
     }
 
     @Test
     void contains() {
-        for(int i = 0; i <= 3; i++){
-            testCase.addFront((E)(Integer)i);
+        for (int i = 0; i <= 3; i++) {
+            testCase.addFront((E) (Integer) i);
         }
-        assertTrue(testCase.contains((E)(Integer)1));
-        assertTrue(testCase.contains((E)(Integer)2));
-        assertFalse(testCase.contains((E)(Integer)5));
+        assertTrue(testCase.contains((E) (Integer) 1));
+        assertTrue(testCase.contains((E) (Integer) 2));
+        assertFalse(testCase.contains((E) (Integer) 5));
     }
 
     @Test
