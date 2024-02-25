@@ -1,10 +1,27 @@
 import interfaces.Bag;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class LinkedBag<E> implements Bag<E> {
+public class LinkedBag<E> implements Bag<E>
+    {
+        //fields
+        private Node head;
+        private int size;
+
+        //Node constructor
+        private class Node
+        {
+            E data;
+            Node nextNode;
+        }
+
+        public LinkedBag(){
+            this.head = null;
+            this.size = 0;
+        }
     /**
      * Add an item to the bag.
      *
@@ -12,7 +29,11 @@ public class LinkedBag<E> implements Bag<E> {
      */
     @Override
     public void add(E item) {
-
+        head = new Node();
+        Node prev = head;
+        head.data = item;
+        head.nextNode = prev;
+        size++;
     }
 
     /**
@@ -22,7 +43,7 @@ public class LinkedBag<E> implements Bag<E> {
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     /**
@@ -32,7 +53,7 @@ public class LinkedBag<E> implements Bag<E> {
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
@@ -42,8 +63,27 @@ public class LinkedBag<E> implements Bag<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new ListIterator();
     }
+
+        public class ListIterator implements Iterator<E>{
+            // returns ture if iteration has no more elements
+            private Node current = head;
+            public boolean hasNext() {
+                return current != null;
+            }
+            // returns next element in the iteration
+
+            public E next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                //goes to the next node in the stack and returns it
+                E item = current.data;
+                current = current.nextNode;
+                return item;
+            }
+        }
 
     /**
      * Performs the given action for each element of the {@code Iterable}
