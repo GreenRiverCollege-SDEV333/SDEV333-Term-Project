@@ -1,3 +1,5 @@
+import interfaces.Queue;
+
 import java.util.Scanner;
 
 /**

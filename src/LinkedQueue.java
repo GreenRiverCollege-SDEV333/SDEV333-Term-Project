@@ -1,7 +1,14 @@
+import interfaces.Queue;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedQueue<E> implements Queue<E>{
+/**
+ * Ryder Dettloff
+ * FIFO Queue Data Structure
+ * @param <E>
+ */
+
+public class LinkedQueue<E> implements Queue<E> {
     private Node head;
     private Node tail;
     private int size;
@@ -29,16 +36,13 @@ public class LinkedQueue<E> implements Queue<E>{
     public void enqueue(E item)     {
 
         //create a new head node that will be the top of the queue
-        head = new Node();
         Node prev = head;
+        head = new Node();
         head.data = item;
         //check if queue is empty, if it is set the tail to head(new data)
-        if(isEmpty())
-        {
+        if(isEmpty()) {
             tail = head;
-        }
-        else
-        {
+        } else {
             //if it isn't empty set the prev node to the head and add item to end of queue
             prev.nextNode = head;
         }
@@ -53,16 +57,14 @@ public class LinkedQueue<E> implements Queue<E>{
      */
     @Override
     public E dequeue()     {
-        if(isEmpty())
-        {
+        if(isEmpty()) {
             //check if stack is empty
             throw new IllegalStateException("Stack is empty, cannot pop()");
         }
         //get tail(back) of queue. if tails next node is empty, set head to null.
         E item = tail.data;
         tail = tail.nextNode;
-        if(isEmpty())
-        {
+        if(isEmpty()) {
             head = null;
         }
         //decrement size to account for dequeue

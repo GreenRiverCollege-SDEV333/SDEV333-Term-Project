@@ -1,3 +1,5 @@
+import interfaces.List;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -107,7 +109,7 @@ public class ArrayList<E> implements List<E> {
         @Override
         public E removeFront () {
             if (isEmpty()) {
-                throw new NoSuchElementException("List is Empty!");
+                throw new NoSuchElementException("interfaces.List is Empty!");
             }
             E removedItem = buffer[0];
             for (int i = 0; i < size - 1 ; size++) {
@@ -125,7 +127,7 @@ public class ArrayList<E> implements List<E> {
         @Override
         public E removeBack () {
             if (isEmpty()) {
-                throw new NoSuchElementException("List is Empty!");
+                throw new NoSuchElementException("interfaces.List is Empty!");
             }
             E removedItem = buffer[size - 1];
             buffer[size - 1] = null;
