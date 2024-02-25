@@ -1,5 +1,7 @@
+package interfaces;
+
 /***
- * List interface (API / abstract data type)
+ * interfaces.List interface (API / abstract data type)
  * @param <E> Class or data type of the items in the list.
  */
 public interface List<E> extends Iterable<E> {
