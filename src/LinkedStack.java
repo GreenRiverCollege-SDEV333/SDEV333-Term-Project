@@ -14,7 +14,7 @@ public class LinkedStack<E> implements Stack<E>
     //Node constructor
     private class Node
     {
-        E item;
+        E data;
         Node nextNode;
     }
     /**
@@ -24,7 +24,11 @@ public class LinkedStack<E> implements Stack<E>
      */
     @Override
     public void push(E item) {
-
+        head = new Node();
+        Node prev = head;
+        head.data = item;
+        head.nextNode = prev;
+        size++;
     }
 
     /**
@@ -33,8 +37,16 @@ public class LinkedStack<E> implements Stack<E>
      * @return the item that was removed
      */
     @Override
-    public E pop() {
-        return null;
+    public E pop()     {
+        if(isEmpty())
+        {
+            throw new IllegalStateException("The stack is empty");
+        }
+
+        E item = head.data;
+        head = head.nextNode;
+        size--;
+        return item;
     }
 
     /**
@@ -52,7 +64,7 @@ public class LinkedStack<E> implements Stack<E>
             throw new IllegalStateException("Stack is empty, cannot peek()");
         }
         //finds and returns the top of the stack
-        return head.item;
+        return head.data;
     }
     /**
      * Checks to see if the stack is empty.
@@ -96,7 +108,7 @@ public class LinkedStack<E> implements Stack<E>
             throw new NoSuchElementException();
         }
         //goes to the next node in the stack and returns it
-        E item = current.item;
+        E item = current.data;
         current = current.nextNode;
         return item;
     }
