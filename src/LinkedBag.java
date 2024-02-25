@@ -5,6 +5,11 @@ import java.util.NoSuchElementException;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
+/**
+ * Ryder Dettloff
+ * LinkedBag data structure
+ * @param <E>
+ */
 public class LinkedBag<E> implements Bag<E>
     {
         //fields
@@ -24,35 +29,43 @@ public class LinkedBag<E> implements Bag<E>
         }
     /**
      * Add an item to the bag.
-     *
+     * time complexity: O(N)(Constant) simple operations. creating/assigning variables. size of bag doesn't matter
      * @param item the item to be added
      */
     @Override
     public void add(E item) {
-        head = new Node();
+        //assign head to prev node
+
         Node prev = head;
+        //create new node to be the head
+        head = new Node();
+        //assign new item to heads data
         head.data = item;
+        //set the new head's next node to previous
         head.nextNode = prev;
+        //increment size
         size++;
     }
 
     /**
      * Checks to see if the bag is empty.
-     *
+     *time complexity: O(N)(Constant) comparing size to 0
      * @return true if the bag is empty, false otherwise
      */
     @Override
     public boolean isEmpty() {
+        //compare size to 0, return boolean value
         return size == 0;
     }
 
     /**
      * Returns a count of the number of items in the bag.
-     *
+     *time complexity: O(N)(Constant) returing size variab;e
      * @return the number of items in the bag
      */
     @Override
     public int size() {
+        //return size variable
         return size;
     }
 

@@ -10,8 +10,7 @@ import java.util.Scanner;
  */
 public class QueueTestClient
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Queue<String> s = new LinkedQueue<>();
         Scanner in = new Scanner("to be or not to - be - - that - - - is");
 // checks next string for "-" if it doesn't contain it places it at the end of the queue

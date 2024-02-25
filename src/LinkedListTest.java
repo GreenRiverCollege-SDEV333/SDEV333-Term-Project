@@ -2,6 +2,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Ryder Dettloff
+ * test for ResizingArrayStack and LinkedStack
+ */
 /*
 I need to get debug, I think something is wrong with my getter.. I will review and see if I
 can get it fixed asap.

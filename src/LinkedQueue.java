@@ -9,6 +9,8 @@ import java.util.NoSuchElementException;
  */
 
 public class LinkedQueue<E> implements Queue<E> {
+
+    //data fields for queue
     private Node head;
     private Node tail;
     private int size;
@@ -16,10 +18,11 @@ public class LinkedQueue<E> implements Queue<E> {
 
     private class Node
     {
+        //create class node
         E data;
         Node nextNode;
     }
-
+    //create constructor for LinkedQueue
     public LinkedQueue()
     {
         this.head = null;
@@ -29,7 +32,7 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Add an item to the queue.
-     *
+     * time complexity: O(N)(Constant) simple operations. creating/assigning variables. size of queue doesn't matter
      * @param item the item to be added
      */
     @Override
@@ -52,7 +55,7 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Remove an item from the queue.
-     *
+     * time complexity: O(N)(Constant) simple operations. removing variables. size of queue doesn't matter
      * @return the item that was removed
      */
     @Override
@@ -74,21 +77,23 @@ public class LinkedQueue<E> implements Queue<E> {
 
     /**
      * Checks to see if the queue is empty.
-     *
+     * time complexity: O(N)(Constant) comparing variable to 0
      * @return true if the queue is empty, false otherwise
      */
     @Override
     public boolean isEmpty() {
+        //compare size to 0 return boolean value
         return size == 0;
     }
 
     /**
      * Returns a count of the number of items in the queue.
-     *
+     *time complexity: O(N)(Constant) returning size variable
      * @return the number of items in the queue
      */
     @Override
     public int size() {
+        //return size variable
         return size;
     }
 

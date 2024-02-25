@@ -9,11 +9,13 @@ import java.util.NoSuchElementException;
  * @param <E>
  */
 public class ResizingArrayStack<E> implements Stack<E> {
-    //fields
+    //Array Stack Fields
     private E[] buffer;
     private int size;
     private static final int INITIAL_SIZE = 10;
 
+
+    //Array Stack Constructor
     public ResizingArrayStack() {
         this.buffer = (E[]) new Object[INITIAL_SIZE];
         this.size = 0;
@@ -22,7 +24,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * doubles the size of the buffer to be used in the push method
-     * @param increaseBuffer
+     * (HELPER METHOD)
      */
     private void increaseBuffer(int increaseBuffer) {
         //helper for push/pop doubles size of array and copies it over to the new one
@@ -34,6 +36,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
      * Add an item to the stack.
      * checks to see if buffer is of size then pushes the item to the stack
      * @param item the item to be added
+     * Time Complexity: is O(1)(constant) becuase of simple indexing (could take O(N)(Linear) if array needs to be resized Worst case)
      */
     @Override
 
@@ -49,7 +52,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Removes the most recently added item from the stack.
-     *
+     * Time Complexity O(1)(constant) due to simple indexing
      * @return the item that was removed
      */
     @Override
@@ -72,7 +75,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
     /**
      * Returns the item at the top of the stack.
      * Does not modify the stack or the item at the top.
-     *
+     *  Time Complexity O(1)(constant) due to simple indexing
      * @return item at the top of the stack.
      */
     @Override
@@ -88,7 +91,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Checks to see if the stack is empty.
-     *
+     * Time Complexity O(1)(constant) due to checking value of size compared to 0
      * @return true if the stack is empty, false otherwise
      */
     @Override
@@ -98,7 +101,7 @@ public class ResizingArrayStack<E> implements Stack<E> {
 
     /**
      * Returns a count of the number of items in the stack.
-     *
+     * Time Complexity O(1) (constant) due to just checking value of arrau
      * @return the number of items in the stack
      */
     @Override
