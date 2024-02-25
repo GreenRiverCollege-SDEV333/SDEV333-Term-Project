@@ -120,7 +120,6 @@ public class ResizingArrayStack<E> implements Stack<E> {
     }
 
 
-    //copied from my ArrayList class , need to update
     private class ArrayListIterator implements Iterator<E> {
         private int currentIndex = 0;
 
