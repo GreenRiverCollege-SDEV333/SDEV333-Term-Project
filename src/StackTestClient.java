@@ -1,4 +1,11 @@
 import java.util.Scanner;
+/**
+ *
+ * test the methods in the ResizingArrayStack<E> and LinkedStack
+ *
+ * Linked-list implementation and resizing array
+ * @author Kayley Young
+ */
 public class StackTestClient {
 
     public static void main(String[] args) {
