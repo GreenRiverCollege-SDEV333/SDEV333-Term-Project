@@ -5,6 +5,8 @@ import java.util.NoSuchElementException;
  *
  * implement all of the methods in the Stack <E> interface, and implement the interator()
  * method from the iterable <E> interface
+ *
+ * Pushdown (LIFO) Stack - resizing array implementation
  * @author Kayley Young
  */
 

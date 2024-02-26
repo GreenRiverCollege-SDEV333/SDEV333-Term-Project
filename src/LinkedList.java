@@ -18,12 +18,17 @@ public class LinkedList <E> implements List <E> {
         E data;
         Node next;
 
-        public Node(E value) {
-            this.data = value;
+        public Node(E data) {
+            this.data = data;
         }
 
     }
-
+    /**
+     * constructor for LinkedList, initializes fields
+     *
+     * O(1) because initializing fields  take constant time.
+     *
+     */
     public LinkedList() {
         head = null;
         size = 0;
